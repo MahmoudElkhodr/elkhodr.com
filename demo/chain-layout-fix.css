@@ -1,0 +1,36 @@
+.chain-scroll {
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.chain-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 10px;
+}
+
+.simple-block,
+.attack-block {
+  width: clamp(176px, 22vw, 218px);
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 14px;
+}
+
+.chain-arrow {
+  width: 46px;
+  flex: 0 0 46px;
+}
+
+.block-entry,
+.attack-field {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 760px) {
+  .chain-row {
+    min-width: 660px;
+    justify-content: flex-start;
+  }
+}
