@@ -62,6 +62,12 @@ nav.scrolled{box-shadow:0 2px 24px rgba(44,41,38,.06)}
 .nk{display:flex;gap:6px;list-style:none}
 .nk a{font-size:.9rem;font-weight:500;color:var(--mut);text-decoration:none;padding:8px 14px;border-radius:8px;transition:all .2s}
 .nk a:hover,.nk a.active{color:var(--acc);background:var(--acc-l)}
+.nd{position:relative}
+.dtg{font:inherit;font-size:.9rem;font-weight:500;color:var(--mut);background:transparent;border:0;padding:8px 14px;border-radius:8px;display:flex;align-items:center;gap:6px;cursor:pointer;transition:all .2s}
+.dtg:hover,.nd.open .dtg,.nd:focus-within .dtg{color:var(--acc);background:var(--acc-l)}
+.dm{position:absolute;top:calc(100% + 8px);right:0;min-width:190px;padding:8px;background:var(--card);border:1px solid var(--bdr);border-radius:12px;box-shadow:0 18px 42px rgba(44,41,38,.12);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s}
+.nd:hover .dm,.nd:focus-within .dm,.nd.open .dm{opacity:1;visibility:visible;transform:translateY(0)}
+.dm a{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:8px;white-space:nowrap}
 .nh{display:none;background:none;border:none;cursor:pointer;padding:8px}
 .nh i{font-size:1.3rem;color:var(--txt)}
 .hero{padding-top:calc(var(--nh) + 72px);padding-bottom:72px;display:grid;grid-template-columns:1fr 280px;gap:56px;align-items:center}
@@ -146,6 +152,9 @@ footer a{color:var(--acc);text-decoration:none}
   .sec{padding-top:56px;padding-bottom:56px}
   .nk{display:none}
   .nk.open{display:flex;flex-direction:column;position:absolute;top:var(--nh);left:0;right:0;background:rgba(253,250,246,.98);backdrop-filter:blur(16px);padding:16px 24px;border-bottom:1px solid var(--bdr);gap:4px}
+  .dtg{width:100%;justify-content:space-between}
+  .dm{position:static;display:none;min-width:0;box-shadow:none;background:transparent;border:0;padding:4px 0 4px 14px;opacity:1;visibility:visible;transform:none}
+  .nd.open .dm{display:block}
   .nh{display:block}
   .gi{padding:32px 20px}
   .sb-in{flex-direction:column;text-align:center}
@@ -155,7 +164,7 @@ footer a{color:var(--acc);text-decoration:none}
 </style>
 </head>
 <body>
-<nav id="mn"><div class="ni"><a href="#" class="nl">M. Elkhodr</a><button class="nh" onclick="document.querySelector('.nk').classList.toggle('open')" aria-label="Menu"><i class="fa-solid fa-bars"></i></button><ul class="nk"><li><a href="#about">About</a></li><li><a href="#media">In the Media</a></li><li><a href="#opinion">Opinion</a></li><li><a href="#pubs">Publications</a></li><li><a href="#contact">Get in Touch</a></li></ul></div></nav>
+<nav id="mn"><div class="ni"><a href="#" class="nl">M. Elkhodr</a><button class="nh" onclick="document.querySelector('.nk').classList.toggle('open')" aria-label="Menu"><i class="fa-solid fa-bars"></i></button><ul class="nk"><li><a href="#about">About</a></li><li><a href="#media">In the Media</a></li><li><a href="#opinion">Opinion</a></li><li><a href="#pubs">Publications</a></li><li class="nd"><button class="dtg" type="button" aria-expanded="false" onclick="toggleTeachingMenu(event)">Teaching Resources <i class="fa-solid fa-chevron-down"></i></button><div class="dm"><a href="teaching-resources/blockchain/"><i class="fa-solid fa-cubes"></i> Blockchain</a><a href="teaching-resources/networking/"><i class="fa-solid fa-network-wired"></i> Networking</a></div></li><li><a href="#contact">Get in Touch</a></li></ul></div></nav>
 
 <div class="w"><div class="hero"><div><h1>Dr Mahmoud <span>Elkhodr</span></h1><p class="tl">Welcome to my portfolio. I am a Senior Lecturer, researcher, and technologist working at the intersection of cybersecurity, IoT, blockchain, and AI-enhanced education at CQUniversity, Sydney. I welcome prospective research students, collaborators, and industry partners. Thank you for visiting.</p><div class="hl"><a href="https://scholar.google.com.au/citations?user=xqeZJm4AAAAJ&hl=en" target="_blank"><i class="fa-solid fa-graduation-cap"></i> Google Scholar</a><a href="https://orcid.org/0000-0001-9904-7551" target="_blank"><i class="fa-brands fa-orcid"></i> ORCID</a><a href="https://au.linkedin.com/in/elkhodr" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a><a href="https://theconversation.com/profiles/mahmoud-elkhodr-984831" target="_blank"><i class="fa-solid fa-pen-nib"></i> The Conversation</a><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></div></div><div class="hp"><img src="photo.png" alt="Dr Mahmoud Elkhodr"></div></div></div>
 
@@ -218,7 +227,9 @@ var ids=document.querySelectorAll('[id]'),na=document.querySelectorAll('.nk a');
 window.addEventListener('scroll',function(){var c='';ids.forEach(function(s){if(s.id&&window.scrollY>=s.offsetTop-120)c=s.id});na.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+c)})});
 var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:0.1});
 document.querySelectorAll('.fi').forEach(function(el){ob.observe(el)});
-document.querySelectorAll('.nk a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('.nk').classList.remove('open')})});
+function toggleTeachingMenu(e){var dd=e.currentTarget.closest('.nd'),open=dd.classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',open?'true':'false')}
+document.addEventListener('click',function(e){document.querySelectorAll('.nd.open').forEach(function(dd){if(!dd.contains(e.target)){dd.classList.remove('open');var b=dd.querySelector('.dtg');if(b)b.setAttribute('aria-expanded','false')}})});
+document.querySelectorAll('.nk a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('.nk').classList.remove('open');document.querySelectorAll('.nd.open').forEach(function(dd){dd.classList.remove('open')})})});
 </script>
 </body>
 </html>

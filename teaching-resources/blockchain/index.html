@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blockchain Teaching Resources | Dr Mahmoud Elkhodr</title>
+<meta name="description" content="Blockchain teaching resources, learning activities, and demos created by Dr Mahmoud Elkhodr for students.">
+<link rel="canonical" href="https://elkhodr.com/teaching-resources/blockchain/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blockchain Teaching Resources">
+<meta property="og:description" content="Helpful blockchain learning resources and interactive demos created by Dr Mahmoud Elkhodr.">
+<meta property="og:image" content="https://elkhodr.com/assets/blockchain-teaching-hero.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f7fbfa;--ink:#17211f;--mut:#5d6965;--acc:#0e7c61;--acc2:#0f5f86;--line:#dce8e4;--card:#fff;--soft:#eaf6f2;--hd:'Lora',Georgia,serif;--bd:'DM Sans',-apple-system,sans-serif;--mw:1120px;--nav:72px}
+body{font-family:var(--bd);color:var(--ink);background:var(--bg);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.w{max-width:var(--mw);margin:0 auto;padding:0 32px}
+.top{position:sticky;top:0;z-index:20;height:var(--nav);background:rgba(247,251,250,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+.top .w{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-family:var(--hd);font-weight:700;text-decoration:none;color:var(--ink)}
+.nav{display:flex;gap:8px;align-items:center}
+.nav a{font-size:.92rem;font-weight:600;color:var(--mut);text-decoration:none;padding:8px 12px;border-radius:8px}
+.nav a:hover,.nav a.active{color:var(--acc);background:var(--soft)}
+.hero{padding:54px 0 42px}
+.hero-grid{display:grid;grid-template-columns:1fr 440px;gap:42px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;padding:6px 12px;border:1px solid rgba(14,124,97,.25);border-radius:999px;background:var(--soft);color:var(--acc);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+h1{font-family:var(--hd);font-size:clamp(2.2rem,5vw,4.2rem);line-height:1.04;letter-spacing:-.02em;margin-bottom:18px}
+.lead{max-width:720px;color:var(--mut);font-size:1.08rem;line-height:1.8}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:9px;border-radius:10px;padding:12px 18px;font-weight:800;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s}
+.btn.primary{background:var(--acc);color:white;box-shadow:0 12px 28px rgba(14,124,97,.16)}
+.btn.secondary{border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.btn:hover{transform:translateY(-2px)}
+.hero-img{overflow:hidden;border-radius:18px;border:1px solid rgba(15,95,134,.22);background:#061b2b;box-shadow:0 24px 58px rgba(15,95,134,.16)}
+.hero-img img{display:block;width:100%;height:320px;object-fit:cover}
+.section{padding:42px 0}
+.section-title{margin-bottom:22px}
+.section-title h2{font-family:var(--hd);font-size:1.8rem}
+.section-title p{color:var(--mut)}
+.lesson-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.lesson{display:flex;flex-direction:column;min-height:250px;padding:28px;border:1px solid var(--line);border-radius:16px;background:var(--card);text-decoration:none;color:inherit;box-shadow:0 14px 34px rgba(23,33,31,.05)}
+.lesson:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(23,33,31,.09)}
+.tag{width:fit-content;display:inline-flex;align-items:center;gap:7px;margin-bottom:18px;padding:6px 10px;border-radius:999px;background:var(--soft);color:var(--acc);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.lesson h3{font-family:var(--hd);font-size:1.3rem;line-height:1.3;margin-bottom:10px}
+.lesson p{color:var(--mut);line-height:1.65}
+.lesson .go{margin-top:auto;padding-top:18px;color:var(--acc);font-weight:800}
+.lesson.soon{background:#f4f8f7;color:#73807c;box-shadow:none}
+.lesson.soon .tag{background:#e9eeee;color:#6c7874}
+.note{display:grid;grid-template-columns:auto 1fr;gap:14px;margin-top:22px;padding:18px;border:1px solid rgba(14,124,97,.24);border-radius:14px;background:var(--soft);color:#235648}
+.note i{margin-top:4px;color:var(--acc)}
+.foot{margin-top:52px;padding:28px 0;border-top:1px solid var(--line);color:var(--mut);font-size:.9rem}
+.foot .w{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.foot a{color:var(--acc);text-decoration:none;font-weight:700}
+@media(max-width:860px){.w{padding:0 22px}.top{height:auto}.top .w{padding-top:14px;padding-bottom:14px;align-items:flex-start;flex-direction:column}.nav{flex-wrap:wrap}.hero-grid{grid-template-columns:1fr}.hero-img img{height:240px}.lesson-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="w"><a class="brand" href="/">M. Elkhodr</a><nav class="nav" aria-label="Teaching resources navigation"><a href="/">Home</a><a class="active" href="/teaching-resources/blockchain/">Blockchain</a><a href="/teaching-resources/networking/">Networking</a><a href="/demo/">Lesson 1 Demo</a></nav></div></header>
+<main>
+<section class="hero"><div class="w hero-grid"><div><div class="eyebrow"><i class="fa-solid fa-cubes"></i> Teaching Resources</div><h1>Blockchain learning resources</h1><p class="lead">Welcome students. This page collects helpful blockchain resources, interactive demonstrations, and lesson materials created by Dr Mahmoud Elkhodr and shared here to support your learning. Start with the first lesson below, then return as new activities are added.</p><div class="hero-actions"><a class="btn primary" href="/demo/"><i class="fa-solid fa-play"></i> Open Lesson 1 Demo</a><a class="btn secondary" href="/"><i class="fa-solid fa-arrow-left"></i> Back to Dr Mahmoud's site</a></div></div><div class="hero-img"><img src="/assets/blockchain-teaching-hero.png" alt="Digital blockchain blocks linked across a network"></div></div></section>
+<section class="section"><div class="w"><div class="section-title"><h2>Lessons and demos</h2><p>Use these resources alongside class activities, revision, and self-guided exploration.</p></div><div class="lesson-grid"><a class="lesson" href="/demo/"><span class="tag"><i class="fa-solid fa-book-open-reader"></i> Lesson 1</span><h3>Blockchain fundamentals interactive demo</h3><p>Explore ledgers, blocks, hash links, tamper detection, Proof of Work, mining rewards, difficulty, confirmations, and a knowledge check through an interactive visual learning package.</p><span class="go">Launch lesson <i class="fa-solid fa-arrow-right"></i></span></a><div class="lesson soon"><span class="tag"><i class="fa-solid fa-clock"></i> Coming soon</span><h3>Lesson 2</h3><p>A new blockchain resource will be added here as the teaching sequence grows.</p><span class="go">Planned for a future update</span></div></div><div class="note"><i class="fa-solid fa-circle-info"></i><div><strong>For students:</strong> these materials are designed to make technical ideas easier to inspect visually. They are not a replacement for lectures, readings, or assessment instructions, but they can help you revise and test your understanding.</div></div></div></section>
+</main>
+<footer class="foot"><div class="w"><span>&copy; 2026 Dr Mahmoud Elkhodr</span><span><a href="/">Home</a> &middot; <a href="/teaching-resources/networking/">Networking resources</a></span></div></footer>
+</body>
+</html>
