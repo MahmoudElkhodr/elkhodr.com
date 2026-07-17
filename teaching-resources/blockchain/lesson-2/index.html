@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>COIT12211 Week 2 Demo | Blockchain Types and Consensus</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <p class="unit-label">COIT12211 / COIT29223 Joint Class</p>
+      <h1>Week 2 Animated Demo: Blockchain Types, Databases and Consensus</h1>
+      <p class="subtitle">Use the controls or the keyboard to move step by step during class, or press Autoplay for a self-paced student viewing mode.</p>
+    </div>
+    <div class="header-card">
+      <span class="badge">Student-facing</span>
+      <span class="badge soft">No wallet needed</span>
+      <span class="badge soft">No installation</span>
+    </div>
+  </header>
+
+  <main class="app-shell" id="app">
+    <section class="scene-nav" aria-label="Scene navigation">
+      <button class="scene-tab active" data-scene="0" type="button">1. Chain Types</button>
+      <button class="scene-tab" data-scene="1" type="button">2. Database vs Blockchain</button>
+      <button class="scene-tab" data-scene="2" type="button">3. Consensus</button>
+      <button class="scene-tab" data-scene="3" type="button">4. Interledger</button>
+      <button class="scene-tab" data-scene="4" type="button">5. Hyperledger Fabric</button>
+    </section>
+
+    <section class="control-bar" aria-label="Animation controls">
+      <button id="prevScene" type="button" title="Shift + Left arrow">Previous scene</button>
+      <button id="backStep" type="button" title="Left arrow">Back step</button>
+      <button id="playPause" class="primary" type="button" title="Spacebar">Autoplay</button>
+      <button id="nextStep" type="button" title="Right arrow">Next step</button>
+      <button id="nextScene" type="button" title="Shift + Right arrow">Next scene</button>
+      <button id="restart" type="button" title="R">Restart scene</button>
+      <button id="fullscreen" type="button" title="F">Fullscreen</button>
+      <label class="speed-control">Speed
+        <select id="speed">
+          <option value="3200">Slow</option>
+          <option value="2200" selected>Normal</option>
+          <option value="1300">Fast</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="progress-row" aria-label="Progress">
+      <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      <p id="stepCounter">Step 1 of 1</p>
+      <p class="key-hints">Keys: <kbd>&larr;</kbd><kbd>&rarr;</kbd> step &middot; <kbd>Shift</kbd>+<kbd>&larr;</kbd><kbd>&rarr;</kbd> scene &middot; <kbd>Space</kbd> autoplay &middot; <kbd>1</kbd>&ndash;<kbd>5</kbd> scene &middot; <kbd>F</kbd> fullscreen</p>
+    </section>
+
+    <section id="sceneRoot" class="scene-root"></section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Teaching simulation only. It is designed to explain concepts before students use Remix IDE in tutorials.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
