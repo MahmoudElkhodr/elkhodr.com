@@ -35,10 +35,9 @@ button, select { font: inherit; }
 
 .site-header {
   display: flex;
-  justify-content: space-between;
-  gap: 24px;
-  align-items: flex-start;
-  padding: 26px clamp(16px, 4vw, 48px) 16px;
+  justify-content: center;
+  align-items: center;
+  padding: 12px clamp(16px, 4vw, 48px);
   background: linear-gradient(135deg, var(--brand), #174d68 70%, #1d6b72);
   color: #fff;
 }
@@ -51,7 +50,7 @@ button, select { font: inherit; }
   opacity: 0.85;
 }
 
-h1 { margin: 0; font-size: clamp(1.45rem, 2.6vw, 2.1rem); line-height: 1.15; }
+h1 { margin: 0; font-size: clamp(1.25rem, 2.2vw, 1.65rem); line-height: 1.15; text-align: center; }
 
 .subtitle { max-width: 850px; margin: 10px 0 0; color: rgba(255,255,255,0.86); }
 
@@ -70,7 +69,7 @@ h1 { margin: 0; font-size: clamp(1.45rem, 2.6vw, 2.1rem); line-height: 1.15; }
 }
 .badge.soft { background: rgba(255,255,255,0.09); }
 
-.app-shell { width: min(1220px, calc(100% - 28px)); margin: 18px auto 26px; }
+.app-shell { width: min(1220px, calc(100% - 28px)); margin: 10px auto 22px; }
 
 .scene-nav, .control-bar, .progress-row, .scene-root, .site-footer {
   background: var(--panel);
@@ -79,21 +78,21 @@ h1 { margin: 0; font-size: clamp(1.45rem, 2.6vw, 2.1rem); line-height: 1.15; }
   box-shadow: var(--shadow);
 }
 
-.scene-nav { display: flex; gap: 8px; flex-wrap: wrap; padding: 10px; }
+.scene-nav { display: flex; gap: 8px; flex-wrap: wrap; padding: 8px; }
 
 .scene-tab, .control-bar button, .speed-control select {
   border: 1px solid var(--border);
   background: #fff;
   color: var(--ink);
   border-radius: 12px;
-  padding: 9px 12px;
+  padding: 8px 11px;
   cursor: pointer;
   transition: background 200ms var(--ease), color 200ms var(--ease), transform 150ms var(--ease);
 }
 .scene-tab:hover, .control-bar button:hover { transform: translateY(-1px); }
 .scene-tab.active { background: var(--brand); color: #fff; border-color: var(--brand); }
 
-.control-bar { display: flex; flex-wrap: wrap; gap: 9px; padding: 12px; margin-top: 12px; align-items: center; }
+.control-bar { display: flex; flex-wrap: wrap; gap: 8px; padding: 9px; margin-top: 8px; align-items: center; }
 .control-bar button.primary { background: var(--brand-2); color: #fff; border-color: var(--brand-2); font-weight: 700; }
 .control-bar button.primary.playing { background: var(--warn); border-color: var(--warn); }
 
@@ -104,8 +103,8 @@ h1 { margin: 0; font-size: clamp(1.45rem, 2.6vw, 2.1rem); line-height: 1.15; }
   grid-template-columns: 1fr auto auto;
   gap: 14px;
   align-items: center;
-  padding: 12px 14px;
-  margin-top: 12px;
+  padding: 9px 12px;
+  margin-top: 8px;
 }
 
 .progress-track { height: 10px; background: #edf2f7; border-radius: 999px; overflow: hidden; }
@@ -129,9 +128,23 @@ h1 { margin: 0; font-size: clamp(1.45rem, 2.6vw, 2.1rem); line-height: 1.15; }
   font-size: 0.75rem;
 }
 
-.scene-root { margin-top: 12px; padding: clamp(14px, 2vw, 22px); min-height: 640px; }
+.scene-root { margin-top: 8px; padding: clamp(14px, 2vw, 22px); min-height: 640px; }
 
 .scene-header { display: flex; gap: 18px; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; }
+.scene-side { display: grid; gap: 10px; flex: 1 1 300px; max-width: 420px; }
+.scene-play {
+  justify-self: stretch;
+  border: 1px solid var(--brand-2);
+  background: var(--brand-2);
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 200ms var(--ease), transform 150ms var(--ease), border-color 200ms var(--ease);
+}
+.scene-play:hover { transform: translateY(-1px); }
+.scene-play.playing { background: var(--warn); border-color: var(--warn); }
 .scene-kicker { margin: 0 0 6px; color: var(--brand-2); font-weight: 700; }
 .scene-title { margin: 0; font-size: clamp(1.3rem, 2.2vw, 1.85rem); }
 .scene-purpose { margin: 8px 0 0; color: var(--muted); max-width: 760px; }
@@ -144,7 +157,6 @@ h1 { margin: 0; font-size: clamp(1.45rem, 2.6vw, 2.1rem); line-height: 1.15; }
   border-radius: 14px;
   min-width: 260px;
   max-width: 400px;
-  flex: 1 1 300px;
 }
 .caption-card strong { color: var(--brand); }
 .caption-card p { margin: 6px 0 0; color: var(--ink); }

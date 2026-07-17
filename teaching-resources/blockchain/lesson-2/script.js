@@ -154,14 +154,19 @@
           <h2 class="scene-title">${scene.title}</h2>
           <p class="scene-purpose">${scene.purpose}</p>
         </div>
-        <div class="caption-card" aria-live="polite">
-          <strong id="capLabel"></strong>
-          <p id="capText"></p>
+        <div class="scene-side">
+          <button id="scenePlayPause" class="scene-play" type="button" aria-pressed="false">Play animation</button>
+          <div class="caption-card" aria-live="polite">
+            <strong id="capLabel"></strong>
+            <p id="capText"></p>
+          </div>
         </div>
       </div>
       <div id="stageHolder"></div>`;
+    q('#scenePlayPause').addEventListener('click', toggleAutoplayFromScene);
     scene.mount(q('#stageHolder'));
     applyStep(true);
+    syncAutoplayButtons();
   }
 
   function applyStep(firstPaint) {
@@ -224,16 +229,35 @@
 
   function startAutoplay() {
     state.playing = true;
-    playPause.textContent = 'Pause';
-    playPause.classList.add('playing');
+    syncAutoplayButtons();
     resetAutoplayTimer();
   }
   function stopAutoplay() {
     state.playing = false;
-    playPause.textContent = 'Autoplay';
-    playPause.classList.remove('playing');
+    syncAutoplayButtons();
     if (state.timer) clearInterval(state.timer);
     state.timer = null;
+  }
+  function syncAutoplayButtons() {
+    playPause.textContent = state.playing ? 'Pause' : 'Autoplay';
+    playPause.classList.toggle('playing', state.playing);
+    const scenePlayPause = q('#scenePlayPause');
+    if (scenePlayPause) {
+      scenePlayPause.textContent = state.playing ? 'Pause animation' : 'Play animation';
+      scenePlayPause.classList.toggle('playing', state.playing);
+      scenePlayPause.setAttribute('aria-pressed', state.playing ? 'true' : 'false');
+    }
+  }
+  function toggleAutoplayFromScene() {
+    if (state.playing) {
+      stopAutoplay();
+      return;
+    }
+    if (state.step >= scenes[state.scene].steps.length - 1) {
+      state.step = 0;
+      render();
+    }
+    startAutoplay();
   }
   function resetAutoplayTimer() {
     if (state.timer) clearInterval(state.timer);
