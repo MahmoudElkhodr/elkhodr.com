@@ -1,0 +1,1456 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Lesson 2 - Follow the Frame: a self-paced interactive tutorial for COIT11238 Week 2 networking basics." />
+<title>Lesson 2 - Follow the Frame | COIT11238 Week 2</title>
+<style>
+:root{
+  --ink:#152019; --ink-soft:#3d4a43; --muted:#5f6f66;
+  --paper:#eef3ee; --card:#ffffff; --line:#d3ddd4;
+  --cqu:#00734d; --cqu-deep:#0a3d2c; --cqu-soft:#e2f1e9;
+  --amber:#e8960c; --amber-soft:#fdf1dc;
+  --copper:#b95f24; --copper-soft:#f9ebe0;
+  --led:#25b96b; --led-soft:#e2f7ec;
+  --red:#b3261e; --red-soft:#fbecea;
+  --blue:#1f5fa8; --blue-soft:#e7f0fa;
+  --term-bg:#0e1a14; --term-fg:#8be3b4;
+  --radius:16px;
+  font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  color:var(--ink);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);min-width:320px;line-height:1.55}
+code,pre,.mono{font-family:ui-monospace,"Cascadia Mono",Consolas,"SF Mono",Menlo,monospace}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.45}
+input,select{color:var(--ink);background:#fff;border:1.5px solid #b9c7bc;border-radius:10px;padding:9px 11px}
+input:focus,select:focus,button:focus-visible,[tabindex]:focus-visible{outline:3px solid rgba(0,115,77,.35);outline-offset:2px}
+h1,h2,h3,h4{line-height:1.12;margin:0}
+p{margin:.4em 0 .9em}
+.wrap{max-width:1180px;margin:0 auto;padding:14px 20px 70px}
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(140deg,var(--cqu-deep) 0%,#0f5a3e 55%,#0c3f52 130%);color:#fff;border-radius:20px;padding:22px 26px 20px;box-shadow:0 14px 34px rgba(10,61,44,.22);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto -60px -90px auto;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(139,227,180,.16),transparent 65%);pointer-events:none}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.resource-link{position:relative;z-index:1;color:#cfe7da;text-decoration:none;border:1px solid rgba(207,231,218,.35);border-radius:999px;padding:5px 10px;font-size:.78rem;font-weight:700}
+.resource-link:hover{background:rgba(255,255,255,.1);color:#fff}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;font-weight:800;color:#9fdcc0;margin:0 0 8px}
+.hero h1{font-size:clamp(1.65rem,4vw,2.65rem);letter-spacing:-.03em;font-weight:800}
+.hero p.lede{color:#dcebe2;max-width:72ch;font-size:.98rem;margin-top:10px;margin-bottom:6px}
+.hero .meta{color:#9fdcc0;font-size:.82rem;margin-top:0}
+
+/* patch panel progress */
+.panelboard{background:rgba(6,26,18,.55);border:1px solid rgba(159,220,192,.25);border-radius:14px;margin-top:14px;padding:10px 12px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.panelboard .label{font-size:.8rem;color:#cfe7da;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.ports{display:flex;gap:10px;flex-wrap:wrap}
+.port{display:flex;flex-direction:column;align-items:center;gap:4px;background:transparent;border:0;padding:2px 4px;border-radius:8px;color:#cfe7da}
+.port .jack{width:30px;height:24px;border-radius:6px;border:1.5px solid rgba(207,231,218,.55);background:#08150f;position:relative}
+.port .jack::after{content:"";position:absolute;left:50%;bottom:3px;transform:translateX(-50%);width:9px;height:6px;border-radius:2px;background:var(--jackled,#3a4d43);box-shadow:0 0 6px var(--jackled,transparent)}
+.port.done .jack::after{--jackled:var(--led)}
+.port.now .jack{border-color:#ffd27a}
+.port.now .jack::after{--jackled:var(--amber);animation:blink 1.1s steps(2,start) infinite}
+.port .pnum{font-size:.7rem;font-weight:700}
+@keyframes blink{50%{opacity:.25}}
+.progress-note{margin-left:auto;font-size:.85rem;color:#cfe7da}
+@media (prefers-reduced-motion:reduce){.port.now .jack::after{animation:none}}
+
+/* ---------- sticky nav ---------- */
+.tabs{position:sticky;top:0;z-index:30;background:rgba(238,243,238,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px 0;display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
+.tab{border:1.5px solid var(--line);background:#fff;color:var(--muted);border-radius:12px;padding:8px;font-size:.8rem;font-weight:650;text-align:left;display:flex;gap:8px;align-items:center;min-height:48px}
+.tab .lednav{flex:none;width:9px;height:9px;border-radius:50%;background:#c3cfc6}
+.tab.active{border-color:var(--cqu);color:var(--cqu-deep);background:var(--cqu-soft)}
+.tab.active .lednav{background:var(--amber);box-shadow:0 0 6px var(--amber)}
+.tab.done .lednav{background:var(--led);box-shadow:0 0 5px var(--led)}
+@media (max-width:900px){.tabs{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:560px){.tabs{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- sections ---------- */
+.lesson{display:none;margin-top:18px}
+.lesson.visible{display:block}
+.kicker{color:var(--cqu);text-transform:uppercase;letter-spacing:.1em;font-weight:800;font-size:.76rem;margin:6px 0 6px}
+.lesson>h2{font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-.02em;font-weight:800}
+.goals{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px;padding:0;list-style:none}
+.goals li{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:5px 13px;font-size:.82rem;color:var(--ink-soft);font-weight:600}
+.goals li::before{content:"◆ ";color:var(--cqu);font-size:.7em;vertical-align:1px}
+
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin-top:16px}
+.card h3{font-size:1.05rem;margin-bottom:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+@media (max-width:820px){.grid2{grid-template-columns:1fr}}
+.hint{font-size:.86rem;color:var(--muted)}
+.note{background:var(--amber-soft);border:1.5px solid #ecd3a2;border-radius:12px;padding:10px 14px;font-size:.88rem;margin-top:12px}
+.note.blue{background:var(--blue-soft);border-color:#bcd4ec}
+.badgeok{color:var(--cqu-deep);background:var(--led-soft);border:1.5px solid #a9dfc3;border-radius:999px;padding:3px 12px;font-size:.8rem;font-weight:700;display:inline-block}
+
+.btn{border:1.5px solid var(--cqu);background:var(--cqu);color:#fff;border-radius:11px;padding:10px 18px;font-weight:700;font-size:.92rem}
+.btn:hover:not(:disabled){background:#036143}
+.btn.ghost{background:#fff;color:var(--cqu-deep)}
+.btn.ghost:hover:not(:disabled){background:var(--cqu-soft)}
+.btn.small{padding:7px 13px;font-size:.84rem;border-radius:9px}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+
+/* terminal */
+.term{background:var(--term-bg);color:var(--term-fg);border-radius:12px;padding:14px 16px;font-size:.83rem;line-height:1.5;overflow-x:auto;white-space:pre-wrap;margin-top:12px;min-height:56px}
+.term .dim{color:#5d8a74}
+.term .bad{color:#ff9f96}
+.term .good{color:#a5f2c8}
+
+/* stepper (lesson 1) */
+.stepper{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px}
+.stepper li{border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;background:#fff;display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start;opacity:.55}
+.stepper li .dotn{width:26px;height:26px;border-radius:50%;background:#e6ece7;color:var(--muted);font-weight:800;font-size:.8rem;display:grid;place-items:center;margin-top:2px}
+.stepper li.on{opacity:1;border-color:var(--cqu);box-shadow:0 4px 14px rgba(0,115,77,.12)}
+.stepper li.on .dotn{background:var(--cqu);color:#fff}
+.stepper li.past{opacity:1}
+.stepper li.past .dotn{background:var(--led-soft);color:var(--cqu-deep)}
+.stepper b{display:block;font-size:.93rem}
+.stepper span{font-size:.85rem;color:var(--muted)}
+.bytes{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.byte{border:1.5px solid var(--line);border-radius:9px;padding:5px 8px;background:#fff;text-align:center}
+.byte b{display:block;font-size:1rem}
+.byte small{display:block;color:var(--muted);font-size:.66rem;letter-spacing:.03em}
+
+/* link diagram svg shared */
+.diagram{width:100%;height:auto;display:block;margin-top:10px}
+.svglabel{font-size:12px;font-weight:700;fill:var(--ink-soft)}
+.svgsub{font-size:10px;fill:var(--muted)}
+
+/* sliders (lesson 2) */
+.sliders{display:grid;gap:14px;margin-top:8px}
+.slider label{display:flex;justify-content:space-between;font-size:.88rem;font-weight:650;margin-bottom:4px}
+.slider output{color:var(--cqu-deep);font-weight:800}
+input[type=range]{width:100%;accent-color:var(--cqu);padding:0;border:0;background:transparent}
+.stat{border:1.5px solid var(--line);border-radius:12px;background:#fff;padding:12px 14px}
+.stat b{font-size:1.35rem;letter-spacing:-.02em}
+.stat small{display:block;color:var(--muted);font-size:.78rem;margin-top:2px}
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+@media (max-width:640px){.statrow{grid-template-columns:1fr}}
+.meter{height:14px;background:#e6ece7;border-radius:999px;overflow:hidden;margin-top:8px}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cqu),#0c8f66);border-radius:inherit;transition:width .25s}
+.meter.warn i{background:linear-gradient(90deg,var(--amber),#d97f06)}
+.flip{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+@media (max-width:640px){.flip{grid-template-columns:1fr}}
+.flip button{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px}
+.flip button b{display:block;color:var(--cqu-deep)}
+.flip button span{display:none;font-size:.85rem;color:var(--ink-soft);margin-top:4px}
+.flip button.open span{display:block}
+.flip button small{color:var(--muted);font-size:.76rem}
+
+/* checkpoint & quiz */
+.check{border-left:5px solid var(--amber);background:#fff}
+.opts{display:grid;gap:8px;margin-top:10px}
+.opt{text-align:left;border:1.5px solid var(--line);border-radius:11px;background:#fff;padding:10px 14px;font-size:.9rem}
+.opt:hover:not(:disabled){border-color:var(--cqu)}
+.opt.correct{border-color:var(--led);background:var(--led-soft);font-weight:650}
+.opt.wrong{border-color:var(--red);background:var(--red-soft)}
+.feedback{margin-top:10px;font-size:.88rem;border-radius:10px;padding:10px 13px;display:none}
+.feedback.show{display:block}
+.feedback.ok{background:var(--led-soft);border:1.5px solid #a9dfc3}
+.feedback.no{background:var(--red-soft);border:1.5px solid #e7b6b2}
+
+/* lesson 4 mac table */
+.mactable{width:100%;border-collapse:collapse;margin-top:10px;font-size:.87rem}
+.mactable th,.mactable td{border:1.5px solid var(--line);padding:7px 10px;text-align:left}
+.mactable th{background:var(--cqu-soft);color:var(--cqu-deep);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+.mactable td.mono{font-weight:650}
+.mactable tr.new td{animation:rowin .7s ease}
+@keyframes rowin{from{background:var(--amber-soft)}to{background:#fff}}
+.framelog{max-height:170px;overflow:auto}
+
+/* lesson 5 encapsulation */
+.stack{display:flex;flex-direction:column;gap:0;margin-top:12px;align-items:stretch}
+.layerbox{border:2px solid;border-radius:12px;padding:10px 12px;font-size:.85rem;font-weight:650;text-align:center;transition:transform .25s}
+.layerbox+.layerbox{margin-top:8px}
+.lb-data{border-color:#8a8f8b;background:#f4f5f4}
+.lb-tcp{border-color:var(--blue);background:var(--blue-soft)}
+.lb-ip{border-color:var(--copper);background:var(--copper-soft)}
+.lb-eth{border-color:var(--cqu);background:var(--cqu-soft)}
+.wrapview{border-radius:14px;padding:10px}
+.wrapview .inner{border-radius:10px;padding:10px}
+.chipbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+/* lesson 6 pin game */
+.pins{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-top:12px}
+@media (max-width:640px){.pins{grid-template-columns:repeat(4,1fr)}}
+.pinslot{border:2px dashed #b9c7bc;border-radius:10px;min-height:66px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:4px;gap:4px;background:#fff}
+.pinslot .pn{font-size:.68rem;font-weight:800;color:var(--muted)}
+.pinslot.filled{border-style:solid}
+.pinslot.good{border-color:var(--led)}
+.pinslot.badp{border-color:var(--red)}
+.wirechip{border:1.5px solid rgba(0,0,0,.25);border-radius:8px;padding:6px 8px;font-size:.68rem;font-weight:800;min-width:64px;text-align:center;color:#222}
+.wirechip.sel{outline:3px solid rgba(0,115,77,.5)}
+.wirebank{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;min-height:44px}
+.macparts{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.macpart{border-radius:12px;padding:10px 14px;border:2px solid}
+.macpart b{display:block;font-size:1.05rem;letter-spacing:.04em}
+.macpart small{color:var(--ink-soft);font-size:.75rem}
+.mp-oui{border-color:var(--cqu);background:var(--cqu-soft)}
+.mp-nic{border-color:var(--copper);background:var(--copper-soft)}
+.cable-photos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.cable-photo{border:1.5px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.cable-photo img{display:block;width:100%;height:190px;object-fit:cover;background:#f4f8f7}
+.cable-photo figcaption{padding:10px 12px;font-size:.84rem;color:var(--ink-soft)}
+.cable-photo figcaption strong{display:block;color:var(--cqu-deep);margin-bottom:3px}
+.cable-photo figcaption a{color:var(--cqu);font-weight:700}
+.photo-tips{margin:4px 0 0;padding-left:18px;color:var(--ink-soft);font-size:.88rem}
+.photo-tips li+li{margin-top:4px}
+@media (max-width:760px){.cable-photos{grid-template-columns:1fr}.cable-photo img{height:210px}}
+
+/* lesson 7 lab */
+.lab{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start}
+@media (max-width:860px){.lab{grid-template-columns:1fr}}
+.pcpanel{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff}
+.pcpanel h4{font-size:.9rem;margin-bottom:8px;color:var(--cqu-deep)}
+.field{margin-top:8px}
+.field label{display:block;font-size:.78rem;font-weight:700;color:var(--ink-soft);margin-bottom:3px}
+.toggle{display:flex;align-items:center;gap:8px;font-size:.86rem;font-weight:650;margin-top:10px}
+.toggle input{width:auto}
+.scenarios{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.scen{border:1.5px solid var(--line);border-radius:999px;background:#fff;padding:6px 14px;font-size:.82rem;font-weight:650}
+.scen.solved{border-color:var(--led);background:var(--led-soft)}
+.linklight{display:inline-block;width:10px;height:10px;border-radius:50%;background:#c3cfc6;margin-right:6px;vertical-align:baseline}
+.linklight.on{background:var(--led);box-shadow:0 0 6px var(--led)}
+
+/* quiz */
+.quizq{margin-top:16px}
+.quizq h4{font-size:.98rem}
+.scorebar{display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap}
+.scorebar b{font-size:1.5rem}
+.bigdone{background:linear-gradient(135deg,var(--cqu-deep),#0c6f4c);color:#fff;border-radius:16px;padding:18px 22px;margin-top:16px;display:none}
+.bigdone.show{display:block}
+
+footer{margin-top:46px;color:var(--muted);font-size:.8rem;text-align:center}
+.skip{position:absolute;left:-9999px;top:0;background:#fff;padding:8px 14px;border-radius:8px;z-index:99}
+.skip:focus{left:12px;top:12px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important}
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#lessons">Skip to lessons</a>
+<div class="wrap">
+
+<header class="hero">
+  <div class="topline"><p class="eyebrow">COIT11238 Networked Infrastructure Foundations · Week 2</p><a class="resource-link" href="../index.html">Networking resources</a></div>
+  <h1>Lesson 2 - Follow the Frame</h1>
+  <p class="lede">Send a message across one cable, race a file across a link, watch a switch learn where everyone lives, wire a connector, then build and repair a two-computer network. Work through the lessons in order, or open any lesson for revision.</p>
+  <p class="meta">Progress is kept only while this page stays open. Nothing is saved or sent anywhere.</p>
+  <div class="panelboard" aria-label="Lesson progress panel">
+    <span class="label">Link lights</span>
+    <div class="ports" id="ports" role="list"></div>
+    <span class="progress-note" id="progressNote">0 of 8 lessons complete</span>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs" aria-label="Tutorial lessons"></nav>
+
+<main id="lessons">
+
+<!-- ============ LESSON 1 ============ -->
+<section class="lesson" id="lesson1" aria-labelledby="h-l1">
+  <p class="kicker">Lesson 1 of 8</p>
+  <h2 id="h-l1">Across one link</h2>
+  <ul class="goals">
+    <li>Name the parts a message passes through</li>
+    <li>Separate bits from the physical signal</li>
+  </ul>
+  <div class="card">
+    <h3>Send a message across one Ethernet cable</h3>
+    <p class="hint">Type a short message, then step through its journey from an application on Computer A to an application on Computer B. Keep it short so the bytes stay readable.</p>
+    <div class="btnrow">
+      <input id="l1msg" maxlength="8" value="Hi B" aria-label="Message to send" style="max-width:200px" />
+      <button class="btn" id="l1send">Send message</button>
+      <button class="btn ghost" id="l1next" disabled>Next step</button>
+      <button class="btn ghost" id="l1auto" disabled>Autoplay</button>
+    </div>
+    <svg class="diagram" id="l1svg" viewBox="0 0 700 170" role="img" aria-label="Computer A connected to Computer B by one Ethernet cable">
+      <!-- Computer A -->
+      <rect x="20" y="30" width="150" height="92" rx="12" fill="#ffffff" stroke="#00734d" stroke-width="2.5"/>
+      <text x="95" y="52" text-anchor="middle" class="svglabel">Computer A</text>
+      <rect x="36" y="62" width="118" height="20" rx="5" fill="#e2f1e9"/><text x="95" y="76" text-anchor="middle" class="svgsub">Application</text>
+      <rect x="36" y="86" width="118" height="18" rx="5" fill="#eef3ee"/><text x="95" y="99" text-anchor="middle" class="svgsub">Operating system</text>
+      <rect x="60" y="107" width="70" height="14" rx="4" fill="#0a3d2c"/><text x="95" y="118" text-anchor="middle" class="svgsub" fill="#9fdcc0">NIC</text>
+      <!-- Computer B -->
+      <rect x="530" y="30" width="150" height="92" rx="12" fill="#ffffff" stroke="#00734d" stroke-width="2.5"/>
+      <text x="605" y="52" text-anchor="middle" class="svglabel">Computer B</text>
+      <rect x="546" y="62" width="118" height="20" rx="5" fill="#e2f1e9"/><text x="605" y="76" text-anchor="middle" class="svgsub">Application</text>
+      <rect x="546" y="86" width="118" height="18" rx="5" fill="#eef3ee"/><text x="605" y="99" text-anchor="middle" class="svgsub">Operating system</text>
+      <rect x="570" y="107" width="70" height="14" rx="4" fill="#0a3d2c"/><text x="605" y="118" text-anchor="middle" class="svgsub" fill="#9fdcc0">NIC</text>
+      <!-- cable -->
+      <line x1="170" y1="114" x2="530" y2="114" stroke="#b95f24" stroke-width="5" stroke-linecap="round"/>
+      <text x="350" y="140" text-anchor="middle" class="svgsub">One Ethernet cable (the link)</text>
+      <!-- travelling signal -->
+      <g id="l1wave" opacity="0">
+        <polyline id="l1wavepath" points="" fill="none" stroke="#e8960c" stroke-width="2.5"/>
+        <text x="350" y="88" text-anchor="middle" class="svgsub" fill="#b3720a">first byte, sent as a changing signal</text>
+      </g>
+      <circle id="l1dot" cx="95" cy="72" r="7" fill="#e8960c" stroke="#fff" stroke-width="2" opacity="0"/>
+    </svg>
+    <div id="l1bytes" class="bytes" aria-live="polite"></div>
+    <ol class="stepper" id="l1steps"></ol>
+  </div>
+  <div class="card check" id="cp1"></div>
+</section>
+
+<!-- ============ LESSON 2 ============ -->
+<section class="lesson" id="lesson2" aria-labelledby="h-l2">
+  <p class="kicker">Lesson 2 of 8</p>
+  <h2 id="h-l2">Speed and delay</h2>
+  <ul class="goals">
+    <li>Use data rate, throughput, delay and RTT correctly</li>
+    <li>Explain why a transfer rarely reaches the advertised rate</li>
+  </ul>
+  <div class="card">
+    <h3>Transfer-time explorer</h3>
+    <p class="hint">A link&rsquo;s advertised data rate is a capacity, not a promise. Move the sliders and watch how file size, link rate, congestion and distance change the result.</p>
+    <div class="grid2">
+      <div class="sliders">
+        <div class="slider"><label for="l2size">File size <output id="l2sizeOut"></output></label><input type="range" id="l2size" min="0" max="100" value="55"></div>
+        <div class="slider"><label for="l2rate">Link data rate <output id="l2rateOut"></output></label><input type="range" id="l2rate" min="0" max="100" value="60"></div>
+        <div class="slider"><label for="l2cong">Link used by others <output id="l2congOut"></output></label><input type="range" id="l2cong" min="0" max="90" value="0"></div>
+        <div class="slider"><label for="l2dist">Distance <output id="l2distOut"></output></label><input type="range" id="l2dist" min="0" max="100" value="35"></div>
+        <div class="meter" id="l2meterWrap" aria-hidden="true"><i id="l2meter"></i></div>
+        <p class="hint" id="l2meterNote"></p>
+      </div>
+      <div>
+        <div class="statrow" style="grid-template-columns:1fr 1fr">
+          <div class="stat"><b id="l2tx">–</b><small>Transmission time (size &divide; available rate)</small></div>
+          <div class="stat"><b id="l2prop">–</b><small>Propagation delay (distance only, one way)</small></div>
+        </div>
+        <div class="statrow" style="grid-template-columns:1fr">
+          <div class="stat"><b id="l2total">–</b><small>Simplified one-way total. Real delay also includes processing, queuing and every other link on the path.</small></div>
+        </div>
+        <div class="btnrow"><button class="btn" id="l2race">Animate this transfer</button><span class="hint" id="l2raceNote"></span></div>
+        <div class="meter" aria-hidden="true"><i id="l2racebar" style="width:0%"></i></div>
+      </div>
+    </div>
+    <div class="flip" id="l2defs"></div>
+    <div class="note blue"><strong>Speed-test tip.</strong> On speedtest.net, download and upload are throughput measurements between your device and a test server, and ping is a round trip time. A 1&nbsp;Gb/s laptop reporting 310&nbsp;Mb/s is normal, not automatically a fault.</div>
+  </div>
+  <div class="card check" id="cp2"></div>
+</section>
+
+<!-- ============ LESSON 3 ============ -->
+<section class="lesson" id="lesson3" aria-labelledby="h-l3">
+  <p class="kicker">Lesson 3 of 8</p>
+  <h2 id="h-l3">Why use a switch?</h2>
+  <ul class="goals">
+    <li>Compare direct links with a switched LAN</li>
+    <li>Count cables and NICs for each design</li>
+  </ul>
+  <div class="card">
+    <h3>Grow the network and watch the cabling</h3>
+    <p class="hint">Two computers connect with one cable. Connecting every computer directly to every other computer stops scaling very quickly. Add computers and compare.</p>
+    <div class="slider" style="max-width:420px"><label for="l3n">Computers <output id="l3nOut">4</output></label><input type="range" id="l3n" min="2" max="12" value="4"></div>
+    <div class="grid2">
+      <div>
+        <svg class="diagram" id="l3mesh" viewBox="0 0 320 260" role="img" aria-label="Full mesh design"></svg>
+        <div class="stat"><b id="l3meshcables">6 cables</b><small><span id="l3meshnics">3 NICs in every computer</span> · a separate link to every other computer</small></div>
+      </div>
+      <div>
+        <svg class="diagram" id="l3star" viewBox="0 0 320 260" role="img" aria-label="Switched design"></svg>
+        <div class="stat"><b id="l3starcables">4 cables</b><small>1 NIC in every computer · <span id="l3ports">a switch with 4 ports</span></small></div>
+      </div>
+    </div>
+    <p class="hint">Direct links need n(n&nbsp;&minus;&nbsp;1)&nbsp;&divide;&nbsp;2 cables. A switched LAN needs one cable for each computer. That difference is why the switch is the standard building block of the local area network.</p>
+    <div class="note"><strong>Sizes of networks.</strong> A LAN covers a small area such as a home, office or building. A WAN joins networks across larger distances and is usually run by a telecommunications provider. Routers join LANs and WANs into an internetwork; the Internet is the largest example.</div>
+  </div>
+  <div class="card check" id="cp3"></div>
+</section>
+
+<!-- ============ LESSON 4 ============ -->
+<section class="lesson" id="lesson4" aria-labelledby="h-l4">
+  <p class="kicker">Lesson 4 of 8</p>
+  <h2 id="h-l4">Follow the frame</h2>
+  <ul class="goals">
+    <li>Read source and destination MAC addresses</li>
+    <li>Explain learning, forwarding and flooding</li>
+  </ul>
+  <div class="card">
+    <h3>Teach the switch where everyone lives</h3>
+    <p class="hint">Five hosts share one Ethernet switch. The switching table starts empty. Choose a source and destination, send a frame, and watch what the switch does. <strong>Challenge:</strong> fill the whole table using as few frames as you can.</p>
+    <div class="btnrow">
+      <label class="hint" for="l4src">From</label>
+      <select id="l4src" style="max-width:150px"></select>
+      <label class="hint" for="l4dst">To</label>
+      <select id="l4dst" style="max-width:220px"></select>
+      <button class="btn" id="l4send">Send frame</button>
+      <button class="btn ghost small" id="l4reset">Reset table</button>
+      <span class="hint" id="l4count">Frames sent: 0</span>
+    </div>
+    <svg class="diagram" id="l4svg" viewBox="0 0 700 250" role="img" aria-label="Five hosts connected to one switch"></svg>
+    <div class="grid2">
+      <div>
+        <h3 style="margin-top:8px">Switching table</h3>
+        <table class="mactable" aria-live="polite"><thead><tr><th>MAC address</th><th>Port</th></tr></thead><tbody id="l4table"><tr><td colspan="2" class="hint">Empty. The switch has learnt nothing yet.</td></tr></tbody></table>
+      </div>
+      <div>
+        <h3 style="margin-top:8px">What just happened</h3>
+        <div class="term framelog" id="l4log" aria-live="polite"><span class="dim">No frame has been sent yet.</span></div>
+      </div>
+    </div>
+    <div class="note"><strong>Two different jobs for two addresses.</strong> The switch <em>learns</em> from the source MAC address, because the source must be reachable through the port the frame arrived on. The switch <em>forwards</em> using the destination MAC address. When the destination is unknown, or the destination is the broadcast address FF-FF-FF-FF-FF-FF, the frame is sent out every other port. That is called flooding.</div>
+  </div>
+  <div class="card check" id="cp4"></div>
+</section>
+
+<!-- ============ LESSON 5 ============ -->
+<section class="lesson" id="lesson5" aria-labelledby="h-l5">
+  <p class="kicker">Lesson 5 of 8</p>
+  <h2 id="h-l5">Protocols and layers</h2>
+  <ul class="goals">
+    <li>Describe a protocol as agreed rules</li>
+    <li>Build and unwrap an encapsulated message</li>
+  </ul>
+  <div class="card">
+    <h3>Why rules matter</h3>
+    <p class="hint">A protocol is a set of agreed rules covering message format, meaning, order and the actions to take. Toggle between a message with agreed rules and one without.</p>
+    <div class="btnrow">
+      <button class="btn ghost small" id="l5rulesOn">With agreed rules</button>
+      <button class="btn ghost small" id="l5rulesOff">Without rules</button>
+    </div>
+    <div class="term" id="l5rulesTerm"><span class="dim">Choose one of the two messages above.</span></div>
+  </div>
+  <div class="card">
+    <h3>Wrap it up: encapsulation builder</h3>
+    <p class="hint">Layered networking places one protocol&rsquo;s message inside another. Add the headers in the correct order, then deliver the frame and unwrap it exactly as Computer B would.</p>
+    <div class="chipbar">
+      <button class="btn ghost small" data-l5add="tcp">Add TCP header</button>
+      <button class="btn ghost small" data-l5add="ip">Add IP header</button>
+      <button class="btn ghost small" data-l5add="eth">Add Ethernet header + trailer</button>
+      <button class="btn small" id="l5deliver" disabled>Deliver and unwrap</button>
+      <button class="btn ghost small" id="l5restart">Start again</button>
+    </div>
+    <div id="l5stack" class="stack" aria-live="polite"></div>
+    <div class="feedback" id="l5fb"></div>
+  </div>
+  <div class="card check" id="cp5"></div>
+</section>
+
+<!-- ============ LESSON 6 ============ -->
+<section class="lesson" id="lesson6" aria-labelledby="h-l6">
+  <p class="kicker">Lesson 6 of 8</p>
+  <h2 id="h-l6">Ethernet and MAC addresses</h2>
+  <ul class="goals">
+    <li>Wire an RJ45 connector to T568B</li>
+    <li>Split a 48-bit MAC address into its two halves</li>
+  </ul>
+  <div class="card">
+    <h3>Wire the connector: T568B</h3>
+    <p class="hint">A LAN cable holds four twisted pairs, eight wires in total. Hold the connector with the clip away from you; pin 1 is on the left. Select a wire, then select the pin it belongs in. Use the same standard at both ends for a straight-through cable.</p>
+    <div class="cable-photos" aria-label="Real Ethernet cable reference photos">
+      <figure class="cable-photo">
+            <img src="assets/cat-5-ethernet-cable.jpg" alt="Blue Category 5 Ethernet cable with clear 8P8C RJ45 plugs on each end">
+        <figcaption><strong>Finished cable</strong>The eight coloured conductors are pushed into a clear 8P8C plug, then crimped so the gold contacts bite into the wires. Photo: <a href="https://commons.wikimedia.org/wiki/File:Cat_5.jpg" target="_blank" rel="noopener">Fo0bar, CC BY-SA 3.0/GFDL</a>.</figcaption>
+      </figure>
+      <figure class="cable-photo">
+            <img src="assets/uncrimped-rj45-connector.jpg" alt="Close-up of a transparent uncrimped RJ45 plug showing the slots where wires slide in">
+        <figcaption><strong>Before crimping</strong>The plug is transparent so you can see where each wire travels. In the game below, pin 1 is the left slot when the clip is facing away from you. Photo: <a href="https://commons.wikimedia.org/wiki/File:Uncrimped_rj-45_connector_close-up.jpg" target="_blank" rel="noopener">Mike1024, public domain</a>.</figcaption>
+      </figure>
+    </div>
+    <ul class="photo-tips">
+      <li>Keep the wire colours in order all the way to the front of the plug.</li>
+      <li>The crimp tool pushes the gold contacts down through the insulation to touch each copper conductor.</li>
+      <li>For a straight-through cable, use the same wiring standard at both ends. This exercise uses T568B.</li>
+    </ul>
+    <div class="wirebank" id="l6bank" aria-label="Unplaced wires"></div>
+    <div class="pins" id="l6pins"></div>
+    <div class="btnrow">
+      <button class="btn" id="l6check">Check wiring</button>
+      <button class="btn ghost small" id="l6shuffle">Start again</button>
+      <span id="l6result" class="hint" aria-live="polite"></span>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Decode a MAC address</h3>
+    <p class="hint">A MAC address is 48 bits, written as six pairs of hexadecimal digits. Each pair is one byte. Type any MAC address, or use the one from the lecture&rsquo;s PowerShell output.</p>
+    <div class="btnrow">
+      <input id="l6mac" class="mono" value="CC-48-3A-86-3F-62" aria-label="MAC address to decode" style="max-width:260px" />
+      <button class="btn" id="l6decode">Decode</button>
+      <button class="btn ghost small" id="l6bcast">Try the broadcast address</button>
+    </div>
+    <div id="l6macOut" aria-live="polite"></div>
+  </div>
+  <div class="card">
+    <h3>Read the PowerShell output</h3>
+    <div class="term">PS C:\Users\user&gt; Get-NetAdapter -Physical
+
+Name        InterfaceDescription                  Status        MacAddress          LinkSpeed
+----        --------------------                  ------        ----------          ---------
+Ethernet    Intel(R) Ethernet Connection (10)     Disconnected  CC-48-3A-3F-92-45       0 bps
+Ethernet 3  Realtek USB GbE Family Controller     Up            CC-48-3A-86-3F-62      1 Gbps
+Wi-Fi       Qualcomm QCA61x4A 802.11ac Wireless   Disconnected  28-CD-C4-9B-7D-0F  144.4 Mbps</div>
+    <div id="l6ps"></div>
+  </div>
+  <div class="card check" id="cp6"></div>
+</section>
+
+<!-- ============ LESSON 7 ============ -->
+<section class="lesson" id="lesson7" aria-labelledby="h-l7">
+  <p class="kicker">Lesson 7 of 8</p>
+  <h2 id="h-l7">Build and troubleshoot</h2>
+  <ul class="goals">
+    <li>Follow design, build, test and document</li>
+    <li>Diagnose cable, addressing and firewall faults</li>
+  </ul>
+  <div class="card">
+    <h3>The virtual bench: connect two computers directly</h3>
+    <p class="hint">Configure a direct Ethernet connection, then test it with a simulated <span class="mono">Test-NetConnection</span> (ping). For this Week&nbsp;2 exercise, both addresses use a simplified /24 rule: the first three decimal sections must match and the final section must differ. Formal subnetting comes later in the unit.</p>
+    <div class="lab">
+      <div>
+        <div class="grid2">
+          <div class="pcpanel">
+            <h4><span class="linklight" id="l7lightA"></span>Computer A (Windows)</h4>
+            <div class="field"><label for="l7ipa">IP address</label><input id="l7ipa" class="mono" placeholder="e.g. 192.168.1.10" /></div>
+            <p class="hint mono" style="margin-top:8px">MAC 01-23-45-67-89-AB</p>
+          </div>
+          <div class="pcpanel">
+            <h4><span class="linklight" id="l7lightB"></span>Computer B</h4>
+            <div class="field"><label for="l7ipb">IP address</label><input id="l7ipb" class="mono" placeholder="e.g. 192.168.1.20" /></div>
+            <label class="toggle"><input type="checkbox" id="l7fw" /> Firewall on B blocks ping</label>
+            <p class="hint mono" style="margin-top:8px">MAC CC-DD-EE-FF-00-11</p>
+          </div>
+        </div>
+        <label class="toggle"><input type="checkbox" id="l7cable" checked /> Ethernet cable connected at both ends</label>
+        <div class="btnrow"><button class="btn" id="l7ping">Run Test-NetConnection</button><button class="btn ghost small" id="l7clear">Clear bench</button></div>
+        <div class="term" id="l7term" aria-live="polite"><span class="dim">The bench is ready. Set the addresses, then run the test.</span></div>
+      </div>
+      <div>
+        <h3 style="font-size:.95rem">Fix-the-fault challenges</h3>
+        <p class="hint">Each challenge loads a broken bench. Find the fault, fix it, and make the ping succeed.</p>
+        <div class="scenarios" id="l7scens"></div>
+        <div class="note" style="margin-top:14px"><strong>Troubleshooting order.</strong> Check the physical layer first: is the cable in, and are the link lights on? Then the addresses: valid, unique, and in the same /24? Then the test itself: is the correct destination address being used? Only then suspect software such as the firewall.</div>
+      </div>
+    </div>
+  </div>
+  <div class="card check" id="cp7"></div>
+</section>
+
+<!-- ============ LESSON 8 ============ -->
+<section class="lesson" id="lesson8" aria-labelledby="h-l8">
+  <p class="kicker">Lesson 8 of 8</p>
+  <h2 id="h-l8">Check understanding</h2>
+  <ul class="goals">
+    <li>Review the central Week 2 ideas without notes</li>
+  </ul>
+  <div class="card">
+    <h3>Eight questions, instant feedback</h3>
+    <p class="hint">Answer without returning to the earlier lessons. Feedback appears immediately; treat a wrong answer as a pointer to the lesson worth revisiting.</p>
+    <div id="quiz"></div>
+    <div class="scorebar"><b id="quizScore">0 / 8</b><span class="hint" id="quizNote">Answer every question to finish the review.</span></div>
+    <div class="bigdone" id="quizDone"><strong>Week 2 tutorial complete.</strong> <span id="quizDoneMsg"></span></div>
+  </div>
+</section>
+
+</main>
+
+<footer>Follow the Frame · COIT11238 Networked Infrastructure Foundations · Week 2 · The /24 rule used here is deliberately simplified for this exercise.</footer>
+</div>
+<script>
+"use strict";
+/* Follow the Frame, COIT11238 Week 2. Vanilla JS, no dependencies, session-only state. */
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const el = (tag, attrs = {}, html = "") => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v;
+    else if (k.startsWith("data-")) n.setAttribute(k, v);
+    else if (k === "text") n.textContent = v;
+    else n.setAttribute(k, v);
+  }
+  if (html) n.innerHTML = html;
+  return n;
+};
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------------- lessons, tabs, progress ---------------- */
+const LESSONS = [
+  ["lesson1", "Across one link"],
+  ["lesson2", "Speed and delay"],
+  ["lesson3", "Why use a switch?"],
+  ["lesson4", "Follow the frame"],
+  ["lesson5", "Protocols and layers"],
+  ["lesson6", "Ethernet and MAC"],
+  ["lesson7", "Build and troubleshoot"],
+  ["lesson8", "Check understanding"]
+];
+const done = new Set();
+let current = "lesson1";
+
+const tabsBox = $("#tabs");
+const portsBox = $("#ports");
+LESSONS.forEach(([id, name], i) => {
+  const t = el("button", { class: "tab", type: "button", "data-tab": id });
+  t.innerHTML = `<span class="lednav" aria-hidden="true"></span><span>${i + 1}. ${name}</span>`;
+  t.addEventListener("click", () => showLesson(id, true));
+  tabsBox.appendChild(t);
+
+  const p = el("button", { class: "port", type: "button", role: "listitem", title: name, "data-port": id, "aria-label": `Lesson ${i + 1}: ${name}` });
+  p.innerHTML = `<span class="jack" aria-hidden="true"></span><span class="pnum">${i + 1}</span>`;
+  p.addEventListener("click", () => showLesson(id, true));
+  portsBox.appendChild(p);
+});
+
+function showLesson(id, shouldScroll = false) {
+  current = id;
+  $$(".lesson").forEach(s => s.classList.toggle("visible", s.id === id));
+  refreshNav();
+  if (shouldScroll) $("#tabs").scrollIntoView({ block: "start" });
+}
+function refreshNav() {
+  $$(".tab").forEach(t => {
+    const id = t.getAttribute("data-tab");
+    t.classList.toggle("active", id === current);
+    t.classList.toggle("done", done.has(id));
+    t.setAttribute("aria-current", id === current ? "true" : "false");
+  });
+  $$(".port").forEach(p => {
+    const id = p.getAttribute("data-port");
+    p.classList.toggle("now", id === current && !done.has(id));
+    p.classList.toggle("done", done.has(id));
+  });
+  $("#progressNote").textContent = done.size === LESSONS.length
+    ? "All 8 link lights are green. Well done."
+    : `${done.size} of 8 lessons complete`;
+}
+function markDone(id) {
+  if (done.has(id)) return;
+  done.add(id);
+  refreshNav();
+}
+
+/* ---------------- checkpoint factory ---------------- */
+function checkpoint(mountId, lessonId, q) {
+  const box = $("#" + mountId);
+  box.innerHTML = `<h3>Checkpoint</h3><p>${q.text}</p>`;
+  const opts = el("div", { class: "opts", role: "group", "aria-label": "Checkpoint answers" });
+  const fb = el("div", { class: "feedback" });
+  q.options.forEach((o, i) => {
+    const b = el("button", { class: "opt", type: "button", text: o });
+    b.addEventListener("click", () => {
+      $$(".opt", opts).forEach(x => { x.disabled = true; x.classList.remove("wrong"); });
+      if (i === q.answer) {
+        b.classList.add("correct");
+        fb.className = "feedback show ok";
+        fb.innerHTML = `<strong>Correct.</strong> ${q.why}`;
+        markDone(lessonId);
+      } else {
+        b.classList.add("wrong");
+        opts.children[q.answer].classList.add("correct");
+        fb.className = "feedback show no";
+        fb.innerHTML = `<strong>Not quite.</strong> ${q.why}`;
+        setTimeout(() => $$(".opt", opts).forEach(x => { if (!x.classList.contains("correct") && !x.classList.contains("wrong")) x.disabled = false; }), 50);
+      }
+    });
+    opts.appendChild(b);
+  });
+  box.appendChild(opts);
+  box.appendChild(fb);
+}
+
+/* ================= LESSON 1: across one link ================= */
+const L1_STEPS = [
+  ["The application creates the message", "The application on Computer A generates the data. The letters are already represented as bytes, building on Week 1."],
+  ["The operating system takes over", "The application asks the operating system to send the data. Applications use services provided by the operating system rather than driving the hardware themselves."],
+  ["The NIC prepares the bits", "The network interface card converts the bytes into a stream of bits ready for transmission."],
+  ["A signal crosses the link", "The cable does not carry letters. Across copper it carries a changing electrical signal that represents the bits. Fibre uses light and Wi-Fi uses radio."],
+  ["Computer B recovers the bits", "The NIC on Computer B receives the physical signal and rebuilds the exact sequence of bits."],
+  ["The operating system passes the data up", "The operating system on B checks the networking information and hands the useful data to the correct application."],
+  ["The application shows the message", "The receiving application interprets the bytes using the agreed encoding and displays the original message."]
+];
+let l1i = -1, l1timer = null;
+
+function l1RenderSteps() {
+  const ol = $("#l1steps");
+  ol.innerHTML = "";
+  L1_STEPS.forEach(([b, s], i) => {
+    const li = el("li");
+    li.className = i === l1i ? "on" : (i < l1i ? "past" : "");
+    li.innerHTML = `<span class="dotn">${i + 1}</span><span><b>${b}</b><span>${s}</span></span>`;
+    ol.appendChild(li);
+  });
+}
+function l1Bytes(msg) {
+  const box = $("#l1bytes");
+  box.innerHTML = "";
+  [...msg].forEach(ch => {
+    const code = ch.codePointAt(0);
+    const bin = code.toString(2).padStart(8, "0");
+    const hex = code.toString(16).toUpperCase().padStart(2, "0");
+    box.appendChild(el("div", { class: "byte mono" },
+      `<b>${ch === " " ? "␠" : ch}</b><small>0x${hex}</small><small>${bin}</small>`));
+  });
+}
+function l1Wave(msg) {
+  /* draw the first byte of the message as a square wave over the cable */
+  const code = (msg.codePointAt(0) || 72);
+  const bits = code.toString(2).padStart(8, "0");
+  const x0 = 200, w = 300 / 8, hi = 96, lo = 110;
+  let d = [], x = x0, prev = null;
+  [...bits].forEach(b => {
+    const y = b === "1" ? hi : lo;
+    if (prev !== null && prev !== y) d.push(`${x},${prev}`);
+    d.push(`${x},${y}`);
+    x += w;
+    d.push(`${x},${y}`);
+    prev = y;
+  });
+  $("#l1wavepath").setAttribute("points", d.join(" "));
+}
+const L1_DOT = [
+  [95, 72], [95, 95], [95, 114], [350, 114], [605, 114], [605, 95], [605, 72]
+];
+function l1Apply() {
+  l1RenderSteps();
+  const dot = $("#l1dot");
+  const wave = $("#l1wave");
+  if (l1i < 0) { dot.setAttribute("opacity", "0"); wave.setAttribute("opacity", "0"); return; }
+  const [cx, cy] = L1_DOT[l1i];
+  dot.setAttribute("opacity", "1");
+  dot.setAttribute("cx", cx); dot.setAttribute("cy", cy);
+  wave.setAttribute("opacity", l1i === 3 ? "1" : "0");
+  $("#l1next").disabled = l1i >= L1_STEPS.length - 1;
+  $("#l1auto").disabled = l1i >= L1_STEPS.length - 1;
+  if (l1i >= L1_STEPS.length - 1 && l1timer) { clearInterval(l1timer); l1timer = null; }
+}
+$("#l1send").addEventListener("click", () => {
+  const msg = ($("#l1msg").value || "Hi B").slice(0, 8);
+  $("#l1msg").value = msg;
+  l1Bytes(msg); l1Wave(msg);
+  l1i = 0; l1Apply();
+  $("#l1next").disabled = false; $("#l1auto").disabled = false;
+});
+$("#l1next").addEventListener("click", () => { if (l1i < L1_STEPS.length - 1) { l1i++; l1Apply(); } });
+$("#l1auto").addEventListener("click", () => {
+  if (l1timer) return;
+  l1timer = setInterval(() => {
+    if (l1i < L1_STEPS.length - 1) { l1i++; l1Apply(); }
+    else { clearInterval(l1timer); l1timer = null; }
+  }, reducedMotion ? 400 : 1200);
+});
+l1RenderSteps();
+
+checkpoint("cp1", "lesson1", {
+  text: "Does the application on Computer A control the cable directly?",
+  options: [
+    "Yes, applications control the cable directly.",
+    "No. The application uses the operating system and the NIC.",
+    "No. The cable pulls the data out of the application by itself."
+  ],
+  answer: 1,
+  why: "Applications request networking services from the operating system. The NIC performs the hardware-level transmission and reception, and only the physical signal crosses the link."
+});
+
+/* ================= LESSON 2: speed and delay ================= */
+const l2 = {
+  sizeMB() { const t = +$("#l2size").value / 100; return Math.round(Math.pow(10, t * 3));  /* 1 MB .. 1000 MB */ },
+  rateMbps() { const t = +$("#l2rate").value / 100; return Math.round(Math.pow(10, 1 + t * 2)); /* 10 .. 1000 */ },
+  cong() { return +$("#l2cong").value / 100; },
+  distKm() { const t = +$("#l2dist").value / 100; return Math.pow(10, -3 + t * 7.3); /* 1 m .. ~20,000 km */ }
+};
+function fmtTime(s) {
+  if (s < 1e-3) return (s * 1e6).toFixed(0) + " \u00B5s";
+  if (s < 1) return (s * 1e3).toPrecision(3) + " ms";
+  if (s < 90) return s.toPrecision(3) + " s";
+  const m = Math.floor(s / 60); return `${m} min ${Math.round(s - m * 60)} s`;
+}
+function fmtDist(km) {
+  if (km < 1) return Math.round(km * 1000) + " m";
+  if (km < 100) return km.toPrecision(3) + " km";
+  return Math.round(km).toLocaleString() + " km";
+}
+let l2LastTotal = 1;
+function l2Update() {
+  const size = l2.sizeMB(), rate = l2.rateMbps(), cong = l2.cong(), dist = l2.distKm();
+  $("#l2sizeOut").textContent = size >= 1000 ? "1 GB" : size + " MB";
+  $("#l2rateOut").textContent = rate >= 1000 ? "1 Gb/s" : rate + " Mb/s";
+  $("#l2congOut").textContent = Math.round(cong * 100) + "%";
+  $("#l2distOut").textContent = fmtDist(dist);
+  const avail = rate * (1 - cong);
+  const tx = (size * 8) / avail;                 /* MB*8 = Mb; Mb / Mbps = s */
+  const prop = (dist * 1000) / 2e8;              /* ~2/3 c in copper or fibre */
+  l2LastTotal = tx + prop;
+  $("#l2tx").textContent = fmtTime(tx);
+  $("#l2prop").textContent = fmtTime(prop);
+  $("#l2total").textContent = fmtTime(l2LastTotal);
+  const mw = $("#l2meterWrap");
+  mw.classList.toggle("warn", cong >= 0.5);
+  $("#l2meter").style.width = Math.round(cong * 100) + "%";
+  $("#l2meterNote").textContent = cong === 0
+    ? "The link is currently all yours: the full data rate is available to this transfer."
+    : `Other traffic is using ${Math.round(cong * 100)}% of the link, so about ${Math.round(avail) >= 1000 ? "1 Gb/s" : Math.round(avail) + " Mb/s"} is available. Throughput can never exceed the available capacity of the slowest link on the path.`;
+}
+["l2size", "l2rate", "l2cong", "l2dist"].forEach(id => $("#" + id).addEventListener("input", l2Update));
+l2Update();
+
+let l2Racing = false;
+$("#l2race").addEventListener("click", () => {
+  if (l2Racing) return;
+  l2Racing = true;
+  const bar = $("#l2racebar");
+  const secs = Math.min(6, Math.max(1.2, l2LastTotal));
+  $("#l2raceNote").textContent = l2LastTotal > 6
+    ? `Compressed: the real transfer would take ${fmtTime(l2LastTotal)}.`
+    : `Shown in real time: ${fmtTime(l2LastTotal)}.`;
+  bar.style.transition = "none"; bar.style.width = "0%";
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    bar.style.transition = `width ${reducedMotion ? 0.001 : secs}s linear`;
+    bar.style.width = "100%";
+  }));
+  setTimeout(() => { l2Racing = false; }, (reducedMotion ? 0.1 : secs) * 1000 + 100);
+});
+
+const L2_DEFS = [
+  ["Data rate", "b/s", "The maximum rate at which a link is configured to transmit data. It depends on the link material and the transmission technique."],
+  ["Throughput", "b/s", "The rate at which useful data is actually delivered to the destination. It cannot exceed the slowest link on the path, and congestion lowers it further."],
+  ["Delay", "s", "The time for a message to travel from source to destination, combining transmission time, propagation and time spent inside intermediate devices."],
+  ["Round trip time (RTT)", "s", "The time for a message to reach the destination and for a response to return. Ping reports RTT."]
+];
+const l2defsBox = $("#l2defs");
+L2_DEFS.forEach(([t, u, d]) => {
+  const b = el("button", { type: "button", "aria-expanded": "false" }, `<b>${t}</b> <small>[${u}]</small><span>${d}</span>`);
+  b.addEventListener("click", () => { b.classList.toggle("open"); b.setAttribute("aria-expanded", b.classList.contains("open") ? "true" : "false"); });
+  l2defsBox.appendChild(b);
+});
+
+checkpoint("cp2", "lesson2", {
+  text: "A laptop connects at 1 Gb/s but a speed test reports 310 Mb/s. Is this automatically evidence of a fault?",
+  options: [
+    "Yes. Throughput must always equal the link speed.",
+    "No. Congestion, the server, other links and protocol overhead can all reduce observed throughput.",
+    "Yes. The missing bits have been lost permanently."
+  ],
+  answer: 1,
+  why: "The link speed describes one link's capacity. End-to-end throughput depends on every link and device on the path, plus how busy the network is at that moment."
+});
+
+/* ================= LESSON 3: why a switch ================= */
+function l3Nodes(n, cx, cy, r) {
+  const pts = [];
+  for (let i = 0; i < n; i++) {
+    const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
+    pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+  }
+  return pts;
+}
+function l3Draw() {
+  const n = +$("#l3n").value;
+  $("#l3nOut").textContent = n;
+  const mesh = $("#l3mesh"), star = $("#l3star");
+  const pts = l3Nodes(n, 160, 130, 100);
+  let m = `<text x="160" y="20" text-anchor="middle" class="svglabel">Direct links</text>`;
+  for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++)
+    m += `<line x1="${pts[i][0]}" y1="${pts[i][1]}" x2="${pts[j][0]}" y2="${pts[j][1]}" stroke="#b95f24" stroke-width="1.6" opacity="0.75"/>`;
+  pts.forEach((p, i) => {
+    m += `<circle cx="${p[0]}" cy="${p[1]}" r="13" fill="#fff" stroke="#00734d" stroke-width="2.5"/><text x="${p[0]}" y="${p[1] + 4}" text-anchor="middle" class="svgsub" font-weight="800">${String.fromCharCode(65 + i)}</text>`;
+  });
+  mesh.innerHTML = m;
+
+  let s = `<text x="160" y="20" text-anchor="middle" class="svglabel">Switched LAN</text>`;
+  pts.forEach(p => { s += `<line x1="${p[0]}" y1="${p[1]}" x2="160" y2="130" stroke="#00734d" stroke-width="2" opacity="0.85"/>`; });
+  s += `<rect x="132" y="112" width="56" height="36" rx="8" fill="#0a3d2c"/><text x="160" y="134" text-anchor="middle" class="svgsub" fill="#9fdcc0" font-weight="800">switch</text>`;
+  pts.forEach((p, i) => {
+    s += `<circle cx="${p[0]}" cy="${p[1]}" r="13" fill="#fff" stroke="#00734d" stroke-width="2.5"/><text x="${p[0]}" y="${p[1] + 4}" text-anchor="middle" class="svgsub" font-weight="800">${String.fromCharCode(65 + i)}</text>`;
+  });
+  star.innerHTML = s;
+
+  const cables = (n * (n - 1)) / 2;
+  $("#l3meshcables").textContent = `${cables} cable${cables === 1 ? "" : "s"}`;
+  $("#l3meshnics").textContent = `${n - 1} NIC${n - 1 === 1 ? "" : "s"} in every computer`;
+  $("#l3starcables").textContent = `${n} cables`;
+  $("#l3ports").textContent = `a switch with ${n} ports`;
+}
+$("#l3n").addEventListener("input", l3Draw);
+l3Draw();
+
+checkpoint("cp3", "lesson3", {
+  text: "How many cables are needed to connect 10 computers to one central switch?",
+  options: ["10", "45", "90"],
+  answer: 0,
+  why: "Each computer uses one cable to one switch port, so 10 computers require 10 cables. Direct links between every pair would need 45 cables and 9 NICs in every computer, which does not scale."
+});
+
+/* ================= LESSON 4: follow the frame ================= */
+const HOSTS = [
+  { name: "A", mac: "AA-01", port: 1 },
+  { name: "B", mac: "AA-02", port: 2 },
+  { name: "C", mac: "AA-03", port: 3 },
+  { name: "D", mac: "AA-04", port: 4 },
+  { name: "E", mac: "AA-05", port: 5 }
+];
+const l4state = { table: new Map(), frames: 0 };
+const L4_POS = { A: [80, 45], B: [620, 45], C: [80, 205], D: [620, 205], E: [350, 25] };
+const L4_SW = [350, 135];
+
+function l4DrawBase() {
+  const svg = $("#l4svg");
+  let s = "";
+  HOSTS.forEach(h => {
+    const [x, y] = L4_POS[h.name];
+    s += `<line id="l4link${h.name}" x1="${x}" y1="${y}" x2="${L4_SW[0]}" y2="${L4_SW[1]}" stroke="#c9d6cf" stroke-width="3"/>`;
+  });
+  s += `<rect x="${L4_SW[0] - 55}" y="${L4_SW[1] - 26}" width="110" height="52" rx="10" fill="#0a3d2c"/>
+        <text x="${L4_SW[0]}" y="${L4_SW[1] - 2}" text-anchor="middle" class="svgsub" fill="#9fdcc0" font-weight="800">switch</text>
+        <text x="${L4_SW[0]}" y="${L4_SW[1] + 14}" text-anchor="middle" class="svgsub" fill="#5d8a74">learns sources, forwards to destinations</text>`;
+  HOSTS.forEach(h => {
+    const [x, y] = L4_POS[h.name];
+    const mx = (x + L4_SW[0]) / 2, my = (y + L4_SW[1]) / 2;
+    s += `<circle cx="${x}" cy="${y}" r="20" fill="#fff" stroke="#00734d" stroke-width="2.5"/>
+          <text x="${x}" y="${y + 5}" text-anchor="middle" class="svglabel">${h.name}</text>
+          <text x="${x}" y="${y + 36}" text-anchor="middle" class="svgsub">${h.mac}</text>
+          <text x="${mx}" y="${my - 6}" text-anchor="middle" class="svgsub" fill="#8a9a90">port ${h.port}</text>`;
+  });
+  s += `<circle id="l4frame" r="8" fill="#e8960c" stroke="#fff" stroke-width="2" opacity="0"/>`;
+  svg.innerHTML = s;
+}
+function l4Selects() {
+  const src = $("#l4src"), dst = $("#l4dst");
+  src.innerHTML = ""; dst.innerHTML = "";
+  HOSTS.forEach(h => src.appendChild(el("option", { value: h.name, text: `${h.name} (${h.mac})` })));
+  HOSTS.forEach(h => dst.appendChild(el("option", { value: h.name, text: `${h.name} (${h.mac})` })));
+  dst.appendChild(el("option", { value: "BCAST", text: "Broadcast (FF-FF-FF-FF-FF-FF)" }));
+  src.value = "A"; dst.value = "E";
+}
+function l4Table() {
+  const tb = $("#l4table");
+  tb.innerHTML = "";
+  if (l4state.table.size === 0) {
+    tb.innerHTML = `<tr><td colspan="2" class="hint">Empty. The switch has learnt nothing yet.</td></tr>`;
+    return;
+  }
+  [...l4state.table.entries()].forEach(([mac, info]) => {
+    const tr = el("tr", { class: info.fresh ? "new" : "" });
+    tr.innerHTML = `<td class="mono">${mac}</td><td>port ${info.port}</td>`;
+    info.fresh = false;
+    tb.appendChild(tr);
+  });
+  if (l4state.table.size === HOSTS.length) {
+    const tr = el("tr");
+    tr.innerHTML = `<td colspan="2"><span class="badgeok">Table complete in ${l4state.frames} frame${l4state.frames === 1 ? "" : "s"}. The minimum possible is 5.</span></td>`;
+    tb.appendChild(tr);
+    markDone("lesson4");
+  }
+}
+function l4Log(lines) {
+  $("#l4log").innerHTML = lines.join("\n");
+}
+function l4Animate(fromName, toNames, thenFn) {
+  const dot = $("#l4frame");
+  const [sx, sy] = L4_POS[fromName];
+  const seq = [[sx, sy], [...L4_SW]];
+  dot.setAttribute("opacity", "1");
+  let leg = 0;
+  const legs = [{ from: [sx, sy], to: L4_SW }];
+  toNames.forEach(n => legs.push({ from: L4_SW, to: L4_POS[n] }));
+  const dur = reducedMotion ? 1 : 420;
+  function run() {
+    if (leg >= legs.length) { dot.setAttribute("opacity", "0"); thenFn && thenFn(); return; }
+    const { from, to } = legs[leg];
+    const t0 = performance.now();
+    function frame(t) {
+      const k = Math.min(1, (t - t0) / dur);
+      dot.setAttribute("cx", from[0] + (to[0] - from[0]) * k);
+      dot.setAttribute("cy", from[1] + (to[1] - from[1]) * k);
+      if (k < 1) requestAnimationFrame(frame);
+      else { leg++; run(); }
+    }
+    requestAnimationFrame(frame);
+  }
+  run();
+}
+let l4busy = false;
+$("#l4send").addEventListener("click", () => {
+  if (l4busy) return;
+  const srcName = $("#l4src").value;
+  const dstVal = $("#l4dst").value;
+  const src = HOSTS.find(h => h.name === srcName);
+  if (dstVal === srcName) {
+    l4Log([`<span class="bad">Frame not sent.</span> A frame addressed to the same host does not need to cross the switch. Choose a different destination.`]);
+    return;
+  }
+  l4busy = true;
+  l4state.frames++;
+  $("#l4count").textContent = `Frames sent: ${l4state.frames}`;
+  const lines = [];
+  const isB = dstVal === "BCAST";
+  const dst = isB ? null : HOSTS.find(h => h.name === dstVal);
+  lines.push(`Frame arrives on port ${src.port}.  src ${src.mac}  dst ${isB ? "FF-FF-FF-FF-FF-FF" : dst.mac}`);
+  if (!l4state.table.has(src.mac)) {
+    l4state.table.set(src.mac, { port: src.port, fresh: true });
+    lines.push(`<span class="good">Learn:</span> ${src.mac} must be reachable through port ${src.port}. Added to the table.`);
+  } else {
+    lines.push(`<span class="dim">Learn: ${src.mac} is already in the table for port ${src.port}.</span>`);
+  }
+  let targets;
+  if (isB) {
+    targets = HOSTS.filter(h => h.name !== srcName).map(h => h.name);
+    lines.push(`<span class="good">Forward:</span> the destination is the broadcast address, so the frame is flooded out every port except port ${src.port}.`);
+  } else if (l4state.table.has(dst.mac)) {
+    targets = [dst.name];
+    lines.push(`<span class="good">Forward:</span> ${dst.mac} is in the table for port ${dst.port}, so the frame goes out port ${dst.port} only.`);
+  } else {
+    targets = HOSTS.filter(h => h.name !== srcName).map(h => h.name);
+    lines.push(`<span class="bad">Flood:</span> ${dst.mac} is not in the table yet, so the frame is sent out every port except port ${src.port}. Only ${dst.name} keeps it; the other hosts discard it.`);
+    lines.push(`<span class="dim">Hint: a reply from ${dst.name} would let the switch learn ${dst.mac}.</span>`);
+  }
+  l4Log(lines);
+  l4Animate(srcName, targets, () => { l4Table(); l4busy = false; });
+});
+$("#l4reset").addEventListener("click", () => {
+  l4state.table.clear(); l4state.frames = 0;
+  $("#l4count").textContent = "Frames sent: 0";
+  l4Table();
+  l4Log([`<span class="dim">Table cleared. No frame has been sent yet.</span>`]);
+});
+l4DrawBase(); l4Selects(); l4Table();
+
+checkpoint("cp4", "lesson4", {
+  text: "Host A (AA-01) sends a frame to host E (AA-05). Which address does the switch use to add an entry to its switching table?",
+  options: [
+    "AA-01, the source address",
+    "AA-05, the destination address",
+    "FF-FF-FF-FF-FF-FF, the broadcast address"
+  ],
+  answer: 0,
+  why: "The switch knows the source must be reachable through the port the frame arrived on. It cannot infer the destination's port merely from the destination field, which is why unknown destinations are flooded."
+});
+
+/* ================= LESSON 5: protocols and layers ================= */
+$("#l5rulesOn").addEventListener("click", () => {
+  $("#l5rulesTerm").innerHTML =
+`Message (agreed rules):
+  { "type": "reading", "sensor": "room-7", "temperature_c": 25, "reply": "ack" }
+
+<span class="good">Both devices agree on field names, permitted values, units and the expected
+response. The receiver knows exactly what 25 means and what to send back.</span>`;
+});
+$("#l5rulesOff").addEventListener("click", () => {
+  $("#l5rulesTerm").innerHTML =
+`Message (no agreed rules):
+  25
+
+<span class="bad">The receiver cannot tell whether 25 is a temperature, a device identifier,
+a length or something else, and it does not know whether to reply. Communication
+fails even though the bits arrived perfectly.</span>`;
+});
+
+const L5_ORDER = ["tcp", "ip", "eth"];
+const L5_META = {
+  data: { cls: "lb-data", label: "Application data", note: "for example a web request" },
+  tcp:  { cls: "lb-tcp",  label: "TCP header", note: "port numbers and sequence information" },
+  ip:   { cls: "lb-ip",   label: "IP header", note: "source and destination IP addresses" },
+  eth:  { cls: "lb-eth",  label: "Ethernet header + trailer", note: "source and destination MAC addresses, error check" }
+};
+let l5stack = ["data"];
+function l5Render(msg, ok) {
+  const box = $("#l5stack");
+  /* nested rendering: outermost layer wraps the rest */
+  let html = `<div class="layerbox lb-data">${L5_META.data.label}<br><small class="hint">${L5_META.data.note}</small></div>`;
+  l5stack.slice(1).forEach(k => {
+    const m = L5_META[k];
+    html = `<div class="layerbox ${m.cls} wrapview">${m.label} <small class="hint">(${m.note})</small><div class="inner" style="margin-top:8px">${html}</div></div>`;
+  });
+  box.innerHTML = html;
+  const fb = $("#l5fb");
+  if (msg) {
+    fb.className = "feedback show " + (ok ? "ok" : "no");
+    fb.innerHTML = msg;
+  } else fb.className = "feedback";
+  $("#l5deliver").disabled = !(l5stack.length === 4);
+}
+$$("[data-l5add]").forEach(b => b.addEventListener("click", () => {
+  const k = b.getAttribute("data-l5add");
+  if (l5stack.includes(k)) { l5Render("<strong>That layer is already in place.</strong>", false); return; }
+  const expected = L5_ORDER[l5stack.length - 1];
+  if (k !== expected) {
+    l5Render(`<strong>Not yet.</strong> Encapsulation works from the inside out. The next wrapper around the current message is the <em>${L5_META[expected].label}</em>.`, false);
+    return;
+  }
+  l5stack.push(k);
+  l5Render(l5stack.length === 4
+    ? "<strong>Frame built.</strong> The data now sits inside a TCP segment, inside an IP datagram, inside an Ethernet frame. Deliver it to unwrap."
+    : `<strong>Added.</strong> The message is now encapsulated in a ${L5_META[k].label.replace(" + trailer", "")}.`, true);
+}));
+$("#l5deliver").addEventListener("click", () => {
+  const peel = () => {
+    if (l5stack.length > 1) {
+      const k = l5stack.pop();
+      l5Render(`<strong>Computer B removes the ${L5_META[k].label}.</strong> Each layer reads and strips only its own header.`, true);
+      setTimeout(peel, reducedMotion ? 60 : 950);
+    } else {
+      l5Render("<strong>Unwrapped.</strong> The application data has arrived exactly as it was created. This add-then-remove pattern is encapsulation and de-encapsulation.", true);
+      markDone("lesson5");
+    }
+  };
+  peel();
+});
+$("#l5restart").addEventListener("click", () => { l5stack = ["data"]; l5Render(); });
+l5Render();
+
+checkpoint("cp5", "lesson5", {
+  text: "During encapsulation, what does each layer add around the message from the layer above?",
+  options: [
+    "Nothing; layers only compress the data",
+    "Its own header, and sometimes a trailer",
+    "A copy of the whole message for safe keeping"
+  ],
+  answer: 1,
+  why: "Each layer adds its own header, and sometimes a trailer, around the previous layer's message. A HTTP message travels inside a TCP segment, inside an IP datagram, inside an Ethernet frame."
+});
+
+/* ================= LESSON 6: cabling and MAC ================= */
+const T568B = [
+  ["W/Or", "#f4e0cf", "repeating-linear-gradient(45deg,#fff 0 6px,#e8963d 6px 12px)"],
+  ["Or",   "#e8963d", null],
+  ["W/Gn", "#e2f1e9", "repeating-linear-gradient(45deg,#fff 0 6px,#2f9e5f 6px 12px)"],
+  ["Bl",   "#3f6fbf", null],
+  ["W/Bl", "#e7f0fa", "repeating-linear-gradient(45deg,#fff 0 6px,#3f6fbf 6px 12px)"],
+  ["Gn",   "#2f9e5f", null],
+  ["W/Br", "#f0e6de", "repeating-linear-gradient(45deg,#fff 0 6px,#8a5a33 6px 12px)"],
+  ["Br",   "#8a5a33", null]
+];
+let l6placed = new Array(8).fill(null); /* slot index -> wire index */
+let l6sel = null;
+
+function l6Chip(wi, where) {
+  const [name, bg, stripe] = T568B[wi];
+  const c = el("button", { class: "wirechip", type: "button", "data-wire": wi, "aria-label": `Wire ${name}` , text: name});
+  c.style.background = stripe || bg;
+  if (!stripe && (name === "Bl" || name === "Br")) c.style.color = "#fff";
+  c.addEventListener("click", () => {
+    if (where === "bank") {
+      $$(".wirechip", $("#l6bank")).forEach(x => x.classList.remove("sel"));
+      l6sel = wi; c.classList.add("sel");
+    } else {
+      /* clicking a placed chip returns it to the bank */
+      const slot = l6placed.indexOf(wi);
+      if (slot > -1) l6placed[slot] = null;
+      l6RenderGame();
+    }
+  });
+  return c;
+}
+function l6RenderGame() {
+  const bank = $("#l6bank"), pins = $("#l6pins");
+  bank.innerHTML = ""; pins.innerHTML = "";
+  const placedSet = new Set(l6placed.filter(v => v !== null));
+  const order = [...Array(8).keys()];
+  order.forEach(wi => { if (!placedSet.has(wi)) bank.appendChild(l6Chip(wi, "bank")); });
+  if (!bank.children.length) bank.innerHTML = `<span class="hint">All wires placed. Check the wiring.</span>`;
+  for (let p = 0; p < 8; p++) {
+    const slot = el("button", { class: "pinslot" + (l6placed[p] !== null ? " filled" : ""), type: "button", "aria-label": `Pin ${p + 1}` });
+    slot.appendChild(el("span", { class: "pn", text: "Pin " + (p + 1) }));
+    if (l6placed[p] !== null) slot.appendChild(l6Chip(l6placed[p], "slot"));
+    slot.addEventListener("click", (e) => {
+      if (e.target.closest(".wirechip")) return; /* chip click handled above */
+      if (l6sel === null) return;
+      if (l6placed[p] !== null) return;
+      l6placed[p] = l6sel; l6sel = null;
+      l6RenderGame();
+    });
+    pins.appendChild(slot);
+  }
+  $("#l6result").textContent = "";
+}
+function l6Shuffle() {
+  l6placed = new Array(8).fill(null); l6sel = null;
+  l6RenderGame();
+  /* shuffle the visual order of the bank */
+  const bank = $("#l6bank");
+  const kids = Array.from(bank.children);
+  kids.sort(() => Math.random() - 0.5).forEach(k => bank.appendChild(k));
+}
+$("#l6check").addEventListener("click", () => {
+  const slots = $$(".pinslot");
+  let right = 0, filled = 0;
+  l6placed.forEach((wi, p) => {
+    slots[p].classList.remove("good", "badp");
+    if (wi === null) return;
+    filled++;
+    if (wi === p) { right++; slots[p].classList.add("good"); }
+    else slots[p].classList.add("badp");
+  });
+  if (filled < 8) {
+    $("#l6result").textContent = `Place all eight wires first (${filled} of 8 placed).`;
+  } else if (right === 8) {
+    $("#l6result").innerHTML = `<span class="badgeok">Correct T568B order. Terminate both ends the same way for a straight-through cable.</span>`;
+  } else {
+    $("#l6result").textContent = `${right} of 8 pins correct. Red pins are in the wrong position; select a chip to return it to the bank.`;
+  }
+});
+$("#l6shuffle").addEventListener("click", l6Shuffle);
+l6Shuffle();
+
+/* MAC decoder */
+function l6Decode() {
+  const raw = $("#l6mac").value.trim();
+  const out = $("#l6macOut");
+  const norm = raw.toUpperCase().replace(/[^0-9A-F]/g, "");
+  if (norm.length !== 12) {
+    out.innerHTML = `<div class="feedback show no" style="display:block"><strong>That is not a valid MAC address.</strong> A MAC address contains exactly twelve hexadecimal digits, usually written as six pairs such as CC-48-3A-86-3F-62.</div>`;
+    return;
+  }
+  const pairs = norm.match(/.{2}/g);
+  const shown = pairs.join("-");
+  const isBcast = norm === "FFFFFFFFFFFF";
+  const firstBits = parseInt(pairs[0], 16).toString(2).padStart(8, "0");
+  let html = `<div class="macparts">
+    <div class="macpart mp-oui"><b class="mono">${pairs.slice(0, 3).join("-")}</b><small>First 24 bits: assigned by the IEEE to the manufacturer (the OUI)</small></div>
+    <div class="macpart mp-nic"><b class="mono">${pairs.slice(3).join("-")}</b><small>Second 24 bits: assigned by the manufacturer to this interface</small></div>
+  </div>
+  <p class="hint" style="margin-top:10px">48 bits in total. Each hexadecimal digit is four bits, so the first byte ${pairs[0]} is <span class="mono">${firstBits}</span> in binary. Week 1 introduced this compact hex-to-binary relationship.</p>`;
+  if (isBcast) {
+    html += `<div class="note"><strong>${shown} is the broadcast address.</strong> A frame with this destination is intended for every device on the local LAN, and a switch floods it out every port except the one it arrived on.</div>`;
+  }
+  out.innerHTML = html;
+  markDone("lesson6");
+}
+$("#l6decode").addEventListener("click", l6Decode);
+$("#l6mac").addEventListener("keydown", e => { if (e.key === "Enter") l6Decode(); });
+$("#l6bcast").addEventListener("click", () => { $("#l6mac").value = "FF-FF-FF-FF-FF-FF"; l6Decode(); });
+
+/* PowerShell reading question */
+(function () {
+  const box = $("#l6ps");
+  box.innerHTML = `<p style="margin-top:12px"><strong>Which adapter is currently carrying traffic, and at what speed?</strong></p>`;
+  const opts = el("div", { class: "opts" });
+  const fb = el("div", { class: "feedback" });
+  const data = [
+    ["Ethernet, at 0 bps", false],
+    ["Ethernet 3, at 1 Gb/s", true],
+    ["Wi-Fi, at 144.4 Mb/s", false]
+  ];
+  data.forEach(([t, ok]) => {
+    const b = el("button", { class: "opt", type: "button", text: t });
+    b.addEventListener("click", () => {
+      $$(".opt", opts).forEach(x => x.disabled = true);
+      if (ok) { b.classList.add("correct"); fb.className = "feedback show ok"; fb.innerHTML = "<strong>Correct.</strong> Its status is Up and the reported link speed is 1 Gbps. The other adapters are disconnected, whatever their maximum speeds."; }
+      else {
+        b.classList.add("wrong");
+        opts.children[1].classList.add("correct");
+        fb.className = "feedback show no"; fb.innerHTML = "<strong>Check the Status column.</strong> Only Ethernet 3 shows Up, at 1 Gbps. A listed speed on a disconnected adapter is not live traffic.";
+        setTimeout(() => $$(".opt", opts).forEach(x => { if (!x.classList.contains("correct") && !x.classList.contains("wrong")) x.disabled = false; }), 50);
+      }
+    });
+    opts.appendChild(b);
+  });
+  box.appendChild(opts); box.appendChild(fb);
+})();
+
+checkpoint("cp6", "lesson6", {
+  text: "An Ethernet frame arrives with destination FF-FF-FF-FF-FF-FF. Who is it for?",
+  options: [
+    "Only the device whose OUI is FF-FF-FF",
+    "Every device on the local LAN",
+    "Nobody; it is an invalid address"
+  ],
+  answer: 1,
+  why: "FF-FF-FF-FF-FF-FF is the special broadcast address. A frame using this destination is intended for every device on the local LAN."
+});
+
+/* ================= LESSON 7: build and troubleshoot ================= */
+const l7scenarios = [
+  { id: "s1", name: "Challenge 1: nothing responds", set: { ipa: "192.168.1.10", ipb: "192.168.1.20", cable: false, fw: false } },
+  { id: "s2", name: "Challenge 2: addresses look fine at a glance", set: { ipa: "192.168.1.10", ipb: "192.168.2.20", cable: true, fw: false } },
+  { id: "s3", name: "Challenge 3: everything is plugged in", set: { ipa: "10.0.0.5", ipb: "10.0.0.5", cable: true, fw: false } },
+  { id: "s4", name: "Challenge 4: the sneaky one", set: { ipa: "172.16.4.10", ipb: "172.16.4.11", cable: true, fw: true } }
+];
+let l7active = null;
+const l7solved = new Set();
+
+function l7RenderScens() {
+  const box = $("#l7scens");
+  box.innerHTML = "";
+  l7scenarios.forEach(sc => {
+    const b = el("button", { class: "scen" + (l7solved.has(sc.id) ? " solved" : ""), type: "button", text: (l7solved.has(sc.id) ? "\u2713 " : "") + sc.name });
+    b.addEventListener("click", () => {
+      l7active = sc.id;
+      $("#l7ipa").value = sc.set.ipa;
+      $("#l7ipb").value = sc.set.ipb;
+      $("#l7cable").checked = sc.set.cable;
+      $("#l7fw").checked = sc.set.fw;
+      l7Lights();
+      $("#l7term").innerHTML = `<span class="dim">${sc.name} loaded. Something on this bench prevents a successful ping. Investigate in order: cable, addresses, then software.</span>`;
+    });
+    box.appendChild(b);
+  });
+}
+function l7Lights() {
+  const on = $("#l7cable").checked;
+  $("#l7lightA").classList.toggle("on", on);
+  $("#l7lightB").classList.toggle("on", on);
+}
+$("#l7cable").addEventListener("change", l7Lights);
+
+function parseIp(v) {
+  const m = v.trim().match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
+  if (!m) return null;
+  const o = m.slice(1).map(Number);
+  return o.every(x => x >= 0 && x <= 255) ? o : null;
+}
+$("#l7ping").addEventListener("click", () => {
+  const term = $("#l7term");
+  const rawA = $("#l7ipa").value, rawB = $("#l7ipb").value;
+  const a = parseIp(rawA), b = parseIp(rawB);
+  const cable = $("#l7cable").checked, fw = $("#l7fw").checked;
+  const head = `PS C:\\Users\\user&gt; Test-NetConnection ${rawB.trim() || "&lt;destination&gt;"}\n\n`;
+  let body, ok = false;
+
+  if (!cable) {
+    body = `<span class="bad">Ping failed: no physical link.</span>\nThe NIC reports the media as disconnected and no link lights are visible.\n<span class="dim">Fix: connect the Ethernet cable at both ends, then look for the link lights.</span>`;
+  } else if (!a || !b) {
+    body = `<span class="bad">Ping failed: invalid or missing IP address.</span>\n${!a ? "Computer A" : "Computer B"} does not have a valid address. Each address needs four decimal values from 0 to 255, set by the administrator.\n<span class="dim">Fix: Set-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress ... -PrefixLength 24</span>`;
+  } else if (a.join(".") === b.join(".")) {
+    body = `<span class="bad">Ping failed: address conflict.</span>\nBoth computers are using ${rawA.trim()}. Every computer must have a different IP address.\n<span class="dim">Fix: change the final section of one address, for example .5 and .6.</span>`;
+  } else if (a[0] !== b[0] || a[1] !== b[1] || a[2] !== b[2]) {
+    body = `<span class="bad">Ping failed: different networks.</span>\nFor this /24 exercise the first three decimal sections must match on both computers. ${a.slice(0,3).join(".")}.x and ${b.slice(0,3).join(".")}.x do not match, so Computer A does not even attempt to send the frame directly to B.\n<span class="dim">Fix: place both addresses in the same /24, for example ${a.slice(0,3).join(".")}.${b[3]}.</span>`;
+  } else if (fw) {
+    body = `<span class="bad">Ping failed: request timed out.</span>\nThe path is configured correctly, but the firewall on Computer B is blocking the diagnostic request. This does not necessarily mean every application is blocked.\n<span class="dim">Fix: allow ICMP echo through the Windows Firewall on B, or test the actual application with Test-NetConnection -Port.</span>`;
+  } else {
+    ok = true;
+    const rtt = (0.4 + Math.random() * 0.8).toFixed(1);
+    body = `<span class="good">Ping succeeded.</span>\nComputerName     : ${rawB.trim()}\nRemoteAddress    : ${rawB.trim()}\nPingSucceeded    : True\nPingReplyDetails : RoundTripTime ${rtt} ms\n\n<span class="dim">Document the result: record the values, take screenshots and finish the network diagram.</span>`;
+  }
+  term.innerHTML = head + body;
+  if (ok) {
+    if (l7active && !l7solved.has(l7active)) {
+      l7solved.add(l7active);
+      l7RenderScens();
+      term.innerHTML += `\n\n<span class="good">Challenge solved.</span>`;
+    }
+    if (l7solved.size >= 3) markDone("lesson7");
+  }
+});
+$("#l7clear").addEventListener("click", () => {
+  l7active = null;
+  $("#l7ipa").value = ""; $("#l7ipb").value = "";
+  $("#l7cable").checked = true; $("#l7fw").checked = false;
+  l7Lights();
+  $("#l7term").innerHTML = `<span class="dim">The bench is ready. Set the addresses, then run the test.</span>`;
+});
+l7RenderScens(); l7Lights();
+
+checkpoint("cp7", "lesson7", {
+  text: "For the simplified /24 exercise, which pair of addresses is suitable for the two computers?",
+  options: [
+    "192.168.1.10 and 192.168.1.20",
+    "192.168.1.10 and 192.168.2.20",
+    "192.168.1.10 and 192.168.1.10"
+  ],
+  answer: 0,
+  why: "The first three sections match and the final host values are different. Different third sections put the computers in different networks, and identical addresses create a conflict."
+});
+
+/* ================= LESSON 8: quiz ================= */
+const QUIZ = [
+  {
+    q: "Which component transmits and receives the physical signal on a computer?",
+    o: ["The application", "The operating system", "The network interface card (NIC)"],
+    a: 2, ref: "Lesson 1",
+    why: "The NIC connects the computer to the link and converts between bits and physical signals."
+  },
+  {
+    q: "Ping reports 22 ms. What has been measured?",
+    o: ["The data rate of the first link", "The round trip time to the destination and back", "The one-way propagation delay only"],
+    a: 1, ref: "Lesson 2",
+    why: "Ping measures round trip time: the time for the request to arrive plus the time for the reply to return."
+  },
+  {
+    q: "Why can throughput be lower than the link data rate?",
+    o: ["Because bits sometimes disappear permanently", "Because congestion, bottleneck links and overhead affect delivery", "It cannot; they are always equal"],
+    a: 1, ref: "Lesson 2",
+    why: "End-to-end throughput is influenced by sharing, the slowest link on the path, processing, errors and protocol overhead."
+  },
+  {
+    q: "Connecting 10 computers with direct links between every pair requires how many cables?",
+    o: ["10", "20", "45"],
+    a: 2, ref: "Lesson 3",
+    why: "n(n minus 1) divided by 2 gives 45 cables, and each computer would need 9 NICs. A switch reduces this to 10 cables and one NIC each."
+  },
+  {
+    q: "A switch learns a host's location primarily from which frame field?",
+    o: ["The source MAC address", "The destination MAC address", "The IP address"],
+    a: 0, ref: "Lesson 4",
+    why: "The source must be reachable through the port the frame arrived on. The destination address is used for forwarding, not learning."
+  },
+  {
+    q: "What happens during encapsulation as data moves down the layers?",
+    o: ["Each layer removes a header", "Each layer adds its own header, and sometimes a trailer", "The message is converted to hexadecimal"],
+    a: 1, ref: "Lesson 5",
+    why: "Each layer wraps the message from the layer above with its own header, and sometimes a trailer, such as the Ethernet frame check."
+  },
+  {
+    q: "A straight-through LAN cable is made by doing what?",
+    o: ["Using T568A at one end and T568B at the other", "Using the same standard, T568A or T568B, at both ends", "Using only four of the eight wires"],
+    a: 1, ref: "Lesson 6",
+    why: "The same wiring standard at both connectors gives a straight-through cable. Gigabit Ethernet uses all four pairs."
+  },
+  {
+    q: "A ping between two directly connected computers times out. What should be checked first?",
+    o: ["The firewall settings", "The cable and the link lights", "The web browser version"],
+    a: 1, ref: "Lesson 7",
+    why: "Troubleshoot from the physical layer upward: cable and link lights, then addresses, then the test itself, and only then software such as the firewall."
+  }
+];
+let quizAnswered = 0, quizRight = 0;
+(function buildQuiz() {
+  const box = $("#quiz");
+  QUIZ.forEach((item, qi) => {
+    const wrap = el("div", { class: "quizq" });
+    wrap.appendChild(el("h4", { text: `${qi + 1}. ${item.q}` }));
+    const opts = el("div", { class: "opts" });
+    const fb = el("div", { class: "feedback" });
+    item.o.forEach((o, oi) => {
+      const b = el("button", { class: "opt", type: "button", text: o });
+      b.addEventListener("click", () => {
+        $$(".opt", opts).forEach(x => x.disabled = true);
+        quizAnswered++;
+        if (oi === item.a) {
+          quizRight++;
+          b.classList.add("correct");
+          fb.className = "feedback show ok";
+          fb.innerHTML = `<strong>Correct.</strong> ${item.why}`;
+        } else {
+          b.classList.add("wrong");
+          opts.children[item.a].classList.add("correct");
+          fb.className = "feedback show no";
+          fb.innerHTML = `<strong>Not quite.</strong> ${item.why} <em>(Revise ${item.ref}.)</em>`;
+        }
+        $("#quizScore").textContent = `${quizRight} / ${QUIZ.length}`;
+        if (quizAnswered === QUIZ.length) {
+          $("#quizNote").textContent = "";
+          const d = $("#quizDone");
+          d.classList.add("show");
+          $("#quizDoneMsg").textContent = quizRight === QUIZ.length
+            ? "A perfect score. You are ready for the practical tutorial."
+            : quizRight >= 6
+              ? "A strong result. Reread the explanations for any missed questions before the practical tutorial."
+              : "Return to the flagged lessons and repeat the interactive examples, then try the review again after a refresh.";
+          markDone("lesson8");
+        } else {
+          $("#quizNote").textContent = `${QUIZ.length - quizAnswered} question${QUIZ.length - quizAnswered === 1 ? "" : "s"} to go.`;
+        }
+      });
+      opts.appendChild(b);
+    });
+    wrap.appendChild(opts); wrap.appendChild(fb);
+    box.appendChild(wrap);
+  });
+})();
+
+/* ---------------- boot ---------------- */
+showLesson("lesson1");
+
+</script>
+</body>
+</html>
