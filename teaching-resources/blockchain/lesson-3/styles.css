@@ -48,6 +48,31 @@ button { font: inherit; }
   margin: 18px auto 48px;
 }
 
+.lesson-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+.lesson-nav a {
+  padding: 7px 10px;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.lesson-nav a:hover,
+.lesson-nav a:focus-visible { color: var(--blue); background: var(--blue-soft); }
+.lesson-nav a[aria-current="page"] { color: #fff; background: var(--blue); }
+
 .hero {
   display: flex;
   align-items: center;
