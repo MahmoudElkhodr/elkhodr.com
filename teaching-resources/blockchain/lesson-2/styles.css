@@ -162,6 +162,16 @@ h1 { margin: 0; font-size: clamp(1.25rem, 2.2vw, 1.65rem); line-height: 1.15; te
 .caption-card p { margin: 6px 0 0; color: var(--ink); }
 
 .site-footer { margin: 0 auto 24px; width: min(1220px, calc(100% - 28px)); padding: 12px 18px; color: var(--muted); }
+.resource-credit {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  line-height: 1.6;
+}
+.resource-credit p { margin: 4px 0; }
+.resource-credit a { color: var(--brand); }
+.resource-credit details { margin-top: 8px; }
+.resource-credit summary { color: var(--ink); cursor: pointer; font-weight: 700; }
 
 /* ---------- shared building blocks ---------- */
 

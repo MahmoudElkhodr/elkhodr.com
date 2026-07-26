@@ -981,6 +981,21 @@ a:focus-visible {
   padding: 18px;
 }
 .learning-summary h2 { margin-top: 0; color: var(--navy); }
+
+.resource-credit {
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--muted);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  line-height: 1.6;
+}
+.resource-credit p { margin: 4px 0; }
+.resource-credit a { color: var(--blue); }
+.resource-credit details { margin-top: 8px; }
+.resource-credit summary { color: var(--navy); cursor: pointer; font-weight: 800; }
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
