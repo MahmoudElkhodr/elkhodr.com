@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A self-paced, tutor-led cryptography learning demo for blockchain students." />
+  <link rel="canonical" href="https://elkhodr.com/teaching-resources/blockchain/lesson-3/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Cryptography Missions | Blockchain Teaching Resources" />
+  <meta property="og:description" content="Explore encryption, hashing and digital signatures through four interactive visual lessons." />
+  <title>Cryptography Missions | Blockchain Teaching Resources</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#lesson-content">Skip to lesson</a>
+  <main class="app-shell" id="lesson-content">
+    <header class="hero" aria-labelledby="page-title">
+      <div>
+        <a class="eyebrow" href="../">← Blockchain Teaching Resources</a>
+        <h1 id="page-title">Cryptography Missions</h1>
+        <p class="hero-copy">Four short visual lessons showing how encryption, hashing and digital signatures protect blockchain transactions.</p>
+      </div>
+      <div class="hero-status" aria-live="polite">
+        <span id="mission-count">Mission 1 of 4</span>
+        <strong id="step-count">Step 1 of 7</strong>
+      </div>
+    </header>
+
+    <nav class="mission-nav" aria-label="Cryptography missions">
+      <button class="mission-tab active" data-mission="0" type="button">
+        <span aria-hidden="true">🔐</span>
+        <span>1. Shared Secret</span>
+      </button>
+      <button class="mission-tab" data-mission="1" type="button">
+        <span aria-hidden="true">📦</span>
+        <span>2. Public Lockbox</span>
+      </button>
+      <button class="mission-tab" data-mission="2" type="button">
+        <span aria-hidden="true">🥤</span>
+        <span>3. Fruit-Shake Hash</span>
+      </button>
+      <button class="mission-tab" data-mission="3" type="button">
+        <span aria-hidden="true">✍️</span>
+        <span>4. Sign the Transaction</span>
+      </button>
+    </nav>
+
+    <section class="lesson-card" aria-labelledby="lesson-title">
+      <div class="lesson-heading-row">
+        <div>
+          <p id="lesson-kicker" class="lesson-kicker">Mission 1</p>
+          <h2 id="lesson-title">One Secret Key</h2>
+        </div>
+        <span id="lesson-badge" class="lesson-badge">Symmetric encryption</span>
+      </div>
+
+      <div class="step-toolbar" aria-label="Step controls">
+        <button id="back-button" class="control secondary" type="button">← Back</button>
+        <div class="step-dots" id="step-dots" aria-label="Lesson progress"></div>
+        <button id="next-button" class="control primary" type="button">Next →</button>
+      </div>
+
+      <div class="lesson-grid">
+        <article class="explanation-panel" aria-live="polite">
+          <p id="step-label" class="step-label">Step 1</p>
+          <h3 id="step-title">Alice has a confidential document</h3>
+          <p id="step-text">Alice needs to send a confidential business document to Bob. At the moment, the document is readable plaintext.</p>
+          <div id="concept-box" class="concept-box">
+            <strong>Key idea</strong>
+            <p>Plaintext is the original readable information before encryption.</p>
+          </div>
+        </article>
+
+        <div class="visual-panel" aria-label="Animated cryptography visualisation">
+          <div id="scene" class="scene"></div>
+        </div>
+      </div>
+
+      <div class="step-toolbar bottom" aria-label="Step controls">
+        <button id="back-button-bottom" class="control secondary" type="button">← Back</button>
+        <button id="restart-button" class="control ghost" type="button">↻ Restart lesson</button>
+        <button id="next-button-bottom" class="control primary" type="button">Next →</button>
+      </div>
+    </section>
+
+    <section class="learning-summary" aria-labelledby="summary-title">
+      <h2 id="summary-title">How the four ideas connect</h2>
+      <div class="summary-grid">
+        <div><span>🔒</span><strong>Encryption</strong><p>Protects confidentiality by making information unreadable without the correct key.</p></div>
+        <div><span>#️⃣</span><strong>Hashing</strong><p>Creates a fixed digital fingerprint that reveals whether data has changed.</p></div>
+        <div><span>✍️</span><strong>Digital signatures</strong><p>Connect data to the private key that authorised it.</p></div>
+        <div><span>⛓️</span><strong>Blockchain</strong><p>Uses hashes and signatures to verify and record authorised transactions.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
