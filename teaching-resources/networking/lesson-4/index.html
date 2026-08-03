@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="COIT11238 Week 4 self-paced tutorial on NICs, switches, routers, wireless access points, TCP/IP layers, encapsulation and hop-by-hop delivery." />
+<link rel="canonical" href="https://elkhodr.com/teaching-resources/networking/lesson-4/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Across the Layers | COIT11238 Networking Lesson 4" />
+<meta property="og:description" content="Follow an HTTPS request through NICs, switches, routers, TCP/IP layers and hop-by-hop delivery." />
+<title>Lesson 4 — Across the Layers | COIT11238</title>
+<style>
+:root{
+  color:#172136;
+  font-synthesis:none;
+  text-rendering:optimizeLegibility;
+  --navy:#17233c;
+  --blue:#2463eb;
+  --blue-soft:#e8f0ff;
+  --purple:#6842c2;
+  --purple-soft:#f0ebff;
+  --teal:#087f8c;
+  --teal-soft:#e2f6f7;
+  --orange:#c75b09;
+  --orange-soft:#fff0e2;
+  --red:#b42318;
+  --red-soft:#fff0ef;
+  --green:#157347;
+  --green-soft:#e9f7ef;
+  --yellow:#8a6100;
+  --yellow-soft:#fff8db;
+  --line:#d5dee9;
+  --muted:#5e6b80;
+  --white:#fff;
+  background:#edf2f7;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{min-width:320px;min-height:100vh;margin:0}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.48}
+a{color:inherit}
+button:focus-visible,a:focus-visible{outline:3px solid #2463eb55;outline-offset:3px}
+code,.mono{font-family:SFMono-Regular,Consolas,"Liberation Mono",monospace}
+.skip-link{position:fixed;left:12px;top:-60px;z-index:999;color:#fff;background:var(--navy);padding:10px 14px;border-radius:9px;text-decoration:none}.skip-link:focus{top:12px}
+.app-shell{max-width:1540px;margin:0 auto;padding:24px}
+.site-nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 14px}.site-nav a{text-decoration:none;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:.88rem;font-weight:760}.site-nav a:hover,.site-nav a[aria-current="page"]{color:var(--blue);border-color:#9fb8f7;background:var(--blue-soft)}
+.hero{color:#fff;background:linear-gradient(135deg,#17233c 0%,#243d74 55%,#087f8c 135%);border-radius:28px;display:flex;justify-content:space-between;align-items:flex-start;gap:28px;padding:34px 38px;box-shadow:0 18px 55px #17233c2e}.eyebrow,.section-kicker{text-transform:uppercase;letter-spacing:.09em;margin:0 0 8px;font-size:.78rem;font-weight:850}.hero .eyebrow{color:#b9d6ff}h1{letter-spacing:-.05em;margin:0;font-size:clamp(2.35rem,5vw,4.7rem);line-height:1}h2{letter-spacing:-.035em;margin:3px 0 14px;font-size:clamp(1.9rem,3.3vw,3.2rem);line-height:1.08}h3{color:var(--navy)}.hero-copy{color:#e8edf7;max-width:1020px;margin:18px 0 0;font-size:clamp(1rem,1.55vw,1.26rem);line-height:1.58}.hero-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}.hero-button{color:#fff;background:#ffffff17;border:1px solid #ffffff66;border-radius:11px;padding:10px 14px;font-weight:800}.hero-button:hover{background:#ffffff26}
+.progress-panel{border:1px solid var(--line);background:#fff;border-radius:17px;grid-template-columns:minmax(250px,.8fr) 1.6fr;align-items:center;gap:22px;margin:16px 0 0;padding:14px 18px;display:grid}.progress-panel strong,.progress-panel span{display:block}.progress-panel span{color:var(--muted);margin-top:3px;font-size:.85rem}.progress-track{background:#e8edf4;border-radius:999px;height:12px;overflow:hidden}.progress-track span{border-radius:inherit;background:linear-gradient(90deg,var(--blue),var(--teal));height:100%;transition:width .3s;display:block}
+.tab-bar{z-index:20;backdrop-filter:blur(12px);background:#edf2f7f0;grid-template-columns:repeat(4,1fr);gap:9px;padding:16px 0;display:grid;position:sticky;top:0}.tab{border:1px solid var(--line);color:var(--muted);background:#fff;border-radius:13px;padding:12px 10px;font-weight:760;transition:all .2s}.tab:hover{border-color:#aebbd0;transform:translateY(-1px)}.tab.active{color:#fff;border-color:var(--blue);background:var(--blue);box-shadow:0 8px 22px #2463eb3b}.tab.complete:not(.active){color:var(--green);background:var(--green-soft);border-color:#a9d6bf}
+.panel-stack{display:grid;gap:18px}.lesson-intro,.demo-panel,.concept-check,.lesson-navigation,.question-card,.score-box{border:1px solid var(--line);background:#fff}.lesson-intro{background:linear-gradient(145deg,#fff 0%,#f1f6ff 100%);border-radius:25px;grid-template-columns:auto 1fr;align-items:start;gap:24px;padding:28px;display:grid}.lesson-number{color:#fff;background:var(--blue);border-radius:20px;place-items:center;width:72px;height:72px;font-size:2rem;font-weight:900;display:grid;box-shadow:0 10px 25px #2463eb33}.lead-copy{color:var(--muted);max-width:1180px;font-size:1.06rem;line-height:1.68}.outcome-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}.outcome-row span{background:var(--teal-soft);color:#08616b;border-radius:999px;padding:8px 12px;font-size:.9rem;font-weight:750}.demo-panel{border-radius:22px;padding:25px;box-shadow:0 8px 28px #17233c0d}.panel-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:17px}.panel-heading h3{margin:0;font-size:1.7rem}.panel-heading p{margin:5px 0 0;color:var(--muted);line-height:1.55}.primary-button,.secondary-button,.complete-button,.small-button{border:1px solid transparent;border-radius:11px;padding:11px 16px;font-weight:800}.primary-button{color:#fff;background:var(--blue);border-color:var(--blue)}.primary-button:hover{background:#1c52ca}.secondary-button{color:var(--navy);background:#fff;border-color:#bfcadb}.secondary-button:hover{background:#f5f7fb}.complete-button{background:var(--green-soft);color:var(--green);border-color:#9cd0b5}.small-button{padding:8px 11px;color:var(--navy);background:#fff;border-color:#bfcadb}.action-row{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-top:17px}.counter{color:var(--muted);font-size:.9rem;font-weight:700}.key-note{border-left:5px solid var(--orange);background:var(--orange-soft);border-radius:14px;padding:14px 16px;line-height:1.55}.key-note strong{color:#7a3505}.correction-note{border-left-color:var(--purple);background:var(--purple-soft)}.correction-note strong{color:#4d2a99}
+/* Analogy scene */
+.analogy-map{position:relative;display:grid;grid-template-columns:1fr .72fr .72fr 1.2fr .72fr .72fr 1fr;gap:12px;align-items:center;background:linear-gradient(180deg,#f8fbff,#f5f7fb);border:1px solid var(--line);border-radius:20px;padding:24px;overflow:hidden}.location-card,.route-node{position:relative;z-index:2;border:2px solid var(--line);background:#fff;border-radius:17px;min-height:145px;padding:15px;text-align:center;transition:.25s}.location-card .icon,.route-node .icon{font-size:2.3rem;line-height:1}.location-card strong,.route-node strong{display:block;margin-top:8px}.location-card span,.route-node span{display:block;color:var(--muted);font-size:.82rem;line-height:1.4;margin-top:5px}.route-node{min-height:112px}.location-card.active,.route-node.active{border-color:var(--blue);background:var(--blue-soft);transform:translateY(-3px);box-shadow:0 10px 25px #2463eb22}.route-node.router.active{border-color:var(--purple);background:var(--purple-soft)}.route-node.switch.active{border-color:var(--teal);background:var(--teal-soft)}.route-line{position:absolute;z-index:1;left:7%;right:7%;top:50%;height:8px;background:#c8d3e2;border-radius:999px}.moving-mail{position:absolute;z-index:5;top:calc(50% - 24px);left:7%;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#fff;border:3px solid var(--orange);box-shadow:0 7px 20px #17233c33;font-size:1.5rem;transition:left .75s cubic-bezier(.2,.8,.2,1),transform .25s}.moving-mail.pulse{animation:pulse .8s ease-in-out}.address-legend{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.legend-card{border:1px solid var(--line);border-radius:15px;background:#fff;padding:14px}.legend-card strong{display:block}.legend-card span{display:block;color:var(--muted);font-size:.87rem;line-height:1.45;margin-top:4px}.legend-ip{border-top:5px solid var(--purple)}.legend-mac{border-top:5px solid var(--teal)}.legend-port{border-top:5px solid var(--orange)}
+/* Stack scene */
+.stack-stage{display:grid;grid-template-columns:minmax(260px,1fr) minmax(260px,.9fr) minmax(260px,1fr);gap:20px;align-items:stretch}.host-stack{border:1px solid var(--line);background:#f8fafc;border-radius:20px;padding:17px}.host-stack h3{text-align:center;margin:0 0 12px}.layer-card{position:relative;border:2px solid var(--line);background:#fff;border-radius:14px;padding:12px 14px;margin:9px 0;transition:.25s}.layer-card strong{display:block}.layer-card span{display:block;color:var(--muted);font-size:.82rem;line-height:1.4;margin-top:4px}.layer-card.active{border-color:var(--blue);background:var(--blue-soft);transform:scale(1.02);box-shadow:0 8px 20px #2463eb1f}.layer-card.transport.active{border-color:var(--orange);background:var(--orange-soft)}.layer-card.internet.active{border-color:var(--purple);background:var(--purple-soft)}.layer-card.access.active{border-color:var(--teal);background:var(--teal-soft)}.layer-card.physical.active{border-color:#6d7a90;background:#eef1f5}.arrow-down,.arrow-up{text-align:center;color:#8492a7;font-weight:900}.network-path{position:relative;border:1px solid var(--line);background:#fff;border-radius:20px;padding:17px;overflow:hidden}.path-line{position:absolute;left:19%;right:19%;top:50%;height:8px;border-radius:999px;background:#c9d5e5}.path-grid{height:100%;min-height:465px;display:grid;grid-template-rows:repeat(5,1fr);gap:9px;align-items:center}.path-device{position:relative;z-index:2;margin:auto;border:2px solid var(--line);background:#fff;border-radius:15px;width:76%;padding:10px;text-align:center;transition:.25s}.path-device strong{display:block}.path-device span{display:block;color:var(--muted);font-size:.75rem;margin-top:3px}.path-device.active{border-color:var(--purple);background:var(--purple-soft);transform:scale(1.05)}.packet-token{position:absolute;z-index:6;left:50%;top:8%;transform:translate(-50%,-50%);border:3px solid var(--orange);background:#fff;border-radius:14px;padding:8px 10px;font-size:.8rem;font-weight:850;box-shadow:0 8px 18px #17233c30;transition:top .55s,left .55s}.packet-token small{display:block;color:var(--muted);font-weight:650;margin-top:2px}.status-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.status-card{border:1px solid var(--line);border-radius:15px;padding:14px;background:#fff}.status-card strong{display:block}.status-card span{display:block;color:var(--muted);line-height:1.45;margin-top:4px;font-size:.88rem}
+/* Builder */
+.builder-layout{display:grid;grid-template-columns:1.7fr .9fr;gap:18px}.frame-shell{border:3px solid var(--teal);background:#f9ffff;border-radius:19px;padding:15px}.frame-title{display:flex;justify-content:space-between;align-items:center;color:#08616b;font-weight:900;margin-bottom:10px}.frame-row{display:flex;flex-wrap:wrap;gap:7px}.field{min-height:64px;min-width:116px;flex:1;border:2px dashed #b9c6d7;background:#fff;border-radius:12px;padding:9px;opacity:.42;transition:.3s}.field.wide{min-width:185px;flex:2}.field.visible{opacity:1;border-style:solid;transform:translateY(-2px);box-shadow:0 7px 18px #17233c12}.field strong{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}.field code{display:block;margin-top:6px;font-size:.78rem;overflow-wrap:anywhere}.field.mac.visible{border-color:var(--teal);background:var(--teal-soft)}.field.ip.visible{border-color:var(--purple);background:var(--purple-soft)}.field.tcp.visible{border-color:var(--orange);background:var(--orange-soft)}.field.data.visible{border-color:var(--blue);background:var(--blue-soft)}.field.fcs.visible{border-color:var(--green);background:var(--green-soft)}.nested-label{margin:13px 0 8px;font-weight:900}.ip-shell{border:2px solid var(--purple);background:#fcfaff;border-radius:16px;padding:12px}.tcp-shell{border:2px solid var(--orange);background:#fffaf6;border-radius:14px;padding:10px;margin-top:10px}.builder-side{display:grid;gap:12px;align-content:start}.explanation-box{border-left:6px solid var(--blue);background:var(--blue-soft);border-radius:15px;padding:17px 18px}.explanation-box h3{margin:4px 0 7px;font-size:1.3rem}.explanation-box p{color:#35435b;margin:0;line-height:1.58}.step-count{color:var(--blue);text-transform:uppercase;letter-spacing:.06em;font-size:.8rem;font-weight:850}.field-list{border:1px solid var(--line);border-radius:16px;background:#fff;padding:12px}.field-list div{display:flex;justify-content:space-between;gap:12px;padding:8px;border-bottom:1px solid #edf0f4;font-size:.86rem}.field-list div:last-child{border-bottom:0}.field-list .done{color:var(--green);font-weight:800}.hop-table{width:100%;border-collapse:collapse;margin-top:15px;font-size:.88rem}.hop-table th,.hop-table td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}.hop-table th{background:#f0f4f9;color:var(--navy)}.hop-table tr.active-hop td{background:var(--yellow-soft);border-color:#d7bd62}.hop-table code{font-size:.8rem}.hop-note{margin-top:10px;color:var(--muted);line-height:1.5}
+/* Review */
+.review-list{display:grid;gap:14px}.question-card{border-radius:18px;padding:20px}.question-card h3{margin:0 0 13px;font-size:1.12rem}.option-list{display:grid;gap:8px}.option-list label{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:12px;padding:11px 13px;background:#f8fafc}.option-list label:hover{border-color:#9aaac1}.option-list input{margin-top:3px}.correct-option{border-color:var(--green)!important;background:var(--green-soft)!important}.wrong-option{border-color:var(--red)!important;background:var(--red-soft)!important}.feedback{border-radius:12px;margin-top:11px;padding:11px 13px;line-height:1.5}.correct-feedback{background:var(--green-soft);color:#0e5e38}.wrong-feedback{background:var(--red-soft);color:#84221b}.review-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.score-box{border-radius:17px;padding:17px;min-width:230px}.score-box span{color:var(--muted);display:block}.score-box strong{font-size:2rem}.score-box p{margin:4px 0 0;color:var(--muted);line-height:1.45}
+.lesson-navigation{border-radius:18px;padding:14px;display:flex;justify-content:space-between;gap:10px;margin-top:18px}.lesson-navigation button{min-width:165px}footer{color:var(--muted);text-align:center;padding:28px 12px 10px;line-height:1.6;font-size:.9rem}footer strong{color:var(--navy)}footer a{color:var(--blue)}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@media(max-width:1120px){.analogy-map{grid-template-columns:repeat(4,1fr)}.route-line{display:none}.moving-mail{display:none}.stack-stage{grid-template-columns:1fr}.network-path{min-height:410px}.builder-layout{grid-template-columns:1fr}.tab-bar{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.app-shell{padding:12px}.hero{padding:26px 22px;display:block}.hero-actions{justify-content:flex-start;margin-top:18px}.progress-panel{grid-template-columns:1fr}.tab-bar{position:static}.lesson-intro{grid-template-columns:1fr}.lesson-number{width:58px;height:58px}.analogy-map{grid-template-columns:1fr 1fr;padding:15px}.address-legend,.status-grid{grid-template-columns:1fr}.lesson-navigation{flex-direction:column}.lesson-navigation button{width:100%}.hop-table{font-size:.75rem}.hop-table th,.hop-table td{padding:7px}.frame-row{display:grid;grid-template-columns:1fr}.field,.field.wide{min-width:0}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#lesson-content">Skip to lesson content</a>
+<div class="app-shell">
+  <nav class="site-nav" aria-label="Networking resources">
+    <a href="/teaching-resources/">Teaching Resources</a>
+    <a href="../">Networking main</a>
+    <a href="../lesson-1/">Lesson 1</a>
+    <a href="../lesson-2/">Lesson 2</a>
+    <a href="../lesson-3/">Lesson 3</a>
+    <a href="./" aria-current="page">Lesson 4</a>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <p class="eyebrow">COIT11238 · Week 4 self-paced tutorial</p>
+      <h1>Across the Layers</h1>
+      <p class="hero-copy">Start with a browser request in Brisbane, follow it through switches and routers to a web server in Sydney, watch the sender and receiver TCP/IP stacks work side by side, then construct the complete Ethernet frame one field at a time.</p>
+    </div>
+    <div class="hero-actions">
+      <button class="hero-button" id="fullscreenButton" type="button">⛶ Full screen</button>
+      <button class="hero-button" id="resetAllButton" type="button">↻ Reset lesson</button>
+    </div>
+  </header>
+
+  <section class="progress-panel" aria-label="Tutorial progress">
+    <div><strong id="progressText">0 of 4 lessons completed</strong><span>Progress is kept only while this page remains open. Nothing is saved or sent anywhere.</span></div>
+    <div class="progress-track"><span id="progressBar" style="width:0%"></span></div>
+  </section>
+
+  <nav class="tab-bar" aria-label="Lesson sections">
+    <button class="tab active" type="button" data-tab="analogy">1. Delivery analogy</button>
+    <button class="tab" type="button" data-tab="stack">2. Stack journey</button>
+    <button class="tab" type="button" data-tab="builder">3. Build the frame</button>
+    <button class="tab" type="button" data-tab="review">4. Check understanding</button>
+  </nav>
+
+  <main id="lesson-content">
+    <section id="panel-analogy" class="panel-stack" data-panel="analogy">
+      <section class="lesson-intro">
+        <div class="lesson-number">1</div>
+        <div>
+          <p class="section-kicker">From familiar delivery to network delivery</p>
+          <h2>Send a web request from Brisbane to Sydney</h2>
+          <p class="lead-copy">Use the postal analogy to establish the roles of IP addresses, MAC addresses, ports, switches and routers. The analogy is helpful, but the explanation beside every step identifies where the real network behaves differently.</p>
+          <div class="outcome-row"><span>Distinguish end-to-end and local addressing</span><span>Separate switch and router decisions</span><span>Correct common postal-analogy limits</span></div>
+        </div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading">
+          <div><h3>The delivery route</h3><p>Press <strong>Next step</strong> and follow the highlighted device. The envelope is an analogy for the data being carried, not a literal picture of an Ethernet frame.</p></div>
+          <div class="counter" id="analogyCounter">Step 1 of 9</div>
+        </div>
+        <div class="analogy-map" aria-label="Animated network route from Brisbane to Sydney">
+          <div class="route-line"></div>
+          <div class="moving-mail" id="movingMail" aria-hidden="true">✉️</div>
+          <div class="location-card active" data-analogy-node="0"><div class="icon">💻</div><strong>Brisbane laptop</strong><span>Browser and network stack</span></div>
+          <div class="route-node switch" data-analogy-node="1"><div class="icon">🗂️</div><strong>Local switch</strong><span>Reads local MAC labels</span></div>
+          <div class="route-node router" data-analogy-node="2"><div class="icon">🏤</div><strong>Brisbane router</strong><span>Chooses the next IP route</span></div>
+          <div class="route-node router" data-analogy-node="3"><div class="icon">🌐</div><strong>Provider network</strong><span>Several routers may forward the packet</span></div>
+          <div class="route-node router" data-analogy-node="4"><div class="icon">🏤</div><strong>Sydney router</strong><span>Reaches the destination LAN</span></div>
+          <div class="route-node switch" data-analogy-node="5"><div class="icon">🗂️</div><strong>Server switch</strong><span>Forwards to the server MAC</span></div>
+          <div class="location-card" data-analogy-node="6"><div class="icon">🖥️</div><strong>Sydney web server</strong><span>HTTPS service on TCP port 443</span></div>
+        </div>
+        <div class="address-legend">
+          <div class="legend-card legend-ip"><strong>IP address — the wider destination</strong><span>Like a street address that helps routers move towards the destination network. In this simplified no-NAT journey, the source and destination IP addresses stay in the packet from sender to receiver.</span></div>
+          <div class="legend-card legend-mac"><strong>MAC address — the current local delivery</strong><span>Like the local label used for the next hand-off on one LAN. Routers replace the Ethernet frame, so the source and destination MAC addresses change at each routed link.</span></div>
+          <div class="legend-card legend-port"><strong>Port number — the service inside the host</strong><span>Like a department, counter or unit inside the final building. TCP destination port 443 identifies the HTTPS service rather than a physical socket.</span></div>
+        </div>
+        <div class="explanation-box" id="analogyExplanation" aria-live="polite"></div>
+        <div class="action-row">
+          <button class="secondary-button" id="analogyPrevious" type="button">← Previous step</button>
+          <button class="primary-button" id="analogyNext" type="button">Next step →</button>
+          <button class="secondary-button" id="analogyAuto" type="button">▶ Autoplay</button>
+          <button class="small-button" id="analogyReset" type="button">Reset</button>
+        </div>
+      </section>
+
+      <div class="key-note correction-note"><strong>Important correction to the analogy.</strong> A router does not normally add its own IP address to the packet as a sequence of postal stamps. It examines the destination IP address, reduces the packet’s TTL, chooses a next hop, removes the old link-layer frame and constructs a new frame for the next link. A switch—not a hub—learns local MAC locations.</div>
+    </section>
+
+    <section id="panel-stack" class="panel-stack" data-panel="stack" hidden>
+      <section class="lesson-intro">
+        <div class="lesson-number">2</div>
+        <div>
+          <p class="section-kicker">Encapsulation and decapsulation</p>
+          <h2>Build the sender stack and unwrap the receiver stack</h2>
+          <p class="lead-copy">The two computers are displayed side by side. At the sender, each lower layer adds information needed for its job. Across the internetwork, routers replace the local Ethernet wrapper. At the receiver, the layers remove and interpret the information in reverse order.</p>
+          <div class="outcome-row"><span>Follow application → transport → Internet → access</span><span>See what routers change</span><span>Deliver to the receiving application</span></div>
+        </div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>One HTTPS request, two stack views</h3><p>The centre path shows the current network device. The orange token carries a compact summary of what is travelling at the active step.</p></div><div class="counter" id="stackCounter">Step 1 of 13</div></div>
+        <div class="stack-stage">
+          <div class="host-stack" id="senderStack">
+            <h3>Sender — Brisbane laptop</h3>
+            <div class="layer-card application" data-sender-layer="application"><strong>Application</strong><span>Browser creates: <span class="mono">GET /lesson-4/</span></span></div>
+            <div class="arrow-down">↓</div>
+            <div class="layer-card transport" data-sender-layer="transport"><strong>Transport — TCP</strong><span>Source port 51844 · destination port 443</span></div>
+            <div class="arrow-down">↓</div>
+            <div class="layer-card internet" data-sender-layer="internet"><strong>Internet — IP</strong><span>198.51.100.25 → 203.0.113.80</span></div>
+            <div class="arrow-down">↓</div>
+            <div class="layer-card access" data-sender-layer="access"><strong>Network access — Ethernet</strong><span>Laptop MAC → default-gateway MAC</span></div>
+            <div class="arrow-down">↓</div>
+            <div class="layer-card physical" data-sender-layer="physical"><strong>Physical</strong><span>Electrical, light or radio signals carry bits</span></div>
+          </div>
+
+          <div class="network-path" id="networkPath">
+            <div class="packet-token" id="packetToken">HTTP data<small>Application message</small></div>
+            <div class="path-grid">
+              <div class="path-device" data-path-device="0"><strong>Sender NIC</strong><span>Creates and transmits the first frame</span></div>
+              <div class="path-device" data-path-device="1"><strong>Brisbane switch</strong><span>Forwards using destination MAC</span></div>
+              <div class="path-device" data-path-device="2"><strong>Routers</strong><span>Forward using destination IP; rebuild frames</span></div>
+              <div class="path-device" data-path-device="3"><strong>Sydney switch</strong><span>Forwards to server MAC</span></div>
+              <div class="path-device" data-path-device="4"><strong>Receiver NIC</strong><span>Checks and accepts the local frame</span></div>
+            </div>
+          </div>
+
+          <div class="host-stack" id="receiverStack">
+            <h3>Receiver — Sydney web server</h3>
+            <div class="layer-card physical" data-receiver-layer="physical"><strong>Physical</strong><span>NIC receives the signal and recovers bits</span></div>
+            <div class="arrow-up">↑</div>
+            <div class="layer-card access" data-receiver-layer="access"><strong>Network access — Ethernet</strong><span>Checks destination MAC and FCS; removes frame</span></div>
+            <div class="arrow-up">↑</div>
+            <div class="layer-card internet" data-receiver-layer="internet"><strong>Internet — IP</strong><span>Confirms 203.0.113.80 and removes IP header</span></div>
+            <div class="arrow-up">↑</div>
+            <div class="layer-card transport" data-receiver-layer="transport"><strong>Transport — TCP</strong><span>Uses destination port 443 and sequence information</span></div>
+            <div class="arrow-up">↑</div>
+            <div class="layer-card application" data-receiver-layer="application"><strong>Application</strong><span>HTTPS web-server software receives the request</span></div>
+          </div>
+        </div>
+        <div class="status-grid">
+          <div class="status-card"><strong id="stackStepTitle">The browser creates application data</strong><span id="stackStepText">The user selects the Lesson 4 page. The browser creates an HTTP request. At this point, the message has not yet been given TCP, IP or Ethernet addressing information.</span></div>
+          <div class="status-card"><strong>What stays and what changes?</strong><span id="changeStatus">The data begins at the application. No network wrapper has been added yet.</span></div>
+        </div>
+        <div class="action-row">
+          <button class="secondary-button" id="stackPrevious" type="button">← Previous step</button>
+          <button class="primary-button" id="stackNext" type="button">Next step →</button>
+          <button class="secondary-button" id="stackAuto" type="button">▶ Autoplay</button>
+          <button class="small-button" id="stackReset" type="button">Reset</button>
+        </div>
+      </section>
+    </section>
+
+    <section id="panel-builder" class="panel-stack" data-panel="builder" hidden>
+      <section class="lesson-intro">
+        <div class="lesson-number">3</div>
+        <div>
+          <p class="section-kicker">Build the frame game</p>
+          <h2>Place every field in the correct nested container</h2>
+          <p class="lead-copy">The activity is called “Build the Frame”, but it deliberately shows that IP addresses belong in the IP packet and TCP ports belong in the TCP segment. The packet and segment are carried inside the Ethernet frame rather than being ordinary Ethernet-header fields.</p>
+          <div class="outcome-row"><span>Construct TCP, IP and Ethernet information</span><span>Explain the purpose of each field</span><span>Observe hop-by-hop MAC replacement</span></div>
+        </div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Build from the inside out</h3><p>Begin with the browser data. Each press of <strong>Add next field</strong> reveals the next required item and explains which layer owns it.</p></div><div class="counter" id="builderCounter">0 of 11 fields added</div></div>
+        <div class="builder-layout">
+          <div>
+            <div class="frame-shell">
+              <div class="frame-title"><span>Ethernet frame — one local link</span><span class="mono">14-byte header + payload + 4-byte FCS</span></div>
+              <div class="frame-row">
+                <div class="field mac" data-field="7"><strong>Destination MAC</strong><code>B0-B0-B0-B0-B0-01</code></div>
+                <div class="field mac" data-field="8"><strong>Source MAC</strong><code>A0-A0-A0-A0-A0-25</code></div>
+                <div class="field mac" data-field="9"><strong>EtherType</strong><code>0x0800 · IPv4</code></div>
+              </div>
+              <div class="nested-label">Payload carried by Ethernet</div>
+              <div class="ip-shell">
+                <div class="frame-title"><span>IPv4 packet — wider internetwork journey</span><span class="mono">Simplified header view</span></div>
+                <div class="frame-row">
+                  <div class="field ip" data-field="4"><strong>Source IP</strong><code>198.51.100.25</code></div>
+                  <div class="field ip" data-field="5"><strong>Destination IP</strong><code>203.0.113.80</code></div>
+                  <div class="field ip" data-field="6"><strong>TTL + protocol</strong><code>64 · TCP (6)</code></div>
+                </div>
+                <div class="tcp-shell">
+                  <div class="frame-title"><span>TCP segment — application-to-application delivery</span><span class="mono">Simplified header view</span></div>
+                  <div class="frame-row">
+                    <div class="field tcp" data-field="1"><strong>Source port</strong><code>51844</code></div>
+                    <div class="field tcp" data-field="2"><strong>Destination port</strong><code>443</code></div>
+                    <div class="field tcp" data-field="3"><strong>Sequence + flags</strong><code>SEQ 1001 · ACK</code></div>
+                    <div class="field data wide" data-field="0"><strong>Application data</strong><code>GET /lesson-4/ HTTP/1.1</code></div>
+                  </div>
+                </div>
+              </div>
+              <div class="frame-row" style="margin-top:10px">
+                <div class="field fcs wide" data-field="10"><strong>Frame check sequence</strong><code>Error-detection value calculated over the frame</code></div>
+              </div>
+            </div>
+
+            <table class="hop-table" aria-label="Hop-by-hop address changes">
+              <thead><tr><th>Link</th><th>Source MAC</th><th>Destination MAC</th><th>IP packet carried</th><th>TTL leaving router</th></tr></thead>
+              <tbody>
+                <tr data-hop="0"><td>Laptop → Brisbane router</td><td><code>A0-...-25</code></td><td><code>B0-...-01</code></td><td><code>198.51.100.25 → 203.0.113.80</code></td><td>64</td></tr>
+                <tr data-hop="1"><td>Brisbane router → provider router</td><td><code>B0-...-02</code></td><td><code>C0-...-01</code></td><td><code>198.51.100.25 → 203.0.113.80</code></td><td>63</td></tr>
+                <tr data-hop="2"><td>Provider router → Sydney router</td><td><code>C0-...-02</code></td><td><code>D0-...-01</code></td><td><code>198.51.100.25 → 203.0.113.80</code></td><td>62</td></tr>
+                <tr data-hop="3"><td>Sydney router → web server</td><td><code>D0-...-02</code></td><td><code>E0-...-80</code></td><td><code>198.51.100.25 → 203.0.113.80</code></td><td>61</td></tr>
+              </tbody>
+            </table>
+            <p class="hop-note"><strong>Simplification:</strong> the table intentionally omits NAT, tunnelling, VLAN tags, IPv6 and many real header fields. It isolates the Week 4 principle: routers preserve the packet’s intended IP destination while replacing the local Ethernet frame for each link.</p>
+          </div>
+
+          <div class="builder-side">
+            <div class="explanation-box" id="builderExplanation" aria-live="polite"><div class="step-count">Ready to begin</div><h3>Start with the application data</h3><p>The browser has produced a request, but the networking layers have not yet added their control and addressing information. Press “Add next field” to begin constructing the nested message.</p></div>
+            <div class="field-list" id="fieldList"></div>
+            <div class="action-row">
+              <button class="primary-button" id="builderNext" type="button">Add next field →</button>
+              <button class="secondary-button" id="builderSend" type="button" disabled>Send completed frame</button>
+              <button class="small-button" id="builderReset" type="button">Reset</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="panel-review" class="panel-stack" data-panel="review" hidden>
+      <section class="lesson-intro">
+        <div class="lesson-number">4</div>
+        <div>
+          <p class="section-kicker">Formative review</p>
+          <h2>Check the Week 4 mental model</h2>
+          <p class="lead-copy">Answer without returning to the animations. Immediate explanations identify the section worth replaying. The questions focus on device roles and layered reasoning rather than memorising every header field.</p>
+          <div class="outcome-row"><span>Distinguish NIC, switch, router and AP</span><span>Explain encapsulation</span><span>Identify hop-by-hop changes</span></div>
+        </div>
+      </section>
+      <section class="review-list" id="reviewList"></section>
+      <div class="review-actions">
+        <button class="primary-button" id="checkAnswers" type="button">Check answers</button>
+        <button class="secondary-button" id="resetAnswers" type="button">Reset</button>
+        <div class="score-box" id="scoreBox" hidden></div>
+      </div>
+    </section>
+  </main>
+
+  <section class="lesson-navigation" aria-label="Section navigation">
+    <button class="secondary-button" id="previousLesson" type="button">← Previous lesson</button>
+    <button class="secondary-button" id="markComplete" type="button">Mark lesson complete</button>
+    <button class="primary-button" id="nextLesson" type="button">Complete and continue →</button>
+  </section>
+
+  <footer>
+    <strong>Core idea:</strong> applications create data; TCP identifies application endpoints; IP guides packets across networks; Ethernet and wireless frames handle the current local link; NICs convert between frames and signals; switches forward locally; routers connect networks; access points bridge wireless stations into the LAN.<br />
+    Developed by Dr Mahmoud Elkhodr as a companion teaching resource for COIT11238. © 2026 Dr Mahmoud Elkhodr. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener license">CC BY 4.0</a>. Reuse and adaptation are allowed with attribution.<br />
+    Suggested attribution: Elkhodr, M. (2026). <em>Across the Layers</em> [Interactive teaching resource]. https://elkhodr.com/teaching-resources/networking/lesson-4/
+  </footer>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const lessonOrder = ['analogy','stack','builder','review'];
+  let activeLesson = 'analogy';
+  const completed = new Set();
+
+  const tabs = [...document.querySelectorAll('.tab')];
+  const panels = [...document.querySelectorAll('[data-panel]')];
+  const progressText = document.getElementById('progressText');
+  const progressBar = document.getElementById('progressBar');
+
+  function updateProgress(){
+    progressText.textContent = `${completed.size} of ${lessonOrder.length} lessons completed`;
+    progressBar.style.width = `${(completed.size / lessonOrder.length) * 100}%`;
+    tabs.forEach(tab => tab.classList.toggle('complete', completed.has(tab.dataset.tab)));
+    const mark = document.getElementById('markComplete');
+    mark.textContent = completed.has(activeLesson) ? '✓ Lesson completed' : 'Mark lesson complete';
+    mark.className = completed.has(activeLesson) ? 'complete-button' : 'secondary-button';
+  }
+
+  function setLesson(name){
+    activeLesson = name;
+    tabs.forEach(tab => {
+      const active = tab.dataset.tab === name;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-current', active ? 'step' : 'false');
+    });
+    panels.forEach(panel => panel.hidden = panel.dataset.panel !== name);
+    history.replaceState(null, '', `#${name}`);
+    const index = lessonOrder.indexOf(name);
+    document.getElementById('previousLesson').disabled = index === 0;
+    document.getElementById('nextLesson').textContent = index === lessonOrder.length - 1 ? 'Finish review' : 'Complete and continue →';
+    updateProgress();
+    window.scrollTo({top: document.querySelector('.tab-bar').offsetTop - 10, behavior:'smooth'});
+  }
+  tabs.forEach(tab => tab.addEventListener('click', () => setLesson(tab.dataset.tab)));
+
+  document.getElementById('previousLesson').addEventListener('click', () => {
+    const i = lessonOrder.indexOf(activeLesson);
+    if(i > 0) setLesson(lessonOrder[i-1]);
+  });
+  document.getElementById('markComplete').addEventListener('click', () => {
+    completed.add(activeLesson); updateProgress();
+  });
+  document.getElementById('nextLesson').addEventListener('click', () => {
+    completed.add(activeLesson);
+    const i = lessonOrder.indexOf(activeLesson);
+    if(i < lessonOrder.length - 1) setLesson(lessonOrder[i+1]); else updateProgress();
+  });
+
+  document.getElementById('fullscreenButton').addEventListener('click', async () => {
+    try{ document.fullscreenElement ? await document.exitFullscreen() : await document.documentElement.requestFullscreen(); }catch(e){}
+  });
+
+  // Analogy
+  const analogySteps = [
+    {node:0,title:'The browser identifies the resource',tag:'Application begins the request',text:'The student opens the Lesson 4 URL. The browser creates an HTTPS request for the page. DNS and URL concepts were covered in Lesson 3, so this scene begins after the server IP address has been found.',reality:'Known now: server IP 203.0.113.80 and destination TCP port 443. The browser still needs the lower layers to transport the request.'},
+    {node:0,title:'TCP identifies the two application endpoints',tag:'Transport layer',text:'TCP adds a temporary source port, 51844, and destination port 443. The source port lets the reply return to the correct browser connection. Port 443 selects the HTTPS service on the server.',reality:'A port is the strongest “unit or department inside the building” analogy. It is a logical software identifier, not a physical Ethernet socket.'},
+    {node:0,title:'IP identifies the source and final destination',tag:'Internet layer',text:'IP adds source 198.51.100.25 and destination 203.0.113.80. Routers use the destination IP address to move the packet towards the correct network.',reality:'For this simplified no-NAT example, the source and destination IP addresses remain in the packet end to end. Routers do not replace them with their own IP addresses.'},
+    {node:0,title:'The NIC prepares the first local frame',tag:'Network access and physical layers',text:'The destination is outside the Brisbane LAN, so the laptop does not use the remote server’s MAC address. It builds an Ethernet frame addressed to the default gateway’s MAC address, then the NIC transmits the bits as a signal.',reality:'The first destination MAC is the next local hop—the Brisbane router—not the Sydney server.'},
+    {node:1,title:'The switch forwards within the Brisbane LAN',tag:'Local data-link decision',text:'The switch reads the destination MAC address and checks its switching table. It forwards the frame only towards the port where the default gateway is connected.',reality:'A switch learns from source MAC addresses and forwards using destination MAC addresses. A hub would repeat signals and would not maintain this table.'},
+    {node:2,title:'The Brisbane router moves from one network to another',tag:'Network-layer decision',text:'The router removes the incoming Ethernet frame, examines the destination IP address, reduces TTL, chooses a next hop, and creates a new frame for the outgoing link.',reality:'The IP packet is carried forward, but the local source and destination MAC addresses are replaced for the next link.'},
+    {node:3,title:'Provider routers repeat the forwarding process',tag:'Across the internetwork',text:'Several routers may inspect the same destination IP address and choose successive next hops. Each routed link may use a different data-link technology and different local addresses.',reality:'The path can change dynamically. Routers do not need to understand the webpage; they primarily act on network-layer information.'},
+    {node:4,title:'The Sydney router reaches the destination LAN',tag:'Final routed hop',text:'The router recognises that the destination IP belongs to a directly connected network. It resolves or retrieves the web server’s local MAC address and constructs the final Ethernet frame.',reality:'The destination IP still identifies the web server. The destination MAC now identifies the server interface on this final LAN.'},
+    {node:6,title:'The server receives and unwraps the request',tag:'Decapsulation',text:'The server NIC accepts the frame, Ethernet removes its header and trailer, IP confirms the destination, TCP directs the data to port 443, and the web-server application receives the browser request.',reality:'The receiver processes the communication from the physical and access layers upward to the application.'}
+  ];
+  let analogyIndex = 0, analogyTimer = null;
+  const analogyExplanation = document.getElementById('analogyExplanation');
+  function renderAnalogy(){
+    const step = analogySteps[analogyIndex];
+    document.querySelectorAll('[data-analogy-node]').forEach(n => n.classList.toggle('active', Number(n.dataset.analogyNode) === step.node));
+    const positions = [7,20,33,49,65,79,90];
+    const mail = document.getElementById('movingMail');
+    mail.style.left = `${positions[step.node]}%`; mail.classList.remove('pulse'); void mail.offsetWidth; mail.classList.add('pulse');
+    analogyExplanation.innerHTML = `<div class="step-count">Step ${analogyIndex+1} of ${analogySteps.length} · ${step.tag}</div><h3>${step.title}</h3><p>${step.text}</p><p style="margin-top:9px"><strong>Networking reality:</strong> ${step.reality}</p>`;
+    document.getElementById('analogyCounter').textContent = `Step ${analogyIndex+1} of ${analogySteps.length}`;
+    document.getElementById('analogyPrevious').disabled = analogyIndex === 0;
+    document.getElementById('analogyNext').textContent = analogyIndex === analogySteps.length-1 ? 'Replay from start ↻' : 'Next step →';
+  }
+  function stopAnalogyAuto(){ if(analogyTimer){clearInterval(analogyTimer);analogyTimer=null;} document.getElementById('analogyAuto').textContent='▶ Autoplay'; }
+  document.getElementById('analogyNext').addEventListener('click',()=>{stopAnalogyAuto(); analogyIndex = analogyIndex === analogySteps.length-1 ? 0 : analogyIndex+1; renderAnalogy();});
+  document.getElementById('analogyPrevious').addEventListener('click',()=>{stopAnalogyAuto(); analogyIndex=Math.max(0,analogyIndex-1); renderAnalogy();});
+  document.getElementById('analogyReset').addEventListener('click',()=>{stopAnalogyAuto();analogyIndex=0;renderAnalogy();});
+  document.getElementById('analogyAuto').addEventListener('click',()=>{
+    if(analogyTimer){stopAnalogyAuto();return;}
+    document.getElementById('analogyAuto').textContent='⏸ Pause';
+    analogyTimer=setInterval(()=>{if(analogyIndex===analogySteps.length-1){stopAnalogyAuto();completed.add('analogy');updateProgress();return;}analogyIndex++;renderAnalogy();},2400);
+  });
+
+  // Stack journey
+  const stackSteps = [
+    {sender:'application',receiver:null,path:0,top:8,token:'HTTP data',small:'GET /lesson-4/',title:'The browser creates application data',text:'The user selects the Lesson 4 page. The browser creates an HTTP request. At this point, the message has not yet been given TCP, IP or Ethernet addressing information.',change:'The data begins at the application. No network wrapper has been added yet.'},
+    {sender:'transport',receiver:null,path:0,top:13,token:'TCP segment',small:'Ports 51844 → 443',title:'TCP adds transport information',text:'TCP adds source and destination ports, sequence information and control flags. This supports application-to-application delivery and reliable byte-stream handling.',change:'TCP information is intended for the two endpoint transport layers. Intermediate switches do not use the port numbers to forward the frame.'},
+    {sender:'internet',receiver:null,path:0,top:18,token:'IP packet',small:'198.51.100.25 → 203.0.113.80',title:'IP adds network-layer addressing',text:'The TCP segment becomes the payload of an IP packet. The destination IP address is the key value routers inspect when selecting a path across networks.',change:'The packet now has end-to-end IP addresses. TTL is also present and will be reduced by each router.'},
+    {sender:'access',receiver:null,path:0,top:23,token:'Ethernet frame',small:'Laptop MAC → gateway MAC',title:'Ethernet adds the first local wrapper',text:'The IP packet becomes the payload of an Ethernet frame. Because the server is remote, the frame is addressed to the default gateway’s MAC address.',change:'MAC addresses describe only this local link. They are not the remote server’s end-to-end Internet address.'},
+    {sender:'physical',receiver:null,path:0,top:28,token:'Signals',small:'Bits on the medium',title:'The NIC transmits physical signals',text:'The NIC and its driver mediate the connection to the medium. Copper uses electrical signalling; fibre uses light; Wi-Fi uses radio.',change:'The logical frame is represented by physical signals. The bits remain meaningful because the sender and receiver follow agreed standards.'},
+    {sender:null,receiver:null,path:1,top:34,token:'Frame',small:'Destination MAC = gateway',title:'The switch forwards the first frame',text:'The switch reads the destination MAC address, checks its table and forwards the frame towards the Brisbane router.',change:'The switch normally does not alter the IP packet. It performs a local data-link forwarding decision.'},
+    {sender:null,receiver:null,path:2,top:44,token:'IP packet',small:'Router removes frame',title:'The router processes the packet',text:'The router removes the incoming frame, inspects the destination IP, reduces TTL, selects an outgoing interface and prepares a new frame.',change:'The Ethernet source and destination MAC addresses change. The intended destination IP and TCP port remain the same in this simplified journey.'},
+    {sender:null,receiver:null,path:2,top:55,token:'New frame',small:'New local MAC pair',title:'Another routed link uses another frame',text:'A provider router repeats the process. The new frame has MAC addresses meaningful only on this particular link.',change:'This is why one communication can keep the same IP packet while travelling inside several different link-layer frames.'},
+    {sender:null,receiver:null,path:3,top:68,token:'Final frame',small:'Sydney router → server',title:'The destination LAN receives the final frame',text:'The Sydney router constructs a frame addressed to the web server’s local MAC address. The destination switch forwards it to the server port.',change:'The final destination MAC is now the server interface. Earlier routers’ MAC addresses are no longer present.'},
+    {sender:null,receiver:'physical',path:4,top:79,token:'Signals',small:'Receiver recovers bits',title:'The receiver NIC recovers the bit sequence',text:'The physical layer receives the signal and reconstructs the transmitted bits for the NIC and data-link processing.',change:'The receiver starts from the bottom of the stack because the communication arrived through a physical medium.'},
+    {sender:null,receiver:'access',path:4,top:84,token:'IP packet',small:'Ethernet removed',title:'Ethernet validates and removes the local frame',text:'The NIC checks that the destination MAC is acceptable and uses the frame check sequence to detect many transmission errors. The Ethernet wrapper is then removed.',change:'The final-hop MAC addresses have completed their job. The IP packet is passed upward.'},
+    {sender:null,receiver:'internet',path:4,top:89,token:'TCP segment',small:'Destination IP confirmed',title:'IP confirms the packet belongs to this server',text:'The Internet layer examines the destination IP address and protocol field, then passes the TCP segment to the transport layer.',change:'The IP header has reached the endpoint that it identifies. It is removed before the application data is delivered.'},
+    {sender:null,receiver:'transport',path:4,top:93,token:'HTTP data',small:'Delivered to TCP port 443',title:'TCP selects the HTTPS service',text:'TCP uses destination port 443 and its sequence/control information to deliver the application bytes to the correct server process.',change:'The port number solves the final software-delivery problem inside the host.'},
+    {sender:null,receiver:'application',path:4,top:96,token:'Request received',small:'Web server application',title:'The web-server application receives the request',text:'The server application interprets the HTTP request and prepares a response. The response will travel back through the same layering process in the opposite direction.',change:'Decapsulation is complete. The application sees the useful request rather than the Ethernet, IP and TCP wrappers.'}
+  ];
+  let stackIndex=0, stackTimer=null;
+  function renderStack(){
+    const s=stackSteps[stackIndex];
+    document.querySelectorAll('[data-sender-layer]').forEach(n=>n.classList.toggle('active',n.dataset.senderLayer===s.sender));
+    document.querySelectorAll('[data-receiver-layer]').forEach(n=>n.classList.toggle('active',n.dataset.receiverLayer===s.receiver));
+    document.querySelectorAll('[data-path-device]').forEach(n=>n.classList.toggle('active',Number(n.dataset.pathDevice)===s.path));
+    const token=document.getElementById('packetToken'); token.style.top=`${s.top}%`; token.innerHTML=`${s.token}<small>${s.small}</small>`;
+    document.getElementById('stackStepTitle').textContent=s.title;
+    document.getElementById('stackStepText').textContent=s.text;
+    document.getElementById('changeStatus').textContent=s.change;
+    document.getElementById('stackCounter').textContent=`Step ${stackIndex+1} of ${stackSteps.length}`;
+    document.getElementById('stackPrevious').disabled=stackIndex===0;
+    document.getElementById('stackNext').textContent=stackIndex===stackSteps.length-1?'Replay from start ↻':'Next step →';
+  }
+  function stopStackAuto(){if(stackTimer){clearInterval(stackTimer);stackTimer=null;}document.getElementById('stackAuto').textContent='▶ Autoplay';}
+  document.getElementById('stackNext').addEventListener('click',()=>{stopStackAuto();stackIndex=stackIndex===stackSteps.length-1?0:stackIndex+1;renderStack();});
+  document.getElementById('stackPrevious').addEventListener('click',()=>{stopStackAuto();stackIndex=Math.max(0,stackIndex-1);renderStack();});
+  document.getElementById('stackReset').addEventListener('click',()=>{stopStackAuto();stackIndex=0;renderStack();});
+  document.getElementById('stackAuto').addEventListener('click',()=>{if(stackTimer){stopStackAuto();return;}document.getElementById('stackAuto').textContent='⏸ Pause';stackTimer=setInterval(()=>{if(stackIndex===stackSteps.length-1){stopStackAuto();completed.add('stack');updateProgress();return;}stackIndex++;renderStack();},2100);});
+
+  // Builder
+  const fields=[
+    {name:'Application data',layer:'Application',title:'Begin with the browser request',text:'The browser creates the useful data: an HTTP request for the Lesson 4 resource. This is the payload that all lower layers are trying to deliver.'},
+    {name:'TCP source port',layer:'Transport',title:'Add the temporary client port',text:'Source port 51844 identifies this browser connection on the laptop. The server can use it as the destination port when returning data.'},
+    {name:'TCP destination port',layer:'Transport',title:'Add the server service port',text:'Destination port 443 directs the bytes to the HTTPS service. This is logical software addressing inside the destination host.'},
+    {name:'TCP sequence and flags',layer:'Transport',title:'Add transport control information',text:'TCP uses sequence numbers, acknowledgements and flags to coordinate a reliable ordered byte stream. The diagram shows only a small subset of the real header.'},
+    {name:'IPv4 source address',layer:'Internet',title:'Add the source IP address',text:'198.51.100.25 identifies the sender interface in this simplified example. The address belongs in the IP header, not in the Ethernet header.'},
+    {name:'IPv4 destination address',layer:'Internet',title:'Add the final destination IP address',text:'203.0.113.80 tells routers which destination network and host the packet is trying to reach. This value is inspected across the internetwork.'},
+    {name:'TTL and protocol',layer:'Internet',title:'Add lifetime and next-protocol information',text:'TTL limits how many routed hops the packet can survive and is reduced by each router. Protocol value 6 tells the receiver that the IP payload is TCP.'},
+    {name:'Ethernet destination MAC',layer:'Network access',title:'Address the first local next hop',text:'Because the destination is remote, the first frame uses the default gateway’s MAC address. It does not use the web server’s remote MAC address.'},
+    {name:'Ethernet source MAC',layer:'Network access',title:'Identify the sender on this local link',text:'The source MAC is the laptop NIC’s local interface address. A switch can learn that this source is reachable through the incoming port.'},
+    {name:'EtherType',layer:'Network access',title:'Identify the frame payload type',text:'EtherType 0x0800 tells the receiving data-link implementation that the payload is an IPv4 packet.'},
+    {name:'Frame check sequence',layer:'Network access',title:'Finish with an error-detection value',text:'The sender calculates an FCS over the frame. The receiver recalculates and compares it to detect many forms of transmission corruption.'}
+  ];
+  let builtCount=0, hopTimer=null, hopIndex=-1;
+  const fieldList=document.getElementById('fieldList');
+  function renderFieldList(){fieldList.innerHTML=fields.map((f,i)=>`<div><span>${i+1}. ${f.name}<br><small>${f.layer}</small></span><span class="${i<builtCount?'done':''}">${i<builtCount?'✓ Added':'Pending'}</span></div>`).join('');}
+  function renderBuilder(){
+    document.querySelectorAll('[data-field]').forEach(el=>el.classList.toggle('visible',Number(el.dataset.field)<builtCount));
+    document.getElementById('builderCounter').textContent=`${builtCount} of ${fields.length} fields added`;
+    document.getElementById('builderNext').disabled=builtCount===fields.length;
+    document.getElementById('builderSend').disabled=builtCount!==fields.length;
+    if(builtCount===0){document.getElementById('builderExplanation').innerHTML='<div class="step-count">Ready to begin</div><h3>Start with the application data</h3><p>The browser has produced a request, but the networking layers have not yet added their control and addressing information. Press “Add next field” to begin constructing the nested message.</p>'}
+    else {const f=fields[builtCount-1];document.getElementById('builderExplanation').innerHTML=`<div class="step-count">Field ${builtCount} of ${fields.length} · ${f.layer}</div><h3>${f.title}</h3><p>${f.text}</p>${builtCount===fields.length?'<p style="margin-top:9px"><strong>The frame is complete.</strong> Press “Send completed frame” to watch the local MAC pair change at every routed link while the IP destination remains visible.</p>':''}`;}
+    renderFieldList();
+  }
+  document.getElementById('builderNext').addEventListener('click',()=>{if(builtCount<fields.length){builtCount++;renderBuilder(); if(builtCount===fields.length){completed.add('builder');updateProgress();}}});
+  function stopHop(){if(hopTimer){clearInterval(hopTimer);hopTimer=null;}document.querySelectorAll('[data-hop]').forEach(r=>r.classList.remove('active-hop'));hopIndex=-1;document.getElementById('builderSend').textContent='Send completed frame';}
+  document.getElementById('builderSend').addEventListener('click',()=>{
+    if(hopTimer){stopHop();return;}
+    document.getElementById('builderSend').textContent='Stop journey';
+    hopIndex=0;
+    const rows=[...document.querySelectorAll('[data-hop]')];
+    rows[0].classList.add('active-hop');
+    document.getElementById('builderExplanation').innerHTML='<div class="step-count">Hop 1 of 4</div><h3>The first frame reaches the Brisbane router</h3><p>The laptop and gateway MAC addresses are valid on the first LAN. The router will remove this frame before forwarding the IP packet.</p>';
+    hopTimer=setInterval(()=>{
+      rows.forEach(r=>r.classList.remove('active-hop'));
+      hopIndex++;
+      if(hopIndex>=rows.length){clearInterval(hopTimer);hopTimer=null;hopIndex=-1;document.getElementById('builderSend').textContent='Replay hop journey';document.getElementById('builderExplanation').innerHTML='<div class="step-count">Journey complete</div><h3>One IP packet, several local frames</h3><p>Every row used a different source and destination MAC pair. The source and destination IP addresses stayed visible, while TTL decreased as routers forwarded the packet.</p>';return;}
+      rows[hopIndex].classList.add('active-hop');
+      const titles=['The router creates a new outgoing frame','The provider router forwards again','The Sydney router creates the final frame'];
+      const texts=['The Brisbane router uses its outgoing-interface MAC as the new source and the provider router’s MAC as the new destination.','Another router reduces TTL and replaces the local frame for the next link.','The final frame uses the Sydney router’s local MAC and the web server’s MAC. The server IP address itself has not become a MAC address.'];
+      document.getElementById('builderExplanation').innerHTML=`<div class="step-count">Hop ${hopIndex+1} of 4</div><h3>${titles[hopIndex-1]}</h3><p>${texts[hopIndex-1]}</p>`;
+    },1800);
+  });
+  document.getElementById('builderReset').addEventListener('click',()=>{stopHop();builtCount=0;renderBuilder();});
+
+  // Review
+  const questions=[
+    {q:'Which device normally forwards an Ethernet frame within a LAN by reading its destination MAC address?',options:['Router','Switch','Web browser','DNS server'],answer:1,why:'A switch makes local data-link forwarding decisions using its MAC address table.'},
+    {q:'Which value does a router primarily examine to choose the next network-layer hop?',options:['Destination IP address','Destination TCP port','Application URL path','Ethernet FCS'],answer:0,why:'Routers forward IP packets using the destination IP address and routing information.'},
+    {q:'What normally changes when an IP packet crosses a router in this simplified no-NAT journey?',options:['The requested webpage','The final destination TCP port','The local Ethernet source and destination MAC addresses','The final destination IP address'],answer:2,why:'The old local frame is removed and a new link-layer frame is created for the next link.'},
+    {q:'What does the NIC contribute to outgoing communication?',options:['It chooses the entire Internet route','It prepares frames and converts their bits into signals suitable for the medium','It assigns every domain name','It reads the webpage and edits its content'],answer:1,why:'The NIC and driver mediate between protocol data and the physical networking medium.'},
+    {q:'Which analogy most accurately represents a TCP port number?',options:['The city containing the destination','A service counter or department inside the destination host','Every post office on the path','The copper wire colour'],answer:1,why:'A port identifies a logical application endpoint within a host.'},
+    {q:'Which statement about a wireless access point is most accurate for this lesson?',options:['It converts every IP address into a domain name','It bridges wireless stations into the LAN and coordinates access to a shared wireless medium','It is identical to an unmanaged Ethernet hub in every respect','It replaces every router on the Internet'],answer:1,why:'An AP provides wireless access and commonly bridges wireless traffic to a wired distribution network.'},
+    {q:'Why is it inaccurate to say that routers add their own IP addresses to the packet like postal stamps?',options:['Routers never inspect IP','Routers normally inspect the destination IP, reduce TTL and rebuild the link-layer frame rather than replacing the endpoint addresses with a route history','IP addresses exist only inside switches','TCP deletes the IP header before every router'],answer:1,why:'The packet does not normally carry a sequential list of every router IP. Tools such as traceroute infer hops through TTL-related responses.'},
+    {q:'In the Build the Frame activity, where do the source and destination IP addresses belong?',options:['Directly in the Ethernet header as MAC replacements','Inside the IP packet, which is carried as the Ethernet payload','Only in the physical signal','Inside the FCS'],answer:1,why:'Layering nests the TCP segment inside the IP packet and the IP packet inside the Ethernet frame.'}
+  ];
+  const answers={}; let checked=false;
+  const reviewList=document.getElementById('reviewList');
+  function renderReview(){
+    reviewList.innerHTML=questions.map((q,qi)=>`<article class="question-card"><h3>${qi+1}. ${q.q}</h3><div class="option-list">${q.options.map((o,oi)=>`<label class="${checked&&oi===q.answer?'correct-option':checked&&answers[qi]===oi&&oi!==q.answer?'wrong-option':''}"><input type="radio" name="q-${qi}" value="${oi}" ${answers[qi]===oi?'checked':''}> <span>${o}</span></label>`).join('')}</div>${checked?`<div class="feedback ${answers[qi]===q.answer?'correct-feedback':'wrong-feedback'}">${answers[qi]===q.answer?'Correct.':'Review this one.'} ${q.why}</div>`:''}</article>`).join('');
+    reviewList.querySelectorAll('input[type=radio]').forEach(input=>input.addEventListener('change',e=>{answers[Number(e.target.name.split('-')[1])]=Number(e.target.value);checked=false;document.getElementById('scoreBox').hidden=true;renderReview();}));
+  }
+  document.getElementById('checkAnswers').addEventListener('click',()=>{checked=true;renderReview();const score=questions.reduce((n,q,i)=>n+(answers[i]===q.answer?1:0),0);const box=document.getElementById('scoreBox');box.hidden=false;box.innerHTML=`<span>Your score</span><strong>${score}/${questions.length}</strong><p>${score===questions.length?'Excellent—every device and layer is clear.':score>=6?'Good progress. Replay the feedback for the remaining concepts.':'Return to the guided scenes, then try the review again.'}</p>`;if(score===questions.length){completed.add('review');updateProgress();}});
+  document.getElementById('resetAnswers').addEventListener('click',()=>{Object.keys(answers).forEach(k=>delete answers[k]);checked=false;document.getElementById('scoreBox').hidden=true;renderReview();});
+
+  function resetAll(){
+    stopAnalogyAuto(); stopStackAuto(); stopHop();
+    completed.clear(); analogyIndex=0; stackIndex=0; builtCount=0; Object.keys(answers).forEach(k=>delete answers[k]); checked=false;
+    renderAnalogy();renderStack();renderBuilder();renderReview();document.getElementById('scoreBox').hidden=true;setLesson('analogy');updateProgress();
+  }
+  document.getElementById('resetAllButton').addEventListener('click',resetAll);
+
+  const initial=location.hash.slice(1); if(lessonOrder.includes(initial)) activeLesson=initial;
+  renderAnalogy();renderStack();renderBuilder();renderReview();setLesson(activeLesson);updateProgress();
+})();
+</script>
+</body>
+</html>
