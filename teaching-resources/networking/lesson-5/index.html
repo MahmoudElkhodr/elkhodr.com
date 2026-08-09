@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="COIT11238 Week 5 self-paced tutorial on network link technologies, NBN access paths, topologies, network devices and browser DevTools." />
+<link rel="canonical" href="https://elkhodr.com/teaching-resources/networking/lesson-5/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Choose the Path | COIT11238 Networking Lesson 5" />
+<meta property="og:description" content="Compare network technologies, follow NBN access paths, explore topologies and connect infrastructure to HTTP and browser DevTools." />
+<title>Lesson 5 — Choose the Path | COIT11238</title>
+<style>
+:root{
+  color:#172136;
+  font-synthesis:none;
+  text-rendering:optimizeLegibility;
+  --navy:#17233c;
+  --blue:#2463eb;
+  --blue-soft:#e8f0ff;
+  --purple:#6842c2;
+  --purple-soft:#f0ebff;
+  --teal:#087f8c;
+  --teal-soft:#e2f6f7;
+  --orange:#c75b09;
+  --orange-soft:#fff0e2;
+  --red:#b42318;
+  --red-soft:#fff0ef;
+  --green:#157347;
+  --green-soft:#e9f7ef;
+  --yellow:#8a6100;
+  --yellow-soft:#fff8db;
+  --line:#d5dee9;
+  --muted:#5e6b80;
+  --white:#fff;
+  background:#edf2f7;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{min-width:320px;min-height:100vh;margin:0}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.48}
+a{color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #2463eb55;outline-offset:3px}
+code,.mono{font-family:SFMono-Regular,Consolas,"Liberation Mono",monospace}
+.skip-link{position:fixed;left:12px;top:-60px;z-index:999;color:#fff;background:var(--navy);padding:10px 14px;border-radius:9px;text-decoration:none}.skip-link:focus{top:12px}
+.app-shell{max-width:1540px;margin:0 auto;padding:24px}
+.site-nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 14px}.site-nav a{text-decoration:none;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:.88rem;font-weight:760}.site-nav a:hover,.site-nav a[aria-current="page"]{color:var(--blue);border-color:#9fb8f7;background:var(--blue-soft)}
+.hero{color:#fff;background:linear-gradient(135deg,#17233c 0%,#243d74 55%,#087f8c 135%);border-radius:28px;display:flex;justify-content:space-between;align-items:flex-start;gap:28px;padding:34px 38px;box-shadow:0 18px 55px #17233c2e}.eyebrow,.section-kicker{text-transform:uppercase;letter-spacing:.09em;margin:0 0 8px;font-size:.78rem;font-weight:850}.hero .eyebrow{color:#b9d6ff}h1{letter-spacing:-.05em;margin:0;font-size:clamp(2.35rem,5vw,4.7rem);line-height:1}h2{letter-spacing:-.035em;margin:3px 0 14px;font-size:clamp(1.9rem,3.3vw,3.2rem);line-height:1.08}h3{color:var(--navy)}.hero-copy{color:#e8edf7;max-width:1020px;margin:18px 0 0;font-size:clamp(1rem,1.55vw,1.26rem);line-height:1.58}.hero-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}.hero-button{color:#fff;background:#ffffff17;border:1px solid #ffffff66;border-radius:11px;padding:10px 14px;font-weight:800}.hero-button:hover{background:#ffffff26}
+.progress-panel{border:1px solid var(--line);background:#fff;border-radius:17px;grid-template-columns:minmax(250px,.8fr) 1.6fr;align-items:center;gap:22px;margin:16px 0 0;padding:14px 18px;display:grid}.progress-panel strong,.progress-panel span{display:block}.progress-panel span{color:var(--muted);margin-top:3px;font-size:.85rem}.progress-track{background:#e8edf4;border-radius:999px;height:12px;overflow:hidden}.progress-track span{border-radius:inherit;background:linear-gradient(90deg,var(--blue),var(--teal));height:100%;transition:width .3s;display:block}
+.tab-bar{z-index:20;backdrop-filter:blur(12px);background:#edf2f7f0;grid-template-columns:repeat(6,1fr);gap:9px;padding:16px 0;display:grid;position:sticky;top:0}.tab{border:1px solid var(--line);color:var(--muted);background:#fff;border-radius:13px;padding:12px 10px;font-weight:760;transition:all .2s}.tab:hover{border-color:#aebbd0;transform:translateY(-1px)}.tab.active{color:#fff;border-color:var(--blue);background:var(--blue);box-shadow:0 8px 22px #2463eb3b}.tab.complete:not(.active){color:var(--green);background:var(--green-soft);border-color:#a9d6bf}
+.panel-stack{display:grid;gap:18px}.lesson-intro,.demo-panel,.lesson-navigation,.question-card,.score-box{border:1px solid var(--line);background:#fff}.lesson-intro{background:linear-gradient(145deg,#fff 0%,#f1f6ff 100%);border-radius:25px;grid-template-columns:auto 1fr;align-items:start;gap:24px;padding:28px;display:grid}.lesson-number{color:#fff;background:var(--blue);border-radius:20px;place-items:center;width:72px;height:72px;font-size:2rem;font-weight:900;display:grid;box-shadow:0 10px 25px #2463eb33}.lead-copy{color:var(--muted);max-width:1180px;font-size:1.06rem;line-height:1.68}.outcome-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}.outcome-row span{background:var(--teal-soft);color:#08616b;border-radius:999px;padding:8px 12px;font-size:.9rem;font-weight:750}.demo-panel{border-radius:22px;padding:25px;box-shadow:0 8px 28px #17233c0d}.panel-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:17px}.panel-heading h3{margin:0;font-size:1.7rem}.panel-heading p{margin:5px 0 0;color:var(--muted);line-height:1.55}.primary-button,.secondary-button,.complete-button,.small-button{border:1px solid transparent;border-radius:11px;padding:11px 16px;font-weight:800}.primary-button{color:#fff;background:var(--blue);border-color:var(--blue)}.primary-button:hover{background:#1c52ca}.secondary-button{color:var(--navy);background:#fff;border-color:#bfcadb}.secondary-button:hover{background:#f5f7fb}.complete-button{background:var(--green-soft);color:var(--green);border-color:#9cd0b5}.small-button{padding:8px 11px;color:var(--navy);background:#fff;border-color:#bfcadb}.action-row{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-top:17px}.counter{color:var(--muted);font-size:.9rem;font-weight:700}.key-note{border-left:5px solid var(--orange);background:var(--orange-soft);border-radius:14px;padding:14px 16px;line-height:1.55}.key-note strong{color:#7a3505}.correction-note{border-left-color:var(--purple);background:var(--purple-soft)}.correction-note strong{color:#4d2a99}.callout{border:1px solid var(--line);border-radius:16px;padding:15px;background:#f8fafc;line-height:1.55}.callout strong{color:var(--navy)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px}.metric-card span{display:block;color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;font-weight:800}.metric-card strong{display:block;margin-top:5px;color:var(--navy);font-size:1.15rem}.metric-card small{display:block;color:var(--muted);line-height:1.4;margin-top:4px}
+/* Link lab */
+.tech-buttons,.scenario-buttons,.nbn-buttons,.topology-buttons{display:flex;flex-wrap:wrap;gap:8px}.choice-button{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:999px;padding:9px 13px;font-weight:760}.choice-button.active{color:#fff;background:var(--blue);border-color:var(--blue)}.link-stage{position:relative;display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:18px;align-items:center;min-height:260px;border:1px solid var(--line);background:linear-gradient(180deg,#f8fbff,#f5f7fb);border-radius:20px;padding:26px;overflow:hidden}.endpoint{position:relative;z-index:3;border:2px solid var(--line);background:#fff;border-radius:18px;padding:18px;text-align:center;min-height:155px;display:grid;place-items:center;transition:.25s}.endpoint.active{border-color:var(--blue);background:var(--blue-soft);transform:translateY(-3px)}.endpoint .icon{font-size:2.6rem}.endpoint strong{display:block}.endpoint span{display:block;color:var(--muted);font-size:.82rem;margin-top:4px}.medium-zone{position:relative;z-index:2;text-align:center;padding:16px}.medium-line{height:14px;border-radius:999px;background:#c8d3e2;position:relative;overflow:visible}.medium-line.wireless{background:repeating-linear-gradient(90deg,#c8d3e2 0 12px,transparent 12px 22px)}.signal-token{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#fff;border:3px solid var(--orange);box-shadow:0 7px 20px #17233c33;font-weight:900;transition:left 1s cubic-bezier(.2,.8,.2,1)}.medium-label{font-weight:850;color:var(--navy);margin-bottom:12px}.medium-sub{color:var(--muted);font-size:.85rem;margin-top:12px}.link-explain{display:grid;grid-template-columns:1.1fr .9fr;gap:15px;margin-top:16px}.scenario-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:16px}.scenario-card h4{margin:0 0 8px;color:var(--navy)}.scenario-card p{margin:0;color:var(--muted);line-height:1.5}.scenario-result{border-left:5px solid var(--teal);background:var(--teal-soft);border-radius:14px;padding:14px 16px;line-height:1.5}
+/* NBN */
+.nbn-stage{position:relative;border:1px solid var(--line);background:#f8fafc;border-radius:20px;padding:24px;overflow:hidden}.nbn-path{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;align-items:center;position:relative}.nbn-node{position:relative;z-index:3;border:2px solid var(--line);background:#fff;border-radius:15px;min-height:115px;padding:12px;text-align:center;transition:.25s}.nbn-node .icon{font-size:2rem}.nbn-node strong{display:block;margin-top:4px}.nbn-node span{display:block;color:var(--muted);font-size:.76rem;line-height:1.35;margin-top:4px}.nbn-node.active{border-color:var(--blue);background:var(--blue-soft);transform:translateY(-3px)}.nbn-node.nbn.active{border-color:var(--purple);background:var(--purple-soft)}.nbn-node.rsp.active{border-color:var(--teal);background:var(--teal-soft)}.nbn-connector{height:8px;border-radius:999px;background:#c9d5e5;position:absolute;left:7%;right:7%;top:50%;z-index:1}.nbn-token{position:absolute;z-index:5;top:50%;left:7%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#fff;border:3px solid var(--orange);box-shadow:0 7px 20px #17233c33;transition:left .6s cubic-bezier(.2,.8,.2,1)}.ownership-row{display:grid;grid-template-columns:1fr 3.3fr 2fr;gap:8px;margin-top:14px}.ownership{border-radius:12px;padding:9px 12px;text-align:center;font-size:.82rem;font-weight:800}.own-you{background:var(--teal-soft);color:#08616b}.own-nbn{background:var(--purple-soft);color:#4d2a99}.own-rsp{background:var(--yellow-soft);color:#6d4d00}.nbn-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}.step-explain{border-left:6px solid var(--blue);background:var(--blue-soft);border-radius:15px;padding:16px}.step-explain h4{margin:2px 0 6px}.step-explain p{margin:0;color:#35435b;line-height:1.5}
+/* topology */
+.topology-layout{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}.topology-canvas{border:1px solid var(--line);border-radius:20px;background:#f8fafc;min-height:430px;padding:16px}.topology-canvas svg{width:100%;height:390px;display:block}.topo-line{stroke:#9aa9bd;stroke-width:7;stroke-linecap:round;transition:.25s}.topo-line.broken{stroke:var(--red);stroke-dasharray:12 10;opacity:.6}.topo-node{fill:#fff;stroke:#728198;stroke-width:4}.topo-node.central{fill:#e8f0ff;stroke:var(--blue)}.topo-label{font-size:18px;font-weight:800;fill:#17233c;text-anchor:middle;dominant-baseline:middle}.topology-info{display:grid;gap:12px;align-content:start}.feature-list{margin:0;padding-left:20px;color:#35435b;line-height:1.6}.status-badge{display:inline-block;border-radius:999px;padding:7px 11px;background:var(--green-soft);color:var(--green);font-size:.82rem;font-weight:850}.status-badge.warn{background:var(--red-soft);color:var(--red)}
+/* devices */
+.device-layout{display:grid;grid-template-columns:1.45fr .75fr;gap:18px}.device-map{border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,#f8fbff,#f8fafc);padding:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}.device-map .device-node{flex:1 1 130px}.device-map .device-arrow{flex:0 0 24px}.device-node{border:2px solid var(--line);background:#fff;border-radius:15px;min-height:130px;padding:12px;text-align:center;transition:.2s;cursor:pointer}.device-node:hover{border-color:#9db3d2}.device-node.active{border-color:var(--blue);background:var(--blue-soft);transform:translateY(-3px)}.device-node .icon{font-size:2.1rem}.device-node strong{display:block}.device-node span{display:block;color:var(--muted);font-size:.76rem;margin-top:4px;line-height:1.35}.device-arrow{text-align:center;color:#96a5b8;font-size:1.7rem;font-weight:900}.device-inspector{border-left:6px solid var(--blue);background:var(--blue-soft);border-radius:16px;padding:18px;min-height:260px}.device-inspector h3{margin-top:0}.device-inspector p{line-height:1.55;color:#35435b}.role-chips{display:flex;flex-wrap:wrap;gap:7px}.role-chips span{border-radius:999px;padding:7px 10px;background:#fff;border:1px solid #b8c7dc;font-size:.82rem;font-weight:760}.quiz-row{display:grid;grid-template-columns:1fr auto;gap:9px;align-items:end;margin-top:12px}.quiz-row select{width:100%;border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff}.quiz-feedback{margin-top:10px;border-radius:12px;padding:11px 13px;background:#f8fafc;color:#35435b;line-height:1.45}
+/* browser bridge */
+.mode-toggle{display:flex;gap:8px;flex-wrap:wrap}.browser-layout{display:grid;grid-template-columns:.9fr 1.5fr;gap:18px}.browser-window{border:1px solid #bcc7d6;border-radius:16px;overflow:hidden;background:#fff}.browser-chrome{background:#e8edf4;padding:9px;display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:center}.dots{letter-spacing:4px;color:#8390a3}.address-bar{background:#fff;border:1px solid #cbd5e2;border-radius:999px;padding:8px 12px;font-family:SFMono-Regular,Consolas,monospace;font-size:.84rem;overflow-wrap:anywhere}.page-view{padding:22px;min-height:240px}.page-view h3{margin-top:0}.page-view .fake-button{display:inline-block;border-radius:8px;background:var(--blue);color:#fff;padding:8px 11px;font-weight:800}.journey-list{display:grid;gap:9px}.journey-step{border:2px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;transition:.2s}.journey-step .num{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#eef2f7;color:var(--muted);font-weight:850}.journey-step.active{border-color:var(--blue);background:var(--blue-soft)}.journey-step.active .num{background:var(--blue);color:#fff}.journey-step strong{display:block}.journey-step span{display:block;color:var(--muted);font-size:.85rem;line-height:1.4;margin-top:3px}.devtools{border:1px solid #adb8c7;border-radius:16px;background:#fff;overflow:hidden;margin-top:18px}.devtools-head{background:#202631;color:#fff;padding:10px 13px;display:flex;justify-content:space-between;align-items:center;gap:10px}.devtools-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:.84rem}.devtools-controls label{display:flex;gap:6px;align-items:center}.request-table{width:100%;border-collapse:collapse;font-size:.84rem}.request-table th,.request-table td{border-bottom:1px solid #e1e6ee;padding:9px 10px;text-align:left}.request-table th{background:#f2f5f8;color:#47556a}.request-table tr.request-row{cursor:pointer}.request-table tr.request-row:hover,.request-table tr.request-row.active{background:#e8f0ff}.request-detail{padding:15px;background:#f8fafc;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.detail-item{border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px}.detail-item span{display:block;color:var(--muted);font-size:.75rem}.detail-item strong{display:block;margin-top:3px;overflow-wrap:anywhere}.week6-plan{margin-top:16px;border:1px solid var(--line);border-radius:16px;overflow:hidden}.week6-plan table{width:100%;border-collapse:collapse}.week6-plan th,.week6-plan td{padding:9px 11px;border-bottom:1px solid var(--line);text-align:left}.week6-plan th{background:#f0f4f9}.week6-plan tr:last-child td{border-bottom:0}
+/* Review */
+.review-list{display:grid;gap:14px}.question-card{border-radius:18px;padding:20px}.question-card h3{margin:0 0 13px;font-size:1.12rem}.option-list{display:grid;gap:8px}.option-list label{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:12px;padding:11px 13px;background:#f8fafc}.option-list label:hover{border-color:#9aaac1}.option-list input{margin-top:3px}.correct-option{border-color:var(--green)!important;background:var(--green-soft)!important}.wrong-option{border-color:var(--red)!important;background:var(--red-soft)!important}.feedback{border-radius:12px;margin-top:11px;padding:11px 13px;line-height:1.5}.correct-feedback{background:var(--green-soft);color:#0e5e38}.wrong-feedback{background:var(--red-soft);color:#84221b}.review-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.score-box{border-radius:17px;padding:17px;min-width:230px}.score-box span{color:var(--muted);display:block}.score-box strong{font-size:2rem}.score-box p{margin:4px 0 0;color:var(--muted);line-height:1.45}
+.request-table-wrap{overflow-x:auto}.request-table-wrap .request-table{min-width:650px}
+.lesson-navigation{border-radius:18px;padding:14px;display:flex;justify-content:space-between;gap:10px;margin-top:18px}.lesson-navigation button{min-width:165px}footer{color:var(--muted);text-align:center;padding:28px 12px 10px;line-height:1.6;font-size:.9rem}footer strong{color:var(--navy)}footer a{color:var(--blue)}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@media(max-width:1180px){.tab-bar{grid-template-columns:repeat(3,1fr)}.metric-grid{grid-template-columns:repeat(2,1fr)}.nbn-path{grid-template-columns:repeat(4,1fr)}.nbn-connector,.nbn-token{display:none}.ownership-row{grid-template-columns:1fr}.topology-layout,.device-layout,.browser-layout,.link-explain{grid-template-columns:1fr}}
+@media(max-width:720px){.app-shell{padding:12px}.hero{padding:26px 22px;display:block}.hero-actions{justify-content:flex-start;margin-top:18px}.progress-panel{grid-template-columns:1fr}.tab-bar{position:static;grid-template-columns:repeat(2,1fr)}.lesson-intro{grid-template-columns:1fr}.lesson-number{width:58px;height:58px}.metric-grid,.nbn-detail-grid,.request-detail{grid-template-columns:1fr}.link-stage{grid-template-columns:1fr;min-height:auto}.medium-zone{padding:28px 15px}.device-map .device-node{flex-basis:46%}.device-arrow{display:none}.lesson-navigation{flex-direction:column}.lesson-navigation button{width:100%}.request-table{font-size:.72rem}.request-table th,.request-table td{padding:7px 5px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#lesson-content">Skip to lesson content</a>
+<div class="app-shell">
+  <nav class="site-nav" aria-label="Networking resources">
+    <a href="/teaching-resources/">Teaching Resources</a>
+    <a href="../">Networking main</a>
+    <a href="../lesson-1/">Lesson 1</a>
+    <a href="../lesson-2/">Lesson 2</a>
+    <a href="../lesson-3/">Lesson 3</a>
+    <a href="../lesson-4/">Lesson 4</a>
+    <a href="./" aria-current="page">Lesson 5</a>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <p class="eyebrow">COIT11238 · Week 5 self-paced tutorial</p>
+      <h1>Choose the Path</h1>
+      <p class="hero-copy">Compare copper, fibre and wireless links; follow several NBN access paths from a home to the Internet; reshape a network into different topologies; identify device roles; then connect the infrastructure to the HTTP and DevTools work you will perform in the Week 5 practical.</p>
+    </div>
+    <div class="hero-actions">
+      <button class="hero-button" id="fullscreenButton" type="button">⛶ Full screen</button>
+      <button class="hero-button" id="resetAllButton" type="button">↻ Reset lesson</button>
+    </div>
+  </header>
+
+  <section class="progress-panel" aria-label="Tutorial progress">
+    <div><strong id="progressText">0 of 6 lessons completed</strong><span>Progress is kept only while this page remains open. Nothing is saved or sent anywhere.</span></div>
+    <div class="progress-track"><span id="progressBar" style="width:0%"></span></div>
+  </section>
+
+  <nav class="tab-bar" aria-label="Lesson sections">
+    <button class="tab active" type="button" data-tab="links" aria-current="step">1. Link lab</button>
+    <button class="tab" type="button" data-tab="nbn">2. NBN journey</button>
+    <button class="tab" type="button" data-tab="topology">3. Topology lab</button>
+    <button class="tab" type="button" data-tab="devices">4. Device detective</button>
+    <button class="tab" type="button" data-tab="browser">5. Browser bridge</button>
+    <button class="tab" type="button" data-tab="review">6. Check understanding</button>
+  </nav>
+
+  <main id="lesson-content">
+    <section id="panel-links" class="panel-stack" data-panel="links">
+      <section class="lesson-intro">
+        <div class="lesson-number">1</div>
+        <div>
+          <p class="section-kicker">The medium changes the possibilities</p>
+          <h2>Choose a link for the job</h2>
+          <p class="lead-copy">A transmitter turns data into a signal, the signal crosses a medium, and a receiver recovers the data. The same basic model works for copper, fibre and radio. The engineering choice depends on what the link must achieve.</p>
+          <div class="outcome-row"><span>Distinguish wired and wireless media</span><span>Compare speed and distance</span><span>Choose a technology for a scenario</span></div>
+        </div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Signal journey</h3><p>Select a link technology, then animate one piece of data from the transmitter to the receiver.</p></div><div class="counter" id="linkCounter">Twisted pair selected</div></div>
+        <div class="tech-buttons" id="techButtons"></div>
+        <div class="link-stage" aria-label="Animated link from transmitter to receiver">
+          <div class="endpoint active" id="sourceEndpoint"><div><div class="icon">💻</div><strong>Source device</strong><span>Data enters transmitter (Tx)</span></div></div>
+          <div class="medium-zone"><div class="medium-label" id="mediumLabel">Copper twisted pair</div><div class="medium-line" id="mediumLine"><div class="signal-token" id="signalToken">1</div></div><div class="medium-sub" id="mediumSub">Electrical signal guided through copper pairs</div></div>
+          <div class="endpoint" id="destEndpoint"><div><div class="icon">🖥️</div><strong>Destination device</strong><span>Receiver (Rx) recovers the data</span></div></div>
+        </div>
+        <div class="action-row"><button class="primary-button" id="animateLink" type="button">▶ Send the signal</button><button class="secondary-button" id="resetLink" type="button">Reset</button></div>
+        <div class="metric-grid" id="linkMetrics" style="margin-top:16px"></div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Which link would you choose?</h3><p>Select a familiar scenario. Predict first, then reveal a sensible choice and the reason behind it.</p></div></div>
+        <div class="scenario-buttons" id="scenarioButtons"></div>
+        <div class="link-explain">
+          <div class="scenario-card"><h4 id="scenarioTitle">Gaming PC beside a router</h4><p id="scenarioText"></p></div>
+          <div class="scenario-result" id="scenarioResult">Choose a scenario to reveal the recommendation.</div>
+        </div>
+        <div class="key-note" style="margin-top:16px"><strong>Do not memorise one “best” medium.</strong> Fibre is excellent for speed and distance, but it is not the answer to every home peripheral. Wireless gives mobility, but a fixed device may benefit from a cable. Requirements decide the technology.</div>
+      </section>
+    </section>
+
+    <section id="panel-nbn" class="panel-stack" data-panel="nbn" hidden>
+      <section class="lesson-intro">
+        <div class="lesson-number">2</div>
+        <div>
+          <p class="section-kicker">One Internet service, several possible access technologies</p>
+          <h2>Follow the NBN path from home to the Internet</h2>
+          <p class="lead-copy">The NBN access network is only one part of the journey. Your equipment connects into NBN infrastructure, a Retail Service Provider connects at a Point of Interconnect, and the provider carries traffic onward to the wider Internet.</p>
+          <div class="outcome-row"><span>Compare FTTP, FTTN, HFC, fixed wireless and satellite</span><span>Separate NBN and RSP roles</span><span>Relate medium to performance</span></div>
+        </div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Change the access technology</h3><p>Use the buttons to rebuild the first part of the path. Then step through the journey.</p></div><div class="counter" id="nbnCounter">Step 1 of 7</div></div>
+        <div class="nbn-buttons" id="nbnButtons"></div>
+        <div class="nbn-stage">
+          <div class="nbn-connector"></div><div class="nbn-token" id="nbnToken">⇢</div>
+          <div class="nbn-path" id="nbnPath"></div>
+          <div class="ownership-row"><div class="ownership own-you">Managed by you</div><div class="ownership own-nbn">NBN access network</div><div class="ownership own-rsp">Retail Service Provider + wider Internet</div></div>
+        </div>
+        <div class="action-row"><button class="secondary-button" id="nbnPrev" type="button">← Previous step</button><button class="primary-button" id="nbnNext" type="button">Next step →</button><button class="secondary-button" id="nbnPlay" type="button">▶ Autoplay</button><button class="small-button" id="nbnReset" type="button">Reset</button></div>
+        <div class="nbn-detail-grid"><div class="step-explain" id="nbnStepExplain"></div><div class="callout" id="nbnTechExplain"></div></div>
+      </section>
+    </section>
+
+    <section id="panel-topology" class="panel-stack" data-panel="topology" hidden>
+      <section class="lesson-intro">
+        <div class="lesson-number">3</div>
+        <div>
+          <p class="section-kicker">Same devices, different arrangement</p>
+          <h2>Reshape the network</h2>
+          <p class="lead-copy">Topology describes how links are arranged between devices. Change the arrangement, then break a link to see how the design affects resilience and complexity.</p>
+          <div class="outcome-row"><span>Recognise star, mesh, bus and ring</span><span>Compare resilience and cost</span><span>Connect topologies to real examples</span></div>
+        </div>
+      </section>
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Topology laboratory</h3><p>Select a topology. The diagram uses the same six nodes so only the link arrangement changes.</p></div><div id="topologyStatus" class="status-badge">Network operating</div></div>
+        <div class="topology-buttons" id="topologyButtons"></div>
+        <div class="topology-layout" style="margin-top:16px">
+          <div class="topology-canvas"><svg id="topologySvg" viewBox="0 0 800 430" role="img" aria-label="Interactive network topology diagram"></svg></div>
+          <div class="topology-info"><div class="callout" id="topologyExplain"></div><div class="callout"><strong>What happens if one link fails?</strong><p id="failureExplain"></p><button class="secondary-button" id="breakLink" type="button">Break one link</button> <button class="small-button" id="restoreLinks" type="button">Restore</button></div><div class="callout"><strong>Remember</strong><p>Modern Ethernet LANs are commonly star-based. Large provider networks often use partial mesh so important sites have alternative paths without paying for every possible link.</p></div></div>
+        </div>
+      </section>
+    </section>
+
+    <section id="panel-devices" class="panel-stack" data-panel="devices" hidden>
+      <section class="lesson-intro">
+        <div class="lesson-number">4</div>
+        <div>
+          <p class="section-kicker">Name the job, then name the device</p>
+          <h2>Device detective</h2>
+          <p class="lead-copy">Earlier lessons already showed how switches and routers make forwarding decisions. Here the goal is broader: recognise which device role belongs at each point in a practical network, including the fact that one physical box can perform several logical roles.</p>
+          <div class="outcome-row"><span>Distinguish switch, router, AP and modem</span><span>Recognise security and service devices</span><span>Understand all-in-one devices</span></div>
+        </div>
+      </section>
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Click a device in the path</h3><p>Inspect the role without re-running the detailed MAC/IP forwarding animations from earlier weeks.</p></div></div>
+        <div class="device-layout">
+          <div class="device-map" id="deviceMap"></div>
+          <div class="device-inspector" id="deviceInspector"><h3>Select a device</h3><p>Click any device in the path to see its job, where it is normally used and what addressing or traffic information it cares about.</p></div>
+        </div>
+      </section>
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>One plastic box, several jobs</h3><p>A typical home “Wi-Fi router” is a useful reminder that physical products and logical network roles are not the same thing.</p></div></div>
+        <div class="metric-grid">
+          <div class="metric-card"><span>Router role</span><strong>Connect IP networks</strong><small>Home LAN ↔ provider network</small></div>
+          <div class="metric-card"><span>Switch role</span><strong>Connect wired LAN ports</strong><small>Several local Ethernet devices</small></div>
+          <div class="metric-card"><span>AP role</span><strong>Provide Wi-Fi access</strong><small>Wireless stations join the LAN</small></div>
+          <div class="metric-card"><span>Firewall role</span><strong>Filter traffic</strong><small>Policy between trusted and untrusted sides</small></div>
+        </div>
+        <div class="quiz-row"><label><strong>Mini challenge:</strong><br><select id="deviceQuestion"><option value="">Choose the device for: “connect every PC in a lab”</option><option>Switch</option><option>Router</option><option>Access point</option><option>Modem</option><option>Load balancer</option></select></label><button class="primary-button" id="checkDeviceQuestion" type="button">Check</button></div>
+        <div class="quiz-feedback" id="deviceFeedback">Choose an answer, then check it.</div>
+      </section>
+    </section>
+
+    <section id="panel-browser" class="panel-stack" data-panel="browser" hidden>
+      <section class="lesson-intro">
+        <div class="lesson-number">5</div>
+        <div>
+          <p class="section-kicker">Bridge into the Week 5 practical</p>
+          <h2>What does the browser actually request?</h2>
+          <p class="lead-copy">Your practical asks you to create a small local website, deploy a public site, then inspect requests using browser Developer Tools. This simulation gives you the mental model before you perform those steps on your own computer.</p>
+          <div class="outcome-row"><span>Contrast local files and public URLs</span><span>Read a simplified DevTools Network table</span><span>Connect HTML, CSS and JavaScript to HTTP requests</span></div>
+        </div>
+      </section>
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Local file or public website?</h3><p>Toggle the mode, then step through what the browser does.</p></div><div class="counter" id="browserCounter">Step 1</div></div>
+        <div class="mode-toggle"><button class="choice-button active" id="localMode" type="button">Open local files</button><button class="choice-button" id="publicMode" type="button">Open public HTTPS site</button></div>
+        <div class="browser-layout" style="margin-top:16px">
+          <div class="browser-window"><div class="browser-chrome"><div class="dots">●●●</div><div class="address-bar" id="addressBar">file:///C:/COIT11238/www-12345678-static1/index.html</div></div><div class="page-view"><h3>COIT11238 Week 5 Website</h3><p>Student name: Example Student</p><p>This page is used to learn about web browsing and HTTP.</p><span class="fake-button">Click to test JavaScript</span></div></div>
+          <div><div class="journey-list" id="browserJourney"></div><div class="action-row"><button class="secondary-button" id="browserPrev" type="button">← Previous step</button><button class="primary-button" id="browserNext" type="button">Next step →</button><button class="small-button" id="browserReset" type="button">Reset</button></div></div>
+        </div>
+      </section>
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Simulated DevTools → Network</h3><p>Refresh the public page and click a request. This is a teaching simulation; your tutorial evidence must come from your own browser and website.</p></div></div>
+        <div class="devtools">
+          <div class="devtools-head"><strong>Network</strong><div class="devtools-controls"><label><input type="checkbox" id="disableCache" checked> Disable cache</label><button class="small-button" id="refreshRequests" type="button">↻ Refresh</button></div></div>
+          <div class="request-table-wrap" role="region" tabindex="0" aria-label="Scrollable simulated network request table"><table class="request-table"><thead><tr><th>Name</th><th>Method</th><th>Status</th><th>Type</th><th>Transferred</th><th>Time</th></tr></thead><tbody id="requestRows"></tbody></table></div>
+          <div class="request-detail" id="requestDetail"></div>
+        </div>
+        <div class="key-note" style="margin-top:16px"><strong>Practical connection:</strong> In your real DevTools, record the request method, status code, Content-Type, server/platform-related information, total or transferred size, and timing. Then explain in your own words what the browser asked for and what the server returned.</div>
+        <div class="week6-plan"><table><thead><tr><th colspan="2">Week 6 switched-LAN preparation from the tutorial</th></tr></thead><tbody><tr><td>Network</td><td><code>192.168.6.0/24</code></td></tr><tr><td>Subnet mask</td><td><code>255.255.255.0</code></td></tr><tr><td>Broadcast</td><td><code>192.168.6.255</code></td></tr><tr><td>PC-A</td><td><code>192.168.6.10</code></td></tr><tr><td>PC-B</td><td><code>192.168.6.20</code></td></tr><tr><td>Optional PC-C</td><td><code>192.168.6.30</code></td></tr></tbody></table></div>
+      </section>
+    </section>
+
+    <section id="panel-review" class="panel-stack" data-panel="review" hidden>
+      <section class="lesson-intro">
+        <div class="lesson-number">6</div>
+        <div><p class="section-kicker">Formative review</p><h2>Check the Week 5 mental model</h2><p class="lead-copy">The questions focus on choosing and explaining, not memorising every number from the comparison tables.</p><div class="outcome-row"><span>Choose link technologies</span><span>Trace an NBN path</span><span>Recognise topology and device roles</span><span>Read basic HTTP evidence</span></div></div>
+      </section>
+      <section class="review-list" id="reviewList"></section>
+      <div class="review-actions"><button class="primary-button" id="checkAnswers" type="button">Check answers</button><button class="secondary-button" id="resetAnswers" type="button">Reset</button><div class="score-box" id="scoreBox" hidden></div></div>
+    </section>
+  </main>
+
+  <section class="lesson-navigation" aria-label="Section navigation">
+    <button class="secondary-button" id="previousLesson" type="button">← Previous lesson</button>
+    <button class="secondary-button" id="markComplete" type="button">Mark lesson complete</button>
+    <button class="primary-button" id="nextLesson" type="button">Complete and continue →</button>
+  </section>
+
+  <footer>
+    <strong>Core idea:</strong> a network path is a set of technology choices. Link medium affects speed, distance and mobility; topology affects arrangement and resilience; devices perform distinct roles; and applications such as a browser expose only part of the larger infrastructure underneath.<br />
+    Developed by Dr Mahmoud Elkhodr as a companion teaching resource for COIT11238. © 2026 Dr Mahmoud Elkhodr. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener license">CC BY 4.0</a>. Reuse and adaptation are allowed with attribution.<br />
+    Suggested attribution: Elkhodr, M. (2026). <em>Choose the Path</em> [Interactive teaching resource]. https://elkhodr.com/teaching-resources/networking/lesson-5/
+  </footer>
+</div>
+<script>
+(() => {
+'use strict';
+const order=['links','nbn','topology','devices','browser','review'];
+let active='links'; const completed=new Set();
+const tabs=[...document.querySelectorAll('.tab')], panels=[...document.querySelectorAll('[data-panel]')];
+const progressText=document.getElementById('progressText'), progressBar=document.getElementById('progressBar');
+function updateProgress(){progressText.textContent=`${completed.size} of ${order.length} lessons completed`;progressBar.style.width=`${completed.size/order.length*100}%`;tabs.forEach(t=>t.classList.toggle('complete',completed.has(t.dataset.tab)));const b=document.getElementById('markComplete');b.textContent=completed.has(active)?'✓ Lesson completed':'Mark lesson complete';b.className=completed.has(active)?'complete-button':'secondary-button';}
+function setPanel(name){active=name;tabs.forEach(t=>{const on=t.dataset.tab===name;t.classList.toggle('active',on);if(on)t.setAttribute('aria-current','step');else t.removeAttribute('aria-current')});panels.forEach(p=>p.hidden=p.dataset.panel!==name);location.hash=name;updateProgress();window.scrollTo({top:0,behavior:'smooth'});}
+tabs.forEach(t=>t.addEventListener('click',()=>setPanel(t.dataset.tab)));
+document.getElementById('previousLesson').addEventListener('click',()=>{const i=order.indexOf(active);if(i>0)setPanel(order[i-1]);else location.href='../lesson-4/';});
+document.getElementById('nextLesson').addEventListener('click',()=>{completed.add(active);updateProgress();const i=order.indexOf(active);if(i<order.length-1)setPanel(order[i+1]);});
+document.getElementById('markComplete').addEventListener('click',()=>{completed.has(active)?completed.delete(active):completed.add(active);updateProgress();});
+document.getElementById('fullscreenButton').addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.();});
+document.getElementById('resetAllButton').addEventListener('click',()=>{if(confirm('Reset all lesson progress and interactive scenes?'))location.reload();});
+
+// Link lab
+const techs={
+ 'Twisted pair':{label:'Copper twisted pair',signal:'Electrical signal guided through four copper pairs',rate:'10 Mb/s → 10 Gb/s',distance:'Up to 100 m',medium:'Wired · copper',fit:'Homes, offices, Ethernet LANs',wireless:false},
+ 'Fibre':{label:'Optical fibre',signal:'Pulses of light guided through glass fibre',rate:'1 Gb/s → 400 Gb/s+',distance:'Hundreds of metres → tens of km',medium:'Wired · light',fit:'Backbones, data centres, long distance',wireless:false},
+ 'Wi-Fi':{label:'Wi-Fi radio',signal:'Radio waves travel through the local environment',rate:'10 Mb/s → 1 Gb/s+',distance:'About 10–50 m indoors',medium:'Wireless · radio',fit:'Mobile devices, home and campus access',wireless:true},
+ 'Bluetooth':{label:'Bluetooth radio',signal:'Low-power radio for short-range peripherals',rate:'About 1–3 Mb/s',distance:'About 1–30 m',medium:'Wireless · radio',fit:'Earbuds, keyboards, wearables',wireless:true},
+ '5G':{label:'4G / 5G mobile',signal:'Radio link between a device and a mobile base station',rate:'Tens of Mb/s → multi-Gb/s',distance:'Up to several km',medium:'Wireless · radio',fit:'Mobile access and some fixed wireless',wireless:true},
+ 'Microwave':{label:'Point-to-point microwave',signal:'Directional radio link with line-of-sight',rate:'100 Mb/s → several Gb/s',distance:'Several → tens of km',medium:'Wireless · directional radio',fit:'Tower backhaul and rural building links',wireless:true},
+ 'Satellite GEO':{label:'Geostationary satellite',signal:'Radio travels from dish to satellite and back to a ground station',rate:'10–100 Mb/s',distance:'≈35,786 km to orbit',medium:'Wireless · satellite',fit:'Very remote coverage; higher latency',wireless:true},
+ 'Powerline':{label:'Powerline communication',signal:'Network signal shares existing electrical wiring',rate:'50–500 Mb/s typical',distance:'Within a building',medium:'Wired · electrical wiring',fit:'Convenient home extension where new cable is difficult',wireless:false}
+};
+let activeTech='Twisted pair';
+const techButtons=document.getElementById('techButtons'), mediumLabel=document.getElementById('mediumLabel'), mediumSub=document.getElementById('mediumSub'), mediumLine=document.getElementById('mediumLine'), signalToken=document.getElementById('signalToken'), linkMetrics=document.getElementById('linkMetrics');
+Object.keys(techs).forEach(name=>{const b=document.createElement('button');b.className='choice-button'+(name===activeTech?' active':'');b.textContent=name;b.type='button';b.addEventListener('click',()=>selectTech(name));techButtons.appendChild(b)});
+function selectTech(name){activeTech=name;[...techButtons.children].forEach(b=>b.classList.toggle('active',b.textContent===name));const t=techs[name];mediumLabel.textContent=t.label;mediumSub.textContent=t.signal;mediumLine.classList.toggle('wireless',t.wireless);document.getElementById('linkCounter').textContent=`${name} selected`;linkMetrics.innerHTML=`<div class="metric-card"><span>Typical data rate</span><strong>${t.rate}</strong><small>Examples from the Week 5 comparison table</small></div><div class="metric-card"><span>Typical distance</span><strong>${t.distance}</strong><small>Real performance depends on environment and implementation</small></div><div class="metric-card"><span>Medium</span><strong>${t.medium}</strong><small>${t.signal}</small></div><div class="metric-card"><span>Common fit</span><strong>${t.fit}</strong><small>Choose by requirements, not by one headline speed</small></div>`;resetLinkAnim();}
+function resetLinkAnim(){signalToken.style.left='0%';document.getElementById('sourceEndpoint').classList.add('active');document.getElementById('destEndpoint').classList.remove('active');}
+document.getElementById('animateLink').addEventListener('click',()=>{resetLinkAnim();setTimeout(()=>{document.getElementById('sourceEndpoint').classList.remove('active');signalToken.style.left='100%';},150);setTimeout(()=>document.getElementById('destEndpoint').classList.add('active'),1100);});document.getElementById('resetLink').addEventListener('click',resetLinkAnim);selectTech(activeTech);
+const scenarios=[
+ {name:'Gaming PC',title:'Gaming PC beside a router',text:'A fixed desktop is two metres from the home router. Low jitter and predictable throughput matter more than mobility.',answer:'Twisted pair Ethernet',why:'A short Ethernet cable is inexpensive, stable and avoids wireless interference. Wi-Fi may work, but the fixed device does not need mobility.'},
+ {name:'Campus backbone',title:'Connect two campus buildings',text:'Buildings are hundreds of metres apart and must carry large amounts of traffic reliably.',answer:'Optical fibre',why:'Fibre supports high capacity over longer distances and is immune to electrical interference. It is a standard backbone choice.'},
+ {name:'Earbuds',title:'Phone to wireless earbuds',text:'The devices are within a few metres and power consumption must remain low.',answer:'Bluetooth',why:'Bluetooth is designed for short-range, low-power peripheral communication. Fibre or Ethernet would solve the wrong problem.'},
+ {name:'Rural towers',title:'Two rural towers with clear line-of-sight',text:'The sites are kilometres apart. Installing a cable through the terrain is expensive.',answer:'Point-to-point microwave',why:'Directional microwave can provide high-capacity links across several kilometres when line-of-sight is available.'},
+ {name:'Remote property',title:'Very remote property without practical terrestrial access',text:'The location is far from fibre, HFC and mobile infrastructure.',answer:'Satellite',why:'Satellite provides extremely wide coverage. The trade-off is greater propagation delay, particularly with geostationary systems.'}
+];
+const scenarioButtons=document.getElementById('scenarioButtons');scenarios.forEach((s,i)=>{const b=document.createElement('button');b.className='choice-button';b.textContent=s.name;b.type='button';b.addEventListener('click',()=>showScenario(i));scenarioButtons.appendChild(b)});
+function showScenario(i){const s=scenarios[i];[...scenarioButtons.children].forEach((b,j)=>b.classList.toggle('active',i===j));document.getElementById('scenarioTitle').textContent=s.title;document.getElementById('scenarioText').textContent=s.text;document.getElementById('scenarioResult').innerHTML=`<strong>Sensible choice: ${s.answer}</strong><br>${s.why}`;}showScenario(0);
+
+// NBN journey
+const nbnTechs={
+ 'FTTP':{segments:['Home router','Fibre termination','Optical fibre','NBN access','POI','RSP network','Internet'],icons:['🏠','🔌','✨','🏢','🔗','🌐','🖥️'],detail:'Fibre reaches the premises, so the customer access segment avoids the performance limits of a remaining copper last section.'},
+ 'FTTN':{segments:['Home router','VDSL modem','Copper to node','Fibre onward','POI','RSP network','Internet'],icons:['🏠','📟','🟠','✨','🔗','🌐','🖥️'],detail:'The final section from the premises to a neighbourhood node uses existing copper. Fibre continues from the node into the NBN.'},
+ 'HFC':{segments:['Home router','Cable modem','Coaxial access','Fibre node','POI','RSP network','Internet'],icons:['🏠','📟','🟤','✨','🔗','🌐','🖥️'],detail:'Hybrid fibre-coaxial reuses coaxial cable for part of the access path, with fibre elsewhere in the provider network.'},
+ 'Fixed Wireless':{segments:['Home router','Outdoor antenna','Radio to tower','NBN tower','POI','RSP network','Internet'],icons:['🏠','📡','〰️','🗼','🔗','🌐','🖥️'],detail:'A fixed outdoor antenna communicates by radio with an NBN facility or tower over kilometres; the tower connects into the wider NBN.'},
+ 'Sky Muster':{segments:['Home router','Home dish','GEO satellite','Ground station','POI','RSP network','Internet'],icons:['🏠','📡','🛰️','🏢','🔗','🌐','🖥️'],detail:'The radio path travels to a geostationary satellite and back to a ground station. Coverage is wide, but the long propagation distance increases latency.'}
+};
+let nbnTech='FTTP', nbnStep=0, nbnTimer=null;const nbnButtons=document.getElementById('nbnButtons'), nbnPath=document.getElementById('nbnPath'), nbnToken=document.getElementById('nbnToken');
+Object.keys(nbnTechs).forEach(name=>{const b=document.createElement('button');b.type='button';b.textContent=name;b.className='choice-button'+(name===nbnTech?' active':'');b.addEventListener('click',()=>{stopNbnAuto();nbnTech=name;nbnStep=0;renderNbn();});nbnButtons.appendChild(b)});
+function stopNbnAuto(){if(nbnTimer){clearInterval(nbnTimer);nbnTimer=null;}}
+function renderNbn(){[...nbnButtons.children].forEach(b=>b.classList.toggle('active',b.textContent===nbnTech));const t=nbnTechs[nbnTech];nbnPath.innerHTML=t.segments.map((s,i)=>`<div class="nbn-node ${i===nbnStep?'active':''} ${i>=1&&i<=4?'nbn':''} ${i>=5?'rsp':''}"><div class="icon">${t.icons[i]}</div><strong>${s}</strong><span>${i===0?'Customer equipment':i<=4?'Access / interconnect':'Provider / destination'}</span></div>`).join('');document.getElementById('nbnCounter').textContent=`Step ${nbnStep+1} of 7`;nbnToken.style.left=`${7+nbnStep*(86/6)}%`;const explain=[
+ 'The journey begins with equipment you manage in the home. Wi-Fi or Ethernet inside the home is separate from the NBN access technology.',
+ `The access edge changes with ${nbnTech}. This is the first technology-specific part of the path.`,
+ 'The signal crosses the main customer access medium. This is where copper, coax, fibre, fixed wireless or satellite make a major difference.',
+ 'Traffic is now inside NBN infrastructure and is being carried towards the interconnection point.',
+ 'At the Point of Interconnect, the Retail Service Provider connects its network to NBN infrastructure.',
+ 'The RSP carries traffic through its own domestic or international network. Your Internet plan is provided by the RSP, not by the remote website.',
+ 'The traffic finally reaches the wider Internet and the destination service.'
+ ][nbnStep];document.getElementById('nbnStepExplain').innerHTML=`<div class="section-kicker">Step ${nbnStep+1}</div><h4>${t.segments[nbnStep]}</h4><p>${explain}</p>`;document.getElementById('nbnTechExplain').innerHTML=`<strong>${nbnTech}</strong><p>${t.detail}</p><p><em>Performance figures and retail products change over time; focus here on the physical path and trade-off.</em></p>`;}
+document.getElementById('nbnPrev').addEventListener('click',()=>{stopNbnAuto();nbnStep=Math.max(0,nbnStep-1);renderNbn();});document.getElementById('nbnNext').addEventListener('click',()=>{stopNbnAuto();nbnStep=Math.min(6,nbnStep+1);renderNbn();});document.getElementById('nbnReset').addEventListener('click',()=>{stopNbnAuto();nbnStep=0;renderNbn();});document.getElementById('nbnPlay').addEventListener('click',()=>{stopNbnAuto();nbnStep=0;renderNbn();nbnTimer=setInterval(()=>{if(nbnStep>=6){stopNbnAuto();return;}nbnStep++;renderNbn();},1100)});renderNbn();
+
+// topology
+const topoDefs={
+ 'Star':{desc:'Every device connects to a central switch, AP or hub.',uses:'Modern Ethernet LANs, Wi-Fi around an AP, smart-home hubs.',strength:'Simple to expand and troubleshoot; one device cable failure normally affects one endpoint.',failure:'If one outer link fails, one endpoint is isolated. If the central device fails, many endpoints lose service.'},
+ 'Full mesh':{desc:'Every node has a direct link to every other node.',uses:'Small highly connected backbones or peering situations where maximum path choice matters.',strength:'Many alternative paths, but link count grows very quickly.',failure:'One failed link usually leaves many alternative routes between the same pair of areas.'},
+ 'Partial mesh':{desc:'Important nodes have redundant links, but not every pair is connected.',uses:'ISP backbones, SD-WAN, large enterprise and provider networks.',strength:'Balances resilience against cost and complexity.',failure:'A failed link may be bypassed if the affected node has another path.'},
+ 'Bus':{desc:'All devices share one common communication line.',uses:'Older coax Ethernet and specialised buses such as CAN.',strength:'Very little cabling, but the shared medium creates a common dependency.',failure:'A serious break in the shared bus can disrupt communication for multiple devices.'},
+ 'Ring':{desc:'Devices or sites form a closed loop.',uses:'Historical Token Ring/FDDI and ring-like telecom fibre designs.',strength:'A designed resilient ring can send traffic the other way around a break.',failure:'If the ring has protection and both directions are usable, one break may be bypassed; simple rings can be disrupted.'}
+};
+let topology='Star', broken=false;const topologyButtons=document.getElementById('topologyButtons');Object.keys(topoDefs).forEach(name=>{const b=document.createElement('button');b.type='button';b.textContent=name;b.className='choice-button'+(name===topology?' active':'');b.addEventListener('click',()=>{topology=name;broken=false;renderTopology();});topologyButtons.appendChild(b)});
+const pts=[[400,55],[630,135],[650,330],[400,375],[150,330],[170,135]], center=[400,220];
+function edge(a,b,idx){const br=broken&&idx===0;return `<line class="topo-line${br?' broken':''}" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`;}
+function renderTopology(){[...topologyButtons.children].forEach(b=>b.classList.toggle('active',b.textContent===topology));let lines='', nodes='';let idx=0;if(topology==='Star'){pts.forEach(p=>{lines+=edge(center,p,idx++);});nodes+=`<circle class="topo-node central" cx="400" cy="220" r="44"/><text class="topo-label" x="400" y="220">SW</text>`;}else if(topology==='Full mesh'){for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++)lines+=edge(pts[i],pts[j],idx++);}else if(topology==='Partial mesh'){[[0,1],[1,2],[2,3],[3,4],[4,5],[5,0],[0,3],[1,4]].forEach(pair=>{lines+=edge(pts[pair[0]],pts[pair[1]],idx++);});}else if(topology==='Bus'){lines+=edge([100,220],[700,220],idx++);pts.forEach((p,i)=>{const attach=[p[0],220];lines+=edge(attach,p,idx++);});}else if(topology==='Ring'){for(let i=0;i<pts.length;i++)lines+=edge(pts[i],pts[(i+1)%pts.length],idx++);}pts.forEach((p,i)=>{nodes+=`<circle class="topo-node" cx="${p[0]}" cy="${p[1]}" r="36"/><text class="topo-label" x="${p[0]}" y="${p[1]}">${String.fromCharCode(65+i)}</text>`;});document.getElementById('topologySvg').innerHTML=lines+nodes;const d=topoDefs[topology];document.getElementById('topologyExplain').innerHTML=`<strong>${topology}</strong><p>${d.desc}</p><p><strong>Examples:</strong> ${d.uses}</p><p><strong>Trade-off:</strong> ${d.strength}</p>`;document.getElementById('failureExplain').textContent=d.failure;const status=document.getElementById('topologyStatus');status.textContent=broken?'One link has failed':'Network operating';status.className='status-badge'+(broken?' warn':'');}
+document.getElementById('breakLink').addEventListener('click',()=>{broken=true;renderTopology();});document.getElementById('restoreLinks').addEventListener('click',()=>{broken=false;renderTopology();});renderTopology();
+
+// devices
+const devices=[
+ {name:'Laptop / NIC',icon:'💻',short:'Host endpoint',desc:'The NIC allows the laptop to attach to the network. It converts between local frames/bits and the physical or wireless signal.',roles:['Host','NIC','Source/destination']},
+ {name:'Wi-Fi access point',icon:'📶',short:'Wireless access',desc:'The AP coordinates wireless stations and bridges their traffic into the LAN. It is mainly a Layer 2 role.',roles:['802.11','LAN access','Bridge']},
+ {name:'Ethernet switch',icon:'🔀',short:'Local LAN forwarding',desc:'The switch connects local wired devices and forwards Ethernet frames inside the LAN. Detailed MAC learning was covered earlier.',roles:['802.3','Layer 2','MAC forwarding']},
+ {name:'Router / firewall',icon:'🛡️',short:'Connect networks',desc:'The router forwards IP packets between networks. A home or business gateway often combines routing with firewall policy.',roles:['Layer 3','IP routing','Firewall']},
+ {name:'Access modem / NTD',icon:'📟',short:'Access technology edge',desc:'A modem or network termination device provides the appropriate interface to the access technology, such as DSL, cable or fibre.',roles:['Signal/interface conversion','Access network']},
+ {name:'Web server',icon:'🖥️',short:'Provides a service',desc:'The server runs network applications. In the Week 5 practical, the browser requests web content from a server or hosting platform.',roles:['Application service','HTTP/HTTPS','Destination']}
+];
+const deviceMap=document.getElementById('deviceMap');devices.forEach((d,i)=>{const n=document.createElement('button');n.type='button';n.className='device-node';n.innerHTML=`<div class="icon">${d.icon}</div><strong>${d.name}</strong><span>${d.short}</span>`;n.addEventListener('click',()=>inspectDevice(i));deviceMap.appendChild(n);if(i<devices.length-1){const a=document.createElement('div');a.className='device-arrow';a.textContent='→';deviceMap.appendChild(a);}});
+function inspectDevice(i){[...deviceMap.querySelectorAll('.device-node')].forEach((n,j)=>n.classList.toggle('active',j===i));const d=devices[i];document.getElementById('deviceInspector').innerHTML=`<h3>${d.icon} ${d.name}</h3><p>${d.desc}</p><div class="role-chips">${d.roles.map(r=>`<span>${r}</span>`).join('')}</div><p><strong>Question to ask:</strong> What job is this role performing at this point in the path?</p>`;}inspectDevice(0);
+document.getElementById('checkDeviceQuestion').addEventListener('click',()=>{const v=document.getElementById('deviceQuestion').value;const box=document.getElementById('deviceFeedback');if(!v){box.textContent='Choose an answer first.';return;}box.innerHTML=v==='Switch'?'<strong>Correct.</strong> A switch is the normal device for connecting PCs inside an Ethernet LAN.':'<strong>Try again.</strong> The task is local Ethernet connectivity inside one LAN, not routing between networks or providing Wi-Fi.';box.style.background=v==='Switch'?'var(--green-soft)':'var(--red-soft)';});
+
+// browser bridge
+let browserMode='local', browserStep=0;const localSteps=[
+ ['Open the local file','The browser reads index.html directly from your own storage using a file:// URL. There is no remote web server involved.'],
+ ['Read linked files','The HTML tells the browser to load style.css and script.js from the same local folder.'],
+ ['Render the page','The browser combines HTML structure, CSS presentation and JavaScript behaviour to display the page.'],
+ ['Important limitation','Because this page was opened as a local file, it does not demonstrate a normal public HTTP request to a web server.']
+];const publicSteps=[
+ ['Read the URL','The browser separates the HTTPS scheme, host name and path.'],
+ ['Resolve the host','DNS maps the host name to one or more IP addresses.'],
+ ['Connect securely','The browser establishes the network connection to the server; HTTPS normally uses TCP port 443.'],
+ ['Request index.html','The browser sends an HTTP request such as GET / and the server returns an HTTP response.'],
+ ['Request supporting files','After reading the HTML, the browser may request style.css, script.js, images and other resources.'],
+ ['Render and run','The browser applies CSS, runs JavaScript and displays the completed page. DevTools records the requests and timings.']
+];
+function renderBrowser(){const steps=browserMode==='local'?localSteps:publicSteps;browserStep=Math.min(browserStep,steps.length-1);document.getElementById('addressBar').textContent=browserMode==='local'?'file:///C:/COIT11238/www-12345678-static1/index.html':'https://example-student-site.workers.dev/';document.getElementById('localMode').classList.toggle('active',browserMode==='local');document.getElementById('publicMode').classList.toggle('active',browserMode==='public');document.getElementById('browserCounter').textContent=`Step ${browserStep+1} of ${steps.length}`;document.getElementById('browserJourney').innerHTML=steps.map((s,i)=>`<div class="journey-step ${i===browserStep?'active':''}"><div class="num">${i+1}</div><div><strong>${s[0]}</strong><span>${s[1]}</span></div></div>`).join('');}
+document.getElementById('localMode').addEventListener('click',()=>{browserMode='local';browserStep=0;renderBrowser();});document.getElementById('publicMode').addEventListener('click',()=>{browserMode='public';browserStep=0;renderBrowser();});document.getElementById('browserPrev').addEventListener('click',()=>{browserStep=Math.max(0,browserStep-1);renderBrowser();});document.getElementById('browserNext').addEventListener('click',()=>{const max=(browserMode==='local'?localSteps:publicSteps).length-1;browserStep=Math.min(max,browserStep+1);renderBrowser();});document.getElementById('browserReset').addEventListener('click',()=>{browserStep=0;renderBrowser();});renderBrowser();
+const requests=[
+ {name:'index.html',method:'GET',status:'200',type:'text/html',size:'2.4 kB',time:'84 ms',server:'cloud platform',url:'https://example-student-site.workers.dev/',content:'text/html; charset=UTF-8'},
+ {name:'style.css',method:'GET',status:'200',type:'text/css',size:'0.8 kB',time:'46 ms',server:'cloud platform',url:'https://example-student-site.workers.dev/style.css',content:'text/css'},
+ {name:'script.js',method:'GET',status:'200',type:'text/javascript',size:'0.5 kB',time:'41 ms',server:'cloud platform',url:'https://example-student-site.workers.dev/script.js',content:'text/javascript'}
+];let requestActive=0;
+function renderRequests(){const disabled=document.getElementById('disableCache').checked;document.getElementById('requestRows').innerHTML=requests.map((r,i)=>`<tr class="request-row ${i===requestActive?'active':''}" data-i="${i}"><td>${r.name}</td><td>${r.method}</td><td>${r.status}</td><td>${r.type}</td><td>${disabled?r.size:(i===0?r.size:'(memory cache)')}</td><td>${disabled?r.time:(i===0?r.time:'0 ms')}</td></tr>`).join('');document.querySelectorAll('.request-row').forEach(row=>row.addEventListener('click',()=>{requestActive=Number(row.dataset.i);renderRequests();}));const r=requests[requestActive];document.getElementById('requestDetail').innerHTML=`<div class="detail-item"><span>Request Method</span><strong>${r.method}</strong></div><div class="detail-item"><span>Status Code</span><strong>${r.status}</strong></div><div class="detail-item"><span>Content-Type</span><strong>${r.content}</strong></div><div class="detail-item"><span>Server / platform</span><strong>${r.server}</strong></div><div class="detail-item"><span>Request URL</span><strong>${r.url}</strong></div><div class="detail-item"><span>Timing</span><strong>${disabled?r.time:'May be served from cache'}</strong></div>`;}
+document.getElementById('refreshRequests').addEventListener('click',renderRequests);document.getElementById('disableCache').addEventListener('change',renderRequests);renderRequests();
+
+// review
+const questions=[
+ {q:'A fixed desktop computer is two metres from a switch and needs stable low-latency LAN access. Which link is the most natural choice?',opts:['Bluetooth','Twisted-pair Ethernet','Geostationary satellite','Infrared remote control'],a:1,why:'A short Ethernet link is inexpensive, predictable and does not require mobility.'},
+ {q:'Which medium is most associated with very high capacity over long backbone distances?',opts:['Optical fibre','Bluetooth','Powerline only','Consumer infrared'],a:0,why:'Optical fibre carries light, supports high data rates and scales over long distances.'},
+ {q:'In an FTTN access path, what normally remains between the home and the neighbourhood node?',opts:['Only satellite radio','Existing metallic/copper cable','A full-mesh fibre network inside the home','Bluetooth'],a:1,why:'FTTN carries fibre to the node and reuses metallic cabling for the final customer segment.'},
+ {q:'Which topology connects each endpoint to one central switch or access point?',opts:['Ring','Bus','Star','Full mesh'],a:2,why:'A star places a central device at the centre of the links.'},
+ {q:'Why is partial mesh common in large provider networks?',opts:['It removes all routers','It provides selected redundancy without every possible link','It uses only one shared cable','It prevents any device failure'],a:1,why:'Partial mesh balances resilience with cost and complexity.'},
+ {q:'Which device role normally connects different IP networks?',opts:['Router','Ethernet switch only','NIC only','Bluetooth headset'],a:0,why:'Routers connect networks and forward packets using IP information.'},
+ {q:'When index.html links to style.css and script.js on a public website, what will a browser commonly do?',opts:['Ignore the linked files','Request the supporting resources as separate web requests','Convert them into MAC addresses','Store them in the subnet mask'],a:1,why:'The HTML leads the browser to request additional resources such as CSS and JavaScript.'},
+ {q:'Which DevTools value tells you whether the main HTTP request succeeded?',opts:['Status code','MAC vendor prefix','Subnet broadcast address','Switch port number'],a:0,why:'An HTTP status code such as 200 is part of the server response and indicates the request outcome.'}
+];
+const reviewList=document.getElementById('reviewList');questions.forEach((q,i)=>{const card=document.createElement('div');card.className='question-card';card.innerHTML=`<h3>${i+1}. ${q.q}</h3><div class="option-list">${q.opts.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"><span>${o}</span></label>`).join('')}</div><div class="feedback" id="feedback${i}" hidden></div>`;reviewList.appendChild(card)});
+function checkReview(){let score=0;questions.forEach((q,i)=>{const chosen=document.querySelector(`input[name=q${i}]:checked`);const labels=[...document.querySelectorAll(`input[name=q${i}]`)].map(x=>x.closest('label'));labels.forEach(l=>l.classList.remove('correct-option','wrong-option'));const fb=document.getElementById(`feedback${i}`);fb.hidden=false;if(!chosen){fb.className='feedback wrong-feedback';fb.textContent='Choose an answer before checking.';return;}const val=Number(chosen.value);labels[q.a].classList.add('correct-option');if(val===q.a){score++;fb.className='feedback correct-feedback';fb.innerHTML=`<strong>Correct.</strong> ${q.why}`;}else{labels[val].classList.add('wrong-option');fb.className='feedback wrong-feedback';fb.innerHTML=`<strong>Not quite.</strong> ${q.why}`;}});const box=document.getElementById('scoreBox');box.hidden=false;box.innerHTML=`<span>Your score</span><strong>${score} / ${questions.length}</strong><p>${score===questions.length?'Excellent. You have the central Week 5 model.':'Replay the section linked to any explanation you missed, then try again.'}</p>`;if(score===questions.length)completed.add('review');updateProgress();}
+document.getElementById('checkAnswers').addEventListener('click',checkReview);document.getElementById('resetAnswers').addEventListener('click',()=>{document.querySelectorAll('#reviewList input').forEach(i=>i.checked=false);document.querySelectorAll('#reviewList label').forEach(l=>l.classList.remove('correct-option','wrong-option'));document.querySelectorAll('#reviewList .feedback').forEach(f=>f.hidden=true);document.getElementById('scoreBox').hidden=true;});
+
+const hash=location.hash.replace('#','');if(order.includes(hash))setPanel(hash);else updateProgress();
+})();
+</script>
+</body>
+</html>
