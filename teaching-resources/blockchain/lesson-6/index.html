@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A short student-led Solidity and smart-contract lesson covering compilation, mappings, require rules, events and blockchain time." />
+  <link rel="canonical" href="https://elkhodr.com/teaching-resources/blockchain/lesson-6/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Smart Contract Rule Lab | Blockchain Teaching Resources" />
+  <meta property="og:description" content="Compile, deploy, test voting rules and beat a time lock in a short animated Solidity challenge." />
+  <title>Smart Contract Rule Lab | Blockchain Teaching Resources</title>
+  <link rel="stylesheet" href="styles.css?v=20260817" />
+</head>
+<body>
+  <a class="skip-link" href="#lesson-content">Skip to lesson</a>
+  <main class="app-shell" id="lesson-content">
+    <nav class="site-nav" aria-label="Blockchain lesson navigation">
+      <a href="/teaching-resources/">Teaching Resources</a>
+      <a href="/teaching-resources/blockchain/">Blockchain Main</a>
+      <a href="/demo/">Lesson 1</a>
+      <a href="/teaching-resources/blockchain/lesson-2/">Lesson 2</a>
+      <a href="/teaching-resources/blockchain/lesson-3/">Lesson 3</a>
+      <a href="/teaching-resources/blockchain/lesson-4/">Lesson 4</a>
+      <a href="/teaching-resources/blockchain/lesson-5/">Lesson 5</a>
+      <a href="/teaching-resources/blockchain/lesson-6/" aria-current="page">Lesson 6</a>
+    </nav>
+
+    <header class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Blockchain Teaching Resources</p>
+        <h1 id="page-title">Smart Contract Rule Lab</h1>
+        <p class="hero-copy">Three quick challenges. Turn Solidity into EVM code, make a voting contract enforce its rules, then unlock a time-locked vault.</p>
+      </div>
+      <div class="hero-status" aria-live="polite">
+        <span id="mission-count">Challenge 1 of 3</span>
+        <strong id="step-count">Step 1 of 3</strong>
+        <em id="score-count">Score 0 / 7</em>
+      </div>
+    </header>
+
+    <nav class="mission-nav" aria-label="Smart contract challenges">
+      <button class="mission-tab active" data-mission="0" type="button" aria-current="step"><span aria-hidden="true">⚙️</span><span>1. Solidity → EVM</span></button>
+      <button class="mission-tab" data-mission="1" type="button"><span aria-hidden="true">🗳️</span><span>2. Build the Vote Rules</span></button>
+      <button class="mission-tab" data-mission="2" type="button"><span aria-hidden="true">⏱️</span><span>3. Beat the Time Lock</span></button>
+    </nav>
+
+    <section class="lesson-card" aria-labelledby="lesson-title">
+      <div class="lesson-heading-row">
+        <div><p id="lesson-kicker" class="lesson-kicker">Challenge 1</p><h2 id="lesson-title">Solidity to EVM</h2></div>
+        <span id="lesson-badge" class="lesson-badge">Compile, deploy and execute</span>
+      </div>
+      <div class="step-toolbar" aria-label="Step controls">
+        <button id="back-button" class="control secondary" type="button">← Back</button>
+        <div class="step-dots" id="step-dots" aria-label="Lesson progress"></div>
+        <button id="next-button" class="control primary" type="button">Next →</button>
+      </div>
+      <div class="lesson-grid">
+        <article class="explanation-panel" aria-live="polite">
+          <p id="step-label" class="step-label">Step 1</p><h3 id="step-title"></h3><p id="step-text"></p>
+          <div id="concept-box" class="concept-box"></div>
+          <div class="student-led-note"><strong>Your turn:</strong> interact with the scene first. Read the feedback, then use Next when you are ready.</div>
+        </article>
+        <div class="visual-panel" aria-label="Interactive smart contract visualisation"><div id="scene" class="scene"></div></div>
+      </div>
+      <div class="step-toolbar bottom" aria-label="Step controls">
+        <button id="back-button-bottom" class="control secondary" type="button">← Back</button>
+        <button id="restart-button" class="control ghost" type="button">↻ Restart challenge</button>
+        <button id="next-button-bottom" class="control primary" type="button">Next →</button>
+      </div>
+    </section>
+
+    <section class="learning-summary" aria-labelledby="summary-title">
+      <h2 id="summary-title">Carry these ideas into the Week 6 primer</h2>
+      <div class="summary-grid">
+        <div><span>⚙️</span><strong>Execution path</strong><p>Solidity is compiled to bytecode, deployed as a contract account, then executed by the EVM.</p></div>
+        <div><span>🗳️</span><strong>Rules before state</strong><p>Read the caller and stored state, validate with require, then update state and emit evidence.</p></div>
+        <div><span>⏱️</span><strong>Blockchain time</strong><p>A contract can compare block.timestamp with a stored deadline before allowing an action.</p></div>
+      </div>
+    </section>
+
+    <footer class="resource-credit">
+      <p><strong>Developed by Dr Mahmoud Elkhodr</strong> as companion teaching resources.</p>
+      <p>&copy; 2026 Dr Mahmoud Elkhodr. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>. Reuse and adaptation are allowed with attribution.</p>
+      <details><summary>How to cite or attribute this resource</summary><p><strong>Suggested citation:</strong> Elkhodr, M. (2026). <em>Smart Contract Rule Lab</em> [Interactive teaching resource]. https://elkhodr.com/teaching-resources/blockchain/lesson-6/</p><p><strong>Short attribution:</strong> “Smart Contract Rule Lab” by Dr Mahmoud Elkhodr, licensed under CC BY 4.0.</p></details>
+    </footer>
+  </main>
+  <script src="app.js?v=20260817"></script>
+</body>
+</html>
