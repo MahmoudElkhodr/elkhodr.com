@@ -77,6 +77,7 @@ h3{color:var(--navy)}
 .range-input{width:100%;min-height:44px;accent-color:var(--blue);cursor:pointer;touch-action:pan-y}
 .range-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:.8rem}
 .range-input-help{margin:8px 0 0;color:var(--muted);font-size:.86rem;line-height:1.45}.borrow-prefixes{margin-top:10px}.borrow-prefixes .pill-button{min-width:52px}
+.activity-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 18px}.activity-step{border:1px solid var(--line);border-radius:15px;background:#f8fafc;padding:14px;line-height:1.48}.activity-step strong{display:block;color:var(--navy);margin-bottom:4px}.activity-step span{color:var(--muted);font-size:.9rem}.step-badge{display:grid!important;place-items:center;width:28px;height:28px;margin:0 0 9px!important;border-radius:50%;background:var(--blue)!important;color:#fff!important;font-size:.82rem!important}.playground-explanation{margin:16px 0}.visual-label{display:flex;justify-content:space-between;gap:14px;align-items:flex-end;margin-top:18px}.visual-label strong{color:var(--navy)}.visual-label span{color:var(--muted);font-size:.85rem;text-align:right}
 .step-stage{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch}.step-visual{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#f8fbff,#f7f5ff);padding:20px;min-height:310px}.step-explain{border:1px solid var(--line);border-radius:18px;background:#fff;padding:20px;min-height:310px}.step-explain .step-count{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:850}.step-explain h3{margin:7px 0 8px}.step-explain p{color:var(--muted);line-height:1.62}.formula{border:1px solid #d7ccf2;background:var(--purple-soft);border-radius:13px;padding:12px 14px;font-weight:850;color:#4d2a99;margin:12px 0}.range-summary{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.range-summary div{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff}.range-summary span{display:block;color:var(--muted);font-size:.77rem}.range-summary strong{display:block;color:var(--navy);margin-top:4px}
 .planner-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.host-cloud{border:1px solid var(--line);border-radius:18px;padding:18px;background:#f8fafc;min-height:230px}.host-dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.host-dot{width:20px;height:20px;border-radius:50%;background:var(--teal);opacity:.88;animation:pop .25s ease both}.host-more{align-self:center;color:var(--muted);font-weight:800;margin-left:4px}
 .address-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.address-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:15px;transition:.2s}.address-card:hover{transform:translateY(-2px);box-shadow:0 10px 22px #17233c13}.address-card .addr{font-family:SFMono-Regular,Consolas,monospace;font-weight:900;color:var(--blue);font-size:1.08rem}.address-card h4{margin:8px 0 4px;color:var(--navy)}.address-card p{margin:0;color:var(--muted);line-height:1.48;font-size:.9rem}
@@ -84,7 +85,7 @@ h3{color:var(--navy)}
 footer{color:var(--muted);text-align:center;padding:28px 12px 10px;line-height:1.6;font-size:.9rem}footer p{margin:6px auto;max-width:1100px}footer strong{color:var(--navy)}footer a{color:var(--blue)}footer details{margin:9px auto 0;max-width:900px}footer summary{color:var(--navy);cursor:pointer;font-weight:800}
 @keyframes pop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:.88}}
 @media(max-width:1120px){.tab-bar{grid-template-columns:repeat(3,1fr)}.metric-grid{grid-template-columns:repeat(2,1fr)}.teach-grid,.step-stage,.planner-layout{grid-template-columns:1fr}.subnet-list{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:720px){.app-shell{padding:12px}.hero{padding:26px 22px;display:block}.hero-actions{justify-content:flex-start;margin-top:18px}.progress-panel{grid-template-columns:1fr}.tab-bar{position:static;grid-template-columns:1fr 1fr}.lesson-intro{grid-template-columns:1fr}.lesson-number{width:58px;height:58px}.metric-grid,.address-cards{grid-template-columns:1fr}.subnet-list{grid-template-columns:1fr 1fr}.bit-strip,.bit-labels{gap:1px}.bit{height:34px;font-size:.56rem;border-radius:3px}.octet-row{grid-template-columns:1fr 1fr}.lesson-navigation{flex-direction:column}.lesson-navigation button{width:100%}}
+@media(max-width:720px){.app-shell{padding:12px}.hero{padding:26px 22px;display:block}.hero-actions{justify-content:flex-start;margin-top:18px}.progress-panel{grid-template-columns:1fr}.tab-bar{position:static;grid-template-columns:1fr 1fr}.lesson-intro{grid-template-columns:1fr}.lesson-number{width:58px;height:58px}.metric-grid,.address-cards,.activity-steps{grid-template-columns:1fr}.subnet-list{grid-template-columns:1fr 1fr}.bit-strip,.bit-labels{gap:1px}.bit{height:34px;font-size:.56rem;border-radius:3px}.octet-row{grid-template-columns:1fr 1fr}.visual-label{display:block}.visual-label span{display:block;text-align:left;margin-top:4px}.lesson-navigation{flex-direction:column}.lesson-navigation button{width:100%}}
 @media(max-width:460px){.subnet-list{grid-template-columns:1fr}.tab-bar{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
@@ -201,22 +202,32 @@ footer{color:var(--muted);text-align:center;padding:28px 12px 10px;line-height:1
       <section class="lesson-intro">
         <div class="lesson-number">3</div>
         <div>
-          <p class="section-kicker">Watch one /24 split into smaller pieces</p>
-          <h2>Subnet playground</h2>
-          <p class="lead-copy">The bar represents all 256 addresses from 192.168.6.0 to 192.168.6.255. Change the prefix and the bar divides into equal-sized subnet ranges. Click any subnet to inspect its network address, usable hosts and broadcast address.</p>
-          <div class="outcome-row"><span>See subnet count grow</span><span>See block size shrink</span><span>Read network and broadcast boundaries</span></div>
+          <p class="section-kicker">Why split one network?</p>
+          <h2>Turn one /24 into separate, non-overlapping networks</h2>
+          <p class="lead-copy">Imagine that 192.168.6.0/24 is the one address block available for several labs, departments or security zones. They should not all share one network, so we divide the original block into smaller networks. For example, four teaching labs could use four /26 subnets, giving each lab its own network with 62 usable host addresses. We are not creating extra addresses: every address from 192.168.6.0 to 192.168.6.255 is reassigned to exactly one smaller subnet.</p>
+          <div class="outcome-row"><span>One starting address block</span><span>Equal subnet blocks</span><span>No gaps or overlaps</span></div>
         </div>
       </section>
 
       <section class="demo-panel">
-        <div class="panel-heading"><div><h3>Split 192.168.6.0/24</h3><p>No manual binary calculation is required here. Move the slider and observe the pattern first.</p></div><div class="counter" id="playPrefixCounter">/26</div></div>
-        <input class="range-input" id="playPrefixSlider" type="range" min="24" max="30" step="1" value="26" />
+        <div class="panel-heading"><div><h3>Your task: split 192.168.6.0/24</h3><p>You begin with one network containing 256 addresses. Choose a longer prefix to divide it into more, smaller networks, then inspect where each new network starts and ends.</p></div><div class="counter" id="playPrefixCounter">/26</div></div>
+        <div class="activity-steps" aria-label="Subnet playground instructions">
+          <div class="activity-step"><strong class="step-badge">1</strong><strong>Choose the new prefix</strong><span>/24 means no split. Moving towards /30 borrows more host bits and creates more subnets.</span></div>
+          <div class="activity-step"><strong class="step-badge">2</strong><strong>Watch the whole bar divide</strong><span>The full bar always represents the original .0 to .255 address space. Each coloured piece becomes one subnet.</span></div>
+          <div class="activity-step"><strong class="step-badge">3</strong><strong>Select one subnet</strong><span>Click a piece or card to identify its network address, usable host range and broadcast address.</span></div>
+        </div>
+        <input class="range-input" id="playPrefixSlider" type="range" min="24" max="30" step="1" value="26" aria-label="Choose a new prefix for the subnet playground" aria-describedby="playSliderHelp" />
         <div class="range-labels"><span>/24</span><span>/25</span><span>/26</span><span>/27</span><span>/28</span><span>/29</span><span>/30</span></div>
+        <p class="range-input-help" id="playSliderHelp">Drag the slider, use the arrow keys, or choose a prefix directly. Start with /26 to see four equal subnets.</p>
+        <div class="prefix-presets borrow-prefixes" id="playPrefixButtons" role="group" aria-label="Choose the playground prefix directly"></div>
+        <div class="key-note teaching-note playground-explanation" id="playExplanation" aria-live="polite"></div>
+        <div class="visual-label"><strong>The complete original 192.168.6.0/24 address space</strong><span>Every coloured section below is one separate subnet</span></div>
         <div class="range-wrap">
           <div class="range-bar" id="subnetBar"></div>
           <div class="range-scale"><span>.0</span><span>.64</span><span>.128</span><span>.192</span><span>.255</span></div>
         </div>
         <div class="metric-grid" id="playMetrics" style="margin-top:16px"></div>
+        <div class="callout" style="margin-top:16px"><strong>What success looks like:</strong> you can explain how many subnets the selected prefix creates, how many addresses each subnet contains, and why the subnet ranges cover .0 to .255 without overlapping.</div>
         <div class="subnet-list" id="subnetList"></div>
       </section>
 
@@ -503,15 +514,64 @@ renderBorrow();
 let playPrefix=26;
 let activeSubnetIndex=0;
 const playSlider=document.getElementById('playPrefixSlider');
-playSlider.addEventListener('input',()=>{playPrefix=Number(playSlider.value);activeSubnetIndex=0;renderPlay()});
+const playPrefixButtons=document.getElementById('playPrefixButtons');
+const playPrefixValues=[24,25,26,27,28,29,30];
+let playPointerId=null;
+function setPlayPrefix(value){
+  playPrefix=Math.max(24,Math.min(30,Math.round(Number(value)||24)));
+  playSlider.value=playPrefix;
+  activeSubnetIndex=0;
+  renderPlay();
+}
+function setPlayPrefixFromPointer(event){
+  const rect=playSlider.getBoundingClientRect();
+  const ratio=Math.max(0,Math.min(1,(event.clientX-rect.left)/rect.width));
+  setPlayPrefix(24+ratio*6);
+}
+playPrefixValues.forEach(p=>{
+  const b=document.createElement('button');
+  b.type='button'; b.className='pill-button'; b.textContent=`/${p}`; b.dataset.prefix=p;
+  b.addEventListener('click',()=>setPlayPrefix(p));
+  playPrefixButtons.appendChild(b);
+});
+playSlider.addEventListener('input',()=>setPlayPrefix(playSlider.value));
+playSlider.addEventListener('change',()=>setPlayPrefix(playSlider.value));
+playSlider.addEventListener('pointerdown',event=>{
+  playPointerId=event.pointerId;
+  playSlider.setPointerCapture?.(event.pointerId);
+  setPlayPrefixFromPointer(event);
+});
+playSlider.addEventListener('pointermove',event=>{
+  if(event.pointerId===playPointerId) setPlayPrefixFromPointer(event);
+});
+['pointerup','pointercancel'].forEach(type=>playSlider.addEventListener(type,event=>{
+  if(event.pointerId===playPointerId) playPointerId=null;
+}));
+playSlider.addEventListener('keydown',event=>{
+  const changes={ArrowLeft:-1,ArrowDown:-1,ArrowRight:1,ArrowUp:1,PageDown:-1,PageUp:1};
+  if(event.key==='Home'||event.key==='End'){
+    event.preventDefault(); setPlayPrefix(event.key==='Home'?24:30);
+  }else if(changes[event.key]){
+    event.preventDefault(); setPlayPrefix(playPrefix+changes[event.key]);
+  }
+});
 function renderPlay(){
   const info=subnetInfo(playPrefix);
   document.getElementById('playPrefixCounter').textContent=`/${playPrefix} → ${info.subnets} subnet${info.subnets===1?'':'s'}`;
+  playSlider.value=playPrefix;
+  [...playPrefixButtons.children].forEach(b=>{
+    const active=Number(b.dataset.prefix)===playPrefix;
+    b.classList.toggle('active',active);
+    b.setAttribute('aria-pressed',String(active));
+  });
+  document.getElementById('playExplanation').innerHTML=playPrefix===24
+    ? '<strong>At /24, nothing has been split yet.</strong> The bar is still one network containing all 256 addresses from 192.168.6.0 to 192.168.6.255. Choose /25 or longer to begin subnetting.'
+    : `<strong>What /${playPrefix} achieves:</strong> borrowing ${info.borrowed} host bit${info.borrowed===1?'':'s'} creates ${info.subnets} equal subnet${info.subnets===1?'':'s'}. Each subnet contains ${info.addresses} total addresses (${info.usable} usable for hosts). Together they still cover exactly 192.168.6.0 to 192.168.6.255, with no gaps or overlaps.`;
   document.getElementById('playMetrics').innerHTML=
-    metric('Subnet mask',info.mask,'Dotted-decimal form')+
-    metric('Block size',info.block,`Addresses in each subnet`) +
-    metric('Number of subnets',info.subnets,`Starting from one /24`) +
-    metric('Usable hosts each',info.usable,`${info.addresses} total − 2`);
+    metric('New subnet mask',info.mask,`The dotted-decimal form of /${playPrefix}`)+
+    metric('Equal subnets created',info.subnets,`From the original single /24 network`) +
+    metric('Total addresses each',info.addresses,`The size of every coloured block`) +
+    metric('Usable host addresses each',info.usable,`${info.addresses} total − network − broadcast`);
   const bar=document.getElementById('subnetBar');
   bar.innerHTML='';
   for(let i=0;i<info.subnets;i++){
@@ -520,6 +580,8 @@ function renderPlay(){
     d.style.width=`${100/info.subnets}%`;
     d.textContent=info.subnets<=8?`.${s.network}–.${s.broadcast}`:(info.subnets<=16?`${i+1}`:'');
     d.title=`Subnet ${i+1}: 192.168.6.${s.network}/${playPrefix} to 192.168.6.${s.broadcast}`;
+    d.setAttribute('aria-label',`${d.title}. Select this subnet.`);
+    d.setAttribute('aria-pressed',String(i===activeSubnetIndex));
     d.addEventListener('click',()=>{activeSubnetIndex=i;renderPlay()});
     bar.appendChild(d);
   }
@@ -528,6 +590,7 @@ function renderPlay(){
     const s=subnetInfo(playPrefix,i);
     const b=document.createElement('button'); b.type='button'; b.className='subnet-card'+(i===activeSubnetIndex?' active':'');
     b.innerHTML=`<strong>Subnet ${i+1}: 192.168.6.${s.network}/${playPrefix}</strong><span>Range .${s.network}–.${s.broadcast}<br>Usable .${s.first}–.${s.last}</span>`;
+    b.setAttribute('aria-pressed',String(i===activeSubnetIndex));
     b.addEventListener('click',()=>{activeSubnetIndex=i;renderPlay()}); list.appendChild(b);
   }
   const s=subnetInfo(playPrefix,activeSubnetIndex);
