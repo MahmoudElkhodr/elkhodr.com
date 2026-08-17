@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="COIT11238 Week 6 self-paced tutorial on IPv4 prefixes, subnet masks, network and host portions, subnet ranges and usable hosts." />
+<link rel="canonical" href="https://elkhodr.com/teaching-resources/networking/lesson-6/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Move the Boundary | COIT11238 Networking Lesson 6" />
+<meta property="og:description" content="Learn subnetting visually by moving the IPv4 network and host boundary, exploring address ranges and choosing prefixes for host requirements." />
+<title>Lesson 6 — Move the Boundary | COIT11238</title>
+<style>
+:root{
+  color:#172136;
+  font-synthesis:none;
+  text-rendering:optimizeLegibility;
+  --navy:#17233c;
+  --blue:#2463eb;
+  --blue-soft:#e8f0ff;
+  --purple:#6842c2;
+  --purple-soft:#f0ebff;
+  --teal:#087f8c;
+  --teal-soft:#e2f6f7;
+  --orange:#c75b09;
+  --orange-soft:#fff0e2;
+  --red:#b42318;
+  --red-soft:#fff0ef;
+  --green:#157347;
+  --green-soft:#e9f7ef;
+  --yellow:#8a6100;
+  --yellow-soft:#fff8db;
+  --line:#d5dee9;
+  --muted:#5e6b80;
+  --white:#fff;
+  --bg:#edf2f7;
+  background:var(--bg);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{min-width:320px;min-height:100vh;margin:0;background:var(--bg)}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.48}
+a{color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #2463eb55;outline-offset:3px}
+code,.mono{font-family:SFMono-Regular,Consolas,"Liberation Mono",monospace}
+.skip-link{position:fixed;left:12px;top:-60px;z-index:999;color:#fff;background:var(--navy);padding:10px 14px;border-radius:9px;text-decoration:none}.skip-link:focus{top:12px}
+.app-shell{max-width:1540px;margin:0 auto;padding:24px}
+.site-nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 14px}.site-nav a{text-decoration:none;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:.88rem;font-weight:760}.site-nav a:hover,.site-nav a[aria-current="page"]{color:var(--blue);border-color:#9fb8f7;background:var(--blue-soft)}
+.hero{color:#fff;background:linear-gradient(135deg,#17233c 0%,#243d74 52%,#6842c2 130%);border-radius:28px;display:flex;justify-content:space-between;align-items:flex-start;gap:28px;padding:34px 38px;box-shadow:0 18px 55px #17233c2e}
+.eyebrow,.section-kicker{text-transform:uppercase;letter-spacing:.09em;margin:0 0 8px;font-size:.78rem;font-weight:850}.hero .eyebrow{color:#c9d8ff}
+h1{letter-spacing:-.05em;margin:0;font-size:clamp(2.35rem,5vw,4.7rem);line-height:1}
+h2{letter-spacing:-.035em;margin:3px 0 14px;font-size:clamp(1.9rem,3.3vw,3.2rem);line-height:1.08}
+h3{color:var(--navy)}
+.hero-copy{color:#e8edf7;max-width:1030px;margin:18px 0 0;font-size:clamp(1rem,1.55vw,1.26rem);line-height:1.58}
+.hero-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}.hero-button{color:#fff;background:#ffffff17;border:1px solid #ffffff66;border-radius:11px;padding:10px 14px;font-weight:800}.hero-button:hover{background:#ffffff26}
+.progress-panel{border:1px solid var(--line);background:#fff;border-radius:17px;grid-template-columns:minmax(250px,.8fr) 1.6fr;align-items:center;gap:22px;margin:16px 0 0;padding:14px 18px;display:grid}.progress-panel strong,.progress-panel span{display:block}.progress-panel span{color:var(--muted);margin-top:3px;font-size:.85rem}.progress-track{background:#e8edf4;border-radius:999px;height:12px;overflow:hidden}.progress-track span{border-radius:inherit;background:linear-gradient(90deg,var(--blue),var(--purple));height:100%;transition:width .3s;display:block}
+.tab-bar{z-index:20;backdrop-filter:blur(12px);background:#edf2f7f0;grid-template-columns:repeat(5,1fr);gap:9px;padding:16px 0;display:grid;position:sticky;top:0}.tab{border:1px solid var(--line);color:var(--muted);background:#fff;border-radius:13px;padding:12px 10px;font-weight:760;transition:all .2s}.tab:hover{border-color:#aebbd0;transform:translateY(-1px)}.tab.active{color:#fff;border-color:var(--blue);background:var(--blue);box-shadow:0 8px 22px #2463eb3b}.tab.complete:not(.active){color:var(--green);background:var(--green-soft);border-color:#a9d6bf}
+.panel-stack{display:grid;gap:18px}
+.lesson-intro,.demo-panel,.lesson-navigation,.score-box{border:1px solid var(--line);background:#fff}
+.lesson-intro{background:linear-gradient(145deg,#fff 0%,#f3f4ff 100%);border-radius:25px;grid-template-columns:auto 1fr;align-items:start;gap:24px;padding:28px;display:grid}.lesson-number{color:#fff;background:var(--blue);border-radius:20px;place-items:center;width:72px;height:72px;font-size:2rem;font-weight:900;display:grid;box-shadow:0 10px 25px #2463eb33}.lead-copy{color:var(--muted);max-width:1180px;font-size:1.06rem;line-height:1.68}.outcome-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}.outcome-row span{background:var(--teal-soft);color:#08616b;border-radius:999px;padding:8px 12px;font-size:.9rem;font-weight:750}
+.demo-panel{border-radius:22px;padding:25px;box-shadow:0 8px 28px #17233c0d}.panel-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:17px}.panel-heading h3{margin:0;font-size:1.7rem}.panel-heading p{margin:5px 0 0;color:var(--muted);line-height:1.55}.primary-button,.secondary-button,.complete-button,.small-button{border:1px solid transparent;border-radius:11px;padding:11px 16px;font-weight:800}.primary-button{color:#fff;background:var(--blue);border-color:var(--blue)}.primary-button:hover{background:#1c52ca}.secondary-button{color:var(--navy);background:#fff;border-color:#bfcadb}.secondary-button:hover{background:#f5f7fb}.complete-button{background:var(--green-soft);color:var(--green);border-color:#9cd0b5}.small-button{padding:8px 11px;color:var(--navy);background:#fff;border-color:#bfcadb}.action-row{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-top:17px}.counter{color:var(--muted);font-size:.9rem;font-weight:700}
+.key-note{border-left:5px solid var(--orange);background:var(--orange-soft);border-radius:14px;padding:14px 16px;line-height:1.55}.key-note strong{color:#7a3505}.teaching-note{border-left-color:var(--purple);background:var(--purple-soft)}.teaching-note strong{color:#4d2a99}
+.callout{border:1px solid var(--line);border-radius:16px;padding:15px;background:#f8fafc;line-height:1.55}.callout strong{color:var(--navy)}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px}.metric-card span{display:block;color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;font-weight:800}.metric-card strong{display:block;margin-top:5px;color:var(--navy);font-size:1.15rem}.metric-card small{display:block;color:var(--muted);line-height:1.4;margin-top:4px}
+.teach-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:18px}
+.explain-box{border:1px solid var(--line);background:#fff;border-radius:18px;padding:18px;line-height:1.62}.explain-box h3{margin:0 0 8px}.explain-box p{margin:7px 0;color:var(--muted)}.explain-box .big{font-size:1.35rem;color:var(--navy);font-weight:900}
+.prefix-presets{display:flex;flex-wrap:wrap;gap:8px}.pill-button{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:999px;padding:9px 13px;font-weight:800}.pill-button.active{color:#fff;background:var(--blue);border-color:var(--blue)}
+.bit-strip{display:grid;grid-template-columns:repeat(32,1fr);gap:3px;margin:18px 0 8px;position:relative}.bit{min-width:0;height:46px;border-radius:6px;display:grid;place-items:center;font-size:.73rem;font-weight:850;transition:background .35s,transform .35s,border-color .35s;border:1px solid transparent}.bit.network{background:var(--blue-soft);color:#1247aa;border-color:#b9cdfa}.bit.borrowed{background:var(--purple-soft);color:#4d2a99;border-color:#c8b8ef}.bit.host{background:var(--teal-soft);color:#08616b;border-color:#aee0e4}.bit.highlight{transform:translateY(-5px);box-shadow:0 8px 18px #17233c20}
+.bit-labels{display:grid;grid-template-columns:repeat(32,1fr);gap:3px;font-size:.62rem;color:var(--muted);text-align:center}.octet-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.octet{border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;background:#fff}.octet strong{display:block;color:var(--navy)}.octet small{display:block;color:var(--muted);margin-top:3px}
+.legend-row{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}.legend{display:inline-flex;align-items:center;gap:7px;border-radius:999px;border:1px solid var(--line);background:#fff;padding:7px 10px;font-size:.84rem;font-weight:760}.swatch{width:14px;height:14px;border-radius:4px}.swatch.network{background:var(--blue-soft);border:1px solid #9fb8f7}.swatch.borrowed{background:var(--purple-soft);border:1px solid #b8a1e8}.swatch.host{background:var(--teal-soft);border:1px solid #9bd6db}
+.range-wrap{position:relative;margin-top:18px}.range-bar{height:78px;display:flex;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}.subnet-segment{position:relative;min-width:2px;display:flex;align-items:center;justify-content:center;border-right:1px solid #fff8;background:var(--blue-soft);color:#1247aa;font-weight:850;font-size:.75rem;transition:filter .2s,transform .2s,background .2s}.subnet-segment:nth-child(even){background:var(--purple-soft);color:#4d2a99}.subnet-segment:hover,.subnet-segment.active{filter:saturate(1.2);transform:scaleY(1.08);z-index:2;box-shadow:0 7px 18px #17233c26}.range-scale{display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem;margin-top:5px}
+.host-marker{position:absolute;top:-8px;transform:translateX(-50%);transition:left .7s cubic-bezier(.2,.8,.2,1);z-index:5;text-align:center}.host-marker .pin{width:28px;height:28px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;margin:auto;box-shadow:0 7px 18px #c75b0940}.host-marker span{white-space:nowrap;display:block;font-size:.73rem;font-weight:850;color:#7a3505;margin-top:3px;background:var(--orange-soft);padding:3px 6px;border-radius:7px}
+.subnet-list{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;max-height:340px;overflow:auto;padding-right:3px}.subnet-card{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff;text-align:left}.subnet-card:hover,.subnet-card.active{border-color:#9fb8f7;background:var(--blue-soft)}.subnet-card strong{display:block;color:var(--navy)}.subnet-card span{display:block;color:var(--muted);font-size:.82rem;line-height:1.4;margin-top:3px}
+.range-input{width:100%;accent-color:var(--blue)}
+.range-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:.8rem}
+.step-stage{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch}.step-visual{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#f8fbff,#f7f5ff);padding:20px;min-height:310px}.step-explain{border:1px solid var(--line);border-radius:18px;background:#fff;padding:20px;min-height:310px}.step-explain .step-count{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:850}.step-explain h3{margin:7px 0 8px}.step-explain p{color:var(--muted);line-height:1.62}.formula{border:1px solid #d7ccf2;background:var(--purple-soft);border-radius:13px;padding:12px 14px;font-weight:850;color:#4d2a99;margin:12px 0}.range-summary{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.range-summary div{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff}.range-summary span{display:block;color:var(--muted);font-size:.77rem}.range-summary strong{display:block;color:var(--navy);margin-top:4px}
+.planner-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.host-cloud{border:1px solid var(--line);border-radius:18px;padding:18px;background:#f8fafc;min-height:230px}.host-dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.host-dot{width:20px;height:20px;border-radius:50%;background:var(--teal);opacity:.88;animation:pop .25s ease both}.host-more{align-self:center;color:var(--muted);font-weight:800;margin-left:4px}
+.address-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.address-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:15px;transition:.2s}.address-card:hover{transform:translateY(-2px);box-shadow:0 10px 22px #17233c13}.address-card .addr{font-family:SFMono-Regular,Consolas,monospace;font-weight:900;color:var(--blue);font-size:1.08rem}.address-card h4{margin:8px 0 4px;color:var(--navy)}.address-card p{margin:0;color:var(--muted);line-height:1.48;font-size:.9rem}
+.lesson-navigation{border-radius:18px;padding:14px;display:flex;justify-content:space-between;gap:10px;margin-top:18px}.lesson-navigation button{min-width:165px}
+footer{color:var(--muted);text-align:center;padding:28px 12px 10px;line-height:1.6;font-size:.9rem}footer p{margin:6px auto;max-width:1100px}footer strong{color:var(--navy)}footer a{color:var(--blue)}footer details{margin:9px auto 0;max-width:900px}footer summary{color:var(--navy);cursor:pointer;font-weight:800}
+@keyframes pop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:.88}}
+@media(max-width:1120px){.tab-bar{grid-template-columns:repeat(3,1fr)}.metric-grid{grid-template-columns:repeat(2,1fr)}.teach-grid,.step-stage,.planner-layout{grid-template-columns:1fr}.subnet-list{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.app-shell{padding:12px}.hero{padding:26px 22px;display:block}.hero-actions{justify-content:flex-start;margin-top:18px}.progress-panel{grid-template-columns:1fr}.tab-bar{position:static;grid-template-columns:1fr 1fr}.lesson-intro{grid-template-columns:1fr}.lesson-number{width:58px;height:58px}.metric-grid,.address-cards{grid-template-columns:1fr}.subnet-list{grid-template-columns:1fr 1fr}.bit-strip,.bit-labels{gap:1px}.bit{height:34px;font-size:.56rem;border-radius:3px}.octet-row{grid-template-columns:1fr 1fr}.lesson-navigation{flex-direction:column}.lesson-navigation button{width:100%}}
+@media(max-width:460px){.subnet-list{grid-template-columns:1fr}.tab-bar{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#lesson-content">Skip to lesson content</a>
+<div class="app-shell">
+  <nav class="site-nav" aria-label="Networking resources">
+    <a href="/teaching-resources/">Teaching Resources</a>
+    <a href="/teaching-resources/networking/">Networking Main</a>
+    <a href="/teaching-resources/networking/lesson-1/">Lesson 1</a>
+    <a href="/teaching-resources/networking/lesson-2/">Lesson 2</a>
+    <a href="/teaching-resources/networking/lesson-3/">Lesson 3</a>
+    <a href="/teaching-resources/networking/lesson-4/">Lesson 4</a>
+    <a href="/teaching-resources/networking/lesson-5/">Lesson 5</a>
+    <a href="/teaching-resources/networking/lesson-6/" aria-current="page">Lesson 6</a>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <p class="eyebrow">COIT11238 · Week 6 self-paced tutorial</p>
+      <h1>Move the Boundary</h1>
+      <p class="hero-copy">Learn subnetting by moving the IPv4 network/host boundary and watching the ranges change. There are no marks, no timer and no hidden tricks. Read the explanation, press the buttons, move the slider and replay any step until the pattern makes sense.</p>
+    </div>
+    <div class="hero-actions">
+      <button class="hero-button" id="fullscreenButton" type="button">⛶ Full screen</button>
+      <button class="hero-button" id="resetAllButton" type="button">↻ Reset lesson</button>
+    </div>
+  </header>
+
+  <section class="progress-panel" aria-label="Tutorial progress">
+    <div><strong id="progressText">0 of 5 sections completed</strong><span>Progress exists only while this page remains open. Nothing is submitted.</span></div>
+    <div class="progress-track"><span id="progressBar" style="width:0%"></span></div>
+  </section>
+
+  <nav class="tab-bar" aria-label="Lesson sections">
+    <button class="tab active" type="button" data-tab="recap" aria-current="page">1. IP recap</button>
+    <button class="tab" type="button" data-tab="boundary">2. Move the boundary</button>
+    <button class="tab" type="button" data-tab="subnets">3. Subnet playground</button>
+    <button class="tab" type="button" data-tab="finder">4. Find my subnet</button>
+    <button class="tab" type="button" data-tab="planner">5. Plan for hosts</button>
+  </nav>
+
+  <main id="lesson-content">
+    <section id="panel-recap" class="panel-stack" data-panel="recap">
+      <section class="lesson-intro">
+        <div class="lesson-number">1</div>
+        <div>
+          <p class="section-kicker">Keep only the ideas we need</p>
+          <h2>From routing to the address boundary</h2>
+          <p class="lead-copy">Routing tables describe destinations as networks. That is why an IPv4 address needs a network portion and a host portion. This first section is deliberately short: it connects the lecture to the subnetting activity without repeating earlier switching, ARP or encapsulation lessons.</p>
+          <div class="outcome-row"><span>Routing uses network destinations</span><span>IPv4 has 32 bits</span><span>The prefix marks a boundary</span></div>
+        </div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Three statements to carry into subnetting</h3><p>Read these before moving on. If they make sense, subnetting becomes much less mysterious.</p></div></div>
+        <div class="metric-grid">
+          <div class="metric-card"><span>Routing</span><strong>Route to a network</strong><small>A router can use one prefix for many hosts instead of storing one route per computer.</small></div>
+          <div class="metric-card"><span>IPv4</span><strong>32 bits</strong><small>Humans normally write them as four decimal octets such as 192.168.6.10.</small></div>
+          <div class="metric-card"><span>Prefix</span><strong>/24 means 24 network bits</strong><small>The remaining 8 bits are available for addresses inside that network.</small></div>
+          <div class="metric-card"><span>Mask</span><strong>255.255.255.0</strong><small>This is another way to show the same /24 boundary.</small></div>
+        </div>
+        <div class="key-note" style="margin-top:16px"><strong>Subnetting is not a new address format.</strong> It is the act of choosing where the network/host boundary sits. In this lesson we start with the familiar <span class="mono">192.168.6.0/24</span> network from the practical plan and move that boundary.</div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Special addresses still follow the same rule</h3><p>The host portion gives several addresses special meanings.</p></div></div>
+        <div class="address-cards">
+          <div class="address-card"><div class="addr">network</div><h4>Host bits all 0</h4><p>Identifies the network itself. For 192.168.6.0/24, the network address is 192.168.6.0.</p></div>
+          <div class="address-card"><div class="addr">broadcast</div><h4>Host bits all 1</h4><p>Targets every host in that IP network. For 192.168.6.0/24, it is 192.168.6.255.</p></div>
+          <div class="address-card"><div class="addr">0.0.0.0</div><h4>Startup source</h4><p>Used in the lecture example when a host does not yet have an IP address.</p></div>
+          <div class="address-card"><div class="addr">127.0.0.1</div><h4>Loopback</h4><p>Sends traffic back to the same computer for local testing.</p></div>
+        </div>
+      </section>
+    </section>
+
+    <section id="panel-boundary" class="panel-stack" data-panel="boundary" hidden>
+      <section class="lesson-intro">
+        <div class="lesson-number">2</div>
+        <div>
+          <p class="section-kicker">See the split before calculating anything</p>
+          <h2>Move the network/host boundary</h2>
+          <p class="lead-copy">The 32 boxes below are the 32 bits of one IPv4 address. Blue bits identify the original network. Purple bits are host bits that we have borrowed to create smaller subnets. Teal bits remain available for host addresses.</p>
+          <div class="outcome-row"><span>Connect /N to network bits</span><span>See borrowed subnet bits</span><span>Connect prefix to subnet mask</span></div>
+        </div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Start simple: /8, /16 and /24</h3><p>These boundaries fall between octets. Click each one and watch which bits belong to the network.</p></div><div class="counter" id="simplePrefixCounter">/24 selected</div></div>
+        <div class="prefix-presets" id="simplePrefixButtons"></div>
+        <div class="bit-strip" id="simpleBitStrip" aria-label="32 IPv4 bits showing network and host portions"></div>
+        <div class="bit-labels" id="simpleBitLabels"></div>
+        <div class="octet-row" id="simpleOctets"></div>
+        <div class="legend-row"><span class="legend"><span class="swatch network"></span>Network bits</span><span class="legend"><span class="swatch host"></span>Host bits</span></div>
+        <div class="metric-grid" id="simpleMetrics" style="margin-top:15px"></div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Now move inside the last octet</h3><p>Starting with a /24 network, move the slider towards /30. Every step borrows one more host bit to create more, smaller subnets.</p></div><div class="counter" id="borrowCounter">/24</div></div>
+        <input class="range-input" id="borrowSlider" type="range" min="24" max="30" step="1" value="24" aria-label="Choose prefix from 24 to 30" />
+        <div class="range-labels"><span>/24 — larger host space</span><span>/30 — very small host space</span></div>
+        <div class="bit-strip" id="borrowBitStrip"></div>
+        <div class="bit-labels" id="borrowBitLabels"></div>
+        <div class="legend-row"><span class="legend"><span class="swatch network"></span>Original /24 network bits</span><span class="legend"><span class="swatch borrowed"></span>Borrowed for subnetting</span><span class="legend"><span class="swatch host"></span>Remaining host bits</span></div>
+        <div class="metric-grid" id="borrowMetrics"></div>
+        <div class="teaching-note key-note" style="margin-top:16px"><strong>Direction matters:</strong> moving from /24 to /25 uses one more bit for identifying the network/subnet and leaves one fewer bit for hosts. More subnet bits → more subnets. Fewer host bits → fewer usable host addresses in each subnet.</div>
+      </section>
+    </section>
+
+    <section id="panel-subnets" class="panel-stack" data-panel="subnets" hidden>
+      <section class="lesson-intro">
+        <div class="lesson-number">3</div>
+        <div>
+          <p class="section-kicker">Watch one /24 split into smaller pieces</p>
+          <h2>Subnet playground</h2>
+          <p class="lead-copy">The bar represents all 256 addresses from 192.168.6.0 to 192.168.6.255. Change the prefix and the bar divides into equal-sized subnet ranges. Click any subnet to inspect its network address, usable hosts and broadcast address.</p>
+          <div class="outcome-row"><span>See subnet count grow</span><span>See block size shrink</span><span>Read network and broadcast boundaries</span></div>
+        </div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Split 192.168.6.0/24</h3><p>No manual binary calculation is required here. Move the slider and observe the pattern first.</p></div><div class="counter" id="playPrefixCounter">/26</div></div>
+        <input class="range-input" id="playPrefixSlider" type="range" min="24" max="30" step="1" value="26" />
+        <div class="range-labels"><span>/24</span><span>/25</span><span>/26</span><span>/27</span><span>/28</span><span>/29</span><span>/30</span></div>
+        <div class="range-wrap">
+          <div class="range-bar" id="subnetBar"></div>
+          <div class="range-scale"><span>.0</span><span>.64</span><span>.128</span><span>.192</span><span>.255</span></div>
+        </div>
+        <div class="metric-grid" id="playMetrics" style="margin-top:16px"></div>
+        <div class="subnet-list" id="subnetList"></div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3 id="inspectTitle">Inspect a subnet</h3><p>Network and broadcast addresses are reserved boundaries; the ordinary host addresses sit between them.</p></div></div>
+        <div class="range-summary" id="inspectSummary"></div>
+        <div class="key-note" style="margin-top:16px"><strong>Usable-host rule used in this lesson:</strong> total addresses minus the network address and broadcast address. This is the normal introductory rule for the /24 to /30 examples used here.</div>
+      </section>
+    </section>
+
+    <section id="panel-finder" class="panel-stack" data-panel="finder" hidden>
+      <section class="lesson-intro">
+        <div class="lesson-number">4</div>
+        <div>
+          <p class="section-kicker">Let the picture lead the calculation</p>
+          <h2>Find the subnet containing a host</h2>
+          <p class="lead-copy">Choose a final octet and prefix. Then step through the method. The animation shows the mask, block size, equal ranges and finally the exact subnet containing the host.</p>
+          <div class="outcome-row"><span>Use block size</span><span>Locate an address range</span><span>Identify network, usable range and broadcast</span></div>
+        </div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Worked example generator</h3><p>Try values such as 77/26, 145/27 or 210/28. You are exploring, not being graded.</p></div><div class="counter" id="finderCounter">Step 1 of 5</div></div>
+        <div class="metric-grid" style="margin-bottom:16px">
+          <label class="metric-card"><span>Host address</span><strong>192.168.6.<input id="hostOctet" type="number" min="1" max="254" value="77" style="width:75px;border:1px solid var(--line);border-radius:8px;padding:4px 6px;margin-left:4px" /></strong><small>Enter only the final octet.</small></label>
+          <label class="metric-card"><span>Prefix</span><strong><select id="finderPrefix" style="border:1px solid var(--line);border-radius:8px;padding:5px 8px"><option>/24</option><option>/25</option><option selected>/26</option><option>/27</option><option>/28</option><option>/29</option><option>/30</option></select></strong><small>Choose a prefix from /24 to /30.</small></label>
+          <div class="metric-card"><span>Base block</span><strong>192.168.6.0/24</strong><small>The activity keeps the first three octets fixed so you can focus on the changing final octet.</small></div>
+          <div class="metric-card"><span>Teaching mode</span><strong>No score</strong><small>Use Back and Next as many times as needed.</small></div>
+        </div>
+        <div class="step-stage">
+          <div class="step-visual">
+            <div class="range-wrap" style="margin-top:34px">
+              <div class="host-marker" id="finderMarker"><div class="pin">●</div><span id="markerLabel">.77</span></div>
+              <div class="range-bar" id="finderRangeBar"></div>
+              <div class="range-scale"><span>.0</span><span>.64</span><span>.128</span><span>.192</span><span>.255</span></div>
+            </div>
+            <div class="range-summary" id="finderVisualSummary" style="margin-top:32px"></div>
+          </div>
+          <div class="step-explain" id="finderExplain" aria-live="polite"></div>
+        </div>
+        <div class="action-row"><button class="secondary-button" id="finderPrev" type="button">← Back</button><button class="primary-button" id="finderNext" type="button">Next step →</button><button class="secondary-button" id="finderPlay" type="button">▶ Play</button><button class="small-button" id="finderReset" type="button">Reset</button></div>
+      </section>
+    </section>
+
+    <section id="panel-planner" class="panel-stack" data-panel="planner" hidden>
+      <section class="lesson-intro">
+        <div class="lesson-number">5</div>
+        <div>
+          <p class="section-kicker">Choose a size that fits the devices</p>
+          <h2>Plan a subnet by host requirement</h2>
+          <p class="lead-copy">Subnetting is a design decision. If a network needs only a few devices, reserving 254 usable host addresses may be unnecessary. Use the slider to see the smallest /24–/30 subnet that can hold the selected number of hosts.</p>
+          <div class="outcome-row"><span>Relate host bits to capacity</span><span>Choose a suitable prefix</span><span>Leave room for network and broadcast</span></div>
+        </div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>How many hosts do you need?</h3><p>This tool recommends the smallest subnet within the range covered by this lesson. It explains the result rather than testing you.</p></div><div class="counter" id="hostNeedLabel">30 hosts</div></div>
+        <input class="range-input" id="hostNeedSlider" type="range" min="2" max="254" value="30" />
+        <div class="range-labels"><span>2 hosts</span><span>Small office / lab</span><span>254 hosts</span></div>
+        <div class="planner-layout" style="margin-top:16px">
+          <div class="host-cloud">
+            <h3 style="margin-top:0">Devices to accommodate</h3>
+            <p style="color:var(--muted);line-height:1.5">Each dot represents one required host until the display becomes too crowded; the number above is the real requirement.</p>
+            <div class="host-dots" id="hostDots"></div>
+          </div>
+          <div>
+            <div class="metric-grid" id="planMetrics"></div>
+            <div class="explain-box" id="planExplain" style="margin-top:14px"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Why routers care about prefixes</h3><p>The same notation used in subnetting also appears in routing tables.</p></div></div>
+        <div class="teach-grid">
+          <div class="explain-box"><div class="big mono" id="routePrefixExample">192.168.6.64/26</div><p>A routing-table entry like this describes a whole destination network. A router does not need a separate entry for .65, .66, .67 and every other host in that range.</p></div>
+          <div class="explain-box"><h3>Keep the mental model</h3><p><strong>Prefix:</strong> where the network boundary sits.</p><p><strong>Subnet:</strong> one address range created by that boundary.</p><p><strong>Network address:</strong> first address in the range.</p><p><strong>Broadcast:</strong> last address in the range.</p><p><strong>Usable hosts:</strong> addresses between those boundaries.</p></div>
+        </div>
+        <div class="teaching-note key-note" style="margin-top:16px"><strong>Stop here before formal subnetting drills.</strong> The goal of Lesson 6 is to understand the structure and recognise the pattern. More advanced subnet design can build on this visual model later.</div>
+      </section>
+    </section>
+  </main>
+
+  <section class="lesson-navigation" aria-label="Section navigation">
+    <button class="secondary-button" id="previousLesson" type="button" disabled>← Previous section</button>
+    <button class="secondary-button" id="markComplete" type="button">Mark section complete</button>
+    <button class="primary-button" id="nextLesson" type="button">Complete and continue →</button>
+  </section>
+
+  <footer>
+    <p><strong>Core idea:</strong> an IPv4 prefix marks the boundary between network bits and host bits. Moving that boundary changes the size and number of address ranges. Learn the picture first; calculate after the pattern makes sense.</p>
+    <p><strong>Developed by Dr Mahmoud Elkhodr</strong> as a companion teaching resource for COIT11238. The examples deliberately use <span class="mono">192.168.6.0/24</span> so students can connect the lesson to the practical addressing plan.</p>
+    <p>&copy; 2026 Dr Mahmoud Elkhodr. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>. Reuse and adaptation are allowed with attribution.</p>
+    <details><summary>How to cite or attribute this resource</summary><p>Elkhodr, M. (2026). <em>Move the Boundary</em> [Interactive teaching resource]. https://elkhodr.com/teaching-resources/networking/lesson-6/</p><p><strong>Short attribution:</strong> “Move the Boundary” by Dr Mahmoud Elkhodr, licensed under CC BY 4.0.</p></details>
+  </footer>
+</div>
+
+<script>
+(() => {
+'use strict';
+
+const lessonOrder=['recap','boundary','subnets','finder','planner'];
+let activeLesson='recap';
+const completed=new Set();
+const tabs=[...document.querySelectorAll('.tab')];
+const panels=[...document.querySelectorAll('[data-panel]')];
+
+function updateProgress(){
+  document.getElementById('progressText').textContent=`${completed.size} of ${lessonOrder.length} sections completed`;
+  document.getElementById('progressBar').style.width=`${(completed.size/lessonOrder.length)*100}%`;
+  tabs.forEach(t=>t.classList.toggle('complete',completed.has(t.dataset.tab)));
+  const mark=document.getElementById('markComplete');
+  mark.textContent=completed.has(activeLesson)?'✓ Section completed':'Mark section complete';
+  mark.className=completed.has(activeLesson)?'complete-button':'secondary-button';
+}
+function setLesson(name){
+  activeLesson=name;
+  tabs.forEach(t=>{const a=t.dataset.tab===name;t.classList.toggle('active',a);t.setAttribute('aria-current',a?'page':'false')});
+  panels.forEach(p=>p.hidden=p.dataset.panel!==name);
+  const index=lessonOrder.indexOf(name);
+  document.getElementById('previousLesson').disabled=index===0;
+  document.getElementById('nextLesson').textContent=index===lessonOrder.length-1?'Mark lesson complete':'Complete and continue →';
+  updateProgress();
+  window.scrollTo({top:document.querySelector('.tab-bar').offsetTop-8,behavior:'smooth'});
+}
+tabs.forEach(t=>t.addEventListener('click',()=>setLesson(t.dataset.tab)));
+document.getElementById('markComplete').addEventListener('click',()=>{completed.has(activeLesson)?completed.delete(activeLesson):completed.add(activeLesson);updateProgress()});
+document.getElementById('nextLesson').addEventListener('click',()=>{
+  completed.add(activeLesson);
+  const i=lessonOrder.indexOf(activeLesson);
+  if(i<lessonOrder.length-1) setLesson(lessonOrder[i+1]); else updateProgress();
+});
+document.getElementById('previousLesson').addEventListener('click',()=>{
+  const i=lessonOrder.indexOf(activeLesson);
+  if(i>0) setLesson(lessonOrder[i-1]);
+});
+document.getElementById('fullscreenButton').addEventListener('click',()=>{
+  if(!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.();
+});
+document.getElementById('resetAllButton').addEventListener('click',()=>{
+  completed.clear(); simplePrefix=24; borrowPrefix=24; playPrefix=26; activeSubnetIndex=0; finderStep=0;
+  clearInterval(finderTimer); finderTimer=null;
+  document.getElementById('borrowSlider').value=24;
+  document.getElementById('playPrefixSlider').value=26;
+  document.getElementById('hostOctet').value=77;
+  document.getElementById('finderPrefix').value='/26';
+  document.getElementById('hostNeedSlider').value=30;
+  document.getElementById('finderPlay').textContent='▶ Play';
+  renderSimple(); renderBorrow(); renderPlay(); renderFinder(); renderPlanner(); setLesson('recap'); updateProgress();
+});
+
+function maskForPrefix(prefix){
+  const octets=[];
+  let remaining=prefix;
+  for(let i=0;i<4;i++){
+    if(remaining>=8){octets.push(255);remaining-=8}
+    else if(remaining<=0){octets.push(0)}
+    else{octets.push(256-Math.pow(2,8-remaining));remaining=0}
+  }
+  return octets.join('.');
+}
+function subnetInfo(prefix,index=0){
+  const hostBits=32-prefix;
+  const addresses=Math.pow(2,hostBits);
+  const usable=Math.max(0,addresses-2);
+  const borrowed=Math.max(0,prefix-24);
+  const subnets=Math.pow(2,borrowed);
+  const block=256/subnets;
+  const network=Math.round(index*block);
+  const broadcast=Math.round(network+block-1);
+  return {prefix,hostBits,addresses,usable,borrowed,subnets,block,network,broadcast,first:network+1,last:broadcast-1,mask:maskForPrefix(prefix)};
+}
+function lastMaskOctet(prefix){
+  return Number(maskForPrefix(prefix).split('.')[3]);
+}
+function bitMarkup(prefix,{base24=false}={}){
+  let html='';
+  for(let i=1;i<=32;i++){
+    let cls='host';
+    if(base24){
+      if(i<=24) cls='network';
+      else if(i<=prefix) cls='borrowed';
+    }else{
+      if(i<=prefix) cls='network';
+    }
+    const bitIndex=(i-1)%8;
+    html+=`<div class="bit ${cls}" title="Bit ${i}">${bitIndex===0?'128':bitIndex===1?'64':bitIndex===2?'32':bitIndex===3?'16':bitIndex===4?'8':bitIndex===5?'4':bitIndex===6?'2':'1'}</div>`;
+  }
+  return html;
+}
+function bitLabels(){
+  return Array.from({length:32},(_,i)=>`<span>${i+1}</span>`).join('');
+}
+function metric(label,value,small){
+  return `<div class="metric-card"><span>${label}</span><strong>${value}</strong><small>${small||''}</small></div>`;
+}
+
+/* Simple prefix */
+let simplePrefix=24;
+const simplePrefixButtons=document.getElementById('simplePrefixButtons');
+[8,16,24].forEach(p=>{
+  const b=document.createElement('button'); b.type='button'; b.className='pill-button'; b.textContent=`/${p}`;
+  b.addEventListener('click',()=>{simplePrefix=p;renderSimple()}); simplePrefixButtons.appendChild(b);
+});
+function renderSimple(){
+  [...simplePrefixButtons.children].forEach((b,i)=>b.classList.toggle('active',[8,16,24][i]===simplePrefix));
+  document.getElementById('simplePrefixCounter').textContent=`/${simplePrefix} selected`;
+  document.getElementById('simpleBitStrip').innerHTML=bitMarkup(simplePrefix);
+  document.getElementById('simpleBitLabels').innerHTML=bitLabels();
+  const nOct=Math.floor(simplePrefix/8);
+  document.getElementById('simpleOctets').innerHTML=[0,1,2,3].map(i=>`<div class="octet"><strong>Octet ${i+1}</strong><small>${i<nOct?'Network portion':'Host portion'}</small></div>`).join('');
+  const h=32-simplePrefix;
+  document.getElementById('simpleMetrics').innerHTML=
+    metric('Prefix',`/${simplePrefix}`,`${simplePrefix} network bits`) +
+    metric('Subnet mask',maskForPrefix(simplePrefix),'Same boundary in dotted decimal') +
+    metric('Host bits',h,`${h} bits remain after the prefix`) +
+    metric('Possible addresses',Math.pow(2,h).toLocaleString(),'Before reserving special boundary addresses');
+}
+renderSimple();
+
+/* Borrow */
+let borrowPrefix=24;
+const borrowSlider=document.getElementById('borrowSlider');
+borrowSlider.addEventListener('input',()=>{borrowPrefix=Number(borrowSlider.value);renderBorrow()});
+function renderBorrow(){
+  const info=subnetInfo(borrowPrefix);
+  document.getElementById('borrowCounter').textContent=`/${borrowPrefix}: ${info.borrowed} bit${info.borrowed===1?'':'s'} borrowed`;
+  document.getElementById('borrowBitStrip').innerHTML=bitMarkup(borrowPrefix,{base24:true});
+  document.getElementById('borrowBitLabels').innerHTML=bitLabels();
+  document.getElementById('borrowMetrics').innerHTML=
+    metric('Borrowed bits',info.borrowed,`Moved from host use to subnet identification`) +
+    metric('Subnets from /24',info.subnets.toLocaleString(),`2^${info.borrowed}`) +
+    metric('Host bits left',info.hostBits,`${32-borrowPrefix} bits`) +
+    metric('Usable hosts / subnet',info.usable.toLocaleString(),`${info.addresses} total addresses − 2`);
+}
+renderBorrow();
+
+/* Playground */
+let playPrefix=26;
+let activeSubnetIndex=0;
+const playSlider=document.getElementById('playPrefixSlider');
+playSlider.addEventListener('input',()=>{playPrefix=Number(playSlider.value);activeSubnetIndex=0;renderPlay()});
+function renderPlay(){
+  const info=subnetInfo(playPrefix);
+  document.getElementById('playPrefixCounter').textContent=`/${playPrefix} → ${info.subnets} subnet${info.subnets===1?'':'s'}`;
+  document.getElementById('playMetrics').innerHTML=
+    metric('Subnet mask',info.mask,'Dotted-decimal form')+
+    metric('Block size',info.block,`Addresses in each subnet`) +
+    metric('Number of subnets',info.subnets,`Starting from one /24`) +
+    metric('Usable hosts each',info.usable,`${info.addresses} total − 2`);
+  const bar=document.getElementById('subnetBar');
+  bar.innerHTML='';
+  for(let i=0;i<info.subnets;i++){
+    const s=subnetInfo(playPrefix,i);
+    const d=document.createElement('button'); d.type='button'; d.className='subnet-segment'+(i===activeSubnetIndex?' active':'');
+    d.style.width=`${100/info.subnets}%`;
+    d.textContent=info.subnets<=8?`.${s.network}–.${s.broadcast}`:(info.subnets<=16?`${i+1}`:'');
+    d.title=`Subnet ${i+1}: 192.168.6.${s.network}/${playPrefix} to 192.168.6.${s.broadcast}`;
+    d.addEventListener('click',()=>{activeSubnetIndex=i;renderPlay()});
+    bar.appendChild(d);
+  }
+  const list=document.getElementById('subnetList'); list.innerHTML='';
+  for(let i=0;i<info.subnets;i++){
+    const s=subnetInfo(playPrefix,i);
+    const b=document.createElement('button'); b.type='button'; b.className='subnet-card'+(i===activeSubnetIndex?' active':'');
+    b.innerHTML=`<strong>Subnet ${i+1}: 192.168.6.${s.network}/${playPrefix}</strong><span>Range .${s.network}–.${s.broadcast}<br>Usable .${s.first}–.${s.last}</span>`;
+    b.addEventListener('click',()=>{activeSubnetIndex=i;renderPlay()}); list.appendChild(b);
+  }
+  const s=subnetInfo(playPrefix,activeSubnetIndex);
+  document.getElementById('inspectTitle').textContent=`Inspect subnet ${activeSubnetIndex+1}: 192.168.6.${s.network}/${playPrefix}`;
+  document.getElementById('inspectSummary').innerHTML=
+    `<div><span>Network address</span><strong>192.168.6.${s.network}</strong></div>`+
+    `<div><span>First usable host</span><strong>192.168.6.${s.first}</strong></div>`+
+    `<div><span>Last usable host</span><strong>192.168.6.${s.last}</strong></div>`+
+    `<div><span>Broadcast address</span><strong>192.168.6.${s.broadcast}</strong></div>`;
+}
+renderPlay();
+
+/* Finder */
+let finderStep=0;
+let finderTimer=null;
+const finderSteps=5;
+const hostInput=document.getElementById('hostOctet');
+const finderPrefixSelect=document.getElementById('finderPrefix');
+[hostInput,finderPrefixSelect].forEach(el=>el.addEventListener('change',()=>{finderStep=0;renderFinder()}));
+function currentFinder(){
+  let oct=Math.max(1,Math.min(254,Number(hostInput.value)||1)); hostInput.value=oct;
+  const prefix=Number(finderPrefixSelect.value.replace('/',''));
+  const info=subnetInfo(prefix);
+  const index=Math.floor(oct/info.block);
+  return {oct,prefix,index,info:subnetInfo(prefix,index),base:info};
+}
+function renderFinder(){
+  const x=currentFinder();
+  document.getElementById('finderCounter').textContent=`Step ${finderStep+1} of ${finderSteps}`;
+  document.getElementById('markerLabel').textContent=`.${x.oct}`;
+  document.getElementById('finderMarker').style.left=`${(x.oct/255)*100}%`;
+  const bar=document.getElementById('finderRangeBar'); bar.innerHTML='';
+  for(let i=0;i<x.base.subnets;i++){
+    const s=subnetInfo(x.prefix,i); const d=document.createElement('div');
+    d.className='subnet-segment'+(i===x.index && finderStep>=3?' active':'');
+    d.style.width=`${100/x.base.subnets}%`; d.textContent=x.base.subnets<=8?`.${s.network}–.${s.broadcast}`:'';
+    bar.appendChild(d);
+  }
+  let title='',body='',formula='';
+  if(finderStep===0){
+    title='1. Read the prefix';
+    body=`The host is 192.168.6.${x.oct}/${x.prefix}. The prefix tells us that ${x.prefix} bits belong to the network/subnet portion and ${32-x.prefix} bits remain for host addressing.`;
+    formula=`/${x.prefix} → subnet mask ${x.base.mask}`;
+  }else if(finderStep===1){
+    title='2. Find the block size';
+    body=`For these /24–/30 examples, focus on the final mask octet. The final octet of the mask is ${lastMaskOctet(x.prefix)}. Subtract it from 256 to get the block size.`;
+    formula=`256 − ${lastMaskOctet(x.prefix)} = ${x.base.block}`;
+  }else if(finderStep===2){
+    title='3. Lay out equal ranges';
+    body=`Starting at .0, count in blocks of ${x.base.block}: ${Array.from({length:Math.min(x.base.subnets,8)},(_,i)=>`.${i*x.base.block}–.${i*x.base.block+x.base.block-1}`).join(', ')}${x.base.subnets>8?' …':''}.`;
+    formula=`Every subnet contains ${x.base.block} total addresses`;
+  }else if(finderStep===3){
+    title='4. Locate the host';
+    body=`The address .${x.oct} falls inside the range .${x.info.network}–.${x.info.broadcast}. The highlighted segment is therefore the subnet that contains the host.`;
+    formula=`192.168.6.${x.oct} ∈ 192.168.6.${x.info.network}/${x.prefix}`;
+  }else{
+    title='5. Read the boundaries';
+    body=`The first address is the network address and the last is the broadcast address. The ordinary usable host addresses sit between them.`;
+    formula=`Usable: 192.168.6.${x.info.first} to 192.168.6.${x.info.last}`;
+  }
+  document.getElementById('finderExplain').innerHTML=`<div class="step-count">Worked example · no marks</div><h3>${title}</h3><p>${body}</p><div class="formula">${formula}</div>`;
+  document.getElementById('finderVisualSummary').innerHTML=
+    `<div><span>Network</span><strong>${finderStep>=4?`192.168.6.${x.info.network}`:'—'}</strong></div>`+
+    `<div><span>Broadcast</span><strong>${finderStep>=4?`192.168.6.${x.info.broadcast}`:'—'}</strong></div>`+
+    `<div><span>First host</span><strong>${finderStep>=4?`192.168.6.${x.info.first}`:'—'}</strong></div>`+
+    `<div><span>Last host</span><strong>${finderStep>=4?`192.168.6.${x.info.last}`:'—'}</strong></div>`;
+  document.getElementById('finderPrev').disabled=finderStep===0;
+  document.getElementById('finderNext').disabled=finderStep===finderSteps-1;
+}
+document.getElementById('finderPrev').addEventListener('click',()=>{finderStep=Math.max(0,finderStep-1);renderFinder()});
+document.getElementById('finderNext').addEventListener('click',()=>{finderStep=Math.min(finderSteps-1,finderStep+1);renderFinder()});
+document.getElementById('finderReset').addEventListener('click',()=>{clearInterval(finderTimer);finderTimer=null;finderStep=0;renderFinder();document.getElementById('finderPlay').textContent='▶ Play'});
+document.getElementById('finderPlay').addEventListener('click',()=>{
+  if(finderTimer){clearInterval(finderTimer);finderTimer=null;document.getElementById('finderPlay').textContent='▶ Play';return}
+  if(finderStep===finderSteps-1) finderStep=0;
+  renderFinder();
+  document.getElementById('finderPlay').textContent='⏸ Pause';
+  finderTimer=setInterval(()=>{
+    if(finderStep>=finderSteps-1){clearInterval(finderTimer);finderTimer=null;document.getElementById('finderPlay').textContent='▶ Play';return}
+    finderStep++;renderFinder();
+  },1800);
+});
+renderFinder();
+
+/* Planner */
+const hostNeedSlider=document.getElementById('hostNeedSlider');
+hostNeedSlider.addEventListener('input',renderPlanner);
+function prefixForHosts(hosts){
+  for(let p=30;p>=24;p--){
+    if(Math.pow(2,32-p)-2>=hosts) return p;
+  }
+  return 24;
+}
+function renderPlanner(){
+  const hosts=Number(hostNeedSlider.value);
+  const prefix=prefixForHosts(hosts);
+  const info=subnetInfo(prefix);
+  document.getElementById('hostNeedLabel').textContent=`${hosts} host${hosts===1?'':'s'}`;
+  const dots=document.getElementById('hostDots'); dots.innerHTML='';
+  const show=Math.min(hosts,48);
+  for(let i=0;i<show;i++){const d=document.createElement('span');d.className='host-dot';d.style.animationDelay=`${Math.min(i*0.012,.35)}s`;dots.appendChild(d)}
+  if(hosts>show){const m=document.createElement('span');m.className='host-more';m.textContent=`+${hosts-show} more`;dots.appendChild(m)}
+  document.getElementById('planMetrics').innerHTML=
+    metric('Hosts required',hosts,'Your design requirement')+
+    metric('Smallest fitting prefix',`/${prefix}`,`${info.hostBits} host bits remain`)+
+    metric('Usable capacity',info.usable,`${info.addresses} total addresses − 2`)+
+    metric('Spare usable addresses',info.usable-hosts,'Capacity left for growth');
+  document.getElementById('planExplain').innerHTML=`<h3>Why /${prefix}?</h3><p>A /${prefix} leaves ${info.hostBits} host bits, producing ${info.addresses} total addresses and ${info.usable} normally usable host addresses. That is the smallest prefix between /24 and /30 that can hold ${hosts} hosts.</p><div class="formula">${info.hostBits} host bits → 2<sup>${info.hostBits}</sup> = ${info.addresses} total → ${info.usable} usable</div>`;
+  const sampleIndex=Math.min(1,info.subnets-1); const s=subnetInfo(prefix,sampleIndex);
+  document.getElementById('routePrefixExample').textContent=`192.168.6.${s.network}/${prefix}`;
+}
+renderPlanner();
+
+updateProgress();
+})();
+</script>
+</body>
+</html>
