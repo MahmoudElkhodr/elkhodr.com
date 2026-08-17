@@ -78,6 +78,7 @@ h3{color:var(--navy)}
 .range-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:.8rem}
 .range-input-help{margin:8px 0 0;color:var(--muted);font-size:.86rem;line-height:1.45}.borrow-prefixes{margin-top:10px}.borrow-prefixes .pill-button{min-width:52px}
 .activity-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 18px}.activity-step{border:1px solid var(--line);border-radius:15px;background:#f8fafc;padding:14px;line-height:1.48}.activity-step strong{display:block;color:var(--navy);margin-bottom:4px}.activity-step span{color:var(--muted);font-size:.9rem}.step-badge{display:grid!important;place-items:center;width:28px;height:28px;margin:0 0 9px!important;border-radius:50%;background:var(--blue)!important;color:#fff!important;font-size:.82rem!important}.playground-explanation{margin:16px 0}.visual-label{display:flex;justify-content:space-between;gap:14px;align-items:flex-end;margin-top:18px}.visual-label strong{color:var(--navy)}.visual-label span{color:var(--muted);font-size:.85rem;text-align:right}
+.bit.released{background:var(--orange-soft);color:#7a3505;border-color:#edc49f}.swatch.released{background:var(--orange-soft);border:1px solid #e6b78d}.capacity-status{border:1px solid var(--line);border-left-width:5px;border-radius:14px;padding:15px 16px;margin:16px 0;line-height:1.55}.capacity-status.too-small{border-left-color:var(--red);background:var(--red-soft);color:#7d2018}.capacity-status.fits{border-left-color:var(--green);background:var(--green-soft);color:#115c3a}.capacity-status strong{color:inherit}.table-wrap{overflow-x:auto;margin-top:16px}.capacity-table{width:100%;min-width:720px;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#fff}.capacity-table th,.capacity-table td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line)}.capacity-table tr:last-child th,.capacity-table tr:last-child td{border-bottom:0}.capacity-table thead th{background:#f3f6fa;color:var(--navy);font-size:.82rem}.capacity-table tbody th{color:var(--blue)}.capacity-table td{color:var(--muted);font-size:.9rem}.capacity-table .best-fit{background:var(--green-soft);color:var(--green);font-weight:800}
 .step-stage{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch}.step-visual{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#f8fbff,#f7f5ff);padding:20px;min-height:310px}.step-explain{border:1px solid var(--line);border-radius:18px;background:#fff;padding:20px;min-height:310px}.step-explain .step-count{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:850}.step-explain h3{margin:7px 0 8px}.step-explain p{color:var(--muted);line-height:1.62}.formula{border:1px solid #d7ccf2;background:var(--purple-soft);border-radius:13px;padding:12px 14px;font-weight:850;color:#4d2a99;margin:12px 0}.range-summary{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.range-summary div{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff}.range-summary span{display:block;color:var(--muted);font-size:.77rem}.range-summary strong{display:block;color:var(--navy);margin-top:4px}
 .planner-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.host-cloud{border:1px solid var(--line);border-radius:18px;padding:18px;background:#f8fafc;min-height:230px}.host-dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.host-dot{width:20px;height:20px;border-radius:50%;background:var(--teal);opacity:.88;animation:pop .25s ease both}.host-more{align-self:center;color:var(--muted);font-weight:800;margin-left:4px}
 .address-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.address-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:15px;transition:.2s}.address-card:hover{transform:translateY(-2px);box-shadow:0 10px 22px #17233c13}.address-card .addr{font-family:SFMono-Regular,Consolas,monospace;font-weight:900;color:var(--blue);font-size:1.08rem}.address-card h4{margin:8px 0 4px;color:var(--navy)}.address-card p{margin:0;color:var(--muted);line-height:1.48;font-size:.9rem}
@@ -168,9 +169,9 @@ footer{color:var(--muted);text-align:center;padding:28px 12px 10px;line-height:1
         <div class="lesson-number">2</div>
         <div>
           <p class="section-kicker">See the split before calculating anything</p>
-          <h2>Move the network/host boundary</h2>
-          <p class="lead-copy">The 32 boxes below are the 32 bits of one IPv4 address. Blue bits identify the original network. Purple bits are host bits that we have borrowed to create smaller subnets. Teal bits remain available for host addresses.</p>
-          <div class="outcome-row"><span>Connect /N to network bits</span><span>See borrowed subnet bits</span><span>Connect prefix to subnet mask</span></div>
+          <h2>Move the network/host boundary in both directions</h2>
+          <p class="lead-copy">The 32 boxes below are the 32 bits of one IPv4 address. Moving the boundary right borrows host bits to create more, smaller networks. Moving it left gives network bits back to the host portion to support more devices in one larger network.</p>
+          <div class="outcome-row"><span>Move right: more subnets</span><span>Move left: more hosts</span><span>Connect /N to capacity</span></div>
         </div>
       </section>
 
@@ -185,7 +186,7 @@ footer{color:var(--muted);text-align:center;padding:28px 12px 10px;line-height:1
       </section>
 
       <section class="demo-panel">
-        <div class="panel-heading"><div><h3>Now move inside the last octet</h3><p>Starting with a /24 network, move the slider towards /30. Every step borrows one more host bit to create more, smaller subnets.</p></div><div class="counter" id="borrowCounter">/24</div></div>
+        <div class="panel-heading"><div><h3>Now move inside the last octet</h3><p><strong>Network perspective:</strong> starting with a /24 network, move towards /30. Every step borrows one more host bit to create more, smaller subnets.</p></div><div class="counter" id="borrowCounter">/24</div></div>
         <input class="range-input" id="borrowSlider" type="range" min="24" max="30" step="1" value="24" aria-label="Choose prefix from 24 to 30" aria-describedby="borrowSliderHelp" />
         <div class="range-labels"><span>/24 — larger host space</span><span>/30 — very small host space</span></div>
         <p class="range-input-help" id="borrowSliderHelp">Drag the slider, use the arrow keys, or choose a prefix directly.</p>
@@ -195,6 +196,41 @@ footer{color:var(--muted);text-align:center;padding:28px 12px 10px;line-height:1
         <div class="legend-row"><span class="legend"><span class="swatch network"></span>Original /24 network bits</span><span class="legend"><span class="swatch borrowed"></span>Borrowed for subnetting</span><span class="legend"><span class="swatch host"></span>Remaining host bits</span></div>
         <div class="metric-grid" id="borrowMetrics"></div>
         <div class="teaching-note key-note" style="margin-top:16px"><strong>Direction matters:</strong> moving from /24 to /25 uses one more bit for identifying the network/subnet and leaves one fewer bit for hosts. More subnet bits → more subnets. Fewer host bits → fewer usable host addresses in each subnet.</div>
+      </section>
+
+      <section class="demo-panel">
+        <div class="panel-heading"><div><h3>Now move the other way: make room for 260 hosts</h3><p><strong>Host perspective:</strong> a /24 supports only 254 usable hosts, so 260 devices will not fit. Instead of jumping to an oversized /16, shorten the prefix and give network bits back to the host portion.</p></div><div class="counter" id="growCounter">/24: 254 usable hosts</div></div>
+        <div class="activity-steps" aria-label="Host capacity activity instructions">
+          <div class="activity-step"><strong class="step-badge">1</strong><strong>Identify the shortfall</strong><span>/24 has 8 host bits: 256 total addresses and 254 usable. The requirement is 260 hosts, so it is six hosts short.</span></div>
+          <div class="activity-step"><strong class="step-badge">2</strong><strong>Give one bit back</strong><span>/23 leaves 9 host bits. Capacity doubles to 512 total addresses and 510 usable, which is enough.</span></div>
+          <div class="activity-step"><strong class="step-badge">3</strong><strong>Check the real range</strong><span>The larger prefix block must begin on a valid boundary and must include adjacent address space that you control.</span></div>
+        </div>
+        <input class="range-input" id="growSlider" type="range" min="20" max="24" step="1" value="24" aria-label="Choose a prefix from 24 down to 20 to increase host capacity" aria-describedby="growSliderHelp" />
+        <div class="range-labels"><span>/20 — more host capacity</span><span>/24 — 254 usable hosts</span></div>
+        <p class="range-input-help" id="growSliderHelp">Start at /24, then choose /23, /22, /21 or /20. Moving left by one prefix step doubles the total address capacity.</p>
+        <div class="prefix-presets borrow-prefixes" id="growPrefixButtons" role="group" aria-label="Choose a larger host network directly"></div>
+        <div class="capacity-status too-small" id="growStatus" aria-live="polite"></div>
+        <div class="bit-strip" id="growBitStrip" aria-label="32 IPv4 bits showing network bits returned to the host portion"></div>
+        <div class="bit-labels" id="growBitLabels"></div>
+        <div class="legend-row"><span class="legend"><span class="swatch network"></span>Remaining network bits</span><span class="legend"><span class="swatch released"></span>Network bits given back to hosts</span><span class="legend"><span class="swatch host"></span>Original /24 host bits</span></div>
+        <div class="metric-grid" id="growMetrics"></div>
+        <div class="teach-grid" style="margin-top:16px">
+          <div class="explain-box" id="growReasoning"></div>
+          <div class="explain-box"><h3>Address range containing 192.168.6.0</h3><div class="range-summary" id="growRangeSummary"></div></div>
+        </div>
+        <div class="key-note" style="margin-top:16px"><strong>Important:</strong> changing /24 to /23 does not manufacture addresses. The /23 combines 192.168.6.0/24 with the adjacent 192.168.7.0/24. Use it only if that adjacent block is available and under the same administration.</div>
+        <div class="table-wrap">
+          <table class="capacity-table">
+            <thead><tr><th scope="col">Prefix</th><th scope="col">Network bits given back</th><th scope="col">Host bits</th><th scope="col">Usable hosts</th><th scope="col">Meaning for 260 hosts</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">/24</th><td>0</td><td>8</td><td>254</td><td>Too small by 6</td></tr>
+              <tr><th scope="row">/23</th><td>1</td><td>9</td><td>510</td><td class="best-fit">Smallest prefix here that fits</td></tr>
+              <tr><th scope="row">/22</th><td>2</td><td>10</td><td>1,022</td><td>Fits, but leaves more spare capacity</td></tr>
+              <tr><th scope="row">/20</th><td>4</td><td>12</td><td>4,094</td><td>Fits, but is much larger than required</td></tr>
+              <tr><th scope="row">/16</th><td>8</td><td>16</td><td>65,534</td><td>Oversized comparison; modern CIDR does not require this jump</td></tr>
+            </tbody>
+          </table>
+        </div>
       </section>
     </section>
 
@@ -368,15 +404,16 @@ document.getElementById('fullscreenButton').addEventListener('click',()=>{
   if(!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.();
 });
 document.getElementById('resetAllButton').addEventListener('click',()=>{
-  completed.clear(); simplePrefix=24; borrowPrefix=24; playPrefix=26; activeSubnetIndex=0; finderStep=0;
+  completed.clear(); simplePrefix=24; borrowPrefix=24; growPrefix=24; playPrefix=26; activeSubnetIndex=0; finderStep=0;
   clearInterval(finderTimer); finderTimer=null;
   document.getElementById('borrowSlider').value=24;
+  document.getElementById('growSlider').value=24;
   document.getElementById('playPrefixSlider').value=26;
   document.getElementById('hostOctet').value=77;
   document.getElementById('finderPrefix').value='/26';
   document.getElementById('hostNeedSlider').value=30;
   document.getElementById('finderPlay').textContent='▶ Play';
-  renderSimple(); renderBorrow(); renderPlay(); renderFinder(); renderPlanner(); setLesson('recap'); updateProgress();
+  renderSimple(); renderBorrow(); renderGrow(); renderPlay(); renderFinder(); renderPlanner(); setLesson('recap'); updateProgress();
 });
 
 function maskForPrefix(prefix){
@@ -509,6 +546,108 @@ function renderBorrow(){
     metric('Usable hosts / subnet',info.usable.toLocaleString(),`${info.addresses} total addresses − 2`);
 }
 renderBorrow();
+
+/* Grow host capacity */
+let growPrefix=24;
+const growSlider=document.getElementById('growSlider');
+const growPrefixButtons=document.getElementById('growPrefixButtons');
+const growPrefixValues=[24,23,22,21,20];
+let growPointerId=null;
+function setGrowPrefix(value){
+  growPrefix=Math.max(20,Math.min(24,Math.round(Number(value)||24)));
+  growSlider.value=growPrefix;
+  renderGrow();
+}
+function setGrowPrefixFromPointer(event){
+  const rect=growSlider.getBoundingClientRect();
+  const ratio=Math.max(0,Math.min(1,(event.clientX-rect.left)/rect.width));
+  setGrowPrefix(20+ratio*4);
+}
+function growBitMarkup(prefix){
+  let html='';
+  for(let i=1;i<=32;i++){
+    const cls=i<=prefix?'network':(i<=24?'released':'host');
+    const bitIndex=(i-1)%8;
+    const value=bitIndex===0?'128':bitIndex===1?'64':bitIndex===2?'32':bitIndex===3?'16':bitIndex===4?'8':bitIndex===5?'4':bitIndex===6?'2':'1';
+    html+=`<div class="bit ${cls}" title="Bit ${i}">${value}</div>`;
+  }
+  return html;
+}
+function growRange(prefix){
+  const thirdOctetBlock=Math.pow(2,24-prefix);
+  const networkThird=Math.floor(6/thirdOctetBlock)*thirdOctetBlock;
+  const broadcastThird=networkThird+thirdOctetBlock-1;
+  return {
+    network:`192.168.${networkThird}.0`,
+    first:`192.168.${networkThird}.1`,
+    last:`192.168.${broadcastThird}.254`,
+    broadcast:`192.168.${broadcastThird}.255`
+  };
+}
+growPrefixValues.forEach(p=>{
+  const b=document.createElement('button');
+  b.type='button'; b.className='pill-button'; b.textContent=`/${p}`; b.dataset.prefix=p;
+  b.addEventListener('click',()=>setGrowPrefix(p));
+  growPrefixButtons.appendChild(b);
+});
+growSlider.addEventListener('input',()=>setGrowPrefix(growSlider.value));
+growSlider.addEventListener('change',()=>setGrowPrefix(growSlider.value));
+growSlider.addEventListener('pointerdown',event=>{
+  growPointerId=event.pointerId;
+  growSlider.setPointerCapture?.(event.pointerId);
+  setGrowPrefixFromPointer(event);
+});
+growSlider.addEventListener('pointermove',event=>{
+  if(event.pointerId===growPointerId) setGrowPrefixFromPointer(event);
+});
+['pointerup','pointercancel'].forEach(type=>growSlider.addEventListener(type,event=>{
+  if(event.pointerId===growPointerId) growPointerId=null;
+}));
+growSlider.addEventListener('keydown',event=>{
+  const changes={ArrowLeft:-1,ArrowDown:-1,ArrowRight:1,ArrowUp:1,PageDown:-1,PageUp:1};
+  if(event.key==='Home'||event.key==='End'){
+    event.preventDefault(); setGrowPrefix(event.key==='Home'?20:24);
+  }else if(changes[event.key]){
+    event.preventDefault(); setGrowPrefix(growPrefix+changes[event.key]);
+  }
+});
+function renderGrow(){
+  const hostBits=32-growPrefix;
+  const returned=24-growPrefix;
+  const addresses=Math.pow(2,hostBits);
+  const usable=addresses-2;
+  const required=260;
+  const fits=usable>=required;
+  const range=growRange(growPrefix);
+  growSlider.value=growPrefix;
+  [...growPrefixButtons.children].forEach(b=>{
+    const active=Number(b.dataset.prefix)===growPrefix;
+    b.classList.toggle('active',active);
+    b.setAttribute('aria-pressed',String(active));
+  });
+  document.getElementById('growCounter').textContent=`/${growPrefix}: ${usable.toLocaleString()} usable hosts`;
+  const status=document.getElementById('growStatus');
+  status.className=`capacity-status ${fits?'fits':'too-small'}`;
+  status.innerHTML=fits
+    ? `<strong>Yes — /${growPrefix} fits 260 hosts.</strong> It provides ${usable.toLocaleString()} usable addresses, leaving ${(usable-required).toLocaleString()} available for growth.`
+    : `<strong>No — /${growPrefix} cannot fit 260 hosts.</strong> It provides only ${usable.toLocaleString()} usable addresses, so it is ${(required-usable).toLocaleString()} short.`;
+  document.getElementById('growBitStrip').innerHTML=growBitMarkup(growPrefix);
+  document.getElementById('growBitLabels').innerHTML=bitLabels();
+  document.getElementById('growMetrics').innerHTML=
+    metric('Network bits',growPrefix,`Prefix /${growPrefix}`)+
+    metric('Host bits',hostBits,`${returned} more than at /24`)+
+    metric('Total / usable addresses',`${addresses.toLocaleString()} / ${usable.toLocaleString()}`,`2^${hostBits} total, then subtract 2`)+
+    metric('Fewer addresses than /16',(65536-addresses).toLocaleString(),`/${growPrefix} reserves ${addresses.toLocaleString()} instead of 65,536`);
+  document.getElementById('growReasoning').innerHTML=returned===0
+    ? `<h3>Why /24 is too small</h3><p>A /24 leaves 8 host bits. The calculation is <strong>2^8 = 256 total addresses</strong>, then subtract the network and broadcast addresses: <strong>254 usable hosts</strong>. The 260-host requirement does not fit.</p>`
+    : `<h3>Reasoning for /${growPrefix}</h3><p>Shortening /24 to /${growPrefix} gives ${returned} network bit${returned===1?'':'s'} back to the host portion. Host bits increase from 8 to ${hostBits}, so capacity becomes <strong>2^${hostBits} = ${addresses.toLocaleString()} total addresses</strong> and <strong>${usable.toLocaleString()} usable hosts</strong>.</p><p>This leftward movement is often called <strong>supernetting or aggregation</strong>. Modern CIDR lets us choose this size without jumping to /16.</p>`;
+  document.getElementById('growRangeSummary').innerHTML=
+    `<div><span>Network address</span><strong>${range.network}/${growPrefix}</strong></div>`+
+    `<div><span>First usable host</span><strong>${range.first}</strong></div>`+
+    `<div><span>Last usable host</span><strong>${range.last}</strong></div>`+
+    `<div><span>Broadcast address</span><strong>${range.broadcast}</strong></div>`;
+}
+renderGrow();
 
 /* Playground */
 let playPrefix=26;
