@@ -50,3 +50,7 @@ Add all articles published by media outlets (including authored articles), inter
 ## Shared layout and styles
 
 `templates/page.html` controls article and archive navigation, metadata and the footer. `assets/writing.css` holds their responsive styles; `assets/writing.js` supplies article copy-link behaviour. Rebuild after changing the template or these assets. The builder adds a content-based version to writing asset URLs so visitors receive updated styles and scripts without a hard refresh. The other existing portfolio pages retain their own HTML.
+
+## Video and radio highlights
+
+The `broadcasts` array supplies the Watch & Listen column. Use `type: "youtube"` with a `videoId`, or `type: "audio"` with an HTTPS `audioUrl`; include publisher, title, summary, dateLabel, duration and the original URL. A coverage entry can reference its highlight using `broadcastId`. For historical video kept within the chronological media archive, add `videoId` directly to the coverage entry instead. Label former roles and dates explicitly. Players load without autoplay and retain links to the original source.

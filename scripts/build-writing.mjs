@@ -31,6 +31,7 @@ for (const item of [...catalogue.articles, ...catalogue.coverage]) {
   if (!item.id || ids.has(item.id)) throw new Error(`Missing or duplicate id: ${item.id}`);
   ids.add(item.id);
   for (const key of ['title','summary','publisher','dateLabel','sortDate']) if (!item[key]) throw new Error(`${item.id}: missing ${key}`);
+  if (item.videoId && !/^[A-Za-z0-9_-]{11}$/.test(item.videoId)) throw new Error(`${item.id}: invalid YouTube id`);
   if (!Array.isArray(item.topics) || !item.topics.length) throw new Error(`${item.id}: topics required`);
   for (const href of [item.url,item.originalUrl,item.mediumUrl,item.doi,...(item.coverage || []).map(x=>x.url)].filter(Boolean)) {
     if (new URL(href).protocol !== 'https:') throw new Error(`${item.id}: HTTPS URL required`);
@@ -46,6 +47,15 @@ for (const item of catalogue.articles) {
 }
 const articles = catalogue.articles.toSorted((a,b)=>b.sortDate.localeCompare(a.sortDate));
 const coverage = catalogue.coverage.toSorted((a,b)=>b.sortDate.localeCompare(a.sortDate));
+const broadcasts = catalogue.broadcasts || [];
+for (const item of broadcasts) {
+  if (!/^[a-z0-9-]+$/.test(item.id) || ids.has(item.id)) throw new Error('Invalid or duplicate broadcast id');
+  ids.add(item.id);
+  if (!['youtube','audio'].includes(item.type)) throw new Error('Unsupported broadcast type');
+  if (item.type==='youtube' && !/^[A-Za-z0-9_-]{11}$/.test(item.videoId)) throw new Error('Invalid YouTube id');
+  for (const href of [item.url,item.audioUrl].filter(Boolean)) if(new URL(href).protocol!=='https:') throw new Error('Broadcast URLs must use HTTPS');
+}
+for (const item of coverage) if(item.broadcastId && !broadcasts.some(b=>b.id===item.broadcastId)) throw new Error('Missing broadcast destination');
 const outputs = new Map();
 function renderPage(fields) {
   const replacements = {...fields, WRITING_ASSET_VERSION:assetVersion};
@@ -65,12 +75,15 @@ function articleRow(item, index) {
   <div class="article-row-footer"><span class="publisher-label${item.origin==='site'?' publisher-local':''}">${escape(originLabel(item))}</span>${readLink(item)}${item.body && item.originalUrl?external(item.originalUrl,'View original','text-link'):''}${item.doi?external(item.doi,'DOI','text-link'):''}</div>${extraCoverage(item)}</div>
 </article>`;
 }
-const mediaMarkup = coverage.map(item=>`<article class="coverage-item"><div class="coverage-meta"><span>${escape(item.publisher)}</span><span>${escape(item.dateLabel)}</span></div><h3>${external(item.url,item.title)}</h3><p>${escape(item.summary)}</p>${item.doi?`<div class="coverage-links">${external(item.doi,'DOI','text-link')}</div>`:''}${extraCoverage(item)}</article>`).join('\n');
+const videoEmbed = (videoId, title) => `<div class="broadcast-video"><iframe src="https://www.youtube.com/embed/${videoId}?rel=0" title="${escape(title)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
+const mediaMarkup = coverage.map(item=>`<article class="coverage-item" id="media-${escape(item.id)}"><div class="coverage-meta"><span>${escape(item.publisher)}</span><span>${escape(item.dateLabel)}</span></div><h3>${external(item.url,item.title)}</h3><p>${escape(item.summary)}</p>${item.broadcastId?`<div class="coverage-links"><a class="text-link" href="#broadcast-${item.broadcastId}">${item.broadcastId==='abc-newsradio'?'Listen':'Watch'} on this page <span aria-hidden="true">↑</span></a></div>`:''}${item.videoId?`<div class="archive-video">${videoEmbed(item.videoId,item.title)}</div>`:''}${item.doi?`<div class="coverage-links">${external(item.doi,'DOI','text-link')}</div>`:''}${extraCoverage(item)}</article>`).join('\n');
+const broadcastMarkup = broadcasts.map(item=>`<article class="broadcast-card broadcast-${item.type}" id="broadcast-${item.id}"><div class="broadcast-label">${escape(item.publisher)} · ${item.type==='audio'?'Radio interview':'TV interview'}</div>${item.type==='youtube'?`<div class="broadcast-video"><iframe src="https://www.youtube.com/embed/${item.videoId}?rel=0" title="${escape(item.publisher+': '+item.title)}" loading="eager" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>`:''}<h3>${escape(item.title)}</h3><p>${escape(item.summary)}</p><div class="broadcast-meta">${escape(item.dateLabel)} · ${escape(item.duration)}</div>${item.type==='audio'?`<audio controls preload="none" aria-label="${escape(item.publisher+': '+item.title)}"><source src="${escape(item.audioUrl)}" type="audio/mpeg">Your browser does not support audio playback.</audio><p class="audio-error" data-audio-error hidden>Audio unavailable here. Please use the original ABC player below.</p>`:''}${external(item.url,item.type==='audio'?'Original interview on ABC':'Watch on YouTube','text-link')}</article>`).join('\n');
 const hub = `<main id="main">
 <header class="writing-intro w"><h1>Writing &amp; Media</h1><p>Articles, explainers and media coverage on cybersecurity, privacy, blockchain and AI in education.</p><div class="section-jumps"><a href="#articles">Articles &amp; Commentary <span aria-hidden="true">↓</span></a><a href="#coverage">In the Media <span aria-hidden="true">↓</span></a></div></header>
-<section class="articles-section w" id="articles" aria-labelledby="articles-title"><div class="section-heading"><h2 id="articles-title">Articles &amp; Commentary</h2></div>
+<div class="writing-overview w"><section class="articles-section" id="articles" aria-labelledby="articles-title"><div class="section-heading"><h2 id="articles-title">Articles &amp; Commentary</h2></div>
 <div class="article-list" id="article-list">${articles.map(articleRow).join('\n')}</div>
 </section>
+<aside class="broadcasts-section" aria-labelledby="broadcasts-title"><div class="section-heading"><h2 id="broadcasts-title">Watch &amp; Listen</h2></div><div class="broadcast-list">${broadcastMarkup}</div></aside></div>
 <section class="media-section" id="coverage" aria-labelledby="coverage-title"><div class="w"><div class="section-heading"><h2 id="coverage-title">In the Media</h2><p>Articles published by media outlets, alongside interviews and coverage of my work.</p></div><div class="coverage-list">${mediaMarkup}</div></div></section>
 <aside class="writing-contact w"><p>Looking for an expert perspective on technology, security or AI in education?</p><div class="writing-contact-links"><a class="text-link" href="contact.html">Get in touch <span aria-hidden="true">→</span></a><a class="text-link" href="feed.xml">RSS feed <span aria-hidden="true">↗</span></a></div></aside>
 </main>`;

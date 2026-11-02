@@ -117,26 +117,28 @@
     {
       "id": "archive-3",
       "url": "https://youtu.be/69JF8VD3_4Q",
-      "title": "Expert commentary on cybersecurity and digital privacy",
-      "publisher": "TV Appearance",
-      "summary": "A television discussion of cybersecurity risks, digital privacy and the practical issues facing technology users.",
-      "dateLabel": "Video",
-      "sortDate": "2019-01-01",
+      "title": "Channel 7 interview: the metaverse and investing in it",
+      "publisher": "Channel 7",
+      "summary": "A television interview discussing the metaverse and investment considerations.",
+      "dateLabel": "Uploaded February 2023",
+      "sortDate": "2023-02-03",
       "topics": [
         "Privacy"
-      ]
+      ],
+      "broadcastId": "channel-seven"
     },
     {
       "id": "archive-4",
       "url": "https://www.abc.net.au/news/2020-10-20/work-from-home-revolution-during-coronavirus/12795218",
       "title": "Pandemic work from home revolution powers spike in cybercrime: report",
       "publisher": "ABC NewsRadio",
-      "summary": "Commentary on how the pandemic accelerated remote work and changed expectations around technology and the workplace.",
+      "summary": "An ABC NewsRadio interview with Glen Lauder about cybersecurity risks as the pandemic accelerated working from home.",
       "dateLabel": "20 October 2020",
       "sortDate": "2020-10-20",
       "topics": [
         "Technology & society"
-      ]
+      ],
+      "broadcastId": "abc-newsradio"
     },
     {
       "id": "archive-5",
@@ -455,6 +457,43 @@
           "label": "Evening Report — republication, 15 September 2021"
         }
       ]
+    },
+    {
+      "id": "course-advice-2018",
+      "title": "Course advice session: Master of Information Technology",
+      "publisher": "Victoria University Sydney",
+      "url": "https://www.youtube.com/watch?v=msDENXUg5-8&t=8s",
+      "dateLabel": "September 2018",
+      "sortDate": "2018-09-08",
+      "summary": "A recorded course-advice session from my former role as Academic Manager and Postgraduate Course Coordinator at Victoria University Sydney. Included as a historical record of academic leadership.",
+      "topics": [
+        "Academic leadership"
+      ],
+      "videoId": "msDENXUg5-8"
+    }
+  ],
+  "broadcasts": [
+    {
+      "id": "channel-seven",
+      "type": "youtube",
+      "publisher": "Channel 7",
+      "title": "The metaverse and investing in it",
+      "summary": "A television interview on the metaverse and the questions facing investors.",
+      "videoId": "69JF8VD3_4Q",
+      "url": "https://www.youtube.com/watch?v=69JF8VD3_4Q",
+      "dateLabel": "Uploaded February 2023",
+      "duration": "1 min 43 sec"
+    },
+    {
+      "id": "abc-newsradio",
+      "type": "audio",
+      "publisher": "ABC NewsRadio",
+      "title": "Remote work and the rise in cybercrime",
+      "summary": "An interview with Glen Lauder on cybersecurity risks as more people worked from home.",
+      "url": "https://www.abc.net.au/news/2020-10-20/work-from-home-revolution-during-coronavirus/12795218",
+      "audioUrl": "https://abcmedia.akamaized.net/news/newsradio/audio/202010/NAUs_GLcyberspike_2010_nola.mp3",
+      "dateLabel": "20 October 2020",
+      "duration": "5 min 37 sec"
     }
   ]
 }

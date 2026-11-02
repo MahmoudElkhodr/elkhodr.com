@@ -51,6 +51,30 @@
 .writing-contact p{font-size:.87rem;color:var(--mut);max-width:630px}
 .writing-contact a{white-space:nowrap}
 .writing-contact-links{display:flex;gap:20px;flex-wrap:wrap}
+.writing-overview{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:34px;padding-bottom:34px;align-items:start}
+.writing-overview .articles-section{min-width:0;padding-bottom:0}
+.writing-overview .article-row{grid-template-columns:1fr;gap:8px}
+.writing-overview .article-row-meta{flex-direction:row;flex-wrap:wrap;gap:5px 14px;padding-top:0}
+.broadcast-list{display:grid;gap:16px}
+.broadcast-card{padding:16px;border:1px solid var(--bdr);border-radius:8px;background:var(--card);min-width:0;scroll-margin-top:96px}
+.broadcast-label{font-size:.66rem;font-weight:700;letter-spacing:.045em;text-transform:uppercase;color:var(--acc);margin-bottom:11px}
+.broadcast-video{aspect-ratio:16/9;background:#182c25;margin:0 0 12px;border-radius:4px;overflow:hidden}
+.broadcast-video iframe{display:block;width:100%;height:100%;border:0}
+.broadcast-card h3{font-family:var(--hd);font-size:1rem;font-weight:500;line-height:1.4}
+.broadcast-card>p{font-size:.79rem;color:var(--mut);line-height:1.6;margin:7px 0}
+.broadcast-meta{font-size:.68rem;color:var(--mut);margin:8px 0 10px}
+.broadcast-card>.text-link{font-size:.73rem}
+.broadcast-audio{background:var(--acc-l);border-color:#bed3c6}
+.broadcast-card audio{display:block;width:100%;max-width:100%;height:42px;margin:12px 0}
+.broadcast-card .audio-error{font-size:.74rem}
+@media(max-width:900px){
+  .writing-overview{grid-template-columns:minmax(0,1fr) 285px;gap:24px}
+}
+@media(max-width:768px){
+  .writing-overview{grid-template-columns:1fr;gap:28px;padding-bottom:28px}
+  .broadcast-list{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+}
+@media(max-width:540px){.broadcast-list{grid-template-columns:1fr}}
 /* Long-form article pages */
 .article-header{padding-top:calc(var(--nh) + 36px);padding-bottom:38px}
 .back-link{display:inline-flex;align-items:center;gap:10px;color:var(--mut);font-size:.8rem;text-decoration:none;margin-bottom:38px}
@@ -133,3 +157,5 @@
   .article-header h1{font-size:26pt}
   .article-body h2{break-after:avoid}
 }
+
+.archive-video{max-width:380px;margin-top:16px}
