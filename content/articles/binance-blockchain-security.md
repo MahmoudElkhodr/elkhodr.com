@@ -33,3 +33,7 @@ On Ethereum, blockchain investigation firm [TRM Labs reports that attackers went
 ## The wider security lesson
 
 The wider issue is that a decentralised blockchain can still depend on a centralised company to manage customers’ funds. If many wallets rely on the same approval system, that system can become a single point of failure, allowing one compromise to affect funds across several blockchains. Exchanges therefore need genuinely independent checks, so access to one system cannot unlock the entire payment process. Separate approvals, limits on transfers and keeping fewer funds in hot wallets—those connected to online systems for everyday withdrawals—could help contain the damage. Spreading the blockchain’s records across thousands of computers offers little protection against an exchange being tricked into approving a fraudulent payment.
+
+## Generative AI declaration
+
+Generative AI tools assisted with the editing, organisation and presentation of this article. Responsibility for the content and any errors remains with the author.
