@@ -23,8 +23,8 @@ The website is static and stays compatible with its existing GitHub Pages hostin
 }
 ```
 
-3. Set `featured: true` on the article you want in the lead position; remove that flag from the previous lead. Without a featured entry, the newest article leads.
-4. Run `node scripts/build-writing.mjs`. This updates `media.html`, the article pages, `feed.xml` and the article entries in `sitemap.xml`. New topics appear in the archive filter automatically. The generated pages work without JavaScript; search, filters and progressive loading enhance the archive when JavaScript is available.
+3. Articles are listed newest first using `sortDate`. The first article automatically receives a small “Latest” label. Each article appears once in the archive.
+4. Run `node scripts/build-writing.mjs`. This updates `media.html`, the article pages, `feed.xml` and the article entries in `sitemap.xml`. Topics appear as labels beside each article. The complete archive is visible without JavaScript. Search, filtering and pagination are intentionally deferred until the archive needs them.
 5. Preview the website, check the article on a phone-sized screen, then commit and publish. Use `node scripts/build-writing.mjs --check` to verify generated files are current without rewriting them.
 
 Each article receives its own permanent address at `/articles/your-article-slug/`. Keep the slug unchanged when editing a published article. For a substantive update, add `updated` (ISO date) and `updatedLabel` (display date); keep the original publication date.
@@ -45,4 +45,4 @@ Add interviews, quotations, broadcasts and reporting about the author's work to 
 
 ## Shared layout and styles
 
-`templates/page.html` controls article and archive navigation, metadata and the footer. `assets/writing.css` holds their responsive styles; `assets/writing.js` supplies archive filters and copy-link behaviour. Changes to the shared template require a rebuild. The other existing portfolio pages retain their own HTML.
+`templates/page.html` controls article and archive navigation, metadata and the footer. `assets/writing.css` holds their responsive styles; `assets/writing.js` supplies article copy-link behaviour. Changes to the shared template require a rebuild. The other existing portfolio pages retain their own HTML.
