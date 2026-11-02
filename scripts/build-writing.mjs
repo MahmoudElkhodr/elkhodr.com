@@ -2,11 +2,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const site = 'https://elkhodr.com';
 const catalogue = JSON.parse(fs.readFileSync(path.join(root, 'content/writing.json'), 'utf8'));
 const template = fs.readFileSync(path.join(root, 'templates/page.html'), 'utf8');
+const assetVersion = createHash('sha256')
+  .update(fs.readFileSync(path.join(root,'assets/writing.css')))
+  .update(fs.readFileSync(path.join(root,'assets/writing.js')))
+  .digest('hex').slice(0,12);
 const checkOnly = process.argv.includes('--check');
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const localUrl = item => item.body ? `articles/${item.slug}/` : null;
@@ -43,9 +48,10 @@ const articles = catalogue.articles.toSorted((a,b)=>b.sortDate.localeCompare(a.s
 const coverage = catalogue.coverage.toSorted((a,b)=>b.sortDate.localeCompare(a.sortDate));
 const outputs = new Map();
 function renderPage(fields) {
+  const replacements = {...fields, WRITING_ASSET_VERSION:assetVersion};
   return template.replace(/\{\{([A-Z_]+)\}\}/g, (_, key) => {
-    if (!(key in fields)) throw new Error(`Missing template field ${key}`);
-    return fields[key];
+    if (!(key in replacements)) throw new Error(`Missing template field ${key}`);
+    return replacements[key];
   });
 }
 function extraCoverage(item) {

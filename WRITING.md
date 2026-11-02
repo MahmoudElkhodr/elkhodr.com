@@ -45,4 +45,4 @@ Add interviews, quotations, broadcasts and reporting about the author's work to 
 
 ## Shared layout and styles
 
-`templates/page.html` controls article and archive navigation, metadata and the footer. `assets/writing.css` holds their responsive styles; `assets/writing.js` supplies article copy-link behaviour. Changes to the shared template require a rebuild. The other existing portfolio pages retain their own HTML.
+`templates/page.html` controls article and archive navigation, metadata and the footer. `assets/writing.css` holds their responsive styles; `assets/writing.js` supplies article copy-link behaviour. Rebuild after changing the template or these assets. The builder adds a content-based version to writing asset URLs so visitors receive updated styles and scripts without a hard refresh. The other existing portfolio pages retain their own HTML.
