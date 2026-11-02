@@ -1,0 +1,319 @@
+{
+  "articles": [
+    {
+      "id": "binance-blockchain-security",
+      "slug": "binance-blockchain-security",
+      "title": "What the Binance hack reveals about blockchain security",
+      "summary": "How attackers can steal cryptocurrency without breaking the blockchain itself, and why the systems approving payments matter.",
+      "publisher": "elkhodr.com",
+      "origin": "site",
+      "date": "2026-11-02",
+      "dateLabel": "2 November 2026",
+      "sortDate": "2026-11-02",
+      "topics": [
+        "Cybersecurity",
+        "Blockchain"
+      ],
+      "body": "articles/binance-blockchain-security.md",
+      "featured": true
+    },
+    {
+      "id": "recent-0",
+      "title": "What would happen if the internet went down?",
+      "publisher": "The Conversation",
+      "url": "https://theconversation.com/what-would-happen-if-the-internet-went-down-295249",
+      "summary": "Explains why the internet has no single off switch, how shared dependencies can disrupt many services at once, and how organisations can prepare for outages.",
+      "dateLabel": "2026",
+      "sortDate": "2026-10-23",
+      "coverage": [
+        {
+          "url": "https://www.digitalinformationworld.com/2026/10/what-would-happen-if-internet-went-down.html",
+          "label": "Digital Information World · 18k"
+        },
+        {
+          "url": "https://www.downtoearth.org.in/science-technology/what-would-happen-if-the-internet-went-down",
+          "label": "Down To Earth · 395k"
+        },
+        {
+          "url": "https://www.nationaltribune.com.au/what-would-happen-if-the-internet-went-down/",
+          "label": "The National Tribune · 15.9k"
+        }
+      ],
+      "coverageNote": "Reach figures are from the media monitoring report, 23–30 October 2026.",
+      "doi": "https://doi.org/10.64628/AA.7rmmwnqna",
+      "topics": [
+        "Internet & society"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-6",
+      "url": "https://theconversation.com/an-australia-nz-travel-bubble-needs-a-unified-covid-contact-tracing-app-were-not-there-151761",
+      "title": "An Australia–NZ travel bubble needs a unified COVID contact-tracing app. We're not there",
+      "publisher": "The Conversation",
+      "summary": "Examines why a trans-Tasman travel bubble would need compatible COVID contact-tracing systems and stronger coordination.",
+      "dateLabel": "2021",
+      "sortDate": "2021-01-01",
+      "topics": [
+        "Privacy"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-7",
+      "url": "https://theconversation.com/australia-is-under-sustained-cyber-attack-warns-the-government-whats-going-on-and-what-should-businesses-do-141119",
+      "title": "Australia is under sustained cyber attack, warns the government. What's going on?",
+      "publisher": "The Conversation",
+      "summary": "Explains the reported cyber threat, who may be targeted and how organisations can strengthen their defences.",
+      "dateLabel": "June 2020",
+      "sortDate": "2020-06-01",
+      "topics": [
+        "Cybersecurity"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-8",
+      "url": "https://theconversation.com/giving-your-details-to-restaurants-and-cafes-your-rights-their-obligations-and-privacy-concerns-141286",
+      "title": "Giving your details to restaurants and cafes: your rights, their obligations and privacy concerns",
+      "publisher": "The Conversation",
+      "summary": "Sets out privacy questions around COVID check-in records, including what businesses collect and their obligations.",
+      "dateLabel": "2020",
+      "sortDate": "2020-01-01",
+      "topics": [
+        "Privacy"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-9",
+      "url": "https://theconversation.com/covidsafe-tracking-app-reviewed-the-government-delivers-on-data-security-but-other-issues-remain-137249",
+      "title": "COVIDSafe tracking app reviewed: the government delivers on data security, but other issues remain",
+      "publisher": "The Conversation",
+      "summary": "Reviews the app’s security protections alongside concerns about effectiveness, adoption and public trust.",
+      "dateLabel": "April 2020",
+      "sortDate": "2020-04-01",
+      "topics": [
+        "Privacy"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-16",
+      "url": "https://theconversation.com/the-governments-coronavirus-mobile-app-is-a-solid-effort-but-it-could-do-even-better-135030",
+      "title": "The government's coronavirus mobile app is a solid effort, but it could do even better",
+      "publisher": "The Conversation",
+      "summary": "Assesses the Australian COVIDSafe app’s privacy approach and identifies ways its design and implementation could improve.",
+      "dateLabel": "March 2020",
+      "sortDate": "2020-03-01",
+      "topics": [
+        "Privacy"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-17",
+      "url": "https://theconversation.com/studying-a-uni-course-online-here-are-4-tips-to-get-yourself-tech-ready-134549",
+      "title": "Studying a uni course online? Here are 4 tips to get yourself tech ready",
+      "publisher": "The Conversation",
+      "summary": "Offers practical advice for students preparing their technology, study routines and digital skills for online learning.",
+      "dateLabel": "2020",
+      "sortDate": "2020-01-01",
+      "topics": [
+        "Education"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-18",
+      "url": "https://theconversation.com/covid-19-death-toll-estimated-to-reach-3-900-by-next-friday-according-to-ai-modelling-133052",
+      "title": "COVID-19 death toll estimated to reach 3,900 by next Friday, according to AI modelling",
+      "publisher": "The Conversation",
+      "summary": "Explains an early AI-based projection of COVID-19 deaths and the limits involved in modelling a fast-changing outbreak.",
+      "dateLabel": "2020",
+      "sortDate": "2020-01-01",
+      "topics": [
+        "Artificial intelligence"
+      ],
+      "origin": "external"
+    }
+  ],
+  "coverage": [
+    {
+      "id": "recent-1",
+      "title": "AI research tools can distort findings and misattribute authors, CQUniversity researcher warns",
+      "publisher": "CQUniversity News",
+      "url": "https://www.cqu.edu.au/news/1322685/ai-research-tools-can-distort-findings-and-misattribute-authors-cquniversity-researcher-warns",
+      "summary": "Tests of AI research summaries found missing or misattributed authors, incomplete references and inaccurate accounts of findings—underscoring the need to check output against original papers.",
+      "dateLabel": "2026",
+      "sortDate": "2026-10-23",
+      "coverage": [
+        {
+          "url": "https://targetednews.com/pr_display.php?pr_id=9804791",
+          "label": "Targeted News Service · 3.53k"
+        }
+      ],
+      "coverageNote": "Reach figure is from the media monitoring report, 23–30 October 2026.",
+      "topics": [
+        "AI & education"
+      ]
+    },
+    {
+      "id": "recent-2",
+      "title": "Future-proofing careers",
+      "publisher": "Be Magazine · Issue 40",
+      "url": "https://be.partica.online/be-magazine/be-issue-no-40/features/future-proofing-careers",
+      "summary": "Explores how AI is reshaping work and the value of AI literacy, critical thinking, human judgement and continuous learning. The feature also describes SAGE’s approach to responsible AI use.",
+      "dateLabel": "2026",
+      "sortDate": "2026-10-23",
+      "coverage": [],
+      "topics": [
+        "Technology & society"
+      ]
+    },
+    {
+      "id": "archive-0",
+      "url": "https://www.cqu.edu.au/news/1267512/teaching-students-to-think-with-ai--not-cheat-with-it",
+      "title": "Teaching students to think with AI — not cheat with it",
+      "publisher": "CQUniversity News",
+      "summary": "A case for helping students use AI as part of learning while keeping their own thinking, evaluation and academic responsibility central.",
+      "dateLabel": "2026",
+      "sortDate": "2026-01-01",
+      "topics": [
+        "AI & education"
+      ]
+    },
+    {
+      "id": "archive-1",
+      "url": "https://www.cqu.edu.au/news/1270316",
+      "title": "CQUniversity AI education resources recognised in national TEQSA Knowledge Hub",
+      "publisher": "CQUniversity News",
+      "summary": "An overview of CQUniversity resources recognised in TEQSA’s national Generative AI Knowledge Hub.",
+      "dateLabel": "2026",
+      "sortDate": "2026-01-01",
+      "topics": [
+        "AI & education"
+      ]
+    },
+    {
+      "id": "archive-2",
+      "url": "https://scienmag.com/empowering-cybersecurity-education-with-responsible-ai-framework/",
+      "title": "Empowering cybersecurity education with responsible AI framework",
+      "publisher": "ScienMag",
+      "summary": "Reports on using a responsible AI framework to support learning and critical thinking in cybersecurity education.",
+      "dateLabel": "2025",
+      "sortDate": "2025-01-01",
+      "topics": [
+        "AI & education"
+      ]
+    },
+    {
+      "id": "archive-3",
+      "url": "https://youtu.be/69JF8VD3_4Q",
+      "title": "Expert commentary on cybersecurity and digital privacy",
+      "publisher": "TV Appearance",
+      "summary": "A television discussion of cybersecurity risks, digital privacy and the practical issues facing technology users.",
+      "dateLabel": "Video",
+      "sortDate": "2019-01-01",
+      "topics": [
+        "Privacy"
+      ]
+    },
+    {
+      "id": "archive-4",
+      "url": "https://www.abc.net.au/news/2020-10-20/work-from-home-revolution-during-coronavirus/12795218",
+      "title": "Work from home revolution during coronavirus",
+      "publisher": "ABC · Radio",
+      "summary": "Commentary on how the pandemic accelerated remote work and changed expectations around technology and the workplace.",
+      "dateLabel": "October 2020",
+      "sortDate": "2020-10-01",
+      "topics": [
+        "Technology & society"
+      ]
+    },
+    {
+      "id": "archive-5",
+      "url": "https://www.smh.com.au/national/i-m-the-chief-scientist-and-privacy-matters-to-me-and-here-s-why-i-ve-got-the-covidsafe-app-20200508-p54qzs.html",
+      "title": "COVIDSafe privacy analysis cited by the Chief Scientist of Australia",
+      "publisher": "Sydney Morning Herald · Chief Scientist Citation",
+      "summary": "Coverage of privacy concerns around COVIDSafe, including analysis referenced by Australia’s Chief Scientist.",
+      "dateLabel": "May 2020",
+      "sortDate": "2020-05-01",
+      "topics": [
+        "Privacy"
+      ]
+    },
+    {
+      "id": "archive-10",
+      "url": "https://www.sbs.com.au/news/dateline/why-new-zealand-s-covid-19-tracer-app-won-t-help-open-a-travel-bubble-with-australia-anytime-soon",
+      "title": "Why New Zealand's COVID-19 Tracer app won't help open a travel bubble with Australia",
+      "publisher": "SBS Dateline",
+      "summary": "Explains why differences between New Zealand’s and Australia’s contact-tracing systems complicated travel plans.",
+      "dateLabel": "2020",
+      "sortDate": "2020-01-01",
+      "topics": [
+        "Privacy"
+      ]
+    },
+    {
+      "id": "archive-11",
+      "url": "https://www.itnews.com.au/news/privacy-boffins-call-for-legislated-protections-from-coronavirus-tracker-app-546950",
+      "title": "Privacy boffins call for legislated protections from coronavirus tracker app",
+      "publisher": "iTnews",
+      "summary": "Reports calls for clear legal safeguards governing the collection and use of contact-tracing data.",
+      "dateLabel": "April 2020",
+      "sortDate": "2020-04-01",
+      "topics": [
+        "Privacy"
+      ]
+    },
+    {
+      "id": "archive-12",
+      "url": "https://www.smh.com.au/business/consumer-affairs/fears-overseas-visitors-and-expats-may-be-deterred-from-covidsafe-20200505-p54q2i.html",
+      "title": "Fears overseas visitors and expats may be deterred from COVIDSafe",
+      "publisher": "Sydney Morning Herald",
+      "summary": "Covers concerns that privacy perceptions and access requirements could affect COVIDSafe adoption among visitors and expatriates.",
+      "dateLabel": "May 2020",
+      "sortDate": "2020-05-01",
+      "topics": [
+        "Privacy"
+      ]
+    },
+    {
+      "id": "archive-13",
+      "url": "https://www.techrepublic.com/article/covid-19-contact-tracing-the-tricky-balance-between-privacy-and-relief-efforts/",
+      "title": "COVID-19 contact tracing: the tricky balance between privacy and relief efforts",
+      "publisher": "TechRepublic",
+      "summary": "Looks at the trade-off between effective contact tracing, individual privacy and the need for public-health responses.",
+      "dateLabel": "2020",
+      "sortDate": "2020-01-01",
+      "topics": [
+        "Privacy"
+      ]
+    },
+    {
+      "id": "archive-14",
+      "url": "https://www.cqu.edu.au/cquninews/stories/general-category/2020-general/new-covidsafe-test-reveals-much-needed-areas-of-improvement,-including-battery-optimisation",
+      "title": "New COVIDSafe app reveals much-needed areas of improvement, including battery optimisation",
+      "publisher": "CQUniversity News",
+      "summary": "Discusses early testing of COVIDSafe and practical improvements needed, including battery use.",
+      "dateLabel": "2020",
+      "sortDate": "2020-01-01",
+      "topics": [
+        "Privacy"
+      ]
+    },
+    {
+      "id": "archive-15",
+      "url": "https://www.cqu.edu.au/cquninews/stories/general-category/2020-general/a-range-of-safeguards-would-offer-peace-of-mind-for-tracetogether-users",
+      "title": "A range of safeguards would offer peace of mind for TraceTogether users",
+      "publisher": "CQUniversity News",
+      "summary": "Explains how privacy, security and governance safeguards could improve confidence in Singapore’s TraceTogether system.",
+      "dateLabel": "2020",
+      "sortDate": "2020-01-01",
+      "topics": [
+        "Privacy"
+      ]
+    }
+  ]
+}

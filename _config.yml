@@ -1,0 +1,6 @@
+# Keep article authoring sources out of the public GitHub Pages output.
+exclude:
+  - content
+  - scripts
+  - templates
+  - WRITING.md
