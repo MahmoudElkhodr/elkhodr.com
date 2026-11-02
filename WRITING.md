@@ -2,6 +2,10 @@
 
 The website is static and stays compatible with its existing GitHub Pages hosting. Run `node scripts/build-writing.mjs` after changing article content or the catalogue, and commit the generated pages alongside the source. No package installation is needed.
 
+## Choose the section
+
+“Articles & Commentary” contains independent writing published on this website or the author's own channels, such as LinkedIn or Medium. “In the Media” contains all articles published by media outlets, including authored Conversation pieces, as well as interviews, quotations and reporting about the author's work. Apply this distinction consistently to new and older entries. A Medium republication of an existing website article stays attached to its existing entry.
+
 ## Add an original article
 
 1. Write the article in `content/articles/your-article-slug.md`. Supported Markdown: paragraphs separated by blank lines, `## Section headings`, `[link text](https://example.com)`, `**bold**` and `*italic*`. Raw HTML is escaped. Other block types produce a build error instead of silently rendering incorrectly.
@@ -29,11 +33,11 @@ The website is static and stays compatible with its existing GitHub Pages hostin
 
 Each article receives its own permanent address at `/articles/your-article-slug/`. Keep the slug unchanged when editing a published article. For a substantive update, add `updated` (ISO date) and `updatedLabel` (display date); keep the original publication date.
 
-## Link to writing published elsewhere
+## Link to independent writing on another platform
 
-Add an entry to the same articles array with `origin: "external"`, the original `publisher`, `url`, `dateLabel`, `sortDate`, `topics`, `title`, `summary` and a unique `id`. Omit `body`, `slug` and `date` when the full article lives only at the publisher. Preserve the precision of known dates: use just a year in `dateLabel` when the exact day is unknown. `sortDate` only controls order; it is not displayed as a factual publication date.
+For independent writing published on the author's own LinkedIn, Medium or other personal channel, add an entry to the articles array with `origin: "external"`, the original `publisher`, `url`, `dateLabel`, `sortDate`, `topics`, `title`, `summary` and a unique `id`. Add media-outlet articles to the coverage array instead. Omit `body`, `slug` and `date` when the full article lives only on the other platform. Preserve the precision of known dates: use just a year in `dateLabel` when the exact day is unknown. `sortDate` only controls order; it is not displayed as a factual publication date.
 
-For an authorised republication on this website, also supply a local `body`, `slug`, `date`, and `originalUrl`. The page identifies the original publisher, offers both reading destinations and points its canonical link to the original article. Do not copy externally published articles onto the site without the appropriate republication rights.
+For an authorised republication of independent writing from another personal platform, also supply a local `body`, `slug`, `date`, and `originalUrl`. The page identifies the original publisher, offers both reading destinations and points its canonical link to the original article. Media-outlet articles remain listed under “In the Media.” Do not copy externally published articles onto the site without the appropriate republication rights.
 
 ## Republish an original article on Medium
 
@@ -41,7 +45,7 @@ Publish the website article first, then use Medium's import tool with its public
 
 ## Add media coverage
 
-Add interviews, quotations, broadcasts and reporting about the author's work to the `coverage` array. Fields: `id`, `title`, `summary`, `publisher`, `url`, `dateLabel`, `sortDate` and `topics`. Optional `coverage` is an array of `{ "url": "https://…", "label": "Outlet name" }` entries, with a `coverageNote` explaining any reported reach figures. These appear in an expandable “Further coverage” section.
+Add all articles published by media outlets (including authored articles), interviews, quotations, broadcasts and reporting about the author's work to the `coverage` array. Fields: `id`, `title`, `summary`, `publisher`, `url`, `dateLabel`, `sortDate` and `topics`. An optional `doi` preserves a DOI link. Optional `coverage` is an array of `{ "url": "https://…", "label": "Outlet name" }` entries, with a `coverageNote` explaining any reported reach figures. These appear in an expandable “Further coverage” section.
 
 ## Shared layout and styles
 

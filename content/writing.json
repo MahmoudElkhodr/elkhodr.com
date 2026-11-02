@@ -18,124 +18,19 @@
       "mediumUrl": "https://medium.com/@elkhodr/what-the-binance-hack-reveals-about-blockchain-security-a9de66e71cb0"
     },
     {
-      "id": "recent-0",
-      "title": "What would happen if the internet went down?",
-      "publisher": "The Conversation",
-      "url": "https://theconversation.com/what-would-happen-if-the-internet-went-down-295249",
-      "summary": "Explains why the internet has no single off switch, how shared dependencies can disrupt many services at once, and how organisations can prepare for outages.",
-      "dateLabel": "2026",
-      "sortDate": "2026-10-23",
-      "coverage": [
-        {
-          "url": "https://www.digitalinformationworld.com/2026/10/what-would-happen-if-internet-went-down.html",
-          "label": "Digital Information World · 18k"
-        },
-        {
-          "url": "https://www.downtoearth.org.in/science-technology/what-would-happen-if-the-internet-went-down",
-          "label": "Down To Earth · 395k"
-        },
-        {
-          "url": "https://www.nationaltribune.com.au/what-would-happen-if-the-internet-went-down/",
-          "label": "The National Tribune · 15.9k"
-        }
-      ],
-      "coverageNote": "Reach figures are from the media monitoring report, 23–30 October 2026.",
-      "doi": "https://doi.org/10.64628/AA.7rmmwnqna",
+      "id": "preprint-bargain-linkedin",
+      "title": "Protect Your Research in the Age of Generative AI: Rethinking the Preprint Bargain",
+      "summary": "Examines how generative AI changes the risks of sharing preprints, entering unpublished research into AI tools and using AI during peer review.",
+      "publisher": "LinkedIn",
+      "origin": "external",
+      "url": "https://www.linkedin.com/pulse/protect-your-research-age-generative-ai-rethinking-preprint-elkhodr-du7tc",
+      "dateLabel": "14 March 2026",
+      "sortDate": "2026-03-14",
       "topics": [
-        "Internet & society"
+        "Generative AI",
+        "Research integrity"
       ],
-      "origin": "external"
-    },
-    {
-      "id": "archive-6",
-      "url": "https://theconversation.com/an-australia-nz-travel-bubble-needs-a-unified-covid-contact-tracing-app-were-not-there-151761",
-      "title": "An Australia–NZ travel bubble needs a unified COVID contact-tracing app. We're not there",
-      "publisher": "The Conversation",
-      "summary": "Examines why a trans-Tasman travel bubble would need compatible COVID contact-tracing systems and stronger coordination.",
-      "dateLabel": "2021",
-      "sortDate": "2021-01-01",
-      "topics": [
-        "Privacy"
-      ],
-      "origin": "external"
-    },
-    {
-      "id": "archive-7",
-      "url": "https://theconversation.com/australia-is-under-sustained-cyber-attack-warns-the-government-whats-going-on-and-what-should-businesses-do-141119",
-      "title": "Australia is under sustained cyber attack, warns the government. What's going on?",
-      "publisher": "The Conversation",
-      "summary": "Explains the reported cyber threat, who may be targeted and how organisations can strengthen their defences.",
-      "dateLabel": "June 2020",
-      "sortDate": "2020-06-01",
-      "topics": [
-        "Cybersecurity"
-      ],
-      "origin": "external"
-    },
-    {
-      "id": "archive-8",
-      "url": "https://theconversation.com/giving-your-details-to-restaurants-and-cafes-your-rights-their-obligations-and-privacy-concerns-141286",
-      "title": "Giving your details to restaurants and cafes: your rights, their obligations and privacy concerns",
-      "publisher": "The Conversation",
-      "summary": "Sets out privacy questions around COVID check-in records, including what businesses collect and their obligations.",
-      "dateLabel": "2020",
-      "sortDate": "2020-01-01",
-      "topics": [
-        "Privacy"
-      ],
-      "origin": "external"
-    },
-    {
-      "id": "archive-9",
-      "url": "https://theconversation.com/covidsafe-tracking-app-reviewed-the-government-delivers-on-data-security-but-other-issues-remain-137249",
-      "title": "COVIDSafe tracking app reviewed: the government delivers on data security, but other issues remain",
-      "publisher": "The Conversation",
-      "summary": "Reviews the app’s security protections alongside concerns about effectiveness, adoption and public trust.",
-      "dateLabel": "April 2020",
-      "sortDate": "2020-04-01",
-      "topics": [
-        "Privacy"
-      ],
-      "origin": "external"
-    },
-    {
-      "id": "archive-16",
-      "url": "https://theconversation.com/the-governments-coronavirus-mobile-app-is-a-solid-effort-but-it-could-do-even-better-135030",
-      "title": "The government's coronavirus mobile app is a solid effort, but it could do even better",
-      "publisher": "The Conversation",
-      "summary": "Assesses the Australian COVIDSafe app’s privacy approach and identifies ways its design and implementation could improve.",
-      "dateLabel": "March 2020",
-      "sortDate": "2020-03-01",
-      "topics": [
-        "Privacy"
-      ],
-      "origin": "external"
-    },
-    {
-      "id": "archive-17",
-      "url": "https://theconversation.com/studying-a-uni-course-online-here-are-4-tips-to-get-yourself-tech-ready-134549",
-      "title": "Studying a uni course online? Here are 4 tips to get yourself tech ready",
-      "publisher": "The Conversation",
-      "summary": "Offers practical advice for students preparing their technology, study routines and digital skills for online learning.",
-      "dateLabel": "2020",
-      "sortDate": "2020-01-01",
-      "topics": [
-        "Education"
-      ],
-      "origin": "external"
-    },
-    {
-      "id": "archive-18",
-      "url": "https://theconversation.com/covid-19-death-toll-estimated-to-reach-3-900-by-next-friday-according-to-ai-modelling-133052",
-      "title": "COVID-19 death toll estimated to reach 3,900 by next Friday, according to AI modelling",
-      "publisher": "The Conversation",
-      "summary": "Explains an early AI-based projection of COVID-19 deaths and the limits involved in modelling a fast-changing outbreak.",
-      "dateLabel": "2020",
-      "sortDate": "2020-01-01",
-      "topics": [
-        "Artificial intelligence"
-      ],
-      "origin": "external"
+      "doi": "https://doi.org/10.5281/zenodo.19024109"
     }
   ],
   "coverage": [
@@ -314,6 +209,126 @@
       "topics": [
         "Privacy"
       ]
+    },
+    {
+      "id": "recent-0",
+      "title": "What would happen if the internet went down?",
+      "publisher": "The Conversation",
+      "url": "https://theconversation.com/what-would-happen-if-the-internet-went-down-295249",
+      "summary": "Explains why the internet has no single off switch, how shared dependencies can disrupt many services at once, and how organisations can prepare for outages.",
+      "dateLabel": "2026",
+      "sortDate": "2026-10-23",
+      "coverage": [
+        {
+          "url": "https://www.digitalinformationworld.com/2026/10/what-would-happen-if-internet-went-down.html",
+          "label": "Digital Information World · 18k"
+        },
+        {
+          "url": "https://www.downtoearth.org.in/science-technology/what-would-happen-if-the-internet-went-down",
+          "label": "Down To Earth · 395k"
+        },
+        {
+          "url": "https://www.nationaltribune.com.au/what-would-happen-if-the-internet-went-down/",
+          "label": "The National Tribune · 15.9k"
+        }
+      ],
+      "coverageNote": "Reach figures are from the media monitoring report, 23–30 October 2026.",
+      "doi": "https://doi.org/10.64628/AA.7rmmwnqna",
+      "topics": [
+        "Internet & society"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-6",
+      "url": "https://theconversation.com/an-australia-nz-travel-bubble-needs-a-unified-covid-contact-tracing-app-were-not-there-151761",
+      "title": "An Australia–NZ travel bubble needs a unified COVID contact-tracing app. We're not there",
+      "publisher": "The Conversation",
+      "summary": "Examines why a trans-Tasman travel bubble would need compatible COVID contact-tracing systems and stronger coordination.",
+      "dateLabel": "2021",
+      "sortDate": "2021-01-01",
+      "topics": [
+        "Privacy"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-7",
+      "url": "https://theconversation.com/australia-is-under-sustained-cyber-attack-warns-the-government-whats-going-on-and-what-should-businesses-do-141119",
+      "title": "Australia is under sustained cyber attack, warns the government. What's going on?",
+      "publisher": "The Conversation",
+      "summary": "Explains the reported cyber threat, who may be targeted and how organisations can strengthen their defences.",
+      "dateLabel": "June 2020",
+      "sortDate": "2020-06-01",
+      "topics": [
+        "Cybersecurity"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-8",
+      "url": "https://theconversation.com/giving-your-details-to-restaurants-and-cafes-your-rights-their-obligations-and-privacy-concerns-141286",
+      "title": "Giving your details to restaurants and cafes: your rights, their obligations and privacy concerns",
+      "publisher": "The Conversation",
+      "summary": "Sets out privacy questions around COVID check-in records, including what businesses collect and their obligations.",
+      "dateLabel": "2020",
+      "sortDate": "2020-01-01",
+      "topics": [
+        "Privacy"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-9",
+      "url": "https://theconversation.com/covidsafe-tracking-app-reviewed-the-government-delivers-on-data-security-but-other-issues-remain-137249",
+      "title": "COVIDSafe tracking app reviewed: the government delivers on data security, but other issues remain",
+      "publisher": "The Conversation",
+      "summary": "Reviews the app’s security protections alongside concerns about effectiveness, adoption and public trust.",
+      "dateLabel": "April 2020",
+      "sortDate": "2020-04-01",
+      "topics": [
+        "Privacy"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-16",
+      "url": "https://theconversation.com/the-governments-coronavirus-mobile-app-is-a-solid-effort-but-it-could-do-even-better-135030",
+      "title": "The government's coronavirus mobile app is a solid effort, but it could do even better",
+      "publisher": "The Conversation",
+      "summary": "Assesses the Australian COVIDSafe app’s privacy approach and identifies ways its design and implementation could improve.",
+      "dateLabel": "March 2020",
+      "sortDate": "2020-03-01",
+      "topics": [
+        "Privacy"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-17",
+      "url": "https://theconversation.com/studying-a-uni-course-online-here-are-4-tips-to-get-yourself-tech-ready-134549",
+      "title": "Studying a uni course online? Here are 4 tips to get yourself tech ready",
+      "publisher": "The Conversation",
+      "summary": "Offers practical advice for students preparing their technology, study routines and digital skills for online learning.",
+      "dateLabel": "2020",
+      "sortDate": "2020-01-01",
+      "topics": [
+        "Education"
+      ],
+      "origin": "external"
+    },
+    {
+      "id": "archive-18",
+      "url": "https://theconversation.com/covid-19-death-toll-estimated-to-reach-3-900-by-next-friday-according-to-ai-modelling-133052",
+      "title": "COVID-19 death toll estimated to reach 3,900 by next Friday, according to AI modelling",
+      "publisher": "The Conversation",
+      "summary": "Explains an early AI-based projection of COVID-19 deaths and the limits involved in modelling a fast-changing outbreak.",
+      "dateLabel": "2020",
+      "sortDate": "2020-01-01",
+      "topics": [
+        "Artificial intelligence"
+      ],
+      "origin": "external"
     }
   ]
 }

@@ -46,6 +46,7 @@
 .coverage-item h3 a:hover{color:var(--acc);text-decoration:underline;text-underline-offset:4px}
 .coverage-item h3 a>span[aria-hidden]{font-family:var(--bd);font-size:.8rem;color:var(--acc);white-space:nowrap}
 .coverage-item>p{font-size:.82rem;color:var(--mut);line-height:1.6;margin-top:7px}
+.coverage-links{margin-top:7px}
 .writing-contact{display:flex;justify-content:space-between;gap:24px;align-items:center;padding-top:32px;padding-bottom:32px}
 .writing-contact p{font-size:.87rem;color:var(--mut);max-width:630px}
 .writing-contact a{white-space:nowrap}

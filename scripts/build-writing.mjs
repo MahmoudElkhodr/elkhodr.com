@@ -23,7 +23,7 @@ const topicLabels = item => item.topics.map(escape).join(' · ');
 const readLink = (item, prefix = '') => item.body
   ? `<a class="text-link" href="${prefix}${localUrl(item)}">Read article <span aria-hidden="true">→</span></a>`
   : external(item.url, `Read at ${item.publisher}`, 'text-link');
-const originLabel = item => item.origin === 'site' ? 'Published on elkhodr.com' : `Originally published in ${item.publisher}`;
+const originLabel = item => item.origin === 'site' ? 'Published on elkhodr.com' : `Originally published on ${item.publisher}`;
 
 const ids = new Set();
 const slugs = new Set();
@@ -65,13 +65,13 @@ function articleRow(item, index) {
   <div class="article-row-footer"><span class="publisher-label${item.origin==='site'?' publisher-local':''}">${escape(originLabel(item))}</span>${readLink(item)}${item.body && item.originalUrl?external(item.originalUrl,'View original','text-link'):''}${item.doi?external(item.doi,'DOI','text-link'):''}</div>${extraCoverage(item)}</div>
 </article>`;
 }
-const mediaMarkup = coverage.map(item=>`<article class="coverage-item"><div class="coverage-meta"><span>${escape(item.publisher)}</span><span>${escape(item.dateLabel)}</span></div><h3>${external(item.url,item.title)}</h3><p>${escape(item.summary)}</p>${extraCoverage(item)}</article>`).join('\n');
+const mediaMarkup = coverage.map(item=>`<article class="coverage-item"><div class="coverage-meta"><span>${escape(item.publisher)}</span><span>${escape(item.dateLabel)}</span></div><h3>${external(item.url,item.title)}</h3><p>${escape(item.summary)}</p>${item.doi?`<div class="coverage-links">${external(item.doi,'DOI','text-link')}</div>`:''}${extraCoverage(item)}</article>`).join('\n');
 const hub = `<main id="main">
 <header class="writing-intro w"><h1>Writing &amp; Media</h1><p>Articles, explainers and media coverage on cybersecurity, privacy, blockchain and AI in education.</p><div class="section-jumps"><a href="#articles">Articles &amp; Commentary <span aria-hidden="true">↓</span></a><a href="#coverage">In the Media <span aria-hidden="true">↓</span></a></div></header>
 <section class="articles-section w" id="articles" aria-labelledby="articles-title"><div class="section-heading"><h2 id="articles-title">Articles &amp; Commentary</h2></div>
 <div class="article-list" id="article-list">${articles.map(articleRow).join('\n')}</div>
 </section>
-<section class="media-section" id="coverage" aria-labelledby="coverage-title"><div class="w"><div class="section-heading"><h2 id="coverage-title">In the Media</h2><p>Interviews, expert commentary and reporting about my research and teaching.</p></div><div class="coverage-list">${mediaMarkup}</div></div></section>
+<section class="media-section" id="coverage" aria-labelledby="coverage-title"><div class="w"><div class="section-heading"><h2 id="coverage-title">In the Media</h2><p>Articles published by media outlets, alongside interviews and coverage of my work.</p></div><div class="coverage-list">${mediaMarkup}</div></div></section>
 <aside class="writing-contact w"><p>Looking for an expert perspective on technology, security or AI in education?</p><div class="writing-contact-links"><a class="text-link" href="contact.html">Get in touch <span aria-hidden="true">→</span></a><a class="text-link" href="feed.xml">RSS feed <span aria-hidden="true">↗</span></a></div></aside>
 </main>`;
 outputs.set('media.html', renderPage({TITLE:'Writing &amp; Media | Dr Mahmoud Elkhodr',DESCRIPTION:'Articles, explainers and commentary by Dr Mahmoud Elkhodr on cybersecurity, privacy, blockchain and AI in education, plus interviews and media coverage.',CANONICAL:`${site}/media.html`,OG_TYPE:'website',ROOT:'',HEAD:jsonLd({'@context':'https://schema.org','@type':'CollectionPage',name:'Writing & Media',url:`${site}/media.html`,mainEntity:{'@type':'ItemList',itemListElement:articles.map((item,i)=>({'@type':'ListItem',position:i+1,name:item.title,url:absoluteUrl(item)}))}}),BODY_CLASS:'writing-hub',CONTENT:hub}));
