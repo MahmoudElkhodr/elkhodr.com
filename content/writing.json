@@ -40,8 +40,8 @@
       "publisher": "CQUniversity News",
       "url": "https://www.cqu.edu.au/news/1322685/ai-research-tools-can-distort-findings-and-misattribute-authors-cquniversity-researcher-warns",
       "summary": "Tests of AI research summaries found missing or misattributed authors, incomplete references and inaccurate accounts of findings—underscoring the need to check output against original papers.",
-      "dateLabel": "2026",
-      "sortDate": "2026-10-23",
+      "dateLabel": "27 October 2026",
+      "sortDate": "2026-10-27",
       "coverage": [
         {
           "url": "https://targetednews.com/pr_display.php?pr_id=9804791",
@@ -72,22 +72,34 @@
       "title": "Teaching students to think with AI — not cheat with it",
       "publisher": "CQUniversity News",
       "summary": "A case for helping students use AI as part of learning while keeping their own thinking, evaluation and academic responsibility central.",
-      "dateLabel": "2026",
-      "sortDate": "2026-01-01",
+      "dateLabel": "4 March 2026",
+      "sortDate": "2026-03-04",
       "topics": [
         "AI & education"
+      ],
+      "coverage": [
+        {
+          "url": "https://www.theeducatoronline.com/k12/news/opinion-teaching-students-to-think-with-ai--not-cheat-with-it/288838",
+          "label": "The Educator — opinion, 13 March 2026"
+        }
       ]
     },
     {
       "id": "archive-1",
-      "url": "https://www.cqu.edu.au/news/1270316",
-      "title": "CQUniversity AI education resources recognised in national TEQSA Knowledge Hub",
+      "url": "https://www.cqu.edu.au/news/1270316/cquniversity-leads-shift-in-ai-ready-education",
+      "title": "CQUniversity leads shift in AI-ready education",
       "publisher": "CQUniversity News",
-      "summary": "An overview of CQUniversity resources recognised in TEQSA’s national Generative AI Knowledge Hub.",
-      "dateLabel": "2026",
-      "sortDate": "2026-01-01",
+      "summary": "Reports on CQUniversity’s SAGE-based approach to preparing students for responsible AI use and the recognition of its resources in TEQSA’s knowledge hub.",
+      "dateLabel": "24 March 2026",
+      "sortDate": "2026-03-24",
       "topics": [
         "AI & education"
+      ],
+      "coverage": [
+        {
+          "url": "https://gladstonetoday.com.au/news/2026/03/28/cquniversity-leads-shift-in-ai-ready-education/",
+          "label": "Gladstone Today — coverage, 28 March 2026"
+        }
       ]
     },
     {
@@ -117,11 +129,11 @@
     {
       "id": "archive-4",
       "url": "https://www.abc.net.au/news/2020-10-20/work-from-home-revolution-during-coronavirus/12795218",
-      "title": "Work from home revolution during coronavirus",
-      "publisher": "ABC · Radio",
+      "title": "Pandemic work from home revolution powers spike in cybercrime: report",
+      "publisher": "ABC NewsRadio",
       "summary": "Commentary on how the pandemic accelerated remote work and changed expectations around technology and the workplace.",
-      "dateLabel": "October 2020",
-      "sortDate": "2020-10-01",
+      "dateLabel": "20 October 2020",
+      "sortDate": "2020-10-20",
       "topics": [
         "Technology & society"
       ]
@@ -134,18 +146,6 @@
       "summary": "Coverage of privacy concerns around COVIDSafe, including analysis referenced by Australia’s Chief Scientist.",
       "dateLabel": "May 2020",
       "sortDate": "2020-05-01",
-      "topics": [
-        "Privacy"
-      ]
-    },
-    {
-      "id": "archive-10",
-      "url": "https://www.sbs.com.au/news/dateline/why-new-zealand-s-covid-19-tracer-app-won-t-help-open-a-travel-bubble-with-australia-anytime-soon",
-      "title": "Why New Zealand's COVID-19 Tracer app won't help open a travel bubble with Australia",
-      "publisher": "SBS Dateline",
-      "summary": "Explains why differences between New Zealand’s and Australia’s contact-tracing systems complicated travel plans.",
-      "dateLabel": "2020",
-      "sortDate": "2020-01-01",
       "topics": [
         "Privacy"
       ]
@@ -216,8 +216,8 @@
       "publisher": "The Conversation",
       "url": "https://theconversation.com/what-would-happen-if-the-internet-went-down-295249",
       "summary": "Explains why the internet has no single off switch, how shared dependencies can disrupt many services at once, and how organisations can prepare for outages.",
-      "dateLabel": "2026",
-      "sortDate": "2026-10-23",
+      "dateLabel": "29 October 2026",
+      "sortDate": "2026-10-29",
       "coverage": [
         {
           "url": "https://www.digitalinformationworld.com/2026/10/what-would-happen-if-internet-went-down.html",
@@ -230,6 +230,14 @@
         {
           "url": "https://www.nationaltribune.com.au/what-would-happen-if-the-internet-went-down/",
           "label": "The National Tribune · 15.9k"
+        },
+        {
+          "url": "https://www.miragenews.com/what-if-internet-went-down-1768419/",
+          "label": "Mirage News — republication, 29 October 2026"
+        },
+        {
+          "url": "https://newspaceeconomy.ca/2026/10/29/what-would-happen-if-the-internet-went-down/?amp=1",
+          "label": "New Space Economy — republication, 29 October 2026"
         }
       ],
       "coverageNote": "Reach figures are from the media monitoring report, 23–30 October 2026.",
@@ -276,7 +284,13 @@
       "topics": [
         "Privacy"
       ],
-      "origin": "external"
+      "origin": "external",
+      "coverage": [
+        {
+          "url": "https://www.smartcompany.com.au/coronavirus/collecting-diners-details-restaurants-cafes-pubs-covid-19/",
+          "label": "SmartCompany — republication, 26 June 2020"
+        }
+      ]
     },
     {
       "id": "archive-9",
@@ -315,7 +329,13 @@
       "topics": [
         "Education"
       ],
-      "origin": "external"
+      "origin": "external",
+      "coverage": [
+        {
+          "url": "https://www.socialsciencespace.com/2020/04/four-tech-tips-for-students-whose-classes-moved-online/",
+          "label": "Social Science Space — republication, 3 April 2020"
+        }
+      ]
     },
     {
       "id": "archive-18",
@@ -329,6 +349,112 @@
         "Artificial intelligence"
       ],
       "origin": "external"
+    },
+    {
+      "id": "the-ai-guidance-2026",
+      "title": "Students are asking for AI guidance, not just policy",
+      "publisher": "Times Higher Education — THE Campus",
+      "url": "https://www.timeshighereducation.com/campus/students-are-asking-ai-guidance-not-just-policy",
+      "dateLabel": "23 April 2026",
+      "sortDate": "2026-04-23",
+      "summary": "Co-authored with Ergun Gide, this article argues for practical guidance that helps students verify AI outputs and demonstrate their own judgement.",
+      "topics": [
+        "AI & education"
+      ]
+    },
+    {
+      "id": "herdsa-ai-guidance-2026",
+      "title": "Students are asking for AI guidance, not just policy: a comprehensive, practical framework for AI-enabled assessment",
+      "publisher": "HERDSA Connect",
+      "url": "https://herdsa.org.au/herdsa-connect/students-are-asking-ai-guidance-not-just-policy-comprehensive-practical-framework-ai",
+      "dateLabel": "17 June 2026",
+      "sortDate": "2026-06-17",
+      "summary": "Discusses student demand for practical AI guidance and a structured approach to verification, revision and assessment assurance.",
+      "topics": [
+        "AI & education"
+      ]
+    },
+    {
+      "id": "future-campus-exams-2026",
+      "title": "AI Era Must Not Become Excuse to Default to Low Tech Exams",
+      "publisher": "Future Campus",
+      "url": "https://futurecampus.com.au/2026/04/11/ai-era-must-not-become-excuse-to-default-to-low-tech-exams/",
+      "dateLabel": "11 April 2026",
+      "sortDate": "2026-04-11",
+      "summary": "An opinion piece on assessment in the AI era, arguing for context-appropriate demonstrations of judgement and competence rather than a blanket return to traditional exams.",
+      "topics": [
+        "AI & education"
+      ]
+    },
+    {
+      "id": "cqu-smart-cities-book-2026",
+      "title": "Smart cities of the future could think for themselves",
+      "publisher": "CQUniversity News",
+      "url": "https://www.cqu.edu.au/news/1280233/smart-cities-of-the-future-could-think-for-themselves",
+      "dateLabel": "13 May 2026",
+      "sortDate": "2026-05-13",
+      "summary": "A feature on Next-Generation Smart Cities and the opportunities, security risks and governance questions raised by autonomous urban AI systems.",
+      "topics": [
+        "Smart cities",
+        "Artificial intelligence"
+      ]
+    },
+    {
+      "id": "cqu-ai-ready-impact",
+      "title": "Transformative approach setting standard for AI-ready universities",
+      "publisher": "CQUniversity — Research impact",
+      "url": "https://www.cqu.edu.au/research/impact/ai-ready-universities",
+      "dateLabel": "Date not stated",
+      "sortDate": "2026-01-01",
+      "summary": "An institutional impact case study describing SAGE, responsible AI use and CQUniversity’s work on AI-ready learning and assessment.",
+      "topics": [
+        "AI & education"
+      ]
+    },
+    {
+      "id": "conversation-nz-tracer-2020",
+      "title": "New Zealand’s COVID-19 Tracer app won’t help open a ‘travel bubble’ with Australia anytime soon",
+      "publisher": "The Conversation",
+      "url": "https://theconversation.com/new-zealands-covid-19-tracer-app-wont-help-open-a-travel-bubble-with-australia-anytime-soon-139026",
+      "dateLabel": "May 2020",
+      "sortDate": "2020-05-01",
+      "summary": "Examines the usability, privacy and cross-border limitations of New Zealand’s early COVID Tracer app.",
+      "topics": [
+        "Privacy"
+      ],
+      "coverage": [
+        {
+          "url": "https://thespinoff.co.nz/society/25-05-2020/nz-covid-tracer-wont-help-open-a-travel-bubble-with-australia-anytime-soon",
+          "label": "The Spinoff — republication, 25 May 2020"
+        },
+        {
+          "url": "https://www.sbs.com.au/news/dateline/why-new-zealand-s-covid-19-tracer-app-won-t-help-open-a-travel-bubble-with-australia-anytime-soon",
+          "label": "SBS Dateline — republication"
+        }
+      ]
+    },
+    {
+      "id": "conversation-arrival-cards-2021",
+      "title": "Australia’s yellow international arrival cards are getting a COVID-era digital makeover. Here are 5 key questions",
+      "publisher": "The Conversation",
+      "url": "https://theconversation.com/australias-yellow-international-arrival-cards-are-getting-a-covid-era-digital-makeover-here-are-5-key-questions-167898",
+      "dateLabel": "15 September 2021",
+      "sortDate": "2021-09-15",
+      "summary": "Explores privacy, security and practical questions surrounding Australia’s proposed Digital Passenger Declaration system.",
+      "topics": [
+        "Privacy",
+        "Digital identity"
+      ],
+      "coverage": [
+        {
+          "url": "https://australianaviation.com.au/2021/09/comment-the-key-questions-in-australias-international-arrival-cards-getting-a-covid-era-digital-makeover/",
+          "label": "Australian Aviation — republication, 23 September 2021"
+        },
+        {
+          "url": "https://eveningreport.nz/2021/09/15/australias-yellow-international-arrival-cards-are-getting-a-covid-era-digital-makeover-here-are-5-key-questions-167898/",
+          "label": "Evening Report — republication, 15 September 2021"
+        }
+      ]
     }
   ]
 }
