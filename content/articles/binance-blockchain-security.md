@@ -1,4 +1,4 @@
-I teach blockchain to undergraduate and postgraduate students at CQUniversity, and I have written a book examining the security aspects of integrating blockchain and artificial intelligence in smart cities.
+I teach blockchain to undergraduate and postgraduate students at CQUniversity. My book, [Next-Generation Smart Cities](https://www.routledge.com/Next-Generation-Smart-Cities-The-Integration-of-AI-Blockchain-IoT-and-Emergent-Networks/Elkhodr/p/book/9781003686859), examines the security aspects of integrating blockchain and artificial intelligence in smart cities.
 
 One of the main benefits I highlight to my students is how blockchain protects shared records against unauthorised changes. But when billions of dollars disappear from a cryptocurrency exchange, it is reasonable to ask: what happened to the security blockchain was supposed to provide?
 
@@ -34,6 +34,6 @@ On Ethereum, blockchain investigation firm [TRM Labs reports that attackers went
 
 The wider issue is that a decentralised blockchain can still depend on a centralised company to manage customers’ funds. If many wallets rely on the same approval system, that system can become a single point of failure, allowing one compromise to affect funds across several blockchains. Exchanges therefore need genuinely independent checks, so access to one system cannot unlock the entire payment process. Separate approvals, limits on transfers and keeping fewer funds in hot wallets—those connected to online systems for everyday withdrawals—could help contain the damage. Spreading the blockchain’s records across thousands of computers offers little protection against an exchange being tricked into approving a fraudulent payment.
 
-## Generative AI declaration
+## AI use acknowledgement
 
-Generative AI tools assisted with the editing, organisation and presentation of this article. Responsibility for the content and any errors remains with the author.
+This article began as a LinkedIn post I wrote. I used ChatGPT to help draft a longer version, which I then revised. I take responsibility for the arguments and any errors.
