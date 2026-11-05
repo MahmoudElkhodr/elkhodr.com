@@ -1,0 +1,23 @@
+A PhD candidate who enrols this year will graduate in 2030 or 2031. By then, AI is likely to be embedded in the everyday practice of many disciplines: searching and synthesising literature, writing and testing code, analysing data, and, increasingly, acting on our behalf as agentic systems that plan and carry out tasks with limited supervision. AI may also play a part in genuine breakthroughs. The question for graduate research is therefore no longer whether candidates will use AI, but whether they will be equipped to use it well.
+
+Much of the sector's response so far has rightly focused on guardrails: which tools are approved, what data can be shared, and what must be declared. These foundations matter. But guardrails tell candidates what is permitted; they do not yet show them how to do good research alongside AI. That second task is now becoming urgent.
+
+[SAGE-R](https://sage-framework.com/sager.html) was developed to help with it. It rests on a simple distinction. Most AI assistance supports the work without changing what the research claims: finding papers, fixing code, tidying prose. Sometimes, however, AI shapes the claim itself. An association becomes a cause, outliers quietly disappear, or a reference appears that the candidate has never read. SAGE-R calls this point the *ownership threshold*. Reaching it is not a breach; it simply means the candidate must understand, check and decide before relying on the claim, and be able to explain and stand behind it in supervision.
+
+![Seven paired examples across writing, analysis, methods, literature, translation, ethics and referencing, showing how the same AI-assisted activity can remain knowledge support or reach the ownership threshold by changing a research claim, with the questions each case raises.](assets/articles/preparing-researchers-to-work-with-ai/ownership-threshold.png "Reaching the ownership threshold: the same activity can support the work or change what the research claims.")
+
+This is where graduate research differs from AI in coursework. In coursework, the central question is usually whether the work is the student's own. In research, the question is whether a new claim to knowledge is sound, because the thesis adds to what a field believes to be true. AI can alter that claim in ways that are easy to miss: a change of wording that shifts the meaning or strengthens a finding beyond its evidence, a smoothing of tone that erases a participant's voice, a summary that misrepresents a source or attributes a finding to the wrong study, a dataset that is quietly cleaned or reshaped, or a synthesis that leaves out contrary evidence and carries the biases of the material it was trained on. Candidates therefore need to learn to recognise these shifts in meaning, representation and attribution, not only to correct errors.
+
+Ownership is also more than checking. It means asking which alternative methods, assumptions and interpretations were available, and why the chosen path is defensible. This matters even more as AI becomes agentic. When a system carries out a sequence of steps on a researcher's behalf, the decisions that shape a finding can be buried inside the process. Future researchers will need to orchestrate AI: to set its boundaries, question its outputs, weigh the alternatives it did not consider, verify its work independently, and remain answerable for every claim. These are learnable capabilities, and graduate research is the right place to develop them.
+
+## Open resources for candidates, supervisors and institutions
+
+[**The SAGE-R Guide to Generative and Agentic AI in Graduate Research**](https://doi.org/10.5281/zenodo.23873940) is an open-access guide with a single self-check, worked examples across disciplines, case studies and guidance for each stage of candidature.
+
+**Practical pages** explain the framework [for candidates](https://sage-framework.com/sager-candidates.html) and [for supervisors](https://sage-framework.com/sager-supervisors.html), and printable posters and figures are available on the [downloads page](https://sage-framework.com/sager-downloads.html).
+
+[**The SAGE-R paper**](https://doi.org/10.3389/feduc.2026.2030368) sets out the scholarly basis of the framework.
+
+All resources are open under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), and institutions are welcome to adapt them to their own policies and processes. SAGE-R was developed with Professor Ergun Gide, and feedback from candidates, supervisors and graduate research teams is warmly welcomed.
+
+*If you use AI, you remain responsible and must stand behind the research. The aim of SAGE-R is to make that responsibility something candidates are prepared for, not something they discover too late.*

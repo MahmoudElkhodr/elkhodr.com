@@ -8,7 +8,7 @@ The website is static and stays compatible with its existing GitHub Pages hostin
 
 ## Add an original article
 
-1. Write the article in `content/articles/your-article-slug.md`. Supported Markdown: paragraphs separated by blank lines, `## Section headings`, `[link text](https://example.com)`, `**bold**` and `*italic*`. Raw HTML is escaped. Other block types produce a build error instead of silently rendering incorrectly.
+1. Write the article in `content/articles/your-article-slug.md`. Supported Markdown: paragraphs separated by blank lines, `## Section headings`, `[link text](https://example.com)`, `**bold**` and `*italic*`. A figure can be added as its own paragraph with `![Alt text](assets/articles/your-article-slug/figure.png "Optional caption")`; the image must exist in the repository. An optional `image` field in the catalogue entry (a repository path such as `assets/articles/your-article-slug/share.png`) sets the social sharing image. Raw HTML is escaped. Other block types produce a build error instead of silently rendering incorrectly.
 2. Add an entry to the `articles` array in `content/writing.json`:
 
 ```json

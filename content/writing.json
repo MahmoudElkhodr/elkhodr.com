@@ -1,6 +1,23 @@
 {
   "articles": [
     {
+      "id": "preparing-researchers-to-work-with-ai",
+      "slug": "preparing-researchers-to-work-with-ai",
+      "title": "Preparing the next generation of researchers to work with AI",
+      "summary": "Why graduate research needs more than guardrails, how AI can quietly change a research claim, and open SAGE-R resources to help candidates and supervisors.",
+      "publisher": "elkhodr.com",
+      "origin": "site",
+      "date": "2026-11-05",
+      "dateLabel": "5 November 2026",
+      "sortDate": "2026-11-05",
+      "topics": [
+        "AI & education",
+        "Research integrity"
+      ],
+      "body": "articles/preparing-researchers-to-work-with-ai.md",
+      "image": "assets/articles/preparing-researchers-to-work-with-ai/share.png"
+    },
+    {
       "id": "binance-blockchain-security",
       "slug": "binance-blockchain-security",
       "title": "What the Binance hack reveals about blockchain security",

@@ -99,6 +99,9 @@
 .article-body>p{margin:0 0 22px}
 .article-body>p:first-child{font-size:1.1rem}
 .article-body h2{font-family:var(--hd);font-size:1.43rem;font-weight:600;letter-spacing:-.015em;line-height:1.45;margin:38px 0 18px;scroll-margin-top:100px}
+.article-figure{margin:34px 0;padding:16px;background:var(--bg2,#f4f6f5);border-radius:10px}
+.article-figure img{display:block;width:100%;height:auto;border-radius:4px;background:#fff}
+.article-figure figcaption{font-family:var(--bd,inherit);font-size:.85rem;line-height:1.5;color:var(--mut,#5b6461);margin-top:10px;text-align:center}
 .article-body a{color:var(--acc);text-decoration-thickness:1px;text-underline-offset:4px;overflow-wrap:break-word}
 .article-endnote{margin-top:38px;padding:24px 0;border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);font-family:var(--bd);font-size:.78rem;color:var(--mut);line-height:1.75}
 .article-share{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:16px}
