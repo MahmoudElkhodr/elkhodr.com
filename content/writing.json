@@ -492,6 +492,16 @@
   ],
   "broadcasts": [
     {
+      "id": "abc-southern-queensland",
+      "type": "audio",
+      "publisher": "ABC Southern Queensland",
+      "title": "Could the internet go down?",
+      "summary": "A radio interview on online service outages and what they could mean for regional communities and businesses.",
+      "audioUrl": "https://elkhodr.com/assets/audio/abc-southern-queensland-online-outages.mp3",
+      "dateLabel": "2026",
+      "duration": "10 min 4 sec"
+    },
+    {
       "id": "channel-seven",
       "type": "youtube",
       "publisher": "Channel 7",
