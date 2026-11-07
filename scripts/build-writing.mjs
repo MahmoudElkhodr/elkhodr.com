@@ -94,7 +94,7 @@ const dateText = item => item.dateLabel === 'Date not stated' ? '' : escape(item
 const linksRow = item => `<div class="hub-links">${primaryLink(item)}${item.body && item.originalUrl ? external(item.originalUrl,'View original','text-link') : ''}${item.doi ? external(item.doi,'DOI','text-link') : ''}${relatedLinks(item)}</div>`;
 function leadMarkup(item) {
   const media = item.image ? `<a class="hub-lead-media" href="${escape(url(item))}" tabindex="-1" aria-hidden="true"><img src="${escape(item.image)}" alt="" width="1200" height="630"></a>` : '';
-  return `<section class="hub-lead${item.image ? '' : ' hub-lead-text'}" aria-label="Latest">${media}<div class="hub-lead-copy"><span class="hub-kicker"><b>Latest</b> · ${escape(item.dateLabel)}</span><h2>${itemTitle(item)}</h2><p>${escape(item.longSummary || item.summary)}</p>${linksRow(item)}${extraCoverage(item)}</div></section>`;
+  return `<section class="hub-lead${item.image ? '' : ' hub-lead-text'}" aria-label="Latest">${media}<div class="hub-lead-copy"><span class="hub-kicker"><b>Latest</b> · ${escape(item.dateLabel)}</span><h2>${itemTitle(item)}</h2><p>${escape(item.summary)}</p>${linksRow({ ...item, related: (item.related || []).slice(0, 2) })}${extraCoverage(item)}</div></section>`;
 }
 function entryMarkup(item) {
   const anchor = catalogue.articles.includes(item) ? `entry-${item.id}` : `media-${item.id}`;
@@ -117,16 +117,18 @@ rest.forEach((item, index) => {
   if (year !== lastYear) {
     const note = (catalogue.yearNotes || []).find(n => n.after === lastYear && n.before === year);
     if (note) stream += `<div class="hub-gap"><h2 class="hub-year">${escape(note.heading)}</h2><p>${escape(note.text)} <a class="text-link" href="${escape(note.url)}">${escape(note.linkLabel)} <span aria-hidden="true">→</span></a></p></div>`;
-    stream += `<h2 class="hub-year">${year}</h2>`;
+    stream += `<h2 class="hub-year" id="year-${year}">${year}</h2>`;
     lastYear = year;
   }
   stream += entryMarkup(item);
   if (index + 1 === BAND_AFTER) { stream += bandMarkup; placed = true; }
 });
 if (!placed) stream += bandMarkup;
+const yearsShown = [...new Set(rest.map(item => item.sortDate.slice(0,4)))];
+const yearStrip = `<nav class="hub-years" aria-label="Jump to a year"><span class="hub-years-label">Jump to</span>${yearsShown.map(y => `<a href="#year-${y}">${y}</a>`).join('')}<a class="hub-years-extra" href="#broadcasts-title">Interviews</a></nav>`;
 const hub = `<main id="main">
 <header class="writing-intro w"><h1>Writing &amp; Media</h1><p>Articles, commentary and interviews on cybersecurity, privacy, blockchain and AI in education.</p></header>
-<div class="hub w">${leadMarkup(lead)}${stream}</div>
+<div class="hub w">${leadMarkup(lead)}${yearStrip}${stream}</div>
 <aside class="writing-contact w"><p>Looking for an expert perspective on technology, security or AI in education?</p><div class="writing-contact-links"><a class="text-link" href="contact.html">Get in touch <span aria-hidden="true">→</span></a><a class="text-link" href="feed.xml">RSS feed <span aria-hidden="true">↗</span></a></div></aside>
 </main>`;
 outputs.set('media.html', renderPage({TITLE:'Writing &amp; Media | Dr Mahmoud Elkhodr',DESCRIPTION:'Articles, explainers and commentary by Dr Mahmoud Elkhodr on cybersecurity, privacy, blockchain and AI in education, plus interviews and media coverage.',CANONICAL:`${site}/media.html`,OG_TYPE:'website',ROOT:'',HEAD:jsonLd({'@context':'https://schema.org','@type':'CollectionPage',name:'Writing & Media',url:`${site}/media.html`,mainEntity:{'@type':'ItemList',itemListElement:articles.map((item,i)=>({'@type':'ListItem',position:i+1,name:item.title,url:absoluteUrl(item)}))}}),BODY_CLASS:'writing-hub',CONTENT:hub}));
