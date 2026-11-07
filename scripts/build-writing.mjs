@@ -33,6 +33,7 @@ for (const item of [...catalogue.articles, ...catalogue.coverage]) {
   for (const key of ['title','summary','publisher','dateLabel','sortDate']) if (!item[key]) throw new Error(`${item.id}: missing ${key}`);
   if (item.videoId && !/^[A-Za-z0-9_-]{11}$/.test(item.videoId)) throw new Error(`${item.id}: invalid YouTube id`);
   if (!Array.isArray(item.topics) || !item.topics.length) throw new Error(`${item.id}: topics required`);
+  if (item.kind !== undefined && item.kind !== 'research') throw new Error(`${item.id}: unknown kind`);
   if (item.longSummary !== undefined) {
     const words = item.longSummary.trim().split(/\s+/).length;
     if (words < 30 || words > 250) throw new Error(`${item.id}: longSummary must be 30 to 250 words (found ${words})`);
@@ -83,8 +84,8 @@ const relatedLinks = item => (item.related || []).map(link => /^https:/.test(lin
   : `<a class="text-link" href="${escape(link.url)}">${escape(link.label)} <span aria-hidden="true">→</span></a>`).join('');
 const primaryLink = item => item.body
   ? `<a class="text-link" href="${localUrl(item)}">Read the article <span aria-hidden="true">→</span></a>`
-  : external(item.url, `Read at ${shortPublisher(item)}`, 'text-link');
-const kicker = item => catalogue.articles.includes(item) ? originLabel(item) : item.publisher;
+  : external(item.url, item.kind === 'research' ? 'Read the paper' : `Read at ${shortPublisher(item)}`, 'text-link');
+const kicker = item => item.kind === 'research' ? `Peer-reviewed paper · ${item.publisher}` : catalogue.articles.includes(item) ? originLabel(item) : item.publisher;
 const itemTitle = item => item.body
   ? `<a href="${localUrl(item)}">${escape(item.title)}</a>`
   : `<a href="${escape(item.url)}" target="_blank" rel="noopener noreferrer">${escape(item.title)}<span class="sr-only"> (opens in a new tab)</span></a>`;

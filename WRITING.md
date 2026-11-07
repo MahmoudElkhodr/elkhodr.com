@@ -53,6 +53,8 @@ Add all articles published by media outlets (including authored articles), inter
 
 An entry is shown in full (a paragraph, the link to the original and related links) when it has a `longSummary`, or when it is an article hosted on this site. Otherwise it appears in the compact list with its short `summary`. Write a `longSummary` for each new article, in the first person, of 30 to 250 words (aim for 100 to 150), as original commentary that adds context rather than a reworded copy of the source. The build fails on em dashes. Add optional `related` links to specific resources, for example `{ "label": "SAGE-R", "url": "https://sage-framework.com/sager.html" }`. A related link may be an HTTPS address, a page on this site such as `sage.html`, or an anchor such as `#broadcast-abc-southern-queensland`. The short `summary` is still required and is used for search snippets, social sharing and the RSS feed.
 
+An entry with `"kind": "research"` (a peer-reviewed paper summarised for readers) is labelled as a paper and its link reads “Read the paper”. Use it sparingly, for research that fills a visible gap or that readers are likely to ask about; the full list stays on the Publications page.
+
 `yearNotes` explains a gap between two year groups, for example `{ "after": "2025", "before": "2021", "heading": "2022 to 2024", "text": "…", "linkLabel": "See my publications", "url": "publications.html" }`. Remove or edit a note when entries are added for the years it covers.
 
 ## Shared layout and styles
