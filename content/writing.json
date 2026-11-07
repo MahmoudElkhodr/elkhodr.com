@@ -184,6 +184,27 @@
         "Blockchain",
         "Metaverse"
       ]
+    },
+    {
+      "id": "sage-eric-indexed-2025",
+      "title": "The SAGE Framework for Developing Critical Thinking and Responsible Generative AI Use in Cybersecurity Education",
+      "summary": "Indexed in ERIC, the United States Department of Education's education research database: the peer-reviewed SAGE paper in Discover Education.",
+      "publisher": "ERIC · US Department of Education",
+      "origin": "external",
+      "url": "https://eric.ed.gov/?id=EJ1498030",
+      "dateLabel": "December 2025",
+      "sortDate": "2025-12-01",
+      "topics": [
+        "Generative AI",
+        "AI in education"
+      ],
+      "longSummary": "The SAGE paper in Discover Education is indexed in ERIC, the education research database of the United States Department of Education's Institute of Education Sciences. The paper, written with Professor Ergun Gide, introduces SAGE, a framework that uses generative AI responsibly to build critical thinking in cybersecurity education. Students first use AI in tutorials to produce, evaluate and improve security policies, and then apply AI outputs to realistic industry cases in assessments. The authors report improved ability to assess policies and refine risk assessments, alongside over-reliance on AI and uneven AI literacy, and they stress the need for human oversight.",
+      "related": [
+        {
+          "label": "Read the paper in Discover Education",
+          "url": "https://link.springer.com/article/10.1007/s44217-025-00935-3"
+        }
+      ]
     }
   ],
   "coverage": [
