@@ -99,33 +99,6 @@
       "related": []
     },
     {
-      "id": "research-fake-news-ukraine-2023",
-      "title": "Identifying fake news in the Russian-Ukrainian conflict using machine learning",
-      "summary": "A conference paper that tests whether machine learning can separate fake from real posts about the Russia-Ukraine conflict, using a labelled dataset of tweets.",
-      "publisher": "AINA 2023 (Springer)",
-      "origin": "external",
-      "kind": "research",
-      "url": "https://www.europarl.europa.eu/thinktank/en/document/EXPO_IDA(2024)754450",
-      "dateLabel": "2023",
-      "sortDate": "2023-03-01",
-      "topics": [
-        "Machine learning",
-        "Misinformation"
-      ],
-      "longSummary": "False information spreads quickly during a war, and the Russia-Ukraine conflict produced a great deal of it on social media. This conference paper, led by Omar Darwish with colleagues including me, asks whether machine learning can help identify it. The team built its own dataset of tweets labelled as fake or real, and compared a pre-trained BERT model with five classical classifiers: support vector machines, decision trees, k-nearest neighbours, logistic regression and Naive Bayes. Each was tested across several dataset configurations. Support vector machines and logistic regression performed best, at about 76 per cent accuracy. The main contribution is evidence that models of this kind can support a detection system for this conflict, in the way that similar systems are already used in other fields such as healthcare. The paper is cited in a 2024 European Parliament analysis of the use of artificial intelligence as a weapon of repression.",
-      "related": [
-        {
-          "label": "Read the paper",
-          "url": "https://doi.org/10.1007/978-3-031-28694-0_51"
-        },
-        {
-          "label": "EU Publications Office edition",
-          "url": "https://op.europa.eu/en/publication-detail/-/publication/99dd9a48-287b-11ef-a195-01aa75ed71a1/"
-        }
-      ],
-      "linkLabel": "Read the European Parliament analysis"
-    },
-    {
       "id": "swift-russia-linkedin-2022",
       "title": "Disconnecting Russia from the SWIFT system may not necessarily have a profound impact",
       "summary": "Argues that disconnecting Russia from the SWIFT financial messaging system may not necessarily have a profound impact.",
@@ -799,6 +772,31 @@
       "sortDate": "2021-12-17",
       "topics": [
         "Policy citations"
+      ]
+    },
+    {
+      "id": "policy-ep-cites-fake-news-ukraine-2023",
+      "title": "European Parliament analysis cites research on identifying fake news in the Russian-Ukrainian conflict",
+      "summary": "A European Parliament in-depth analysis on AI as a weapon of repression cites the 2023 conference paper on detecting fake news in the Russian-Ukrainian conflict using machine learning.",
+      "publisher": "European Parliament · Policy citation",
+      "url": "https://www.europarl.europa.eu/thinktank/en/document/EXPO_IDA(2024)754450",
+      "linkLabel": "Read the European Parliament analysis",
+      "dateLabel": "2023",
+      "sortDate": "2023-03-01",
+      "topics": [
+        "Machine learning",
+        "Misinformation"
+      ],
+      "longSummary": "A European Parliament in-depth analysis of the use of artificial intelligence as a weapon of repression, requested by the Parliament's Subcommittee on Human Rights and published in May 2024, is listed in SciVal as citing a 2023 conference paper on identifying fake news in the Russian-Ukrainian conflict using machine learning. The paper, led by Omar Darwish with Dr Mahmoud Elkhodr among the co-authors, appeared in Lecture Notes in Networks and Systems from AINA 2023. It compared a pre-trained BERT model with five classical classifiers on a labelled dataset of tweets, and found that support vector machines and logistic regression performed best, at about 76 per cent accuracy. The analysis was also issued by the EU Publications Office.",
+      "related": [
+        {
+          "label": "Read the cited paper",
+          "url": "https://doi.org/10.1007/978-3-031-28694-0_51"
+        },
+        {
+          "label": "EU Publications Office edition",
+          "url": "https://op.europa.eu/en/publication-detail/-/publication/99dd9a48-287b-11ef-a195-01aa75ed71a1/"
+        }
       ]
     }
   ],
