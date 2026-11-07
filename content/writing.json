@@ -157,6 +157,19 @@
       ],
       "longSummary": "False information spreads quickly during a war, and the Russia-Ukraine conflict produced a great deal of it on social media. This conference paper, led by Omar Darwish with colleagues including me, asks whether machine learning can help identify it. The team built its own dataset of tweets labelled as fake or real, and compared a pre-trained BERT model with five classical classifiers: support vector machines, decision trees, k-nearest neighbours, logistic regression and Naive Bayes. Each was tested across several dataset configurations. Support vector machines and logistic regression performed best, at about 76 per cent accuracy. The main contribution is evidence that models of this kind can support a detection system for this conflict, in the way that similar systems are already used in other fields such as healthcare.",
       "related": []
+    },
+    {
+      "id": "swift-russia-linkedin-2022",
+      "title": "Disconnecting Russia from the SWIFT system may not necessarily have a profound impact",
+      "summary": "Argues that disconnecting Russia from the SWIFT financial messaging system may not necessarily have a profound impact.",
+      "publisher": "LinkedIn",
+      "origin": "external",
+      "url": "https://www.linkedin.com/pulse/disconnecting-russia-from-swift-system-may-have-profound-elkhodr",
+      "dateLabel": "2022",
+      "sortDate": "2022-03-01",
+      "topics": [
+        "Financial systems"
+      ]
     }
   ],
   "coverage": [
