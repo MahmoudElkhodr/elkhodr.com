@@ -761,6 +761,30 @@
           "url": "https://sage-framework.com/"
         }
       ]
+    },
+    {
+      "id": "warwick-edufund-2025",
+      "title": "Integrating Generative AI in Cybersecurity Education: Case Study Insights on Pedagogical Strategies, Critical Thinking, and Responsible AI Use",
+      "summary": "Listed in the University of Warwick's Education Fund project directory, with a machine-generated summary of the preprint on generative AI in cybersecurity education.",
+      "publisher": "University of Warwick · Education Fund",
+      "url": "https://warwick.ac.uk/fac/cross_fac/eduport/edufund/projects/yang/projects/integrating-generative-ai-in-cybersecurity-education-case-study-insights-on-pedagogical-7f3ace/",
+      "dateLabel": "July 2025",
+      "sortDate": "2025-07-20",
+      "topics": [
+        "Generative AI",
+        "AI in education"
+      ],
+      "longSummary": "The University of Warwick lists the preprint on generative AI in cybersecurity education, written with Professor Ergun Gide, in its Education Fund project directory, where Dr Mahmoud Elkhodr and Professor Gide are named as researchers. The page summarises the two-stage approach of tutorials followed by assessments, the reported gains in critical thinking and analytical skills, and the challenges of over-reliance on AI and uneven AI literacy. The summary on the page is machine generated, and it links to the original preprint, which later developed into the SAGE paper published in Discover Education.",
+      "related": [
+        {
+          "label": "Read the preprint on arXiv",
+          "url": "https://arxiv.org/abs/2502.15357"
+        },
+        {
+          "label": "Read the paper in Discover Education",
+          "url": "https://link.springer.com/article/10.1007/s44217-025-00935-3"
+        }
+      ]
     }
   ],
   "broadcasts": [
