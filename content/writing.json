@@ -82,49 +82,6 @@
       "longSummary": "Preprints trade early visibility for some control over a research claim, and generative AI changes the terms of that trade. This article examines how AI alters three risks: sharing a preprint publicly, entering unpublished research into AI tools, and using AI during peer review. It was first published on LinkedIn and is archived with a DOI."
     },
     {
-      "id": "research-vesta-v2g-2024",
-      "title": "Artificially intelligent vehicle-to-grid energy management: a semantic-aware framework balancing grid demands and user autonomy",
-      "summary": "Introduces VESTA, a framework that combines AI prediction, edge computing, blockchain and semantic-aware access control to manage energy sharing between electric vehicles and the grid.",
-      "publisher": "Computers (MDPI)",
-      "origin": "external",
-      "kind": "research",
-      "url": "https://doi.org/10.3390/computers13100249",
-      "dateLabel": "October 2024",
-      "sortDate": "2024-10-01",
-      "topics": [
-        "AI & energy",
-        "Internet of Things"
-      ],
-      "longSummary": "As more people drive electric vehicles, grid operators want to draw on those batteries when demand is high, but owners have their own plans for their cars. This paper introduces VESTA, which stands for vehicle energy sharing through artificial intelligence, a framework that balances the two. It combines AI prediction of grid demand with edge computing, blockchain and a semantic-aware access control model, which decides whether a vehicle's battery can be used by taking its context into account. The model gives priority to vehicles with critical functions, such as emergency services, while preserving the autonomy of their owners. In proof-of-concept simulations, the approach improved the efficiency of energy distribution by about 15 per cent and reduced response times by about 20 per cent. The work has since been cited by other research on vehicle-to-grid systems and was discussed in the editorial of a Computers special issue on the intelligent edge.",
-      "related": [
-        {
-          "label": "Cited in Scientific Reports",
-          "url": "https://www.nature.com/articles/s41598-026-37243-1"
-        },
-        {
-          "label": "Special issue editorial",
-          "url": "https://www.mdpi.com/2073-431x/15/8/475"
-        }
-      ]
-    },
-    {
-      "id": "research-ai-chatbots-review-2024",
-      "title": "A systematic review and comprehensive analysis of pioneering AI chatbot models from education to healthcare: ChatGPT, Bard, Llama, Ernie and Grok",
-      "summary": "A systematic review of 28 scholarly articles comparing five leading AI chatbots across education, healthcare and other fields.",
-      "publisher": "Future Internet (MDPI)",
-      "origin": "external",
-      "kind": "research",
-      "url": "https://doi.org/10.3390/fi16070219",
-      "dateLabel": "22 June 2024",
-      "sortDate": "2024-06-22",
-      "topics": [
-        "Generative AI",
-        "AI in education"
-      ],
-      "longSummary": "Choosing the right AI chatbot matters, but at the time of this review there was little comparative evidence to guide the choice. Written with Ketmanto Wangsa, Shakir Karim and Professor Ergun Gide, this paper presents a systematic review of 28 scholarly articles that compare five leading chatbots, ChatGPT, Bard, Llama, Ernie and Grok, across fields including education and healthcare. The central finding is that no single chatbot is superior in every setting. ChatGPT performed strongly in education and academic research, Bard in real-time queries, and Llama in healthcare and programming, although its computational demands may limit wider use. Ernie suits Chinese-language tasks but is constrained internationally, and Grok was at an early stage of development and available only to premium subscribers. The review concludes that future research should cover more fields and practical applications, and should address the concerns these tools raise.",
-      "related": []
-    },
-    {
       "id": "research-biochainreward-2023",
       "title": "BioChainReward: a secure and incentivised blockchain framework for biomedical data sharing",
       "summary": "Introduces BioChainReward, a four-layer blockchain framework that protects patient privacy in biomedical data sharing and rewards patients for the data they contribute.",
