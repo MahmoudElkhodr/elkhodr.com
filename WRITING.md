@@ -47,6 +47,14 @@ Publish the website article first, then use Medium's import tool with its public
 
 Add all articles published by media outlets (including authored articles), interviews, quotations, broadcasts and reporting about the author's work to the `coverage` array. Fields: `id`, `title`, `summary`, `publisher`, `url`, `dateLabel`, `sortDate` and `topics`. An optional `doi` preserves a DOI link. Optional `coverage` is an array of `{ "url": "https://…", "label": "Outlet name" }` entries, with a `coverageNote` explaining any reported reach figures. These appear in an expandable “Further coverage” section.
 
+## How the Writing & Media page is laid out
+
+`media.html` is one continuous, newest-first stream built from `articles` and `coverage` together. The newest item becomes the large lead. Entries after it appear under year headings. Interviews (`broadcasts`) appear once, as a band of players after the first two entries following the lead (`BAND_AFTER` in the builder). Coverage entries that carry a `broadcastId` are omitted from the stream because the band already shows them.
+
+An entry is shown in full (a paragraph, the link to the original and related links) when it has a `longSummary`, or when it is an article hosted on this site. Otherwise it appears in the compact list with its short `summary`. Write a `longSummary` for each new article, in the first person, of 30 to 250 words (aim for 100 to 150), as original commentary that adds context rather than a reworded copy of the source. The build fails on em dashes. Add optional `related` links to specific resources, for example `{ "label": "SAGE-R", "url": "https://sage-framework.com/sager.html" }`. A related link may be an HTTPS address, a page on this site such as `sage.html`, or an anchor such as `#broadcast-abc-southern-queensland`. The short `summary` is still required and is used for search snippets, social sharing and the RSS feed.
+
+`yearNotes` explains a gap between two year groups, for example `{ "after": "2025", "before": "2021", "heading": "2022 to 2024", "text": "…", "linkLabel": "See my publications", "url": "publications.html" }`. Remove or edit a note when entries are added for the years it covers.
+
 ## Shared layout and styles
 
 `templates/page.html` controls article and archive navigation, metadata and the footer. `assets/writing.css` holds their responsive styles; `assets/writing.js` supplies article copy-link behaviour. Rebuild after changing the template or these assets. The builder adds a content-based version to writing asset URLs so visitors receive updated styles and scripts without a hard refresh. The other existing portfolio pages retain their own HTML.

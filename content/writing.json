@@ -16,7 +16,30 @@
       ],
       "body": "articles/preparing-researchers-to-work-with-ai.md",
       "image": "assets/articles/preparing-researchers-to-work-with-ai/share.png",
-      "mediumUrl": "https://medium.com/@elkhodr/preparing-the-next-generation-of-researchers-to-work-with-ai-03164427be2c"
+      "mediumUrl": "https://medium.com/@elkhodr/preparing-the-next-generation-of-researchers-to-work-with-ai-03164427be2c",
+      "longSummary": "A candidate who begins a PhD this year will graduate around 2030, in a world where AI is part of everyday research practice. The question for graduate research is therefore no longer whether candidates will use AI, but whether they will be equipped to use it well. Guardrails tell candidates what is permitted, but they do not show how to do sound research alongside AI. In this article I argue that the difference lies in what AI does to a research claim. Most assistance, such as finding papers, fixing code or tidying prose, leaves the claim unchanged. Sometimes, however, AI shapes the claim itself, and SAGE-R calls that moment the ownership threshold. SAGE-R is the research supervision extension of SAGE that I developed with Professor Ergun Gide. It gives candidates and supervisors a shared way to check, decide and explain what they rely on, and every resource is open.",
+      "related": [
+        {
+          "label": "SAGE-R",
+          "url": "https://sage-framework.com/sager.html"
+        },
+        {
+          "label": "SAGE-R Guide (open access)",
+          "url": "https://doi.org/10.5281/zenodo.23873940"
+        },
+        {
+          "label": "For candidates",
+          "url": "https://sage-framework.com/sager-candidates.html"
+        },
+        {
+          "label": "For supervisors",
+          "url": "https://sage-framework.com/sager-supervisors.html"
+        },
+        {
+          "label": "The SAGE-R paper (Frontiers in Education)",
+          "url": "https://doi.org/10.3389/feduc.2026.2030368"
+        }
+      ]
     },
     {
       "id": "binance-blockchain-security",
@@ -33,7 +56,14 @@
         "Blockchain"
       ],
       "body": "articles/binance-blockchain-security.md",
-      "mediumUrl": "https://medium.com/@elkhodr/what-the-binance-hack-reveals-about-blockchain-security-a9de66e71cb0"
+      "mediumUrl": "https://medium.com/@elkhodr/what-the-binance-hack-reveals-about-blockchain-security-a9de66e71cb0",
+      "longSummary": "When billions of dollars leave a cryptocurrency exchange, it is fair to ask what happened to the security that blockchain was supposed to provide. I teach blockchain at CQUniversity, and this article uses the Binance incident to answer that question in plain terms. A blockchain protects the shared record of transactions, but an exchange holds its customers' keys and approves transfers through its own internal systems. On the evidence reported so far, attackers appear to have compromised those systems and caused them to authorise payments that carried genuine signatures, so the blockchain itself was not broken. The lesson is that a decentralised network can still depend on one centralised approval process, which then becomes a single point of failure. I explain what a wallet actually holds, how a transfer is authorised and the controls that could contain the damage, themes that are developed further in my book on smart cities.",
+      "related": [
+        {
+          "label": "Next-Generation Smart Cities (Routledge)",
+          "url": "https://www.routledge.com/Next-Generation-Smart-Cities-The-Integration-of-AI-Blockchain-IoT-and-Emergent-Networks/Elkhodr/p/book/9781003686859"
+        }
+      ]
     },
     {
       "id": "preprint-bargain-linkedin",
@@ -48,7 +78,8 @@
         "Generative AI",
         "Research integrity"
       ],
-      "doi": "https://doi.org/10.5281/zenodo.19024109"
+      "doi": "https://doi.org/10.5281/zenodo.19024109",
+      "longSummary": "Preprints trade early visibility for some control over a research claim, and generative AI changes the terms of that trade. This article examines how AI alters three risks: sharing a preprint publicly, entering unpublished research into AI tools, and using AI during peer review. It was first published on LinkedIn and is archived with a DOI."
     }
   ],
   "coverage": [
@@ -69,6 +100,13 @@
       "coverageNote": "Reach figure is from the media monitoring report, 23–30 October 2026.",
       "topics": [
         "AI & education"
+      ],
+      "longSummary": "Researchers increasingly ask AI tools to find and summarise the literature, and the answers read as authoritative. Tests of those summaries found missing or misattributed authors, incomplete references and inaccurate accounts of what the studies actually found. The practical lesson is that a fluent summary is not evidence that a paper says what the summary claims, so every claim that matters must be checked against the original source. This is the same issue that SAGE-R addresses for graduate researchers, who must understand and verify a claim before relying on it. The story was published by CQUniversity News.",
+      "related": [
+        {
+          "label": "SAGE-R",
+          "url": "https://sage-framework.com/sager.html"
+        }
       ]
     },
     {
@@ -82,6 +120,13 @@
       "coverage": [],
       "topics": [
         "Technology & society"
+      ],
+      "longSummary": "This feature explores how AI is reshaping work and why AI literacy, critical thinking, human judgement and continuous learning matter for graduates. It also describes how SAGE approaches the responsible use of AI in learning.",
+      "related": [
+        {
+          "label": "SAGE overview",
+          "url": "sage.html"
+        }
       ]
     },
     {
@@ -99,6 +144,13 @@
         {
           "url": "https://www.theeducatoronline.com/k12/news/opinion-teaching-students-to-think-with-ai--not-cheat-with-it/288838",
           "label": "The Educator — opinion, 13 March 2026"
+        }
+      ],
+      "longSummary": "Universities cannot reliably detect AI use, and banning it is unrealistic when employers expect graduates to work with it. In this opinion article, CQUniversity researchers argue that the real question is whether students understand what they submit. The answer offered is SAGE, a six-step learning cycle: students generate a draft with AI, check it against professional standards, correct its errors, have the AI critique the revised work, reflect on where the tool succeeded or failed, and defend their competence in a short supervised task. The article also points to the regulator's recommendation to combine open assessments that build AI skills with secure assessments that verify independent knowledge. It was republished by The Educator.",
+      "related": [
+        {
+          "label": "A pedagogy for AI orchestration and assessment assurance (STEM Education)",
+          "url": "https://doi.org/10.3934/steme.2026039"
         }
       ]
     },
@@ -118,6 +170,17 @@
           "url": "https://gladstonetoday.com.au/news/2026/03/28/cquniversity-leads-shift-in-ai-ready-education/",
           "label": "Gladstone Today — coverage, 28 March 2026"
         }
+      ],
+      "longSummary": "CQUniversity's resources on responsible AI use now appear on the TEQSA Generative AI Knowledge Hub, where they serve as reference material for the sector. This news story reports the recognition, which rests on more than two years of peer-reviewed research across several campuses and online. Rather than restricting or detecting AI use, the approach teaches students to evaluate, challenge and refine AI-generated content with professional judgement. SAGE was developed with Professor Ergun Gide, and in the story I make the case for flexible frameworks rather than static policies, because AI is changing quickly. The story also describes a community of practice that is extending the work to other educators.",
+      "related": [
+        {
+          "label": "SAGE overview",
+          "url": "sage.html"
+        },
+        {
+          "label": "GenAI-101",
+          "url": "https://sage-framework.com/genai-101.html"
+        }
       ]
     },
     {
@@ -130,6 +193,13 @@
       "sortDate": "2025-01-01",
       "topics": [
         "AI & education"
+      ],
+      "longSummary": "This report covers a study by Professor Ergun Gide and me that introduces SAGE for cybersecurity educators. The framework helps students think critically about generative AI and use it responsibly, through projects that examine how AI tools relate to security problems, their wider consequences and the ethical responsibilities involved. Case studies, simulations and hands-on exercises make the ideas concrete. The study also calls for collaboration between universities, industry and policymakers, and addresses risks such as misinformation, bias and automated attacks.",
+      "related": [
+        {
+          "label": "The SAGE Framework in cybersecurity education (Discover Education)",
+          "url": "https://link.springer.com/article/10.1007/s44217-025-00935-3"
+        }
       ]
     },
     {
@@ -265,7 +335,14 @@
       "topics": [
         "Internet & society"
       ],
-      "origin": "external"
+      "origin": "external",
+      "longSummary": "A complete internet blackout is unlikely, because the network is built from many cables, wireless links and satellites that can route around failures. The more realistic risk is that many services fail together because they depend on the same shared system, such as a single sign-in provider. A recent flaw in PHP showed how one vulnerability can take many websites offline, and AI tools are making such flaws easier to exploit. In this article for The Conversation I describe what that could look like, from a cyberattack on health systems that delays insurance claims while clinics keep seeing patients, to email, documents and learning platforms failing at the same time. I also set out how organisations can prepare with a tested incident response plan, and how households can keep essential information offline, know alternative ways to sign in, communicate and pay, and test their backups. I discussed these questions in a radio interview with ABC Southern Queensland, which is featured on this page.",
+      "related": [
+        {
+          "label": "ABC Southern Queensland interview",
+          "url": "#broadcast-abc-southern-queensland"
+        }
+      ]
     },
     {
       "id": "archive-6",
@@ -380,6 +457,17 @@
       "summary": "Co-authored with Ergun Gide, this article argues for practical guidance that helps students verify AI outputs and demonstrate their own judgement.",
       "topics": [
         "AI & education"
+      ],
+      "longSummary": "Co-authored with Professor Ergun Gide for Times Higher Education Campus, this piece argues that policies, warnings and bans are not enough. A policy sets boundaries but does not teach students how to verify AI output, and it overlooks the way AI can help students from linguistically diverse backgrounds take part more fully. We present SAGE as a practical alternative: students generate a response, evaluate it against authoritative sources, refine it with a logged decision to accept, modify or reject, use AI as a critic, reflect, and defend their work in a short supervised task. We also offer a seven-step guide for applying the approach to any unit, including weighting assessment towards process rather than the final product, and we recommend that educators begin with a permitted-use statement, a simple decision log and rubrics that judge the quality of justification.",
+      "related": [
+        {
+          "label": "From permission to pedagogy: SAGE-AP (Education Sciences)",
+          "url": "https://doi.org/10.3390/educsci16060986"
+        },
+        {
+          "label": "SAGE overview",
+          "url": "sage.html"
+        }
       ]
     },
     {
@@ -392,6 +480,17 @@
       "summary": "Discusses student demand for practical AI guidance and a structured approach to verification, revision and assessment assurance.",
       "topics": [
         "AI & education"
+      ],
+      "longSummary": "Universities have responded to generative AI mainly through policy and integrity warnings. These are necessary, but students are asking for something more practical: how to verify AI output, how to write a good prompt and how to avoid breaching the rules by accident. This article, published in HERDSA Connect, draws on research with first-year ICT students at CQUniversity. It shows that when students are given structured verification requirements, they check AI output systematically and revise it substantially instead of making cosmetic edits. It also notes that confidence in English is a major reason students turn to AI, so a blanket ban can remove a useful support for linguistically diverse students. The article sets out the SAGE workflow for assessments where AI use is permitted, with a decision log and a critique stage, and suggests that educators start small with a permitted-use statement and rubric criteria that reward the quality of justification.",
+      "related": [
+        {
+          "label": "A pedagogy for AI orchestration and assessment assurance (STEM Education)",
+          "url": "https://doi.org/10.3934/steme.2026039"
+        },
+        {
+          "label": "Student guide",
+          "url": "https://sage-framework.com/student-guide.html"
+        }
       ]
     },
     {
@@ -404,6 +503,17 @@
       "summary": "An opinion piece on assessment in the AI era, arguing for context-appropriate demonstrations of judgement and competence rather than a blanket return to traditional exams.",
       "topics": [
         "AI & education"
+      ],
+      "longSummary": "Many universities are reacting to generative AI by returning to invigilated exams, handwritten tasks and oral checks. In this opinion piece for Future Campus, I argue that this overcorrects. Exams often reward recall under pressure, can disadvantage students with anxiety or language barriers, and rarely resemble how graduates work. Because graduates will use AI and remain accountable for its output, assessment should test their evaluative judgement in AI-rich settings. I propose distributed assurance: rather than one secure format for every unit, each subject includes supervised checkpoints suited to its discipline, such as a viva, a code walkthrough or a live demonstration. SAGE puts this into practice through its final Defend step, in which students show ownership of their reasoning.",
+      "related": [
+        {
+          "label": "A pedagogy for AI orchestration and assessment assurance (STEM Education)",
+          "url": "https://doi.org/10.3934/steme.2026039"
+        },
+        {
+          "label": "Defend tool",
+          "url": "https://sage-framework.com/defend_tool.html"
+        }
       ]
     },
     {
@@ -417,6 +527,13 @@
       "topics": [
         "Smart cities",
         "Artificial intelligence"
+      ],
+      "longSummary": "Today's smart cities collect data for people to interpret. In my book, Next-Generation Smart Cities, I argue that the next step is cities in which networks of autonomous AI agents reason, act and coordinate with each other in real time. Traffic is a simple example: instead of reporting congestion to a control room, intersections could coordinate directly with buses, ambulances and neighbouring roads. The book also examines how blockchain and future 6G networks could help protect connected infrastructure. The harder questions concern accountability. If an autonomous system makes a faulty decision in a hospital, a transport network or a power grid, it is not clear who is responsible, and trust, safety and ethical design must be settled before these systems become embedded. CQUniversity News published this feature on the book.",
+      "related": [
+        {
+          "label": "Next-Generation Smart Cities (Routledge)",
+          "url": "https://www.routledge.com/Next-Generation-Smart-Cities-The-Integration-of-AI-Blockchain-IoT-and-Emergent-Networks/Elkhodr/p/book/9781003686859"
+        }
       ]
     },
     {
@@ -429,6 +546,13 @@
       "summary": "An institutional impact case study describing SAGE, responsible AI use and CQUniversity’s work on AI-ready learning and assessment.",
       "topics": [
         "AI & education"
+      ],
+      "longSummary": "This institutional impact case study describes how SAGE, which Professor Ergun Gide and I created, is helping CQUniversity adopt generative AI responsibly. SAGE teaches students to use AI within their discipline and to check, refine and defend what it produces, and it rests on peer-reviewed studies with more than 1,500 students in Australia, China and the United Kingdom. The case study also describes the AI-Powered Pedagogy Toolkit, developed with RMIT University and Victoria University, which won a 2025 Regional Universities Network Learning and Teaching Award. Both are available through the TEQSA GenAI Hub.",
+      "related": [
+        {
+          "label": "SAGE overview",
+          "url": "sage.html"
+        }
       ]
     },
     {
@@ -522,6 +646,16 @@
       "audioUrl": "https://abcmedia.akamaized.net/news/newsradio/audio/202010/NAUs_GLcyberspike_2010_nola.mp3",
       "dateLabel": "20 October 2020",
       "duration": "5 min 37 sec"
+    }
+  ],
+  "yearNotes": [
+    {
+      "after": "2025",
+      "before": "2021",
+      "heading": "2022 to 2024",
+      "text": "In these years my writing took the form of peer-reviewed research, including journal articles and conference papers on the Internet of Things, blockchain, AI chatbots and generative AI in education, alongside the first studies of SAGE.",
+      "linkLabel": "See my publications",
+      "url": "publications.html"
     }
   ]
 }

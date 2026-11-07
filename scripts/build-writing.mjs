@@ -33,6 +33,15 @@ for (const item of [...catalogue.articles, ...catalogue.coverage]) {
   for (const key of ['title','summary','publisher','dateLabel','sortDate']) if (!item[key]) throw new Error(`${item.id}: missing ${key}`);
   if (item.videoId && !/^[A-Za-z0-9_-]{11}$/.test(item.videoId)) throw new Error(`${item.id}: invalid YouTube id`);
   if (!Array.isArray(item.topics) || !item.topics.length) throw new Error(`${item.id}: topics required`);
+  if (item.longSummary !== undefined) {
+    const words = item.longSummary.trim().split(/\s+/).length;
+    if (words < 30 || words > 250) throw new Error(`${item.id}: longSummary must be 30 to 250 words (found ${words})`);
+    if (item.longSummary.includes('\u2014')) throw new Error(`${item.id}: longSummary must not contain em dashes`);
+  }
+  for (const link of item.related || []) {
+    if (!link.label || !link.url) throw new Error(`${item.id}: related links need label and url`);
+    if (!/^https:\/\//.test(link.url) && !/^(?:[a-z0-9-]+\.html|#broadcast-[a-z0-9-]+)$/.test(link.url)) throw new Error(`${item.id}: related link must be HTTPS, a site page or a broadcast anchor`);
+  }
   for (const href of [item.url,item.originalUrl,item.mediumUrl,item.doi,...(item.coverage || []).map(x=>x.url)].filter(Boolean)) {
     if (new URL(href).protocol !== 'https:') throw new Error(`${item.id}: HTTPS URL required`);
   }
@@ -68,23 +77,54 @@ function extraCoverage(item) {
   if (!item.coverage?.length) return '';
   return `<details class="further-coverage"><summary>Further coverage</summary><ul>${item.coverage.map(link=>`<li>${external(link.url,link.label)}</li>`).join('')}</ul>${item.coverageNote?`<p>${escape(item.coverageNote)}</p>`:''}</details>`;
 }
-function articleRow(item, index) {
-  return `<article class="article-row" data-article>
-  <div class="article-row-meta">${index===0?'<span class="latest-label">Latest</span>':''}<span>${escape(item.dateLabel)}</span><span class="topic-label">${topicLabels(item)}</span></div>
-  <div class="article-row-copy"><h3><a href="${escape(url(item))}"${item.body?'':' target="_blank" rel="noopener noreferrer"'}>${escape(item.title)}${item.body?'':'<span class="sr-only"> (opens in a new tab)</span>'}</a></h3><p>${escape(item.summary)}</p>
-  <div class="article-row-footer"><span class="publisher-label${item.origin==='site'?' publisher-local':''}">${escape(originLabel(item))}</span>${readLink(item)}${item.body && item.originalUrl?external(item.originalUrl,'View original','text-link'):''}${item.doi?external(item.doi,'DOI','text-link'):''}</div>${extraCoverage(item)}</div>
-</article>`;
+const shortPublisher = item => item.publisher.split(/ [—·] /)[0];
+const relatedLinks = item => (item.related || []).map(link => /^https:/.test(link.url)
+  ? external(link.url, link.label, 'text-link')
+  : `<a class="text-link" href="${escape(link.url)}">${escape(link.label)} <span aria-hidden="true">→</span></a>`).join('');
+const primaryLink = item => item.body
+  ? `<a class="text-link" href="${localUrl(item)}">Read the article <span aria-hidden="true">→</span></a>`
+  : external(item.url, `Read at ${shortPublisher(item)}`, 'text-link');
+const kicker = item => catalogue.articles.includes(item) ? originLabel(item) : item.publisher;
+const itemTitle = item => item.body
+  ? `<a href="${localUrl(item)}">${escape(item.title)}</a>`
+  : `<a href="${escape(item.url)}" target="_blank" rel="noopener noreferrer">${escape(item.title)}<span class="sr-only"> (opens in a new tab)</span></a>`;
+const dateText = item => item.dateLabel === 'Date not stated' ? '' : escape(item.dateLabel);
+const linksRow = item => `<div class="hub-links">${primaryLink(item)}${item.body && item.originalUrl ? external(item.originalUrl,'View original','text-link') : ''}${item.doi ? external(item.doi,'DOI','text-link') : ''}${relatedLinks(item)}</div>`;
+function leadMarkup(item) {
+  const media = item.image ? `<a class="hub-lead-media" href="${escape(url(item))}" tabindex="-1" aria-hidden="true"><img src="${escape(item.image)}" alt="" width="1200" height="630"></a>` : '';
+  return `<section class="hub-lead${item.image ? '' : ' hub-lead-text'}" aria-label="Latest">${media}<div class="hub-lead-copy"><span class="hub-kicker"><b>Latest</b> · ${escape(item.dateLabel)}</span><h2>${itemTitle(item)}</h2><p>${escape(item.longSummary || item.summary)}</p>${linksRow(item)}${extraCoverage(item)}</div></section>`;
+}
+function entryMarkup(item) {
+  const anchor = catalogue.articles.includes(item) ? `entry-${item.id}` : `media-${item.id}`;
+  if (item.longSummary || item.body) {
+    return `<article class="hub-entry" id="${escape(anchor)}"><time>${dateText(item)}</time><div><span class="hub-kicker"><b>${escape(kicker(item))}</b></span><h3>${itemTitle(item)}</h3><p>${escape(item.longSummary || item.summary)}</p>${linksRow(item)}${extraCoverage(item)}</div></article>`;
+  }
+  return `<article class="hub-compact" id="${escape(anchor)}"><time>${dateText(item)}</time><div><span class="hub-kicker"><b>${escape(kicker(item))}</b></span><h3>${itemTitle(item)}</h3><p>${escape(item.summary)}</p>${item.doi ? `<div class="hub-links">${external(item.doi,'DOI','text-link')}</div>` : ''}${extraCoverage(item)}</div></article>`;
 }
 const videoEmbed = (videoId, title) => `<div class="broadcast-video"><iframe src="https://www.youtube.com/embed/${videoId}?rel=0" title="${escape(title)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
-const mediaMarkup = coverage.map(item=>`<article class="coverage-item" id="media-${escape(item.id)}"><div class="coverage-meta"><span>${escape(item.publisher)}</span><span>${escape(item.dateLabel)}</span></div><h3>${external(item.url,item.title)}</h3><p>${escape(item.summary)}</p>${item.broadcastId?`<div class="coverage-links"><a class="text-link" href="#broadcast-${item.broadcastId}">${item.broadcastId==='abc-newsradio'?'Listen':'Watch'} on this page <span aria-hidden="true">↑</span></a></div>`:''}${item.videoId?`<div class="archive-video">${videoEmbed(item.videoId,item.title)}</div>`:''}${item.doi?`<div class="coverage-links">${external(item.doi,'DOI','text-link')}</div>`:''}${extraCoverage(item)}</article>`).join('\n');
 const broadcastMarkup = broadcasts.map(item=>`<article class="broadcast-card broadcast-${item.type}" id="broadcast-${item.id}"><div class="broadcast-label">${escape(item.publisher)} · ${item.type==='audio'?'Radio interview':'TV interview'}</div>${item.type==='youtube'?`<div class="broadcast-video"><iframe src="https://www.youtube.com/embed/${item.videoId}?rel=0" title="${escape(item.publisher+': '+item.title)}" loading="eager" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>`:''}<h3>${escape(item.title)}</h3><p>${escape(item.summary)}</p><div class="broadcast-meta">${escape(item.dateLabel)} · ${escape(item.duration)}</div>${item.type==='audio'?`<audio controls preload="none" aria-label="${escape(item.publisher+': '+item.title)}"><source src="${escape(item.audioUrl)}" type="audio/mpeg">Your browser does not support audio playback.</audio><p class="audio-error" data-audio-error hidden>Audio unavailable here.${item.url?' Please use the original ABC player below.':''}</p>`:''}${item.url?external(item.url,item.type==='audio'?'Original interview on ABC':'Watch on YouTube','text-link'):''}</article>`).join('\n');
+const BAND_AFTER = 2; // number of entries after the lead before the Watch & Listen band
+const bandMarkup = `<section class="hub-band" aria-labelledby="broadcasts-title"><h2 class="hub-band-title" id="broadcasts-title">Watch &amp; listen</h2><div class="hub-band-grid">${broadcastMarkup}</div></section>`;
+const listed = [...articles, ...coverage].filter(item => !item.broadcastId).toSorted((a,b)=>b.sortDate.localeCompare(a.sortDate));
+const [lead, ...rest] = listed;
+let stream = '';
+let lastYear = null;
+let placed = false;
+rest.forEach((item, index) => {
+  const year = item.sortDate.slice(0,4);
+  if (year !== lastYear) {
+    const note = (catalogue.yearNotes || []).find(n => n.after === lastYear && n.before === year);
+    if (note) stream += `<div class="hub-gap"><h2 class="hub-year">${escape(note.heading)}</h2><p>${escape(note.text)} <a class="text-link" href="${escape(note.url)}">${escape(note.linkLabel)} <span aria-hidden="true">→</span></a></p></div>`;
+    stream += `<h2 class="hub-year">${year}</h2>`;
+    lastYear = year;
+  }
+  stream += entryMarkup(item);
+  if (index + 1 === BAND_AFTER) { stream += bandMarkup; placed = true; }
+});
+if (!placed) stream += bandMarkup;
 const hub = `<main id="main">
-<header class="writing-intro w"><h1>Writing &amp; Media</h1><p>Articles, explainers and media coverage on cybersecurity, privacy, blockchain and AI in education.</p><div class="section-jumps"><a href="#articles">Articles &amp; Commentary <span aria-hidden="true">↓</span></a><a href="#coverage">In the Media <span aria-hidden="true">↓</span></a></div></header>
-<div class="writing-overview w"><section class="articles-section" id="articles" aria-labelledby="articles-title"><div class="section-heading"><h2 id="articles-title">Articles &amp; Commentary</h2></div>
-<div class="article-list" id="article-list">${articles.map(articleRow).join('\n')}</div>
-</section>
-<aside class="broadcasts-section" aria-labelledby="broadcasts-title"><div class="section-heading"><h2 id="broadcasts-title">Watch &amp; Listen</h2></div><div class="broadcast-list">${broadcastMarkup}</div></aside></div>
-<section class="media-section" id="coverage" aria-labelledby="coverage-title"><div class="w"><div class="section-heading"><h2 id="coverage-title">In the Media</h2><p>Articles published by media outlets, alongside interviews and coverage of my work.</p></div><div class="coverage-list">${mediaMarkup}</div></div></section>
+<header class="writing-intro w"><h1>Writing &amp; Media</h1><p>Articles, commentary and interviews on cybersecurity, privacy, blockchain and AI in education.</p></header>
+<div class="hub w">${leadMarkup(lead)}${stream}</div>
 <aside class="writing-contact w"><p>Looking for an expert perspective on technology, security or AI in education?</p><div class="writing-contact-links"><a class="text-link" href="contact.html">Get in touch <span aria-hidden="true">→</span></a><a class="text-link" href="feed.xml">RSS feed <span aria-hidden="true">↗</span></a></div></aside>
 </main>`;
 outputs.set('media.html', renderPage({TITLE:'Writing &amp; Media | Dr Mahmoud Elkhodr',DESCRIPTION:'Articles, explainers and commentary by Dr Mahmoud Elkhodr on cybersecurity, privacy, blockchain and AI in education, plus interviews and media coverage.',CANONICAL:`${site}/media.html`,OG_TYPE:'website',ROOT:'',HEAD:jsonLd({'@context':'https://schema.org','@type':'CollectionPage',name:'Writing & Media',url:`${site}/media.html`,mainEntity:{'@type':'ItemList',itemListElement:articles.map((item,i)=>({'@type':'ListItem',position:i+1,name:item.title,url:absoluteUrl(item)}))}}),BODY_CLASS:'writing-hub',CONTENT:hub}));
