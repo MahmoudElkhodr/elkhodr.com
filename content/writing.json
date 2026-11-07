@@ -737,6 +737,30 @@
         "Academic leadership"
       ],
       "videoId": "msDENXUg5-8"
+    },
+    {
+      "id": "scienmag-sage-2025",
+      "title": "Empowering Cybersecurity Education with Responsible AI Framework",
+      "summary": "Scienmag reports on the SAGE framework for building critical thinking and responsible generative AI use in cybersecurity education.",
+      "publisher": "Scienmag",
+      "url": "https://scienmag.com/empowering-cybersecurity-education-with-responsible-ai-framework/",
+      "dateLabel": "27 November 2025",
+      "sortDate": "2025-11-27",
+      "topics": [
+        "Generative AI",
+        "AI in education"
+      ],
+      "longSummary": "Scienmag reported on the SAGE paper published in Discover Education, written with Professor Ergun Gide. The article presents SAGE as a guide for educators and institutions designing cybersecurity curricula that keep pace with technological change, so that students understand both the potential and the risks of generative AI. It describes analytical projects that examine how AI and cybersecurity problems relate, including their wider consequences and ethical implications, and it highlights collaboration among schools, industry and policymakers. It also notes the emphasis the framework places on law, psychology and ethics alongside technical skills.",
+      "related": [
+        {
+          "label": "Read the paper in Discover Education",
+          "url": "https://link.springer.com/article/10.1007/s44217-025-00935-3"
+        },
+        {
+          "label": "SAGE framework",
+          "url": "https://sage-framework.com/"
+        }
+      ]
     }
   ],
   "broadcasts": [
