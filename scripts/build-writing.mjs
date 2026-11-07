@@ -125,7 +125,11 @@ rest.forEach((item, index) => {
 });
 if (!placed) stream += bandMarkup;
 const yearsShown = [...new Set(rest.map(item => item.sortDate.slice(0,4)))];
-const yearStrip = `<nav class="hub-years" aria-label="Jump to a year"><span class="hub-years-label">Jump to</span>${yearsShown.map(y => `<a href="#year-${y}">${y}</a>`).join('')}<a class="hub-years-extra" href="#broadcasts-title">Interviews</a></nav>`;
+// The two oldest years share one pill (it jumps to the newer of them), so sparse early years take no room.
+const yearPills = yearsShown.length > 2
+  ? [...yearsShown.slice(0, -2).map(y => ({ to: y, label: y })), { to: yearsShown.at(-2), label: `${yearsShown.at(-2)}\u2013${yearsShown.at(-1)}` }]
+  : yearsShown.map(y => ({ to: y, label: y }));
+const yearStrip = `<nav class="hub-years" aria-label="Jump to a year"><span class="hub-years-label">Jump to</span>${yearPills.map(p => `<a href="#year-${p.to}">${p.label}</a>`).join('')}<a class="hub-years-extra" href="#broadcasts-title">Interviews</a></nav>`;
 const hub = `<main id="main">
 <header class="writing-intro w"><h1>Writing &amp; Media</h1><p>Articles, commentary and interviews on cybersecurity, privacy, blockchain and AI in education.</p></header>
 <div class="hub w">${leadMarkup(lead)}${yearStrip}${stream}</div>
