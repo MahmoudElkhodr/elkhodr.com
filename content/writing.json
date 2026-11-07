@@ -799,6 +799,36 @@
         "AI in education"
       ],
       "longSummary": "A teaching blog from the Centre for English Language Communication at the National University of Singapore draws on the 2023 STEM Education paper on ICT students' perceptions of ChatGPT, written by Dr Mahmoud Elkhodr with Professor Ergun Gide, Ruby Wu and Omar Darwish. The post reports a survey of 39 students in an English communication course, who valued ChatGPT for summarising texts and gathering ideas but noted concerns about accuracy and cheating. It cites the paper twice, first to support the benefit of ChatGPT as a learning resource and again to support the finding that students perceive its output as a useful learning resource."
+    },
+    {
+      "id": "policy-european-parliament-ai-human-rights-2024",
+      "title": "Artificial intelligence (AI) and human rights: Using AI as a weapon of repression and its impact on human rights",
+      "summary": "A European Parliament in-depth analysis, also issued by the EU Publications Office in June 2024, listed in SciVal as a policy document that cites Dr Elkhodr's research.",
+      "publisher": "European Parliament",
+      "url": "https://www.europarl.europa.eu/thinktank/en/document/EXPO_IDA(2024)754450",
+      "dateLabel": "May 2024",
+      "sortDate": "2024-05-01",
+      "topics": [
+        "Policy citations"
+      ],
+      "related": [
+        {
+          "label": "EU Publications Office edition",
+          "url": "https://op.europa.eu/en/publication-detail/-/publication/99dd9a48-287b-11ef-a195-01aa75ed71a1/"
+        }
+      ]
+    },
+    {
+      "id": "policy-apo-big-data-social-policy-2021",
+      "title": "Big data for Australian social policy: developments, benefits and risks",
+      "summary": "A report of the Academy of the Social Sciences in Australia, held in the Australian Policy Online repository and listed in SciVal as a policy document that cites Dr Elkhodr's research.",
+      "publisher": "Australian Policy Online",
+      "url": "https://apo.org.au/node/315662",
+      "dateLabel": "17 December 2021",
+      "sortDate": "2021-12-17",
+      "topics": [
+        "Policy citations"
+      ]
     }
   ],
   "broadcasts": [
