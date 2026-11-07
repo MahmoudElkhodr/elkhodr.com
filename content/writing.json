@@ -123,6 +123,40 @@
       ],
       "longSummary": "Choosing the right AI chatbot matters, but at the time of this review there was little comparative evidence to guide the choice. Written with Ketmanto Wangsa, Shakir Karim and Professor Ergun Gide, this paper presents a systematic review of 28 scholarly articles that compare five leading chatbots, ChatGPT, Bard, Llama, Ernie and Grok, across fields including education and healthcare. The central finding is that no single chatbot is superior in every setting. ChatGPT performed strongly in education and academic research, Bard in real-time queries, and Llama in healthcare and programming, although its computational demands may limit wider use. Ernie suits Chinese-language tasks but is constrained internationally, and Grok was at an early stage of development and available only to premium subscribers. The review concludes that future research should cover more fields and practical applications, and should address the concerns these tools raise.",
       "related": []
+    },
+    {
+      "id": "research-biochainreward-2023",
+      "title": "BioChainReward: a secure and incentivised blockchain framework for biomedical data sharing",
+      "summary": "Introduces BioChainReward, a four-layer blockchain framework that protects patient privacy in biomedical data sharing and rewards patients for the data they contribute.",
+      "publisher": "Int. J. Environmental Research and Public Health (MDPI)",
+      "origin": "external",
+      "kind": "research",
+      "url": "https://doi.org/10.3390/ijerph20196825",
+      "dateLabel": "25 September 2023",
+      "sortDate": "2023-09-25",
+      "topics": [
+        "Blockchain",
+        "Digital health"
+      ],
+      "longSummary": "Health records, medical images and genomic sequences are valuable for research, but sharing them exposes patients to privacy risks, and centralised storage is vulnerable to breaches. Written with Professor Ergun Gide, Omar Darwish and Shorouq Al-Eidi, this paper proposes BioChainReward, a blockchain framework built in four layers: data, blockchain, smart contract and application. Raw data stays off the chain, which stores only hashes and metadata. The smart contract layer manages access control and consent, and includes an AI component that chooses between anonymisation, obfuscation and differential privacy according to each request. It also rewards patients with tokens or credits based on the quality of their data and the feedback of those who request it. The evaluation in the paper is qualitative, and empirical validation is identified as the next step. The framework was later extended in my work on semantic IoT middleware.",
+      "related": []
+    },
+    {
+      "id": "research-fake-news-ukraine-2023",
+      "title": "Identifying fake news in the Russian-Ukrainian conflict using machine learning",
+      "summary": "A conference paper that tests whether machine learning can separate fake from real posts about the Russia-Ukraine conflict, using a labelled dataset of tweets.",
+      "publisher": "AINA 2023 (Springer)",
+      "origin": "external",
+      "kind": "research",
+      "url": "https://doi.org/10.1007/978-3-031-28694-0_51",
+      "dateLabel": "2023",
+      "sortDate": "2023-03-01",
+      "topics": [
+        "Machine learning",
+        "Misinformation"
+      ],
+      "longSummary": "False information spreads quickly during a war, and the Russia-Ukraine conflict produced a great deal of it on social media. This conference paper, led by Omar Darwish with colleagues including me, asks whether machine learning can help identify it. The team built its own dataset of tweets labelled as fake or real, and compared a pre-trained BERT model with five classical classifiers: support vector machines, decision trees, k-nearest neighbours, logistic regression and Naive Bayes. Each was tested across several dataset configurations. Support vector machines and logistic regression performed best, at about 76 per cent accuracy. The main contribution is evidence that models of this kind can support a detection system for this conflict, in the way that similar systems are already used in other fields such as healthcare.",
+      "related": []
     }
   ],
   "coverage": [
@@ -689,16 +723,6 @@
       "audioUrl": "https://abcmedia.akamaized.net/news/newsradio/audio/202010/NAUs_GLcyberspike_2010_nola.mp3",
       "dateLabel": "20 October 2020",
       "duration": "5 min 37 sec"
-    }
-  ],
-  "yearNotes": [
-    {
-      "after": "2024",
-      "before": "2021",
-      "heading": "2022 and 2023",
-      "text": "In these years my writing took the form of peer-reviewed research, including journal articles and conference papers on the Internet of Things, blockchain, machine learning and AI in education, alongside the first studies of SAGE.",
-      "linkLabel": "See my publications",
-      "url": "publications.html"
     }
   ]
 }
