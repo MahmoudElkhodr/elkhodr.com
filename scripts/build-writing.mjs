@@ -34,6 +34,7 @@ for (const item of [...catalogue.articles, ...catalogue.coverage]) {
   if (item.videoId && !/^[A-Za-z0-9_-]{11}$/.test(item.videoId)) throw new Error(`${item.id}: invalid YouTube id`);
   if (!Array.isArray(item.topics) || !item.topics.length) throw new Error(`${item.id}: topics required`);
   if (item.kind !== undefined && item.kind !== 'research') throw new Error(`${item.id}: unknown kind`);
+  if (item.linkLabel !== undefined && (typeof item.linkLabel !== 'string' || item.linkLabel.length > 60)) throw new Error(`${item.id}: invalid linkLabel`);
   if (item.longSummary !== undefined) {
     const words = item.longSummary.trim().split(/\s+/).length;
     if (words < 30 || words > 250) throw new Error(`${item.id}: longSummary must be 30 to 250 words (found ${words})`);
@@ -84,7 +85,7 @@ const relatedLinks = item => (item.related || []).map(link => /^https:/.test(lin
   : `<a class="text-link" href="${escape(link.url)}">${escape(link.label)} <span aria-hidden="true">→</span></a>`).join('');
 const primaryLink = item => item.body
   ? `<a class="text-link" href="${localUrl(item)}">Read the article <span aria-hidden="true">→</span></a>`
-  : external(item.url, item.kind === 'research' ? 'Read the paper' : `Read at ${shortPublisher(item)}`, 'text-link');
+  : external(item.url, item.linkLabel || (item.kind === 'research' ? 'Read the paper' : `Read at ${shortPublisher(item)}`), 'text-link');
 const kicker = item => item.kind === 'research' ? `Peer-reviewed paper · ${item.publisher}` : catalogue.articles.includes(item) ? originLabel(item) : item.publisher;
 const itemTitle = item => item.body
   ? `<a href="${localUrl(item)}">${escape(item.title)}</a>`

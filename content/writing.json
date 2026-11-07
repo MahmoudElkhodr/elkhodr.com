@@ -148,15 +148,25 @@
       "publisher": "AINA 2023 (Springer)",
       "origin": "external",
       "kind": "research",
-      "url": "https://doi.org/10.1007/978-3-031-28694-0_51",
+      "url": "https://www.europarl.europa.eu/thinktank/en/document/EXPO_IDA(2024)754450",
       "dateLabel": "2023",
       "sortDate": "2023-03-01",
       "topics": [
         "Machine learning",
         "Misinformation"
       ],
-      "longSummary": "False information spreads quickly during a war, and the Russia-Ukraine conflict produced a great deal of it on social media. This conference paper, led by Omar Darwish with colleagues including me, asks whether machine learning can help identify it. The team built its own dataset of tweets labelled as fake or real, and compared a pre-trained BERT model with five classical classifiers: support vector machines, decision trees, k-nearest neighbours, logistic regression and Naive Bayes. Each was tested across several dataset configurations. Support vector machines and logistic regression performed best, at about 76 per cent accuracy. The main contribution is evidence that models of this kind can support a detection system for this conflict, in the way that similar systems are already used in other fields such as healthcare.",
-      "related": []
+      "longSummary": "False information spreads quickly during a war, and the Russia-Ukraine conflict produced a great deal of it on social media. This conference paper, led by Omar Darwish with colleagues including me, asks whether machine learning can help identify it. The team built its own dataset of tweets labelled as fake or real, and compared a pre-trained BERT model with five classical classifiers: support vector machines, decision trees, k-nearest neighbours, logistic regression and Naive Bayes. Each was tested across several dataset configurations. Support vector machines and logistic regression performed best, at about 76 per cent accuracy. The main contribution is evidence that models of this kind can support a detection system for this conflict, in the way that similar systems are already used in other fields such as healthcare. The paper is cited in a 2024 European Parliament analysis of the use of artificial intelligence as a weapon of repression.",
+      "related": [
+        {
+          "label": "Read the paper",
+          "url": "https://doi.org/10.1007/978-3-031-28694-0_51"
+        },
+        {
+          "label": "EU Publications Office edition",
+          "url": "https://op.europa.eu/en/publication-detail/-/publication/99dd9a48-287b-11ef-a195-01aa75ed71a1/"
+        }
+      ],
+      "linkLabel": "Read the European Parliament analysis"
     },
     {
       "id": "swift-russia-linkedin-2022",
@@ -803,7 +813,7 @@
     {
       "id": "policy-european-parliament-ai-human-rights-2024",
       "title": "Artificial intelligence (AI) and human rights: Using AI as a weapon of repression and its impact on human rights",
-      "summary": "A European Parliament in-depth analysis, also issued by the EU Publications Office in June 2024, listed in SciVal as a policy document that cites Dr Elkhodr's research.",
+      "summary": "A European Parliament in-depth analysis, also issued by the EU Publications Office in June 2024, listed in SciVal as citing the 2023 conference paper on identifying fake news in the Russian-Ukrainian conflict using machine learning.",
       "publisher": "European Parliament",
       "url": "https://www.europarl.europa.eu/thinktank/en/document/EXPO_IDA(2024)754450",
       "dateLabel": "May 2024",
@@ -815,6 +825,10 @@
         {
           "label": "EU Publications Office edition",
           "url": "https://op.europa.eu/en/publication-detail/-/publication/99dd9a48-287b-11ef-a195-01aa75ed71a1/"
+        },
+        {
+          "label": "Read the cited paper",
+          "url": "https://doi.org/10.1007/978-3-031-28694-0_51"
         }
       ]
     },
