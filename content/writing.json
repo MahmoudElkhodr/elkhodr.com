@@ -785,6 +785,20 @@
           "url": "https://link.springer.com/article/10.1007/s44217-025-00935-3"
         }
       ]
+    },
+    {
+      "id": "nus-teaching-connections-2024",
+      "title": "AI for Learning: Students' Perceptions and Use of ChatGPT",
+      "summary": "A National University of Singapore teaching blog cites the 2023 STEM Education paper on ICT students' perceptions of ChatGPT in support of its survey findings.",
+      "publisher": "NUS Teaching Connections",
+      "url": "https://blog.nus.edu.sg/teachingconnections/2024/05/30/ai-for-learning-students-perceptions-and-use-of-chatgpt/",
+      "dateLabel": "30 May 2024",
+      "sortDate": "2024-05-30",
+      "topics": [
+        "Generative AI",
+        "AI in education"
+      ],
+      "longSummary": "A teaching blog from the Centre for English Language Communication at the National University of Singapore draws on the 2023 STEM Education paper on ICT students' perceptions of ChatGPT, written by Dr Mahmoud Elkhodr with Professor Ergun Gide, Ruby Wu and Omar Darwish. The post reports a survey of 39 students in an English communication course, who valued ChatGPT for summarising texts and gathering ideas but noted concerns about accuracy and cheating. It cites the paper twice, first to support the benefit of ChatGPT as a learning resource and again to support the finding that students perceive its output as a useful learning resource."
     }
   ],
   "broadcasts": [
