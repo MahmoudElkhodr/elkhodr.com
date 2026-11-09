@@ -802,7 +802,7 @@
     {
       "id": "cqu-wifi-name-2026",
       "title": "Your Wi-Fi name could be revealing more than you think",
-      "summary": "CQUniversity News story on what the name of a Wi-Fi network can reveal about its owner.",
+      "summary": "How the name of a home Wi-Fi network can reveal more than expected, and the five steps that better protect a household.",
       "publisher": "CQUniversity News",
       "url": "https://www.cqu.edu.au/news/1324777/your-wi-fi-name-could-be-revealing-more-than-you-think",
       "dateLabel": "9 November 2026",
@@ -810,7 +810,8 @@
       "topics": [
         "Cybersecurity",
         "Privacy"
-      ]
+      ],
+      "longSummary": "Changing a home Wi-Fi name is a sensible privacy step, because a default name can reveal the internet provider or the router model, but the security behind the name matters far more. In this CQUniversity News story, renaming a network is compared with taking a name off the letterbox rather than locking the front door. It explains how an insecure network can expose cameras, baby monitors and other connected devices, why a default router administrator password is a common mistake, and how AI assistants connected to the home add new risks. It closes with five practical steps for households."
     }
   ],
   "broadcasts": [
