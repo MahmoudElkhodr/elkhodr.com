@@ -92,7 +92,8 @@ const kicker = item => item.kind === 'research' ? `Peer-reviewed paper · ${item
 const itemTitle = item => item.body
   ? `<a href="${localUrl(item)}">${escape(item.title)}</a>`
   : `<a href="${escape(item.url)}" target="_blank" rel="noopener noreferrer">${escape(item.title)}<span class="sr-only"> (opens in a new tab)</span></a>`;
-const dateText = item => item.dateLabel === 'Date not stated' ? '' : escape(item.dateLabel);
+const ownSite = item => item.origin === 'site';
+const dateText = item => item.dateLabel === 'Date not stated' || ownSite(item) ? '' : escape(item.dateLabel);
 const linksRow = item => `<div class="hub-links">${primaryLink(item)}${item.body && item.originalUrl ? external(item.originalUrl,'View original','text-link') : ''}${item.doi ? external(item.doi,'DOI','text-link') : ''}${relatedLinks(item)}</div>`;
 function leadMarkup(item) {
   const media = item.image ? `<a class="hub-lead-media" href="${escape(url(item))}" tabindex="-1" aria-hidden="true"><img src="${escape(item.image)}" alt="" width="1200" height="630"></a>` : '';
@@ -109,7 +110,10 @@ const videoEmbed = (videoId, title) => `<div class="broadcast-video"><iframe src
 const broadcastMarkup = broadcasts.map(item=>`<article class="broadcast-card broadcast-${item.type}" id="broadcast-${item.id}"><div class="broadcast-label">${escape(item.publisher)} · ${item.type==='audio'?'Radio interview':'TV interview'}</div>${item.type==='youtube'?`<div class="broadcast-video"><iframe src="https://www.youtube.com/embed/${item.videoId}?rel=0" title="${escape(item.publisher+': '+item.title)}" loading="eager" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>`:''}<h3>${escape(item.title)}</h3><p>${escape(item.summary)}</p><div class="broadcast-meta">${escape(item.dateLabel)} · ${escape(item.duration)}</div>${item.type==='audio'?`<audio controls preload="none" aria-label="${escape(item.publisher+': '+item.title)}"><source src="${escape(item.audioUrl)}" type="audio/mpeg">Your browser does not support audio playback.</audio><p class="audio-error" data-audio-error hidden>Audio unavailable here.${item.url?' Please use the original ABC player below.':''}</p>`:''}${item.url?external(item.url,item.type==='audio'?'Original interview on ABC':'Watch on YouTube','text-link'):''}</article>`).join('\n');
 const BAND_AFTER = 2; // number of entries after the lead before the Watch & Listen band
 const bandMarkup = `<section class="hub-band" aria-labelledby="broadcasts-title"><h2 class="hub-band-title" id="broadcasts-title">Watch &amp; listen</h2><div class="hub-band-grid">${broadcastMarkup}</div></section>`;
-const listed = [...articles, ...coverage].filter(item => !item.broadcastId).toSorted((a,b)=>b.sortDate.localeCompare(a.sortDate));
+// Within each year, articles hosted on elkhodr.com follow the externally published items and show no date,
+// so independent coverage leads the page and the lead story is never an own-site article.
+const listed = [...articles, ...coverage].filter(item => !item.broadcastId).toSorted((a,b)=>
+  b.sortDate.slice(0,4).localeCompare(a.sortDate.slice(0,4)) || Number(ownSite(a)) - Number(ownSite(b)) || b.sortDate.localeCompare(a.sortDate));
 const [lead, ...rest] = listed;
 // "Selected recent contributions": a curated, newest-first list of editorial venues, opened in a new tab beside the lead.
 const featuredMarkup = (() => {
