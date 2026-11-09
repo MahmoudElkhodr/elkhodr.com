@@ -203,3 +203,6 @@
 .hub-years a:hover,.hub-years a:focus-visible{border-color:var(--acc);color:var(--acc)}
 .hub-years-extra{margin-left:auto;border-style:dashed!important}
 @media(max-width:700px){.hub-years-extra{margin-left:0}}
+
+/* Entry anchors clear the sticky header and year strip. */
+[id^="entry-"],[id^="media-"]{scroll-margin-top:calc(var(--nh) + 72px)}

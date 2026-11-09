@@ -145,6 +145,35 @@
           "url": "https://link.springer.com/article/10.1007/s44217-025-00935-3"
         }
       ]
+    },
+    {
+      "id": "protect-your-research-in-the-ai-era",
+      "slug": "protect-your-research-in-the-ai-era",
+      "title": "Protect your research in the AI era",
+      "summary": "Six checks to make before sharing unpublished research with an AI tool, set out in a poster prepared for Cyber Security Awareness Month.",
+      "publisher": "elkhodr.com",
+      "origin": "site",
+      "firstPublished": "CQUniversity's Researcher Essentials, October 2026",
+      "date": "2026-10-01",
+      "dateLabel": "October 2026",
+      "sortDate": "2026-10-01",
+      "topics": [
+        "Generative AI",
+        "Research integrity"
+      ],
+      "body": "articles/protect-your-research-in-the-ai-era.md",
+      "image": "assets/articles/protect-your-research-in-the-ai-era/share.png",
+      "longSummary": "What is shared with an AI tool may leave the author's control, and an unpublished idea that is retained or used in training could resurface in someone else's answer, uncredited. This poster sets out six checks to make before sharing: whether the contribution is worth protecting, whether the material is sensitive, whether policy and permission allow the use, how the service trains on and retains inputs, how far an AI agent should be fenced in, and whether a brief, dated description would serve instead. It was prepared with Professor Ergun Gide for Cyber Security Awareness Month and first appeared in CQUniversity's Researcher Essentials in October 2026.",
+      "related": [
+        {
+          "label": "SAGE-R",
+          "url": "https://sage-framework.com/sager.html"
+        },
+        {
+          "label": "The preprint bargain",
+          "url": "https://www.linkedin.com/pulse/protect-your-research-age-generative-ai-rethinking-preprint-elkhodr-du7tc"
+        }
+      ]
     }
   ],
   "coverage": [
