@@ -82,23 +82,6 @@
       "longSummary": "Preprints trade early visibility for some control over a research claim, and generative AI changes the terms of that trade. This article examines how AI alters three risks: sharing a preprint publicly, entering unpublished research into AI tools, and using AI during peer review. It was first published on LinkedIn and is archived with a DOI."
     },
     {
-      "id": "research-biochainreward-2023",
-      "title": "BioChainReward: a secure and incentivised blockchain framework for biomedical data sharing",
-      "summary": "Introduces BioChainReward, a four-layer blockchain framework that protects patient privacy in biomedical data sharing and rewards patients for the data they contribute.",
-      "publisher": "Int. J. Environmental Research and Public Health (MDPI)",
-      "origin": "external",
-      "kind": "research",
-      "url": "https://doi.org/10.3390/ijerph20196825",
-      "dateLabel": "25 September 2023",
-      "sortDate": "2023-09-25",
-      "topics": [
-        "Blockchain",
-        "Digital health"
-      ],
-      "longSummary": "Health records, medical images and genomic sequences are valuable for research, but sharing them exposes patients to privacy risks, and centralised storage is vulnerable to breaches. Written with Professor Ergun Gide, Omar Darwish and Shorouq Al-Eidi, this paper proposes BioChainReward, a blockchain framework built in four layers: data, blockchain, smart contract and application. Raw data stays off the chain, which stores only hashes and metadata. The smart contract layer manages access control and consent, and includes an AI component that chooses between anonymisation, obfuscation and differential privacy according to each request. It also rewards patients with tokens or credits based on the quality of their data and the feedback of those who request it. The evaluation in the paper is qualitative, and empirical validation is identified as the next step. The framework was later extended in my work on semantic IoT middleware.",
-      "related": []
-    },
-    {
       "id": "swift-russia-linkedin-2022",
       "title": "Disconnecting Russia from the SWIFT system may not necessarily have a profound impact",
       "summary": "Argues that disconnecting Russia from the SWIFT financial messaging system may not necessarily have a profound impact.",
@@ -770,28 +753,6 @@
       "longSummary": "A teaching blog from the Centre for English Language Communication at the National University of Singapore draws on the 2023 STEM Education paper on ICT students' perceptions of ChatGPT, written by Dr Mahmoud Elkhodr with Professor Ergun Gide, Ruby Wu and Omar Darwish. The post reports a survey of 39 students in an English communication course, who valued ChatGPT for summarising texts and gathering ideas but noted concerns about accuracy and cheating. It cites the paper twice, first to support the benefit of ChatGPT as a learning resource and again to support the finding that students perceive its output as a useful learning resource."
     },
     {
-      "id": "policy-european-parliament-ai-human-rights-2024",
-      "title": "Artificial intelligence (AI) and human rights: Using AI as a weapon of repression and its impact on human rights",
-      "summary": "A European Parliament in-depth analysis, also issued by the EU Publications Office in June 2024, listed in SciVal as citing the 2023 conference paper on identifying fake news in the Russian-Ukrainian conflict using machine learning.",
-      "publisher": "European Parliament",
-      "url": "https://www.europarl.europa.eu/thinktank/en/document/EXPO_IDA(2024)754450",
-      "dateLabel": "May 2024",
-      "sortDate": "2024-05-01",
-      "topics": [
-        "Policy citations"
-      ],
-      "related": [
-        {
-          "label": "EU Publications Office edition",
-          "url": "https://op.europa.eu/en/publication-detail/-/publication/99dd9a48-287b-11ef-a195-01aa75ed71a1/"
-        },
-        {
-          "label": "Read the cited paper",
-          "url": "https://doi.org/10.1007/978-3-031-28694-0_51"
-        }
-      ]
-    },
-    {
       "id": "policy-apo-big-data-social-policy-2021",
       "title": "Big data for Australian social policy: developments, benefits and risks",
       "summary": "A report of the Academy of the Social Sciences in Australia, held in the Australian Policy Online repository and listed in SciVal as a policy document that cites Dr Elkhodr's research.",
@@ -831,7 +792,7 @@
     {
       "id": "cqu-wifi-name-2026",
       "title": "Your Wi-Fi name could be revealing more than you think",
-      "summary": "How the name of a home Wi-Fi network can reveal more than expected, and the five steps that better protect a household.",
+      "summary": "From renaming a home Wi-Fi network to supervising the AI that now controls the smart home: how households can protect themselves and stay cybersafe.",
       "publisher": "CQUniversity News",
       "url": "https://www.cqu.edu.au/news/1324777/your-wi-fi-name-could-be-revealing-more-than-you-think",
       "dateLabel": "9 November 2026",
@@ -840,7 +801,7 @@
         "Cybersecurity",
         "Privacy"
       ],
-      "longSummary": "Changing a home Wi-Fi name is a sensible privacy step, because a default name can reveal the internet provider or the router model, but the security behind the name matters far more. In this CQUniversity News story, renaming a network is compared with taking a name off the letterbox rather than locking the front door. It explains how an insecure network can expose cameras, baby monitors and other connected devices, why a default router administrator password is a common mistake, and how AI assistants connected to the home add new risks. It closes with five practical steps for households."
+      "longSummary": "Renaming a home Wi-Fi network is a sensible first step, but the larger task is now supervising how AI controls the smart home. In this CQUniversity News story, changing the network name is compared with taking a name off the letterbox rather than locking the front door. A default name can reveal the internet provider or the router model, and an insecure network can expose cameras, baby monitors and other connected devices. A default router administrator password is a common mistake, and AI assistants connected to the home add new risks of their own. The story closes with five practical steps for staying cybersafe."
     }
   ],
   "broadcasts": [
