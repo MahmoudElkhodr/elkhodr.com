@@ -385,6 +385,7 @@
       "summary": "Explains why the internet has no single off switch, how shared dependencies can disrupt many services at once, and how organisations can prepare for outages.",
       "dateLabel": "29 October 2026",
       "sortDate": "2026-10-29",
+      "featured": true,
       "coverage": [
         {
           "url": "https://www.digitalinformationworld.com/2026/10/what-would-happen-if-internet-went-down.html",
@@ -531,6 +532,7 @@
       "url": "https://www.timeshighereducation.com/campus/students-are-asking-ai-guidance-not-just-policy",
       "dateLabel": "23 April 2026",
       "sortDate": "2026-04-23",
+      "featured": true,
       "summary": "Co-authored with Ergun Gide, this article argues for practical guidance that helps students verify AI outputs and demonstrate their own judgement.",
       "topics": [
         "AI & education"
@@ -554,6 +556,7 @@
       "url": "https://herdsa.org.au/herdsa-connect/students-are-asking-ai-guidance-not-just-policy-comprehensive-practical-framework-ai",
       "dateLabel": "17 June 2026",
       "sortDate": "2026-06-17",
+      "featured": true,
       "summary": "Discusses student demand for practical AI guidance and a structured approach to verification, revision and assessment assurance.",
       "topics": [
         "AI & education"
@@ -577,6 +580,7 @@
       "url": "https://futurecampus.com.au/2026/04/11/ai-era-must-not-become-excuse-to-default-to-low-tech-exams/",
       "dateLabel": "11 April 2026",
       "sortDate": "2026-04-11",
+      "featured": true,
       "summary": "An opinion piece on assessment in the AI era, arguing for context-appropriate demonstrations of judgement and competence rather than a blanket return to traditional exams.",
       "topics": [
         "AI & education"

@@ -35,6 +35,7 @@ for (const item of [...catalogue.articles, ...catalogue.coverage]) {
   if (!Array.isArray(item.topics) || !item.topics.length) throw new Error(`${item.id}: topics required`);
   if (item.kind !== undefined && item.kind !== 'research') throw new Error(`${item.id}: unknown kind`);
   if (item.firstPublished !== undefined && (typeof item.firstPublished !== 'string' || item.firstPublished.length > 120)) throw new Error(`${item.id}: invalid firstPublished`);
+  if (item.featured !== undefined && (item.featured !== true || !/^https:\/\//.test(item.url || ''))) throw new Error(`${item.id}: featured must be true and the item needs an HTTPS url`);
   if (item.linkLabel !== undefined && (typeof item.linkLabel !== 'string' || item.linkLabel.length > 60)) throw new Error(`${item.id}: invalid linkLabel`);
   if (item.longSummary !== undefined) {
     const words = item.longSummary.trim().split(/\s+/).length;
@@ -110,6 +111,12 @@ const BAND_AFTER = 2; // number of entries after the lead before the Watch & Lis
 const bandMarkup = `<section class="hub-band" aria-labelledby="broadcasts-title"><h2 class="hub-band-title" id="broadcasts-title">Watch &amp; listen</h2><div class="hub-band-grid">${broadcastMarkup}</div></section>`;
 const listed = [...articles, ...coverage].filter(item => !item.broadcastId).toSorted((a,b)=>b.sortDate.localeCompare(a.sortDate));
 const [lead, ...rest] = listed;
+// "Featured in": a curated, newest-first list of editorial venues, opened in a new tab beside the lead.
+const featuredMarkup = (() => {
+  const picks = listed.filter(item => item.featured).slice(0, 5);
+  if (!picks.length) return '';
+  return `<aside class="hub-featured" aria-labelledby="featured-title"><h2 id="featured-title">Featured in</h2><ul>${picks.map(item => `<li><a href="${escape(item.url)}" target="_blank" rel="noopener noreferrer"><span class="hub-featured-venue">${escape(item.publisher.replace(' \u2014 ', ' \u00b7 '))}</span><span class="hub-featured-title">${escape(item.title)}</span><span class="hub-featured-date">${escape(item.dateLabel)} <span aria-hidden="true">\u2197</span></span><span class="sr-only"> (opens in a new tab)</span></a></li>`).join('')}</ul></aside>`;
+})();
 let stream = '';
 let lastYear = null;
 let placed = false;
@@ -133,7 +140,7 @@ const yearPills = yearsShown.length > 2
 const yearStrip = `<nav class="hub-years" aria-label="Jump to a year"><span class="hub-years-label">Jump to</span>${yearPills.map(p => `<a href="#year-${p.to}">${p.label}</a>`).join('')}<a class="hub-years-extra" href="#broadcasts-title">Interviews</a></nav>`;
 const hub = `<main id="main">
 <header class="writing-intro w"><h1>Writing &amp; Media</h1><p>Articles, commentary and interviews on cybersecurity, privacy, blockchain and AI in education.</p></header>
-<div class="hub w">${leadMarkup(lead)}${yearStrip}${stream}</div>
+<div class="hub w"><div class="hub-top">${leadMarkup(lead)}${featuredMarkup}</div>${yearStrip}${stream}</div>
 <aside class="writing-contact w"><p>Looking for an expert perspective on technology, security or AI in education?</p><div class="writing-contact-links"><a class="text-link" href="contact.html">Get in touch <span aria-hidden="true">→</span></a><a class="text-link" href="feed.xml">RSS feed <span aria-hidden="true">↗</span></a></div></aside>
 </main>`;
 outputs.set('media.html', renderPage({TITLE:'Writing &amp; Media | Dr Mahmoud Elkhodr',DESCRIPTION:'Articles, explainers and commentary by Dr Mahmoud Elkhodr on cybersecurity, privacy, blockchain and AI in education, plus interviews and media coverage.',CANONICAL:`${site}/media.html`,OG_TYPE:'website',ROOT:'',HEAD:jsonLd({'@context':'https://schema.org','@type':'CollectionPage',name:'Writing & Media',url:`${site}/media.html`,mainEntity:{'@type':'ItemList',itemListElement:articles.map((item,i)=>({'@type':'ListItem',position:i+1,name:item.title,url:absoluteUrl(item)}))}}),BODY_CLASS:'writing-hub',CONTENT:hub}));
