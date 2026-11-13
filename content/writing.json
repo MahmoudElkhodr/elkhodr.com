@@ -182,6 +182,26 @@
       ]
     },
     {
+      "id": "abc-news-microsoft-outage-2026",
+      "title": "Outage shows how users need to look for alternatives, expert says",
+      "publisher": "ABC News · Live coverage",
+      "url": "https://www.abc.net.au/news/2026-11-13/microsoft-outage-affects-users-worldwide/107381050#live-blog-post-360583",
+      "summary": "ABC News live coverage of the Microsoft outage reports my interview on the ABC News Channel about the need for tested alternatives.",
+      "dateLabel": "13 November 2026",
+      "sortDate": "2026-11-13",
+      "longSummary": "ABC News reported my interview on the ABC News Channel in its live coverage of the global Microsoft outage. I said it was too early to judge how big the outage could become, and that a failure of this kind would have been very difficult to avoid. Cloud services remain valuable, but reliance on one underlying technology is their downside. Organisations and individuals should identify the essential services that must keep running, arrange alternatives from a different provider, and test them, because an untested plan is likely to fail during a real outage.",
+      "related": [
+        {
+          "label": "My article in The Conversation",
+          "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588"
+        }
+      ],
+      "topics": [
+        "Cybersecurity",
+        "Internet & society"
+      ]
+    },
+    {
       "id": "conversation-microsoft-outage-2026",
       "title": "Microsoft has suffered a global outage. A tech expert explains what went wrong",
       "publisher": "The Conversation",
