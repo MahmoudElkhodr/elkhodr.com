@@ -36,7 +36,8 @@ for (const item of [...catalogue.articles, ...catalogue.coverage]) {
   if (item.kind !== undefined && item.kind !== 'research') throw new Error(`${item.id}: unknown kind`);
   if (item.firstPublished !== undefined && (typeof item.firstPublished !== 'string' || item.firstPublished.length > 120)) throw new Error(`${item.id}: invalid firstPublished`);
   if (item.featured !== undefined && (item.featured !== true || !/^https:\/\//.test(item.url || ''))) throw new Error(`${item.id}: featured must be true and the item needs an HTTPS url`);
-  if (item.onAir !== undefined && (typeof item.onAir !== 'string' || item.onAir.length > 60)) throw new Error(`${item.id}: invalid onAir label`);
+  if (item.alsoLabel !== undefined && (typeof item.alsoLabel !== 'string' || item.alsoLabel.length > 80)) throw new Error(`${item.id}: invalid alsoLabel`);
+  if (item.keepInArchive !== undefined && item.keepInArchive !== true) throw new Error(`${item.id}: keepInArchive must be true`);
   for (const key of ['photo', 'screenshot']) {
     const ph = item[key];
     if (ph === undefined) continue;
@@ -134,9 +135,15 @@ const [lead, ...afterLead] = listed;
 // A photo-led item published within a week of the lead is shown beneath it ("also latest"), which keeps the left column
 // level with the "Selected recent contributions" box. It is then omitted from the year list so it does not appear twice.
 const DAY = 86400000;
-const also = afterLead.find(item => item.photo && !ownSite(item) && Math.abs(Date.parse(lead.sortDate) - Date.parse(item.sortDate)) <= 7 * DAY);
-const rest = afterLead.filter(item => item !== also);
-const alsoMarkup = also ? `<section class="hub-also" id="${escape(`media-${also.id}`)}" aria-label="Also in the news"><div class="hub-also-photo">${figureMarkup(also.photo, 'hub-also-fig')}${also.screenshot ? figureMarkup(also.screenshot, 'hub-also-fig hub-also-shot') : ''}</div><div class="hub-also-copy"><span class="hub-kicker"><b>${escape(also.onAir || 'Also latest')}</b> · ${escape(also.dateLabel)}</span><h3>${itemTitle(also)}</h3><p>${escape(also.summary)}</p>${linksRow(also)}</div></section>` : '';
+const isAlso = item => !ownSite(item) && (item.photo || item.alsoLabel) && Math.abs(Date.parse(lead.sortDate) - Date.parse(item.sortDate)) <= 7 * DAY;
+const alsoItems = afterLead.filter(isAlso).slice(0, 2);
+// Items flagged keepInArchive stay in the year list as well; the rest are shown only in the highlight.
+const rest = afterLead.filter(item => !alsoItems.includes(item) || item.keepInArchive);
+const alsoCard = also => {
+  const figs = [also.photo && figureMarkup(also.photo, 'hub-also-fig'), also.screenshot && figureMarkup(also.screenshot, 'hub-also-fig hub-also-shot')].filter(Boolean).join('');
+  return `<section class="hub-also${figs ? '' : ' hub-also-text'}" id="${escape(`highlight-${also.id}`)}" aria-label="Also in the news">${figs ? `<div class="hub-also-photo">${figs}</div>` : ''}<div class="hub-also-copy"><span class="hub-kicker"><b>${escape(also.alsoLabel || 'Also latest')}</b> · ${escape(also.dateLabel)}</span><h3>${itemTitle(also)}</h3><p>${escape(also.summary)}</p>${linksRow(also)}</div></section>`;
+};
+const alsoMarkup = alsoItems.map(alsoCard).join('');
 // "Selected recent contributions": a curated, newest-first list of editorial venues, opened in a new tab beside the lead.
 const featuredMarkup = (() => {
   const picks = listed.filter(item => item.featured).slice(0, 6);

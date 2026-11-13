@@ -210,7 +210,6 @@
         "width": 720,
         "height": 325
       },
-      "onAir": "On air · ABC News Channel",
       "screenshot": {
         "src": "assets/coverage/independent-screenshot-2026-11-13.jpg",
         "alt": "Screenshot of The Independent's page for the republished article, showing the headline and the byline Mahmoud Elkhodr, The Conversation, 13 November 2026",
@@ -218,7 +217,8 @@
         "width": 800,
         "height": 409,
         "href": "https://www.independent.co.uk/tech/microsoft-outage-cause-outlook-down-b3084285.html"
-      }
+      },
+      "alsoLabel": "On air · ABC News Channel"
     },
     {
       "id": "conversation-microsoft-outage-2026",
@@ -250,7 +250,7 @@
       "title": "Microsoft outage explained: what went wrong and is your data at risk?",
       "publisher": "Euronews",
       "url": "https://www.euronews.com/2026/11/13/microsoft-outage-explained-what-went-wrong-and-is-your-data-at-risk",
-      "summary": "Euronews's own news report on the Microsoft outage cites my Conversation analysis on the likely cause, the attack question and how to prepare.",
+      "summary": "Euronews independently cited my analysis of the global Microsoft outage, including infrastructure failure as a possible cause, why a distributed denial-of-service attack does not fit Microsoft's account, and the importance of digital resilience.",
       "dateLabel": "13 November 2026",
       "sortDate": "2026-11-13",
       "longSummary": "In its own news explainer on the global Microsoft outage, Euronews drew on my analysis in The Conversation, describing me as a senior lecturer in information and communication technologies at CQUniversity. The report relays my suggestion that automated health checks, which normally remove faulty servers from service, may have malfunctioned and switched off healthy ones, overloading the remainder, and notes that I presented this as an inference from Microsoft's public updates. It also reports my point that a distributed denial-of-service attack, which floods a system with outside traffic, does not fit Microsoft's statement that traffic had not increased. Finally, it cites my advice that organisations should plan for digital outages as they would for natural disasters, with backup systems that are tested regularly, and that individuals keep essentials such as contacts available offline.",
@@ -264,7 +264,9 @@
         "Cybersecurity",
         "Internet & society"
       ],
-      "featured": true
+      "featured": true,
+      "alsoLabel": "International media citation · Expert analysis",
+      "keepInArchive": true
     },
     {
       "id": "recent-1",
