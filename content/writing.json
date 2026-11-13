@@ -192,6 +192,10 @@
       "longSummary": "ABC News reported my interview on the ABC News Channel in its live coverage of the global Microsoft outage. I said it was too early to judge how big the outage could become, and that a failure of this kind would have been very difficult to avoid. Cloud services remain valuable, but reliance on one underlying technology is their downside. Organisations and individuals should identify the essential services that must keep running, arrange alternatives from a different provider, and test them, because an untested plan is likely to fail during a real outage.",
       "related": [
         {
+          "label": "Archived copy (Internet Archive)",
+          "url": "https://web.archive.org/web/20261113081855/https://www.abc.net.au/news/2026-11-13/microsoft-outage-affects-users-worldwide/107381050"
+        },
+        {
           "label": "My article in The Conversation",
           "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588"
         }
