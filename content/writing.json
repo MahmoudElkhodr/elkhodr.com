@@ -211,7 +211,15 @@
         "width": 720,
         "height": 325
       },
-      "onAir": "On air · ABC News Channel"
+      "onAir": "On air · ABC News Channel",
+      "screenshot": {
+        "src": "assets/coverage/independent-screenshot-2026-11-13.jpg",
+        "alt": "Screenshot of The Independent's page for the republished article, showing the headline and the byline Mahmoud Elkhodr, The Conversation, 13 November 2026",
+        "credit": "Screenshot: The Independent, 13 November 2026 (opens the article)",
+        "width": 800,
+        "height": 409,
+        "href": "https://www.independent.co.uk/tech/microsoft-outage-cause-outlook-down-b3084285.html"
+      }
     },
     {
       "id": "conversation-microsoft-outage-2026",
