@@ -36,6 +36,7 @@ for (const item of [...catalogue.articles, ...catalogue.coverage]) {
   if (item.kind !== undefined && item.kind !== 'research') throw new Error(`${item.id}: unknown kind`);
   if (item.firstPublished !== undefined && (typeof item.firstPublished !== 'string' || item.firstPublished.length > 120)) throw new Error(`${item.id}: invalid firstPublished`);
   if (item.featured !== undefined && (item.featured !== true || !/^https:\/\//.test(item.url || ''))) throw new Error(`${item.id}: featured must be true and the item needs an HTTPS url`);
+  if (item.onAir !== undefined && (typeof item.onAir !== 'string' || item.onAir.length > 60)) throw new Error(`${item.id}: invalid onAir label`);
   if (item.photo !== undefined) {
     const ph = item.photo;
     if (!ph || typeof ph.src !== 'string' || !/^assets\/coverage\/[\w.-]+\.(jpg|png|webp)$/.test(ph.src) || !fs.existsSync(path.join(root, ph.src))) throw new Error(`${item.id}: photo.src must be an existing file under assets/coverage/`);
@@ -122,7 +123,13 @@ const bandMarkup = `<section class="hub-band" aria-labelledby="broadcasts-title"
 // so independent coverage leads the page and the lead story is never an own-site article.
 const listed = [...articles, ...coverage].filter(item => !item.broadcastId).toSorted((a,b)=>
   b.sortDate.slice(0,4).localeCompare(a.sortDate.slice(0,4)) || Number(ownSite(a)) - Number(ownSite(b)) || b.sortDate.localeCompare(a.sortDate));
-const [lead, ...rest] = listed;
+const [lead, ...afterLead] = listed;
+// A photo-led item published within a week of the lead is shown beneath it ("also latest"), which keeps the left column
+// level with the "Selected recent contributions" box. It is then omitted from the year list so it does not appear twice.
+const DAY = 86400000;
+const also = afterLead.find(item => item.photo && !ownSite(item) && Math.abs(Date.parse(lead.sortDate) - Date.parse(item.sortDate)) <= 7 * DAY);
+const rest = afterLead.filter(item => item !== also);
+const alsoMarkup = also ? `<section class="hub-also" id="${escape(`media-${also.id}`)}" aria-label="Also in the news"><figure class="hub-also-photo"><img src="${escape(also.photo.src)}" alt="${escape(also.photo.alt)}" width="${also.photo.width}" height="${also.photo.height}" decoding="async"><figcaption>${escape(also.photo.credit)}</figcaption></figure><div class="hub-also-copy"><span class="hub-kicker"><b>${escape(also.onAir || 'Also latest')}</b> · ${escape(also.dateLabel)}</span><h3>${itemTitle(also)}</h3><p>${escape(also.summary)}</p>${linksRow(also)}</div></section>` : '';
 // "Selected recent contributions": a curated, newest-first list of editorial venues, opened in a new tab beside the lead.
 const featuredMarkup = (() => {
   const picks = listed.filter(item => item.featured).slice(0, 6);
@@ -152,7 +159,7 @@ const yearPills = yearsShown.length > 2
 const yearStrip = `<nav class="hub-years" aria-label="Jump to a year"><span class="hub-years-label">Jump to</span>${yearPills.map(p => `<a href="#year-${p.to}">${p.label}</a>`).join('')}<a class="hub-years-extra" href="#broadcasts-title">Interviews</a></nav>`;
 const hub = `<main id="main">
 <header class="writing-intro w"><h1>Writing &amp; Media</h1><p>Articles, commentary and interviews on cybersecurity, privacy, blockchain and AI in education.</p></header>
-<div class="hub w"><div class="hub-top">${leadMarkup(lead)}${featuredMarkup}</div>${yearStrip}${stream}</div>
+<div class="hub w"><div class="hub-top"><div class="hub-main">${leadMarkup(lead)}${alsoMarkup}</div>${featuredMarkup}</div>${yearStrip}${stream}</div>
 <aside class="writing-contact w"><p>Looking for an expert perspective on technology, security or AI in education?</p><div class="writing-contact-links"><a class="text-link" href="contact.html">Get in touch <span aria-hidden="true">→</span></a><a class="text-link" href="feed.xml">RSS feed <span aria-hidden="true">↗</span></a></div></aside>
 </main>`;
 outputs.set('media.html', renderPage({TITLE:'Writing &amp; Media | Dr Mahmoud Elkhodr',DESCRIPTION:'Articles, explainers and commentary by Dr Mahmoud Elkhodr on cybersecurity, privacy, blockchain and AI in education, plus interviews and media coverage.',CANONICAL:`${site}/media.html`,OG_TYPE:'website',ROOT:'',HEAD:jsonLd({'@context':'https://schema.org','@type':'CollectionPage',name:'Writing & Media',url:`${site}/media.html`,mainEntity:{'@type':'ItemList',itemListElement:articles.map((item,i)=>({'@type':'ListItem',position:i+1,name:item.title,url:absoluteUrl(item)}))}}),BODY_CLASS:'writing-hub',CONTENT:hub}));
