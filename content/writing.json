@@ -161,6 +161,27 @@
   ],
   "coverage": [
     {
+      "id": "independent-microsoft-outage-2026",
+      "title": "I’m a tech expert. This is the likely cause of the global Microsoft outage",
+      "publisher": "The Independent",
+      "url": "https://www.independent.co.uk/tech/microsoft-outage-cause-outlook-down-b3084285.html",
+      "summary": "The Independent republished my Conversation article on the Microsoft outage under its own headline, with the likely cause and the case for preparing for outages.",
+      "dateLabel": "13 November 2026",
+      "sortDate": "2026-11-13",
+      "featured": true,
+      "longSummary": "The Independent republished my article from The Conversation on the global Microsoft outage under a new headline, as part of its technology coverage. The article explains why the evidence does not suggest a cyberattack and why a more mundane cause, in which faulty health checks withdraw healthy servers, fits better, while noting that this remains an inference until Microsoft publishes a post-incident review. It also argues that individuals and organisations should plan for digital outages as they do for bushfires, with offline essentials and backup plans that are tested in practice.",
+      "related": [
+        {
+          "label": "Original in The Conversation",
+          "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588"
+        }
+      ],
+      "topics": [
+        "Cybersecurity",
+        "Internet & society"
+      ]
+    },
+    {
       "id": "conversation-microsoft-outage-2026",
       "title": "Microsoft has suffered a global outage. A tech expert explains what went wrong",
       "publisher": "The Conversation",
@@ -175,6 +196,10 @@
       ],
       "longSummary": "A global Microsoft outage stopped email, cloud storage and collaboration tools for many users, with effects that reached family violence services, schools, telehealth and government service centres. It even disrupted AI tools that connect to Microsoft 365. In this article for The Conversation I explain why Microsoft's account of the failure shifted and why the evidence does not suggest a cyberattack. A more mundane explanation, in which faulty health checks withdraw healthy servers, fits better, but it remains an inference until a post-incident review is published. I argue that individuals and organisations should prepare for digital outages as they do for bushfires, with offline essentials and backup plans that are tested in practice.",
       "related": [
+        {
+          "label": "Also published by The Independent",
+          "url": "https://www.independent.co.uk/tech/microsoft-outage-cause-outlook-down-b3084285.html"
+        },
         {
           "label": "My earlier article on internet outages",
           "url": "https://theconversation.com/what-would-happen-if-the-internet-went-down-295249"

@@ -117,7 +117,7 @@ const listed = [...articles, ...coverage].filter(item => !item.broadcastId).toSo
 const [lead, ...rest] = listed;
 // "Selected recent contributions": a curated, newest-first list of editorial venues, opened in a new tab beside the lead.
 const featuredMarkup = (() => {
-  const picks = listed.filter(item => item.featured).slice(0, 5);
+  const picks = listed.filter(item => item.featured).slice(0, 6);
   if (!picks.length) return '';
   return `<aside class="hub-featured" aria-labelledby="featured-title"><h2 id="featured-title">Selected recent contributions</h2><ul>${picks.map(item => `<li><a href="${escape(item.url)}" target="_blank" rel="noopener noreferrer"><span class="hub-featured-venue">${escape(item.publisher.replace(' \u2014 ', ' \u00b7 '))}</span><span class="hub-featured-title">${escape(item.title)}</span><span class="hub-featured-date">${escape(item.dateLabel)} <span aria-hidden="true">\u2197</span></span><span class="sr-only"> (opens in a new tab)</span></a></li>`).join('')}</ul></aside>`;
 })();
