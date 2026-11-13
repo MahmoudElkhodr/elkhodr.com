@@ -161,6 +161,19 @@
   ],
   "coverage": [
     {
+      "id": "conversation-microsoft-outage-2026",
+      "title": "Microsoft has suffered a global outage. A tech expert explains what went wrong",
+      "publisher": "The Conversation",
+      "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588",
+      "summary": "An expert explanation of what went wrong in a global Microsoft outage, written for The Conversation.",
+      "dateLabel": "November 2026",
+      "sortDate": "2026-11-12",
+      "featured": true,
+      "topics": [
+        "Cybersecurity"
+      ]
+    },
+    {
       "id": "recent-1",
       "title": "AI research tools can distort findings and misattribute authors, CQUniversity researcher warns",
       "publisher": "CQUniversity News",
