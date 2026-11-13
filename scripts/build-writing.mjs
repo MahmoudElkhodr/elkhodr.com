@@ -36,6 +36,13 @@ for (const item of [...catalogue.articles, ...catalogue.coverage]) {
   if (item.kind !== undefined && item.kind !== 'research') throw new Error(`${item.id}: unknown kind`);
   if (item.firstPublished !== undefined && (typeof item.firstPublished !== 'string' || item.firstPublished.length > 120)) throw new Error(`${item.id}: invalid firstPublished`);
   if (item.featured !== undefined && (item.featured !== true || !/^https:\/\//.test(item.url || ''))) throw new Error(`${item.id}: featured must be true and the item needs an HTTPS url`);
+  if (item.photo !== undefined) {
+    const ph = item.photo;
+    if (!ph || typeof ph.src !== 'string' || !/^assets\/coverage\/[\w.-]+\.(jpg|png|webp)$/.test(ph.src) || !fs.existsSync(path.join(root, ph.src))) throw new Error(`${item.id}: photo.src must be an existing file under assets/coverage/`);
+    if (typeof ph.alt !== 'string' || ph.alt.length < 10 || ph.alt.length > 200) throw new Error(`${item.id}: photo.alt must be 10 to 200 characters`);
+    if (typeof ph.credit !== 'string' || !ph.credit.trim() || ph.credit.length > 80) throw new Error(`${item.id}: photo.credit is required (80 characters at most)`);
+    if (!Number.isInteger(ph.width) || !Number.isInteger(ph.height)) throw new Error(`${item.id}: photo.width and photo.height must be integers`);
+  }
   if (item.linkLabel !== undefined && (typeof item.linkLabel !== 'string' || item.linkLabel.length > 60)) throw new Error(`${item.id}: invalid linkLabel`);
   if (item.longSummary !== undefined) {
     const words = item.longSummary.trim().split(/\s+/).length;
@@ -99,10 +106,11 @@ function leadMarkup(item) {
   const media = item.image ? `<a class="hub-lead-media" href="${escape(url(item))}" tabindex="-1" aria-hidden="true"><img src="${escape(item.image)}" alt="" width="1200" height="630"></a>` : '';
   return `<section class="hub-lead${item.image ? '' : ' hub-lead-text'}" aria-label="Latest">${media}<div class="hub-lead-copy"><span class="hub-kicker"><b>Latest</b> · ${escape(item.dateLabel)}</span><h2>${itemTitle(item)}</h2><p>${escape(item.summary)}</p>${linksRow({ ...item, related: (item.related || []).slice(0, 2) })}${extraCoverage(item)}</div></section>`;
 }
+const photoMarkup = item => item.photo ? `<figure class="hub-photo"><img src="${escape(item.photo.src)}" alt="${escape(item.photo.alt)}" width="${item.photo.width}" height="${item.photo.height}" loading="lazy" decoding="async"><figcaption>${escape(item.photo.credit)}</figcaption></figure>` : '';
 function entryMarkup(item) {
   const anchor = catalogue.articles.includes(item) ? `entry-${item.id}` : `media-${item.id}`;
   if (item.longSummary || item.body) {
-    return `<article class="hub-entry" id="${escape(anchor)}"><time>${dateText(item)}</time><div><span class="hub-kicker"><b>${escape(kicker(item))}</b></span><h3>${itemTitle(item)}</h3><p>${escape(item.longSummary || item.summary)}</p>${linksRow(item)}${extraCoverage(item)}</div></article>`;
+    return `<article class="hub-entry" id="${escape(anchor)}"><time>${dateText(item)}</time><div><span class="hub-kicker"><b>${escape(kicker(item))}</b></span><h3>${itemTitle(item)}</h3><p>${escape(item.longSummary || item.summary)}</p>${photoMarkup(item)}${linksRow(item)}${extraCoverage(item)}</div></article>`;
   }
   return `<article class="hub-compact" id="${escape(anchor)}"><time>${dateText(item)}</time><div><span class="hub-kicker"><b>${escape(kicker(item))}</b></span><h3>${itemTitle(item)}</h3><p>${escape(item.summary)}</p>${item.doi ? `<div class="hub-links">${external(item.doi,'DOI','text-link')}</div>` : ''}${extraCoverage(item)}</div></article>`;
 }

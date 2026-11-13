@@ -199,7 +199,14 @@
       "topics": [
         "Cybersecurity",
         "Internet & society"
-      ]
+      ],
+      "photo": {
+        "src": "assets/coverage/abc-news-outage-2026.jpg",
+        "alt": "Dr Mahmoud Elkhodr being interviewed in the ABC News Channel studio",
+        "credit": "Image: ABC News",
+        "width": 720,
+        "height": 325
+      }
     },
     {
       "id": "conversation-microsoft-outage-2026",
