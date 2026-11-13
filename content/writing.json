@@ -168,7 +168,6 @@
       "summary": "The Independent republished my Conversation article on the Microsoft outage under its own headline, with the likely cause and the case for preparing for outages.",
       "dateLabel": "13 November 2026",
       "sortDate": "2026-11-13",
-      "featured": true,
       "longSummary": "The Independent republished my article from The Conversation on the global Microsoft outage under a new headline, as part of its technology coverage. The article explains why the evidence does not suggest a cyberattack and why a more mundane cause, in which faulty health checks withdraw healthy servers, fits better, while noting that this remains an inference until Microsoft publishes a post-incident review. It also argues that individuals and organisations should plan for digital outages as they do for bushfires, with offline essentials and backup plans that are tested in practice.",
       "related": [
         {
@@ -251,10 +250,10 @@
       "title": "Microsoft outage explained: what went wrong and is your data at risk?",
       "publisher": "Euronews",
       "url": "https://www.euronews.com/2026/11/13/microsoft-outage-explained-what-went-wrong-and-is-your-data-at-risk",
-      "summary": "Euronews drew on my Conversation analysis in its explainer on the Microsoft outage, its likely cause and the risk to user data.",
+      "summary": "Euronews's own news report on the Microsoft outage cites my Conversation analysis on the likely cause, the attack question and how to prepare.",
       "dateLabel": "13 November 2026",
       "sortDate": "2026-11-13",
-      "longSummary": "Euronews drew on my analysis in The Conversation in its explainer on the global Microsoft outage, describing me as a senior lecturer in information and communication technologies at CQUniversity. The report relays my suggestion that automated health checks, which normally remove faulty servers from service, may have malfunctioned and switched off healthy ones, overloading the remainder, and notes that I presented this as an inference from Microsoft's public updates. It also reports my point that a distributed denial-of-service attack, which floods a system with outside traffic, does not fit Microsoft's statement that traffic had not increased. Finally, it cites my advice that organisations should plan for digital outages as they would for natural disasters, with backup systems that are tested regularly, and that individuals keep essentials such as contacts available offline.",
+      "longSummary": "In its own news explainer on the global Microsoft outage, Euronews drew on my analysis in The Conversation, describing me as a senior lecturer in information and communication technologies at CQUniversity. The report relays my suggestion that automated health checks, which normally remove faulty servers from service, may have malfunctioned and switched off healthy ones, overloading the remainder, and notes that I presented this as an inference from Microsoft's public updates. It also reports my point that a distributed denial-of-service attack, which floods a system with outside traffic, does not fit Microsoft's statement that traffic had not increased. Finally, it cites my advice that organisations should plan for digital outages as they would for natural disasters, with backup systems that are tested regularly, and that individuals keep essentials such as contacts available offline.",
       "related": [
         {
           "label": "My article in The Conversation",
@@ -264,7 +263,8 @@
       "topics": [
         "Cybersecurity",
         "Internet & society"
-      ]
+      ],
+      "featured": true
     },
     {
       "id": "recent-1",
