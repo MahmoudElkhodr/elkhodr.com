@@ -251,10 +251,10 @@
       "title": "Microsoft outage explained: what went wrong and is your data at risk?",
       "publisher": "Euronews",
       "url": "https://www.euronews.com/2026/11/13/microsoft-outage-explained-what-went-wrong-and-is-your-data-at-risk",
-      "summary": "Euronews cited my Conversation analysis in its explainer on the Microsoft outage and the risk to user data.",
+      "summary": "Euronews drew on my Conversation analysis in its explainer on the Microsoft outage, its likely cause and the risk to user data.",
       "dateLabel": "13 November 2026",
       "sortDate": "2026-11-13",
-      "longSummary": "Euronews cited my analysis in The Conversation in its explainer on the global Microsoft outage, describing me as a senior lecturer in information and communication technologies at CQUniversity. The report relays my suggestion that automated health checks, which normally remove faulty servers from service, may have malfunctioned and switched off healthy ones, overloading the remainder. It presents this as an inference drawn from Microsoft's public updates and not as a confirmed cause.",
+      "longSummary": "Euronews drew on my analysis in The Conversation in its explainer on the global Microsoft outage, describing me as a senior lecturer in information and communication technologies at CQUniversity. The report relays my suggestion that automated health checks, which normally remove faulty servers from service, may have malfunctioned and switched off healthy ones, overloading the remainder, and notes that I presented this as an inference from Microsoft's public updates. It also reports my point that a distributed denial-of-service attack, which floods a system with outside traffic, does not fit Microsoft's statement that traffic had not increased. Finally, it cites my advice that organisations should plan for digital outages as they would for natural disasters, with backup systems that are tested regularly, and that individuals keep essentials such as contacts available offline.",
       "related": [
         {
           "label": "My article in The Conversation",
