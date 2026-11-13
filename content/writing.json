@@ -269,6 +269,26 @@
       "keepInArchive": true
     },
     {
+      "id": "to-vima-microsoft-outage-2026",
+      "title": "Microsoft Outage: What Caused It And Why We Need A Backup Plan",
+      "publisher": "To Vima (Greece) · International media citation",
+      "url": "https://www.tovima.com/world/microsoft-outage-what-caused-it-and-why-we-need-a-backup-plan/",
+      "summary": "The international edition of Greece's To Vima cited my analysis of the Microsoft outage, on the risks of shared digital infrastructure and the case for preparing for major disruptions.",
+      "dateLabel": "13 November 2026",
+      "sortDate": "2026-11-13",
+      "longSummary": "The international edition of Greece's To Vima newspaper cited my analysis in The Conversation of the global Microsoft outage. The report draws on it to explain how several services can fail at once when they depend on shared systems, and to argue that digital outages should be prepared for in the same way as natural disasters. It describes me as a lecturer in information and communication technology at CQUniversity in Australia.",
+      "related": [
+        {
+          "label": "My article in The Conversation",
+          "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588"
+        }
+      ],
+      "topics": [
+        "Cybersecurity",
+        "Internet & society"
+      ]
+    },
+    {
       "id": "recent-1",
       "title": "AI research tools can distort findings and misattribute authors, CQUniversity researcher warns",
       "publisher": "CQUniversity News",
