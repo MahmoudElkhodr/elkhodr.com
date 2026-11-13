@@ -215,3 +215,8 @@ footer a{color:var(--acc);text-decoration:none}
 @media(max-width:768px){.page-intro{padding:calc(var(--nh) + 38px) 0 34px}.subsection{padding:42px 0}}
 
 .page-intro + .sec{padding-top:0}
+
+.hero-latest{margin:20px 0 0;font-size:.9rem;line-height:1.5;color:var(--mut)}
+.hero-latest-label{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin-right:8px}
+.hero-latest a{color:var(--txt);text-decoration:none;border-bottom:1px solid var(--bdr)}
+.hero-latest a:hover{color:var(--acc);border-bottom-color:var(--acc)}

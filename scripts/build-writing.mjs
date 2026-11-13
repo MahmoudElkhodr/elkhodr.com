@@ -199,6 +199,14 @@ const sitemapPath = path.join(root,'sitemap.xml');
 let sitemap = fs.readFileSync(sitemapPath,'utf8').replace(/\s*<url><loc>https:\/\/elkhodr\.com\/articles\/[^<]+<\/loc>(?:<lastmod>[^<]+<\/lastmod>)?<\/url>/g,'');
 sitemap = sitemap.replace('</urlset>',articles.filter(x=>x.body && x.origin==='site').map(item=>`  <url><loc>${absoluteUrl(item)}</loc><lastmod>${item.updated || item.date}</lastmod></url>\n`).join('')+'</urlset>');
 outputs.set('sitemap.xml',sitemap);
+// Home page: keep a one-line pointer to the newest entry between the markers in index.html.
+{
+  const home = fs.readFileSync(path.join(root,'index.html'),'utf8');
+  const markup = `<p class="hero-latest"><span class="hero-latest-label">Latest</span> <a href="media.html">${escape(shortPublisher(lead))}: ${escape(lead.title)}</a></p>`;
+  const next = home.replace(/<!-- latest:start -->[\s\S]*?<!-- latest:end -->/, `<!-- latest:start -->${markup}<!-- latest:end -->`);
+  if (next === home && !home.includes(markup)) throw new Error('index.html is missing the latest:start and latest:end markers');
+  outputs.set('index.html', next);
+}
 let stale = false;
 for (const [relative,content] of outputs) {
   const target = path.join(root,relative);
