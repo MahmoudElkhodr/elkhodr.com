@@ -247,6 +247,26 @@
       ]
     },
     {
+      "id": "euronews-microsoft-outage-2026",
+      "title": "Microsoft outage explained: what went wrong and is your data at risk?",
+      "publisher": "Euronews",
+      "url": "https://www.euronews.com/2026/11/13/microsoft-outage-explained-what-went-wrong-and-is-your-data-at-risk",
+      "summary": "Euronews cited my Conversation analysis in its explainer on the Microsoft outage and the risk to user data.",
+      "dateLabel": "13 November 2026",
+      "sortDate": "2026-11-13",
+      "longSummary": "Euronews cited my analysis in The Conversation in its explainer on the global Microsoft outage, describing me as a senior lecturer in information and communication technologies at CQUniversity. The report relays my suggestion that automated health checks, which normally remove faulty servers from service, may have malfunctioned and switched off healthy ones, overloading the remainder. It presents this as an inference drawn from Microsoft's public updates and not as a confirmed cause.",
+      "related": [
+        {
+          "label": "My article in The Conversation",
+          "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588"
+        }
+      ],
+      "topics": [
+        "Cybersecurity",
+        "Internet & society"
+      ]
+    },
+    {
       "id": "recent-1",
       "title": "AI research tools can distort findings and misattribute authors, CQUniversity researcher warns",
       "publisher": "CQUniversity News",
