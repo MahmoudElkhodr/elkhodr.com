@@ -165,12 +165,20 @@
       "title": "Microsoft has suffered a global outage. A tech expert explains what went wrong",
       "publisher": "The Conversation",
       "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588",
-      "summary": "An expert explanation of what went wrong in a global Microsoft outage, written for The Conversation.",
-      "dateLabel": "November 2026",
-      "sortDate": "2026-11-12",
+      "summary": "Explains what went wrong in Microsoft's global outage, why the evidence does not point to a cyberattack, and why digital outages deserve the preparation given to bushfires.",
+      "dateLabel": "13 November 2026",
+      "sortDate": "2026-11-13",
       "featured": true,
       "topics": [
-        "Cybersecurity"
+        "Cybersecurity",
+        "Internet & society"
+      ],
+      "longSummary": "A global Microsoft outage stopped email, cloud storage and collaboration tools for many users, with effects that reached family violence services, schools, telehealth and government service centres. It even disrupted AI tools that connect to Microsoft 365. In this article for The Conversation I explain why Microsoft's account of the failure shifted and why the evidence does not suggest a cyberattack. A more mundane explanation, in which faulty health checks withdraw healthy servers, fits better, but it remains an inference until a post-incident review is published. I argue that individuals and organisations should prepare for digital outages as they do for bushfires, with offline essentials and backup plans that are tested in practice.",
+      "related": [
+        {
+          "label": "My earlier article on internet outages",
+          "url": "https://theconversation.com/what-would-happen-if-the-internet-went-down-295249"
+        }
       ]
     },
     {
