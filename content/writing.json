@@ -289,6 +289,26 @@
       ]
     },
     {
+      "id": "cnn-indonesia-microsoft-outage-2026",
+      "title": "Microsoft Down Global, Pakar Ungkap Dugaan Pemicunya",
+      "publisher": "CNN Indonesia · International expert commentary",
+      "url": "https://www.cnnindonesia.com/teknologi/20261113140924-185-1426836/microsoft-down-global-pakar-ungkap-dugaan-pemicunya",
+      "summary": "CNN Indonesia (in Indonesian) drew on my Conversation analysis of the global Microsoft outage, covering its likely cause, the cyberattack question and digital resilience.",
+      "dateLabel": "13 November 2026",
+      "sortDate": "2026-11-13",
+      "longSummary": "CNN Indonesia, in an Indonesian-language report headlined “Microsoft Down Globally, Expert Reveals Suspected Cause”, drew on my analysis in The Conversation of the global Microsoft outage. It relays my suggestion that automated health checks may have wrongly removed healthy servers, leaving the remainder overloaded. It also reports that a distributed denial-of-service link is hard to establish, because Microsoft reported no rise in traffic, no evidence of malicious activity and no claim of responsibility. It closes with my advice to keep essentials such as contacts offline and to prepare for digital disruption as for natural disasters.",
+      "related": [
+        {
+          "label": "My article in The Conversation",
+          "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588"
+        }
+      ],
+      "topics": [
+        "Cybersecurity",
+        "Internet & society"
+      ]
+    },
+    {
       "id": "recent-1",
       "title": "AI research tools can distort findings and misattribute authors, CQUniversity researcher warns",
       "publisher": "CQUniversity News",
