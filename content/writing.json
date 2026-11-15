@@ -161,6 +161,28 @@
   ],
   "coverage": [
     {
+      "id": "euronews-microsoft-outage-2026",
+      "title": "Microsoft outage explained: what went wrong and is your data at risk?",
+      "publisher": "Euronews",
+      "url": "https://www.euronews.com/2026/11/13/microsoft-outage-explained-what-went-wrong-and-is-your-data-at-risk",
+      "summary": "Euronews independently cited my analysis of the global Microsoft outage, including infrastructure failure as a possible cause, why a distributed denial-of-service attack does not fit Microsoft's account, and the importance of digital resilience.",
+      "dateLabel": "13 November 2026",
+      "sortDate": "2026-11-13",
+      "longSummary": "In its own news explainer on the global Microsoft outage, Euronews drew on my analysis in The Conversation, describing me as a senior lecturer in information and communication technologies at CQUniversity. The report relays my suggestion that automated health checks, which normally remove faulty servers from service, may have malfunctioned and switched off healthy ones, overloading the remainder, and notes that I presented this as an inference from Microsoft's public updates. It also reports my point that a distributed denial-of-service attack, which floods a system with outside traffic, does not fit Microsoft's statement that traffic had not increased. Finally, it cites my advice that organisations should plan for digital outages as they would for natural disasters, with backup systems that are tested regularly, and that individuals keep essentials such as contacts available offline.",
+      "related": [
+        {
+          "label": "My article in The Conversation",
+          "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588"
+        }
+      ],
+      "topics": [
+        "Cybersecurity",
+        "Internet & society"
+      ],
+      "alsoLabel": "International media citation · Expert analysis",
+      "keepInArchive": true
+    },
+    {
       "id": "independent-microsoft-outage-2026",
       "title": "I’m a tech expert. This is the likely cause of the global Microsoft outage",
       "publisher": "The Independent",
@@ -244,29 +266,6 @@
           "url": "https://theconversation.com/what-would-happen-if-the-internet-went-down-295249"
         }
       ]
-    },
-    {
-      "id": "euronews-microsoft-outage-2026",
-      "title": "Microsoft outage explained: what went wrong and is your data at risk?",
-      "publisher": "Euronews",
-      "url": "https://www.euronews.com/2026/11/13/microsoft-outage-explained-what-went-wrong-and-is-your-data-at-risk",
-      "summary": "Euronews independently cited my analysis of the global Microsoft outage, including infrastructure failure as a possible cause, why a distributed denial-of-service attack does not fit Microsoft's account, and the importance of digital resilience.",
-      "dateLabel": "13 November 2026",
-      "sortDate": "2026-11-13",
-      "longSummary": "In its own news explainer on the global Microsoft outage, Euronews drew on my analysis in The Conversation, describing me as a senior lecturer in information and communication technologies at CQUniversity. The report relays my suggestion that automated health checks, which normally remove faulty servers from service, may have malfunctioned and switched off healthy ones, overloading the remainder, and notes that I presented this as an inference from Microsoft's public updates. It also reports my point that a distributed denial-of-service attack, which floods a system with outside traffic, does not fit Microsoft's statement that traffic had not increased. Finally, it cites my advice that organisations should plan for digital outages as they would for natural disasters, with backup systems that are tested regularly, and that individuals keep essentials such as contacts available offline.",
-      "related": [
-        {
-          "label": "My article in The Conversation",
-          "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588"
-        }
-      ],
-      "topics": [
-        "Cybersecurity",
-        "Internet & society"
-      ],
-      "featured": true,
-      "alsoLabel": "International media citation · Expert analysis",
-      "keepInArchive": true
     },
     {
       "id": "to-vima-microsoft-outage-2026",
