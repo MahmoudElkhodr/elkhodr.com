@@ -313,7 +313,15 @@
       "topics": [
         "Cybersecurity",
         "Internet & society"
-      ]
+      ],
+      "screenshot": {
+        "src": "assets/coverage/cnn-indonesia-screenshot-2026-11-16.png",
+        "alt": "Screenshot of the CNN Indonesia article page, showing the masthead and the paragraph describing Mahmoud Elkhodr's explanation of distributed denial-of-service attacks",
+        "credit": "Screenshot: CNN Indonesia, captured 16 November 2026 (opens the article)",
+        "width": 802,
+        "height": 322,
+        "href": "https://www.cnnindonesia.com/teknologi/20261113140924-185-1426836/microsoft-down-global-pakar-ungkap-dugaan-pemicunya"
+      }
     },
     {
       "id": "recent-1",

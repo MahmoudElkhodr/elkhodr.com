@@ -231,6 +231,6 @@
 .hub-also h3 a{color:var(--txt);text-decoration:none}.hub-also h3 a:hover{color:var(--acc);text-decoration:underline;text-underline-offset:4px}
 .hub-also-copy>p{font-size:.95rem;line-height:1.75;color:var(--txt)}
 @media(max-width:900px){.hub-also{grid-template-columns:1fr;gap:18px}}
-.hub-screenshot{margin-top:0}.hub-lead-shot{max-width:100%;margin:18px 0 0}.hub-photo a{display:block}
+.hub-screenshot{margin-top:0}.hub-entry p+.hub-screenshot{margin-top:14px}.hub-lead-shot{max-width:100%;margin:18px 0 0}.hub-photo a{display:block}
 .hub-also-text{grid-template-columns:minmax(0,1fr)}
 .hub-enquiries{margin-top:10px;font-size:.88rem;color:var(--mut)}.hub-enquiries a{color:var(--acc);text-decoration:underline;text-underline-offset:3px}
