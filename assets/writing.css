@@ -233,3 +233,4 @@
 @media(max-width:900px){.hub-also{grid-template-columns:1fr;gap:18px}}
 .hub-screenshot{margin-top:0}.hub-photo a{display:block}
 .hub-also-text{grid-template-columns:minmax(0,1fr)}
+.hub-enquiries{margin-top:10px;font-size:.88rem;color:var(--mut)}.hub-enquiries a{color:var(--acc);text-decoration:underline;text-underline-offset:3px}

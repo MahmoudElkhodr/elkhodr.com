@@ -172,7 +172,7 @@ const yearPills = yearsShown.length > 2
   : yearsShown.map(y => ({ to: y, label: y }));
 const yearStrip = `<nav class="hub-years" aria-label="Jump to a year"><span class="hub-years-label">Jump to</span>${yearPills.map(p => `<a href="#year-${p.to}">${p.label}</a>`).join('')}<a class="hub-years-extra" href="#broadcasts-title">Interviews</a></nav>`;
 const hub = `<main id="main">
-<header class="writing-intro w"><h1>Writing &amp; Media</h1><p>Articles, commentary and interviews on cybersecurity, privacy, blockchain and AI in education.</p></header>
+<header class="writing-intro w"><h1>Writing &amp; Media</h1><p>Articles, commentary and interviews on cybersecurity, privacy, blockchain and AI in education.</p><p class="hub-enquiries">Journalists and editors: <a href="contact.html">Media enquiries</a></p></header>
 <div class="hub w"><div class="hub-top"><div class="hub-main">${leadMarkup(lead)}${alsoMarkup}</div>${featuredMarkup}</div>${yearStrip}${stream}</div>
 <aside class="writing-contact w"><p>Looking for an expert perspective on technology, security or AI in education?</p><div class="writing-contact-links"><a class="text-link" href="contact.html">Get in touch <span aria-hidden="true">→</span></a><a class="text-link" href="feed.xml">RSS feed <span aria-hidden="true">↗</span></a></div></aside>
 </main>`;
