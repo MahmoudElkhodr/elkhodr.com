@@ -108,7 +108,7 @@ const dateText = item => item.dateLabel === 'Date not stated' || ownSite(item) ?
 const linksRow = item => `<div class="hub-links">${primaryLink(item)}${item.body && item.originalUrl ? external(item.originalUrl,'View original','text-link') : ''}${item.doi ? external(item.doi,'DOI','text-link') : ''}${relatedLinks(item)}</div>`;
 function leadMarkup(item) {
   const media = item.image ? `<a class="hub-lead-media" href="${escape(url(item))}" tabindex="-1" aria-hidden="true"><img src="${escape(item.image)}" alt="" width="1200" height="630"></a>` : '';
-  return `<section class="hub-lead${item.image ? '' : ' hub-lead-text'}" aria-label="Latest">${media}<div class="hub-lead-copy"><span class="hub-kicker"><b>Latest</b> · ${escape(item.dateLabel)}</span><h2>${itemTitle(item)}</h2><p>${escape(item.summary)}</p>${linksRow({ ...item, related: (item.related || []).slice(0, 2) })}${extraCoverage(item)}</div></section>`;
+  return `<section class="hub-lead${item.image ? '' : ' hub-lead-text'}" aria-label="Latest">${media}<div class="hub-lead-copy"><span class="hub-kicker"><b>Latest</b> · ${escape(item.dateLabel)}</span><h2>${itemTitle(item)}</h2><p>${escape(item.summary)}</p>${linksRow({ ...item, related: (item.related || []).slice(0, 2) })}${extraCoverage(item)}${item.screenshot ? figureMarkup(item.screenshot, 'hub-photo hub-screenshot hub-lead-shot') : ''}</div></section>`;
 }
 const figureMarkup = (ph, cls) => {
   const img = `<img src="${escape(ph.src)}" alt="${escape(ph.alt)}" width="${ph.width}" height="${ph.height}" loading="lazy" decoding="async">`;

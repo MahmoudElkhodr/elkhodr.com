@@ -180,7 +180,15 @@
         "Internet & society"
       ],
       "alsoLabel": "International media citation · Expert analysis",
-      "keepInArchive": true
+      "keepInArchive": true,
+      "screenshot": {
+        "src": "assets/coverage/euronews-screenshot-2026-11-16.png",
+        "alt": "Screenshot of the Euronews article page, showing the masthead, the article address and the paragraph citing Mahmoud Elkhodr's explanation in The Conversation",
+        "credit": "Screenshot: Euronews, captured 16 November 2026 (opens the article)",
+        "width": 1309,
+        "height": 256,
+        "href": "https://www.euronews.com/2026/11/13/microsoft-outage-explained-what-went-wrong-and-is-your-data-at-risk"
+      }
     },
     {
       "id": "independent-microsoft-outage-2026",
