@@ -16,57 +16,49 @@
 <link rel="canonical" href="https://elkhodr.com/teaching-resources/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../assets/portfolio.css">
 <style>
-*,*::before,*::after{box-sizing:border-box}
-:root{--bg:#f7fbfa;--ink:#17211f;--mut:#5d6965;--acc:#0e7c61;--blue:#0f5f86;--line:#dce8e4;--card:#fff;--soft:#eaf6f2;--hd:'Lora',Georgia,serif;--bd:'DM Sans',sans-serif}
-body{margin:0;color:var(--ink);background:var(--bg);font-family:var(--bd);line-height:1.7}
-.w{width:min(1040px,calc(100% - 44px));margin:0 auto}
-.top{border-bottom:1px solid var(--line);background:rgba(247,251,250,.95)}
-.top .w{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.brand{color:var(--ink);font-family:var(--hd);font-weight:700;text-decoration:none}
-.nav{display:flex;gap:8px;flex-wrap:wrap}
-.nav a{padding:8px 12px;border-radius:8px;color:var(--mut);font-weight:700;text-decoration:none}
-.nav a:hover,.nav a:focus-visible,.nav a[aria-current="page"]{color:var(--acc);background:var(--soft)}
-.hero{padding:72px 0 38px;text-align:center}
-.eyebrow{color:var(--acc);font-size:.8rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
-h1{margin:8px 0 14px;font-family:var(--hd);font-size:clamp(2.3rem,6vw,4.2rem);line-height:1.05}
-.lead{max-width:720px;margin:0 auto;color:var(--mut);font-size:1.08rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;padding:24px 0 72px}
-.card{display:flex;min-height:260px;flex-direction:column;padding:30px;border:1px solid var(--line);border-radius:18px;color:inherit;background:var(--card);box-shadow:0 16px 38px rgba(23,33,31,.06);text-decoration:none}
-.card:hover{transform:translateY(-3px);box-shadow:0 20px 46px rgba(23,33,31,.1)}
-.icon{font-size:2rem}.card h2{margin:14px 0 8px;font-family:var(--hd);font-size:1.5rem}.card p{margin:0;color:var(--mut)}.go{margin-top:auto;padding-top:22px;color:var(--acc);font-weight:800}
-.sec-h{margin:0 auto;max-width:720px;padding:8px 0 0;text-align:center}.sec-h h2{margin:0 0 6px;font-family:var(--hd);font-size:1.6rem}.sec-h p{margin:0;color:var(--mut)}
-.lead a{color:var(--acc);font-weight:700;text-underline-offset:3px}
-.sup{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:44px;margin:0 auto 72px;padding:44px;border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:0 16px 38px rgba(23,33,31,.06)}
-.sup h2{margin:6px 0 14px;font-family:var(--hd);font-size:1.9rem;line-height:1.2}.sup p{margin:0 0 14px;color:var(--mut)}
-.note{margin:22px 0 0;padding:16px 20px;border-left:4px solid var(--blue);border-radius:0 12px 12px 0;background:#f1f6f9;color:var(--ink);font-size:.95rem}.note strong{color:var(--blue)}
-.sup-side h3{margin:6px 0 12px;font-size:.8rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--acc)}
-.areas{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 26px;padding:0;list-style:none}.areas li{padding:8px 14px;border-radius:999px;background:var(--soft);color:var(--acc);font-size:.9rem;font-weight:600}
-.btn{display:inline-block;padding:12px 22px;border-radius:10px;background:var(--acc);color:#fff;font-weight:700;text-decoration:none}.btn:hover,.btn:focus-visible{background:#0b6650}
-.sup-side small{display:block;margin-top:12px;color:var(--mut);font-size:.88rem;line-height:1.55}
-footer{padding:28px 0;border-top:1px solid var(--line);color:var(--mut);font-size:.92rem}
-footer a{color:var(--acc)}
-@media(max-width:700px){.top .w{padding:14px 0;align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.hero{padding-top:48px}.sup{grid-template-columns:1fr;gap:26px;padding:28px 22px}}
+.tr-sec{padding-bottom:22px}.tr-sec h2{font-family:var(--hd);font-size:1.5rem;font-weight:600;line-height:1.3}.tr-sec p{color:var(--mut);margin-top:4px}
+.tr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:64px}
+.tr-card{display:flex;flex-direction:column;gap:8px;padding:26px 26px 22px;background:var(--card);border:1px solid var(--bdr);border-radius:14px;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s,box-shadow .2s}
+.tr-card:hover,.tr-card:focus-visible{border-color:var(--acc);transform:translateY(-2px);box-shadow:0 10px 26px rgba(44,41,38,.08)}
+.tr-i{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:var(--acc-l);color:var(--acc);font-size:1.05rem;margin-bottom:4px}
+.tr-card h3{font-family:var(--hd);font-size:1.2rem;font-weight:600;line-height:1.3;color:var(--txt)}
+.tr-card p{font-size:.92rem;color:var(--mut);line-height:1.6}
+.tr-go{margin-top:auto;padding-top:12px;font-size:.88rem;font-weight:600;color:var(--acc)}
+.tr-sup{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:44px;margin-bottom:72px;padding:38px 40px;background:var(--card);border:1px solid var(--bdr);border-radius:14px}
+.tr-sup .eyebrow{font-size:.76rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--acc)}
+.tr-sup h2{font-family:var(--hd);font-size:1.7rem;font-weight:600;line-height:1.25;margin:6px 0 14px}
+.tr-sup p{color:var(--mut);margin-bottom:14px}
+.tr-note{margin:22px 0 0;padding:14px 18px;border-left:3px solid var(--acc);border-radius:0 10px 10px 0;background:var(--bg2);color:var(--txt);font-size:.95rem}.tr-note strong{color:var(--acc)}
+.tr-sup-side h3{margin:6px 0 12px;font-size:.76rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--acc)}
+.tr-areas{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none}.tr-areas li{padding:6px 13px;border-radius:999px;background:var(--acc-l);color:var(--acc);font-size:.88rem;font-weight:500}
+.tr-btn{display:inline-block;padding:11px 22px;border-radius:8px;background:var(--acc);color:#fff;font-size:.92rem;font-weight:600;text-decoration:none;border:1.5px solid var(--acc);transition:background .2s,color .2s}.tr-btn:hover,.tr-btn:focus-visible{background:#fff;color:var(--acc)}
+.tr-sup-side small{display:block;margin-top:12px;color:var(--mut);font-size:.86rem;line-height:1.55}
+.page-intro .lead a{color:var(--acc);font-weight:600;text-underline-offset:3px}
+@media(max-width:900px){.tr-grid{grid-template-columns:1fr}.tr-sup{grid-template-columns:1fr;gap:26px;padding:28px 22px}}
 </style>
 </head>
 <body>
-<header class="top"><div class="w"><a class="brand" href="../">M. Elkhodr</a><nav class="nav" aria-label="Main navigation"><a href="../sage.html">SAGE</a><a href="../media.html">Media</a><a href="../publications.html">Publications</a><a href="./" aria-current="page">Teaching &amp; Supervision</a><a href="../contact.html">Contact</a></nav></div></header>
+<nav id="mn"><div class="ni"><a href="../" class="nl">M. Elkhodr</a><button class="nh" type="button" onclick="toggleMobileMenu(this)" aria-label="Open navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></button><ul class="nk"><li><a href="../sage.html">SAGE</a></li><li><a href="../media.html">Media</a></li><li><a href="../publications.html">Publications</a></li><li><a href="./" class="active" aria-current="page">Teaching &amp; Supervision</a></li><li><a href="../contact.html">Contact</a></li></ul></div></nav>
 <main>
-<section class="hero w"><div class="eyebrow">For students and educators</div><h1>Teaching &amp; Supervision</h1><p class="lead">Interactive blockchain and networking lessons developed by Dr Mahmoud Elkhodr, alongside the SAGE (Structured AI-Guided Education) Framework for responsible generative AI use in education. Prospective research students will find information about supervision under <a href="#supervision">Research supervision</a>.</p></section>
-<div class="sec-h w"><h2>Learning resources</h2><p>Companion materials for students and educators.</p></div>
-<section class="grid w" aria-label="Teaching resource collections">
-<a class="card" href="blockchain/"><span class="icon" aria-hidden="true">⛓️</span><h2>Blockchain</h2><p>Interactive lessons covering blockchain fundamentals, blockchain types, consensus, cryptography, hashing, and digital signatures.</p><span class="go">Explore blockchain resources →</span></a>
-<a class="card" href="networking/"><span class="icon" aria-hidden="true">🌐</span><h2>Networking</h2><p>Visual activities covering binary data, text encoding, Ethernet frames, switching, cabling, and network troubleshooting.</p><span class="go">Explore networking resources →</span></a>
-<a class="card" href="https://sage-framework.com" target="_blank" rel="noopener noreferrer"><span class="icon" aria-hidden="true">🧠</span><h2>SAGE Framework</h2><p>Explore SAGE (Structured AI-Guided Education), a research-informed framework for integrating generative AI into teaching, learning, and assessment.</p><span class="go">Explore the SAGE Framework →</span></a>
+<header class="page-intro w fi"><span class="eyebrow">For students and educators</span><h1>Teaching &amp; Supervision</h1><p class="lead">Interactive blockchain and networking lessons developed by Dr Mahmoud Elkhodr, alongside the SAGE (Structured AI-Guided Education) Framework for responsible generative AI use in education. Prospective research students will find information about supervision under <a href="#supervision">Research supervision</a>.</p></header>
+<div class="tr-sec w"><h2>Learning resources</h2><p>Companion materials for students and educators.</p></div>
+<section class="tr-grid w" aria-label="Teaching resource collections">
+<a class="tr-card" href="blockchain/"><span class="tr-i" aria-hidden="true"><i class="fa-solid fa-link"></i></span><h3>Blockchain</h3><p>Interactive lessons covering blockchain fundamentals, blockchain types, consensus, cryptography, hashing, and digital signatures.</p><span class="tr-go">Explore blockchain resources <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
+<a class="tr-card" href="networking/"><span class="tr-i" aria-hidden="true"><i class="fa-solid fa-network-wired"></i></span><h3>Networking</h3><p>Visual activities covering binary data, text encoding, Ethernet frames, switching, cabling, and network troubleshooting.</p><span class="tr-go">Explore networking resources <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
+<a class="tr-card" href="https://sage-framework.com" target="_blank" rel="noopener noreferrer"><span class="tr-i" aria-hidden="true"><i class="fa-solid fa-brain"></i></span><h3>SAGE Framework</h3><p>Explore SAGE (Structured AI-Guided Education), a research-informed framework for integrating generative AI into teaching, learning, and assessment.</p><span class="tr-go">Explore the SAGE Framework <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
 </section>
-<section class="sup w" id="supervision" aria-labelledby="sup-title">
-<div class="sup-main"><div class="eyebrow">Research supervision</div><h2 id="sup-title">Prospective research students</h2>
+<div class="w"><section class="tr-sup" id="supervision" aria-labelledby="sup-title">
+<div class="tr-sup-main"><div class="eyebrow">Research supervision</div><h2 id="sup-title">Prospective research students</h2>
 <p>I welcome enquiries from students seeking supervision for a PhD or Master of Research degree, both domestic and international. Supervision is offered in cybersecurity, the Internet of Things, blockchain, artificial intelligence and digital health, and responsible generative AI in education.</p>
-<p class="note"><strong>Please note:</strong> I have limited capacity to support international students seeking Research Training Program (RTP) places, scholarships or other funded opportunities for a research degree at CQUniversity, because these processes are extremely competitive.</p></div>
-<div class="sup-side"><h3>Areas of supervision</h3><ul class="areas"><li>Cybersecurity</li><li>Internet of Things</li><li>Blockchain</li><li>AI and digital health</li><li>Responsible generative AI in education</li></ul><a class="btn" href="../contact.html">Enquire about supervision</a><small>Please include a brief CV, your academic transcripts and a short outline of your proposed research topic.</small></div>
-</section>
+<p class="tr-note"><strong>Please note:</strong> I have limited capacity to support international students seeking Research Training Program (RTP) places, scholarships or other funded opportunities for a research degree at CQUniversity, because these processes are extremely competitive.</p></div>
+<div class="tr-sup-side"><h3>Areas of supervision</h3><ul class="tr-areas"><li>Cybersecurity</li><li>Internet of Things</li><li>Blockchain</li><li>AI and digital health</li><li>Responsible generative AI in education</li></ul><a class="tr-btn" href="../contact.html">Enquire about supervision</a><small>Please include a brief CV, your academic transcripts and a short outline of your proposed research topic.</small></div>
+</section></div>
 </main>
-<footer><div class="w">&copy; 2026 Dr Mahmoud Elkhodr. Companion teaching resources licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>. &middot; <a href="../training.html">Workshops &amp; Training</a></div></footer>
+<footer><div class="fl"><a href="https://scholar.google.com.au/citations?user=xqeZJm4AAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a><a href="https://orcid.org/0000-0001-9904-7551" target="_blank" rel="noopener noreferrer" title="ORCID"><i class="fa-brands fa-orcid"></i></a><a href="https://au.linkedin.com/in/elkhodr" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a><a href="https://theconversation.com/profiles/mahmoud-elkhodr-984831" target="_blank" rel="noopener noreferrer" title="The Conversation"><i class="fa-solid fa-pen-nib"></i></a><a id="email-footer" href="#" title="Email"><i class="fa-solid fa-envelope"></i></a></div><p>&#169; 2026 Dr Mahmoud Elkhodr &#183; Companion teaching resources licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a> &#183; <a href="https://staff-profiles.cqu.edu.au/home/view/1633" target="_blank" rel="noopener noreferrer">CQUniversity profile</a> &#183; <a href="../training.html">Workshops &amp; Training</a></p></footer>
+<script src="../assets/portfolio.js" defer></script>
 </body>
 </html>
