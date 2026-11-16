@@ -307,7 +307,7 @@
   function mountChainTypes(holder) {
     holder.innerHTML = `
       <div class="grid-3">
-        <article class="panel network-panel" id="panelPublic">
+        <article class="panel network-panel${state.step === 0 ? ' preview' : ''}" id="panelPublic">
           <h3>Public blockchain</h3>
           <div class="network-stage public-stage">
             ${linksSvg([[24, 30, 50, 50], [78, 22, 50, 50], [16, 80, 50, 50], [52, 88, 50, 50], [86, 78, 50, 50], [24, 30, 78, 22]])}
@@ -325,7 +325,7 @@
           </ul>
         </article>
 
-        <article class="panel network-panel" id="panelPerm">
+        <article class="panel network-panel${state.step === 0 ? ' preview' : ''}" id="panelPerm">
           <h3>Permissioned / private blockchain</h3>
           <div class="network-stage permissioned-stage">
             <div class="gate"></div><div class="lock-icon">🔐</div>
@@ -344,7 +344,7 @@
           </ul>
         </article>
 
-        <article class="panel network-panel" id="panelHybrid">
+        <article class="panel network-panel${state.step === 0 ? ' preview' : ''}" id="panelHybrid">
           <h3>Hybrid blockchain</h3>
           <div class="network-stage hybrid-stage">
             ${linksSvg([[30, 66, 74, 24], [18, 84, 30, 66], [48, 84, 30, 66]])}
@@ -375,6 +375,8 @@
     const panels = [q('#panelPublic'), q('#panelPerm'), q('#panelHybrid')];
     const activeFrom = [1, 2, 3];
     panels.forEach((p, i) => {
+      const preview = step === 0;
+      p.classList.toggle('preview', preview);
       const on = step >= activeFrom[i];
       p.querySelectorAll('.n').forEach(n => n.classList.toggle('live', on));
       p.querySelectorAll('.link').forEach(l => l.classList.toggle('live', on));
@@ -382,7 +384,7 @@
       p.classList.toggle('dim', step >= 1 && step <= 3 && step !== activeFrom[i]);
       p.classList.toggle('focus', step === activeFrom[i]);
     });
-    q('.public-proof').classList.toggle('visible', step >= 3);
+    q('.public-proof').classList.toggle('visible', step >= 3 || step === 0);
     q('.result-callout').classList.toggle('visible', step >= 4);
   }
 

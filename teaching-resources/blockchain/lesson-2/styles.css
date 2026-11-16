@@ -213,6 +213,12 @@ h1 { margin: 0; font-size: clamp(1.25rem, 2.2vw, 1.65rem); line-height: 1.15; te
 .network-panel.focus { box-shadow: 0 0 0 3px var(--brand-2), var(--shadow); transform: translateY(-3px); }
 .network-panel h3 { margin: 0 0 8px; }
 
+/* Give the opening frame a complete visual preview before the guided reveal. */
+.network-panel.preview .n { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+.network-panel.preview .link { opacity: 0.5; }
+.network-panel.preview .tx-card { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+.network-panel.preview .public-proof { transform: translateY(0); opacity: 1; }
+
 .network-stage {
   position: relative;
   height: 250px;
