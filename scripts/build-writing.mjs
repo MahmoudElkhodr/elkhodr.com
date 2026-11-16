@@ -138,7 +138,8 @@ const DAY = 86400000;
 const isAlso = item => !ownSite(item) && (item.photo || item.alsoLabel) && Math.abs(Date.parse(lead.sortDate) - Date.parse(item.sortDate)) <= 7 * DAY;
 const alsoItems = afterLead.filter(isAlso).slice(0, 2);
 // Items flagged keepInArchive stay in the year list as well; the rest are shown only in the highlight.
-const rest = listed.filter(item => (item !== lead && !alsoItems.includes(item)) || item.keepInArchive);
+// With a featured story the lead is not shown at the top, so it must stay in the year list.
+const rest = listed.filter(item => (((item !== lead) || catalogue.featuredStory) && !alsoItems.includes(item)) || item.keepInArchive);
 const alsoCard = also => {
   const figs = [also.photo && figureMarkup(also.photo, 'hub-also-fig'), also.screenshot && figureMarkup(also.screenshot, 'hub-also-fig hub-also-shot')].filter(Boolean).join('');
   return `<section class="hub-also${figs ? '' : ' hub-also-text'}" id="${escape(`highlight-${also.id}`)}" aria-label="Also in the news">${figs ? `<div class="hub-also-photo">${figs}</div>` : ''}<div class="hub-also-copy"><span class="hub-kicker"><b>${escape(also.alsoLabel || 'Also latest')}</b> · ${escape(also.dateLabel)}</span><h3>${itemTitle(also)}</h3><p>${escape(also.summary)}</p>${linksRow(also)}</div></section>`;
