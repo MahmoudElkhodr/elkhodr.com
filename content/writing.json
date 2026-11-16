@@ -161,6 +161,26 @@
   ],
   "coverage": [
     {
+      "id": "herald-sun-microsoft-outage-2026",
+      "title": "Microsoft outage: Big Tech called out after incident cost the world $10 billion",
+      "publisher": "Herald Sun · Expert interview",
+      "url": "https://www.heraldsun.com.au/technology/microsoft-outage-big-tech-called-out-after-incident-cost-the-world-10-billion/news-story/096e4ca31ba7a858c25d9a30cc1ea7d5",
+      "summary": "The Herald Sun (News Corp) reported my comments to news.com.au on tested alternatives, digital sovereignty and why a network upgrade should worry us as much as an attack.",
+      "dateLabel": "16 November 2026",
+      "sortDate": "2026-11-16",
+      "longSummary": "In a News Corp report published in the Herald Sun, journalist Harrison Christian interviewed several experts on the economic and policy consequences of the Microsoft outage, and included my comments to news.com.au. I advised that organisations should identify their essential operations and establish independent alternatives that have been tested. I also argued that keeping data in Australia is not the same as keeping Australian services running, because locally hosted systems may still depend on global authentication, networking or management infrastructure, so digital sovereignty must include operational independence. Finally, I noted that Microsoft attributed the outage to a network upgrade rather than a cyberattack, and that the biggest risk to essential services may be the changes made to our own systems.",
+      "related": [
+        {
+          "label": "My article in The Conversation",
+          "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588"
+        }
+      ],
+      "topics": [
+        "Cybersecurity",
+        "Internet & society"
+      ]
+    },
+    {
       "id": "euronews-microsoft-outage-2026",
       "title": "Microsoft outage explained: what went wrong and is your data at risk?",
       "publisher": "Euronews",
