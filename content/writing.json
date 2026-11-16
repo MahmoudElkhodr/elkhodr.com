@@ -171,6 +171,10 @@
       "longSummary": "In its own news explainer on the global Microsoft outage, Euronews drew on my analysis in The Conversation, describing me as a senior lecturer in information and communication technologies at CQUniversity. The report relays my suggestion that automated health checks, which normally remove faulty servers from service, may have malfunctioned and switched off healthy ones, overloading the remainder, and notes that I presented this as an inference from Microsoft's public updates. It also reports my point that a distributed denial-of-service attack, which floods a system with outside traffic, does not fit Microsoft's statement that traffic had not increased. Finally, it cites my advice that organisations should plan for digital outages as they would for natural disasters, with backup systems that are tested regularly, and that individuals keep essentials such as contacts available offline.",
       "related": [
         {
+          "label": "The full story: how the analysis travelled",
+          "url": "case-studies/microsoft-outage-2026/"
+        },
+        {
           "label": "My article in The Conversation",
           "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588"
         }
@@ -248,7 +252,8 @@
         "height": 409,
         "href": "https://www.independent.co.uk/tech/microsoft-outage-cause-outlook-down-b3084285.html"
       },
-      "alsoLabel": "On air · ABC News Channel"
+      "alsoLabel": "On air · ABC News Channel",
+      "keepInArchive": true
     },
     {
       "id": "conversation-microsoft-outage-2026",
@@ -1004,5 +1009,44 @@
       "dateLabel": "20 October 2020",
       "duration": "5 min 37 sec"
     }
-  ]
+  ],
+  "featuredStory": {
+    "kicker": "Featured story",
+    "dateLabel": "November 2026",
+    "title": "The Microsoft outage: from analysis to international coverage",
+    "href": "case-studies/microsoft-outage-2026/",
+    "summary": "Two articles for <em>The Conversation</em>, a live ABC News Channel interview and reporting by news organisations in several countries.",
+    "tiles": [
+      {
+        "image": "assets/coverage/abc-news-outage-2026.jpg",
+        "width": 720,
+        "height": 325,
+        "alt": "Dr Mahmoud Elkhodr being interviewed live in the ABC News Channel studio",
+        "outlet": "ABC News Channel",
+        "place": "Australia",
+        "anchor": "abc",
+        "focus": "right"
+      },
+      {
+        "image": "assets/coverage/independent-screenshot-2026-11-13.jpg",
+        "width": 800,
+        "height": 409,
+        "alt": "Screenshot of The Independent page for the republished article, showing the headline and the byline Mahmoud Elkhodr, The Conversation",
+        "outlet": "The Independent",
+        "place": "United Kingdom",
+        "anchor": "further"
+      },
+      {
+        "image": "assets/coverage/cnn-indonesia-screenshot-2026-11-16.png",
+        "width": 802,
+        "height": 322,
+        "alt": "Screenshot of the CNN Indonesia article page, showing the masthead and the paragraph naming Mahmoud Elkhodr",
+        "outlet": "CNN Indonesia",
+        "place": "Indonesia",
+        "anchor": "reporting"
+      }
+    ],
+    "also": "Also reported by Euronews, Yle, VnExpress, Il Messaggero and To Vima.",
+    "buttonLabel": "Read the full story"
+  }
 }

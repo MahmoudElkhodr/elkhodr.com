@@ -64,3 +64,7 @@ An entry with `"kind": "research"` (a peer-reviewed paper summarised for readers
 ## Video and radio highlights
 
 The `broadcasts` array supplies the Watch & Listen column. Use `type: "youtube"` with a `videoId`, or `type: "audio"` with an HTTPS `audioUrl`; include publisher, title, summary, dateLabel, duration and the original URL. A coverage entry can reference its highlight using `broadcastId`. For historical video kept within the chronological media archive, add `videoId` directly to the coverage entry instead. Label former roles and dates explicitly. Players load without autoplay and retain links to the original source.
+
+## Featured story (top of the Media page)
+
+`content/writing.json` may hold one top-level `featuredStory` object. When present, the Media page shows a full-width card above the archive in place of the "Latest" lead and the "Also in the news" block. Fields: `kicker`, `dateLabel`, `title`, `summary` (may contain `<em>`), `buttonLabel`, `also` (optional one-line mention), `href` (a `case-studies/<slug>/` folder that must contain an `index.html`) and one to four `tiles`. Each tile needs `image` (an existing file under assets/), `width`, `height`, `alt` (10 to 200 characters), `outlet`, `place` and `anchor` (the id of a section on the story page). Add `"focus": "right"` to shift the crop of a photo. Items that were the lead or a highlight reappear in the year list; set `keepInArchive` on a highlight item to list it. Remove `featuredStory` to restore the previous lead layout.

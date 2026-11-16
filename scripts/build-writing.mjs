@@ -55,7 +55,7 @@ for (const item of [...catalogue.articles, ...catalogue.coverage]) {
   }
   for (const link of item.related || []) {
     if (!link.label || !link.url) throw new Error(`${item.id}: related links need label and url`);
-    if (!/^https:\/\//.test(link.url) && !/^(?:[a-z0-9-]+\.html|#broadcast-[a-z0-9-]+)$/.test(link.url)) throw new Error(`${item.id}: related link must be HTTPS, a site page or a broadcast anchor`);
+    if (!/^https:\/\//.test(link.url) && !/^(?:[a-z0-9-]+\.html|case-studies\/[a-z0-9-]+\/|#broadcast-[a-z0-9-]+)$/.test(link.url)) throw new Error(`${item.id}: related link must be HTTPS, a site page, a case-study path or a broadcast anchor`);
   }
   for (const href of [item.url,item.originalUrl,item.mediumUrl,item.doi,...(item.coverage || []).map(x=>x.url)].filter(Boolean)) {
     if (new URL(href).protocol !== 'https:') throw new Error(`${item.id}: HTTPS URL required`);
@@ -150,6 +150,21 @@ const featuredMarkup = (() => {
   if (!picks.length) return '';
   return `<aside class="hub-featured" aria-labelledby="featured-title"><h2 id="featured-title">Selected recent contributions</h2><ul>${picks.map(item => `<li><a href="${escape(item.url)}" target="_blank" rel="noopener noreferrer"><span class="hub-featured-venue">${escape(item.publisher.replace(' \u2014 ', ' \u00b7 '))}</span><span class="hub-featured-title">${escape(item.title)}</span><span class="hub-featured-date">${escape(item.dateLabel)} <span aria-hidden="true">\u2197</span></span><span class="sr-only"> (opens in a new tab)</span></a></li>`).join('')}</ul></aside>`;
 })();
+// Optional featured story (content/writing.json "featuredStory"): a full-width card above the archive that
+// links to a standalone page. When present it replaces the "Latest" lead and the "Also in the news" block.
+const story = catalogue.featuredStory;
+if (story) {
+  for (const k of ['kicker','dateLabel','title','href','summary','buttonLabel']) if (!story[k]) throw new Error(`featuredStory: missing ${k}`);
+  if (!/^case-studies\/[a-z0-9-]+\/$/.test(story.href)) throw new Error('featuredStory: href must be a case-studies/<slug>/ path');
+  if (!fs.existsSync(path.join(root, story.href, 'index.html'))) throw new Error('featuredStory: target page does not exist');
+  if (!Array.isArray(story.tiles) || story.tiles.length < 1 || story.tiles.length > 4) throw new Error('featuredStory: 1 to 4 tiles required');
+  for (const t of story.tiles) {
+    if (!t.image || !fs.existsSync(path.join(root, t.image))) throw new Error(`featuredStory: missing image ${t.image}`);
+    if (!t.alt || t.alt.length < 10 || t.alt.length > 200) throw new Error('featuredStory: tile alt must be 10 to 200 characters');
+    if (!t.outlet || !t.place || !/^[a-z0-9-]+$/.test(t.anchor || '')) throw new Error('featuredStory: tile needs outlet, place and anchor');
+  }
+}
+const storyMarkup = !story ? '' : `<section class="ft" aria-labelledby="ft-title"><span class="hub-kicker"><b>${escape(story.kicker)}</b> \u00b7 ${escape(story.dateLabel)}</span><h2 id="ft-title"><a href="${escape(story.href)}">${escape(story.title)}</a></h2><p class="ft-lead">${story.summary}</p><ul class="ft-shots">${story.tiles.map(t => `<li><a class="ft-shot${t.focus === 'right' ? ' ft-focus-right' : ''}" href="${escape(story.href + '#' + t.anchor)}"><img src="${escape(t.image)}" width="${t.width}" height="${t.height}" alt="${escape(t.alt)}" decoding="async"><span class="ft-cap"><b>${escape(t.outlet)}</b>${escape(t.place)}</span></a></li>`).join('')}</ul>${story.also ? `<p class="ft-also">${escape(story.also)}</p>` : ''}<a class="ft-btn" href="${escape(story.href)}">${escape(story.buttonLabel)} <span aria-hidden="true">\u2192</span></a></section>`;
 let stream = '';
 let lastYear = null;
 let placed = false;
@@ -173,7 +188,7 @@ const yearPills = yearsShown.length > 2
 const yearStrip = `<nav class="hub-years" aria-label="Jump to a year"><span class="hub-years-label">Jump to</span>${yearPills.map(p => `<a href="#year-${p.to}">${p.label}</a>`).join('')}<a class="hub-years-extra" href="#broadcasts-title">Interviews</a></nav>`;
 const hub = `<main id="main">
 <header class="writing-intro w"><h1>Writing &amp; Media</h1><p>Articles, commentary and interviews on cybersecurity, privacy, blockchain and AI in education.</p><p class="hub-enquiries">Journalists and editors: <a href="contact.html">Media enquiries</a></p></header>
-<div class="hub w"><div class="hub-top"><div class="hub-main">${leadMarkup(lead)}${alsoMarkup}</div>${featuredMarkup}</div>${yearStrip}${stream}</div>
+<div class="hub w">${storyMarkup}<div class="hub-top${story ? ' hub-top-feat' : ''}">${story ? '' : `<div class="hub-main">${leadMarkup(lead)}${alsoMarkup}</div>`}${featuredMarkup}</div>${yearStrip}${stream}</div>
 <aside class="writing-contact w"><p>Looking for an expert perspective on technology, security or AI in education?</p><div class="writing-contact-links"><a class="text-link" href="contact.html">Get in touch <span aria-hidden="true">→</span></a><a class="text-link" href="feed.xml">RSS feed <span aria-hidden="true">↗</span></a></div></aside>
 </main>`;
 outputs.set('media.html', renderPage({TITLE:'Writing &amp; Media | Dr Mahmoud Elkhodr',DESCRIPTION:'Articles, explainers and commentary by Dr Mahmoud Elkhodr on cybersecurity, privacy, blockchain and AI in education, plus interviews and media coverage.',CANONICAL:`${site}/media.html`,OG_TYPE:'website',ROOT:'',HEAD:jsonLd({'@context':'https://schema.org','@type':'CollectionPage',name:'Writing & Media',url:`${site}/media.html`,mainEntity:{'@type':'ItemList',itemListElement:articles.map((item,i)=>({'@type':'ListItem',position:i+1,name:item.title,url:absoluteUrl(item)}))}}),BODY_CLASS:'writing-hub',CONTENT:hub}));
