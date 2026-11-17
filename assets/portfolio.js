@@ -3,6 +3,7 @@
   var cta=document.getElementById('email-cta'),text=document.getElementById('email-text'),foot=document.getElementById('email-footer');
   if(cta) cta.href=mailto; if(text) text.textContent=email; if(foot) foot.href=mailto;
   document.querySelectorAll('[data-mail]').forEach(function(el){el.href=mailto;el.textContent=email;});
+  (function(){var e2='elkhodr'+'@'+'gmail.com';document.querySelectorAll('[data-mail2]').forEach(function(el){el.href='mai'+'lto:'+e2;el.textContent=e2;});})();
   var nav=document.getElementById('mn');
   if(nav) window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>10)});
   var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting)entry.target.classList.add('vis')})},{threshold:.1});
