@@ -225,3 +225,8 @@ footer a{color:var(--acc);text-decoration:none}
 .path-g{padding-top:0;font-size:.85rem;font-weight:600;color:var(--acc)}
 .closing{text-align:center;color:var(--mut);font-size:.95rem;margin:8px auto 56px}.closing a{color:var(--acc);font-weight:600;text-underline-offset:3px}
 @media(max-width:900px){.paths{grid-template-columns:1fr;margin-top:32px;margin-bottom:40px}}
+.gi-media{margin-top:28px}
+.gi-line{margin:0 0 22px;font-size:1.02rem;line-height:1.9}.gi-line a{color:var(--acc);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.gi-b2{background:transparent;color:var(--acc);border:1.5px solid var(--acc);padding:10px 24px}
+.gi-b2:hover{background:var(--acc-l);color:#145842}
+#media.sec{padding-top:0}

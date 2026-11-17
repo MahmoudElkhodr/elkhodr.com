@@ -2,6 +2,7 @@
   var user='m.elkhodr',domain='cqu.edu.au',email=user+'@'+domain,mailto='mai'+'lto:'+email;
   var cta=document.getElementById('email-cta'),text=document.getElementById('email-text'),foot=document.getElementById('email-footer');
   if(cta) cta.href=mailto; if(text) text.textContent=email; if(foot) foot.href=mailto;
+  document.querySelectorAll('[data-mail]').forEach(function(el){el.href=mailto;el.textContent=email;});
   var nav=document.getElementById('mn');
   if(nav) window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>10)});
   var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting)entry.target.classList.add('vis')})},{threshold:.1});
