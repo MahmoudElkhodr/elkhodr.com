@@ -169,6 +169,16 @@
       "dateLabel": "19 November 2026",
       "sortDate": "2026-11-19",
       "featured": true,
+      "coverage": [
+        {
+          "url": "https://au.news.yahoo.com/seven-major-tech-incidents-week-034419692.html",
+          "label": "Yahoo News Australia \u00b7 republication, 19 November 2026"
+        },
+        {
+          "url": "https://www.ptinews.com/story/international/seven-major-tech-incidents-in-a-week---what-s-going-on-and-what-can-we-do-/4273797",
+          "label": "Press Trust of India \u00b7 republication"
+        }
+      ],
       "topics": [
         "Cybersecurity",
         "Internet & society"
@@ -313,6 +323,16 @@
       "dateLabel": "13 November 2026",
       "sortDate": "2026-11-13",
       "featured": true,
+      "coverage": [
+        {
+          "url": "https://www.thenewdaily.com.au/life/tech/2026/11/13/microsoft-outage-what-went-wrong",
+          "label": "The New Daily \u00b7 republication"
+        },
+        {
+          "url": "https://interaksyon.philstar.com/trends-spotlights/2026/11/17/321999/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong/",
+          "label": "Interaksyon (Philstar, Philippines) \u00b7 republication, 17 November 2026"
+        }
+      ],
       "topics": [
         "Cybersecurity",
         "Internet & society"
