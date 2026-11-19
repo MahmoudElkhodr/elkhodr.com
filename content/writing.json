@@ -161,6 +161,31 @@
   ],
   "coverage": [
     {
+      "id": "conversation-tech-incidents-2026",
+      "title": "Seven major tech incidents in a week \u2013 what\u2019s going on, and what can we do?",
+      "publisher": "The Conversation",
+      "url": "https://theconversation.com/seven-major-tech-incidents-in-a-week-whats-going-on-and-what-can-we-do-296918",
+      "summary": "Examines seven major technology incidents in six days, asks whether they were connected, and proposes three measures to keep essential services running when shared systems fail.",
+      "dateLabel": "19 November 2026",
+      "sortDate": "2026-11-19",
+      "featured": true,
+      "topics": [
+        "Cybersecurity",
+        "Internet & society"
+      ],
+      "longSummary": "In this third article for The Conversation I examine seven major technology incidents in six days, from Microsoft\u2019s global outage and a nationwide US aviation ground stop to bank transaction problems, an Apple outage and a supply-chain attack on software used by well-known websites. I ask whether the week was a coincidence, and set out what the reported causes show: only one of the seven is confirmed as a cyberattack, while the reported causes of several others point to routine changes such as updates and new equipment. I argue that data-hosting rules and agreements with global providers cannot keep essential services running when those providers fail, and I propose three measures: targeted sovereign technological capabilities, meaning pre-configured and regularly tested local systems for essential services; a say over how global providers roll out changes to them; and independent review of major failures, not only those labelled cyberattacks.",
+      "related": [
+        {
+          "label": "The Microsoft outage story",
+          "url": "case-studies/microsoft-outage-2026/"
+        },
+        {
+          "label": "My article on the Microsoft outage",
+          "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588"
+        }
+      ]
+    },
+    {
       "id": "news-com-au-microsoft-outage-2026",
       "title": "Microsoft outage: Big Tech called out after incident cost the world $10 billion",
       "publisher": "news.com.au · Expert interview",
@@ -1039,7 +1064,7 @@
     "dateLabel": "November 2026",
     "title": "The Microsoft outage: from analysis to international coverage",
     "href": "case-studies/microsoft-outage-2026/",
-    "summary": "Two articles for <em>The Conversation</em>, a live ABC News Channel interview and reporting by news organisations in several countries.",
+    "summary": "Three articles for <em>The Conversation</em>, a live ABC News Channel interview and reporting by news organisations in several countries.",
     "tiles": [
       {
         "image": "assets/coverage/abc-news-outage-2026.jpg",
