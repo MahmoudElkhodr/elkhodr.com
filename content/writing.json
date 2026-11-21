@@ -350,6 +350,26 @@
       ]
     },
     {
+      "id": "akhbar-el-yom-microsoft-outage-2026",
+      "title": "إنذار تقنى| شلل «مايكروسوفت» فى 72 دولة يفتح ملف البدائل",
+      "publisher": "Akhbar El Yom (Egypt) · Arabic-language citation",
+      "url": "https://akhbarelyom.com/news/newdetails/4907137/1/%D8%A5%D9%86%D8%B0%D8%A7%D8%B1-%D8%AA%D9%82%D9%86%D9%89-%D8%B4%D9%84%D9%84-%D9%85%D8%A7%D9%8A%D9%83%D8%B1%D9%88%D8%B3%D9%88%D9%81%D8%AA-%D9%81%D9%89-72-%D8%AF%D9%88%D9%84%D8%A9-%D9%8A%D9%81%D8%AA",
+      "summary": "The Egyptian daily Akhbar El Yom (in Arabic) cited my Conversation analysis of the Microsoft outage, including the suggestion that a fault in automated server health checks may have removed healthy servers, and the wider risk of depending on a few cloud providers.",
+      "dateLabel": "14 November 2026",
+      "sortDate": "2026-11-14",
+      "longSummary": "The Egyptian daily Akhbar El Yom, in an Arabic-language report headlined “Technical warning: Microsoft paralysis in 72 countries opens the file on alternatives”, cited my analysis in The Conversation of the global Microsoft outage. It relays my suggestion that a fault in the automated health checks that decide whether a server can take traffic may have caused healthy servers to be withdrawn, leaving the remainder overloaded. The report uses this to raise the wider risk of organisations and governments depending on a single cloud provider. It describes me as a senior lecturer in information and communication technologies at CQUniversity in Australia.",
+      "related": [
+        {
+          "label": "My article in The Conversation",
+          "url": "https://theconversation.com/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong-296588"
+        }
+      ],
+      "topics": [
+        "Cybersecurity",
+        "Internet & society"
+      ]
+    },
+    {
       "id": "al-watan-microsoft-outage-2026",
       "title": "\u0639\u0637\u0644 Microsoft \u064a\u0631\u0628\u0643 \u0627\u0644\u062e\u062f\u0645\u0627\u062a \u0641\u064a 74 \u062f\u0648\u0644\u0629",
       "publisher": "Al Watan (Saudi Arabia) \u00b7 Arabic-language citation",
