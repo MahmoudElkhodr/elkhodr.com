@@ -177,6 +177,18 @@
         {
           "url": "https://www.ptinews.com/story/international/seven-major-tech-incidents-in-a-week---what-s-going-on-and-what-can-we-do-/4273797",
           "label": "Press Trust of India \u00b7 republication"
+        },
+        {
+          "url": "https://insidesmallbusiness.com.au/technology/seven-major-tech-incidents-in-a-week-whats-going-on-and-what-can-we-do",
+          "label": "Inside Small Business (Australia) \u00b7 republication, 20 November 2026"
+        },
+        {
+          "url": "https://www.theaustraliatoday.com.au/seven-major-tech-incidents-in-a-week-whats-going-on-and-what-can-we-do/",
+          "label": "The Australia Today \u00b7 republication, 20 November 2026"
+        },
+        {
+          "url": "https://home.nzcity.co.nz/news/article.aspx?id=458350",
+          "label": "NZCity (New Zealand) \u00b7 republication, 20 November 2026"
         }
       ],
       "topics": [
@@ -331,6 +343,30 @@
         {
           "url": "https://interaksyon.philstar.com/trends-spotlights/2026/11/17/321999/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong/",
           "label": "Interaksyon (Philstar, Philippines) \u00b7 republication, 17 November 2026"
+        },
+        {
+          "url": "https://au.news.yahoo.com/microsoft-suffered-global-outage-tech-012645785.html",
+          "label": "Yahoo News Australia \u00b7 republication, 13 November 2026"
+        },
+        {
+          "url": "https://home.nzcity.co.nz/news/article.aspx?id=457964",
+          "label": "NZCity (New Zealand) \u00b7 republication, 13 November 2026"
+        },
+        {
+          "url": "https://menafn.com/1111955506/Microsoft-Has-Suffered-A-Global-Outage-A-Tech-Expert-Explains-What-Went-Wrong",
+          "label": "MENAFN (Middle East and North Africa) \u00b7 republication, 12 November 2026"
+        },
+        {
+          "url": "https://www.zmescience.com/research/technology/whats-up-with-the-microsoft-outage-a-tech-expert-explains-what-you-need-to-know/",
+          "label": "ZME Science \u00b7 republication, 13 November 2026"
+        },
+        {
+          "url": "https://www.newsgram.com/science/2026/11/13/microsoft-suffered-global-outage-tech-expert-explains-what-went-wrong",
+          "label": "Newsgram (India) \u00b7 republication, 13 November 2026"
+        },
+        {
+          "url": "https://www.digitalinformationworld.com/2026/11/microsoft-has-suffered-global-outage.html",
+          "label": "Digital Information World \u00b7 republication, 13 November 2026"
         }
       ],
       "topics": [
