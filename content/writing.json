@@ -162,7 +162,12 @@
   "coverage": [
     {
       "id": "al-jazeera-net-outages-2026",
-      "title": "7 انقطاعات في 6 أيام.. لماذا تتهاوى خدمات أمريكا؟ خبراء يجيبون",
+      "title": "7 outages in 6 days: why are America’s services collapsing? Experts answer",
+      "originalTitle": {
+        "text": "7 انقطاعات في 6 أيام.. لماذا تتهاوى خدمات أمريكا؟ خبراء يجيبون",
+        "lang": "ar",
+        "dir": "rtl"
+      },
       "publisher": "Al Jazeera Net · Arabic-language feature",
       "url": "https://www.aljazeera.net/tech/2026/11/22/7-%D8%A7%D9%86%D9%82%D8%B7%D8%A7%D8%B9%D8%A7%D8%AA-%D9%81%D9%8A-6-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%85%D8%A7%D8%B0%D8%A7-%D8%AA%D8%AA%D9%87%D8%A7%D9%88%D9%89-%D8%AE%D8%AF%D9%85%D8%A7%D8%AA",
       "summary": "Al Jazeera Net (in Arabic) built its feature on the run of seven outages in six days largely around my analysis, from the difference between cybersecurity and digital resilience to practical advice for users and institutions.",

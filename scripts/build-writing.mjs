@@ -100,9 +100,10 @@ const primaryLink = item => item.body
   ? `<a class="text-link" href="${localUrl(item)}">Read the article <span aria-hidden="true">→</span></a>`
   : external(item.url, item.linkLabel || (item.kind === 'research' ? 'Read the paper' : `Read at ${shortPublisher(item)}`), 'text-link');
 const kicker = item => item.kind === 'research' ? `Peer-reviewed paper · ${item.publisher}` : catalogue.articles.includes(item) ? originLabel(item) : item.publisher;
-const itemTitle = item => item.body
+const originalTitle = item => item.originalTitle ? `<span class="hub-orig" lang="${escape(item.originalTitle.lang)}" dir="${escape(item.originalTitle.dir || 'ltr')}">${escape(item.originalTitle.text)}</span>` : '';
+const itemTitle = item => (item.body
   ? `<a href="${localUrl(item)}">${escape(item.title)}</a>`
-  : `<a href="${escape(item.url)}" target="_blank" rel="noopener noreferrer">${escape(item.title)}<span class="sr-only"> (opens in a new tab)</span></a>`;
+  : `<a href="${escape(item.url)}" target="_blank" rel="noopener noreferrer">${escape(item.title)}<span class="sr-only"> (opens in a new tab)</span></a>`) + originalTitle(item);
 const ownSite = item => item.origin === 'site';
 const dateText = item => item.dateLabel === 'Date not stated' || ownSite(item) ? '' : escape(item.dateLabel);
 const linksRow = item => `<div class="hub-links">${primaryLink(item)}${item.body && item.originalUrl ? external(item.originalUrl,'View original','text-link') : ''}${item.doi ? external(item.doi,'DOI','text-link') : ''}${relatedLinks(item)}</div>`;

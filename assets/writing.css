@@ -254,3 +254,5 @@
 .hub-top-feat .hub-featured li+li{border-top:0}
 @media(max-width:1000px){.hub-top-feat .hub-featured ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.ft{padding:22px 18px}.ft-shots{grid-template-columns:1fr;gap:18px}.hub-top-feat .hub-featured ul{grid-template-columns:1fr}.hub-top-feat .hub-featured li+li{border-top:1px solid var(--bdr)}.ft-btn{display:block;text-align:center}}
+
+.hub-orig{display:block;margin-top:6px;font-size:.92rem;font-weight:400;line-height:1.7;letter-spacing:0;color:var(--mut);text-align:left}
