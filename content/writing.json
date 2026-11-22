@@ -161,8 +161,33 @@
   ],
   "coverage": [
     {
+      "id": "al-jazeera-net-outages-2026",
+      "title": "7 انقطاعات في 6 أيام.. لماذا تتهاوى خدمات أمريكا؟ خبراء يجيبون",
+      "publisher": "Al Jazeera Net · Arabic-language feature",
+      "url": "https://www.aljazeera.net/tech/2026/11/22/7-%D8%A7%D9%86%D9%82%D8%B7%D8%A7%D8%B9%D8%A7%D8%AA-%D9%81%D9%8A-6-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%85%D8%A7%D8%B0%D8%A7-%D8%AA%D8%AA%D9%87%D8%A7%D9%88%D9%89-%D8%AE%D8%AF%D9%85%D8%A7%D8%AA",
+      "summary": "Al Jazeera Net (in Arabic) built its feature on the run of seven outages in six days largely around my analysis, from the difference between cybersecurity and digital resilience to practical advice for users and institutions.",
+      "dateLabel": "22 November 2026",
+      "sortDate": "2026-11-22",
+      "featured": true,
+      "longSummary": "Al Jazeera Net, in an Arabic-language feature headlined “7 outages in 6 days: why are America’s services collapsing? Experts answer”, builds its explanation of the recent run of technology failures largely on my analysis, with comments from other experts alongside. It opens with my point that resilience to cyberattack and resilience to outage are very different things, and relays my explanation that modern services rest on shared layers of technology, that a routine update to one layer can reach thousands of servers within minutes, and that long-hidden faults and automated recovery can make matters worse. It sets out my position that coincidence, shared weaknesses and deliberate attack are not mutually exclusive explanations, that the timing is notable but is not evidence of coordination, and that no public evidence yet links the incidents. It closes with my advice for users and institutions: avoid relying on a single digital service for essential matters, keep important documents and emergency contacts offline, identify the essential operations that can continue without internet or cloud access, and rely on official provider channels, because major outages attract scammers. The article introduces me as an academic in cybersecurity at CQUniversity in Australia.",
+      "related": [
+        {
+          "label": "My article in The Conversation",
+          "url": "https://theconversation.com/seven-major-tech-incidents-in-a-week-whats-going-on-and-what-can-we-do-296918"
+        },
+        {
+          "label": "Case study: The Microsoft outage",
+          "url": "case-studies/microsoft-outage-2026/"
+        }
+      ],
+      "topics": [
+        "Cybersecurity",
+        "Internet & society"
+      ]
+    },
+    {
       "id": "conversation-tech-incidents-2026",
-      "title": "Seven major tech incidents in a week \u2013 what\u2019s going on, and what can we do?",
+      "title": "Seven major tech incidents in a week – what’s going on, and what can we do?",
       "publisher": "The Conversation",
       "url": "https://theconversation.com/seven-major-tech-incidents-in-a-week-whats-going-on-and-what-can-we-do-296918",
       "summary": "Examines seven major technology incidents in six days, asks whether they were connected, and proposes three measures to keep essential services running when shared systems fail.",
@@ -172,38 +197,38 @@
       "coverage": [
         {
           "url": "https://au.news.yahoo.com/seven-major-tech-incidents-week-034419692.html",
-          "label": "Yahoo News Australia \u00b7 republication, 19 November 2026"
+          "label": "Yahoo News Australia · republication, 19 November 2026"
         },
         {
           "url": "https://www.ptinews.com/story/international/seven-major-tech-incidents-in-a-week---what-s-going-on-and-what-can-we-do-/4273797",
-          "label": "Press Trust of India \u00b7 republication"
+          "label": "Press Trust of India · republication"
         },
         {
           "url": "https://insidesmallbusiness.com.au/technology/seven-major-tech-incidents-in-a-week-whats-going-on-and-what-can-we-do",
-          "label": "Inside Small Business (Australia) \u00b7 republication, 20 November 2026"
+          "label": "Inside Small Business (Australia) · republication, 20 November 2026"
         },
         {
           "url": "https://www.theaustraliatoday.com.au/seven-major-tech-incidents-in-a-week-whats-going-on-and-what-can-we-do/",
-          "label": "The Australia Today \u00b7 republication, 20 November 2026"
+          "label": "The Australia Today · republication, 20 November 2026"
         },
         {
           "url": "https://home.nzcity.co.nz/news/article.aspx?id=458350",
-          "label": "NZCity (New Zealand) \u00b7 republication, 20 November 2026"
+          "label": "NZCity (New Zealand) · republication, 20 November 2026"
         },
         {
           "url": "https://www.interest.co.nz/technology/141179/string-major-tech-outages-major-tech-companies-and-their-infrastructure-raises",
-          "label": "interest.co.nz (New Zealand) \u00b7 republication, 21 November 2026"
+          "label": "interest.co.nz (New Zealand) · republication, 21 November 2026"
         },
         {
           "url": "https://canberradaily.com.au/seven-major-tech-incidents-in-a-week-whats-going-on-and-what-can-we-do/",
-          "label": "Canberra Daily (Australia) \u00b7 republication, 21 November 2026"
+          "label": "Canberra Daily (Australia) · republication, 21 November 2026"
         }
       ],
       "topics": [
         "Cybersecurity",
         "Internet & society"
       ],
-      "longSummary": "In this third article for The Conversation I examine seven major technology incidents in six days, from Microsoft\u2019s global outage and a nationwide US aviation ground stop to bank transaction problems, an Apple outage and a supply-chain attack on software used by well-known websites. I ask whether the week was a coincidence, and set out what the reported causes show: only one of the seven is confirmed as a cyberattack, while the reported causes of several others point to routine changes such as updates and new equipment. I argue that data-hosting rules and agreements with global providers cannot keep essential services running when those providers fail, and I propose three measures: targeted sovereign technological capabilities, meaning pre-configured and regularly tested local systems for essential services; a say over how global providers roll out changes to them; and independent review of major failures, not only those labelled cyberattacks.",
+      "longSummary": "In this third article for The Conversation I examine seven major technology incidents in six days, from Microsoft’s global outage and a nationwide US aviation ground stop to bank transaction problems, an Apple outage and a supply-chain attack on software used by well-known websites. I ask whether the week was a coincidence, and set out what the reported causes show: only one of the seven is confirmed as a cyberattack, while the reported causes of several others point to routine changes such as updates and new equipment. I argue that data-hosting rules and agreements with global providers cannot keep essential services running when those providers fail, and I propose three measures: targeted sovereign technological capabilities, meaning pre-configured and regularly tested local systems for essential services; a say over how global providers roll out changes to them; and independent review of major failures, not only those labelled cyberattacks.",
       "related": [
         {
           "label": "The Microsoft outage story",
@@ -346,39 +371,39 @@
       "coverage": [
         {
           "url": "https://www.thenewdaily.com.au/life/tech/2026/11/13/microsoft-outage-what-went-wrong",
-          "label": "The New Daily \u00b7 republication"
+          "label": "The New Daily · republication"
         },
         {
           "url": "https://interaksyon.philstar.com/trends-spotlights/2026/11/17/321999/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong/",
-          "label": "Interaksyon (Philstar, Philippines) \u00b7 republication, 17 November 2026"
+          "label": "Interaksyon (Philstar, Philippines) · republication, 17 November 2026"
         },
         {
           "url": "https://au.news.yahoo.com/microsoft-suffered-global-outage-tech-012645785.html",
-          "label": "Yahoo News Australia \u00b7 republication, 13 November 2026"
+          "label": "Yahoo News Australia · republication, 13 November 2026"
         },
         {
           "url": "https://home.nzcity.co.nz/news/article.aspx?id=457964",
-          "label": "NZCity (New Zealand) \u00b7 republication, 13 November 2026"
+          "label": "NZCity (New Zealand) · republication, 13 November 2026"
         },
         {
           "url": "https://menafn.com/1111955506/Microsoft-Has-Suffered-A-Global-Outage-A-Tech-Expert-Explains-What-Went-Wrong",
-          "label": "MENAFN (Middle East and North Africa) \u00b7 republication, 12 November 2026"
+          "label": "MENAFN (Middle East and North Africa) · republication, 12 November 2026"
         },
         {
           "url": "https://www.zmescience.com/research/technology/whats-up-with-the-microsoft-outage-a-tech-expert-explains-what-you-need-to-know/",
-          "label": "ZME Science \u00b7 republication, 13 November 2026"
+          "label": "ZME Science · republication, 13 November 2026"
         },
         {
           "url": "https://www.newsgram.com/science/2026/11/13/microsoft-suffered-global-outage-tech-expert-explains-what-went-wrong",
-          "label": "Newsgram (India) \u00b7 republication, 13 November 2026"
+          "label": "Newsgram (India) · republication, 13 November 2026"
         },
         {
           "url": "https://www.digitalinformationworld.com/2026/11/microsoft-has-suffered-global-outage.html",
-          "label": "Digital Information World \u00b7 republication, 13 November 2026"
+          "label": "Digital Information World · republication, 13 November 2026"
         },
         {
           "url": "https://www.thenewsminute.com/news/microsoft-has-suffered-a-global-outage-a-tech-expert-explains-what-went-wrong",
-          "label": "The News Minute (India) \u00b7 republication, 15 November 2026"
+          "label": "The News Minute (India) · republication, 15 November 2026"
         }
       ],
       "topics": [
@@ -419,13 +444,13 @@
     },
     {
       "id": "al-watan-microsoft-outage-2026",
-      "title": "\u0639\u0637\u0644 Microsoft \u064a\u0631\u0628\u0643 \u0627\u0644\u062e\u062f\u0645\u0627\u062a \u0641\u064a 74 \u062f\u0648\u0644\u0629",
-      "publisher": "Al Watan (Saudi Arabia) \u00b7 Arabic-language citation",
+      "title": "عطل Microsoft يربك الخدمات في 74 دولة",
+      "publisher": "Al Watan (Saudi Arabia) · Arabic-language citation",
       "url": "https://www.alwatan.com.sa/a/1189143",
       "summary": "The Saudi daily Al Watan (in Arabic) cited my analysis of the Microsoft outage, including the suggestion that a fault in the system that checks servers may have removed healthy ones, and my advice to prepare and regularly test backups.",
       "dateLabel": "13 November 2026",
       "sortDate": "2026-11-13",
-      "longSummary": "The Saudi daily Al Watan, in an Arabic-language report headlined \u201cMicrosoft fault disrupts services in 74 countries\u201d, cited my analysis of the global Microsoft outage. It relays my view that a fault in the testing system may be wrongly removing healthy servers from service, and my advice that organisations should prepare and regularly test backup systems. It describes me as a lecturer in information and communication technologies at CQUniversity in Australia.",
+      "longSummary": "The Saudi daily Al Watan, in an Arabic-language report headlined “Microsoft fault disrupts services in 74 countries”, cited my analysis of the global Microsoft outage. It relays my view that a fault in the testing system may be wrongly removing healthy servers from service, and my advice that organisations should prepare and regularly test backup systems. It describes me as a lecturer in information and communication technologies at CQUniversity in Australia.",
       "related": [
         {
           "label": "My article in The Conversation",
@@ -734,15 +759,15 @@
         },
         {
           "url": "https://www.thenewdaily.com.au/life/science/2026/11/03/internet-outage-explainer",
-          "label": "The New Daily (Australia) \u00b7 republication, 3 November 2026"
+          "label": "The New Daily (Australia) · republication, 3 November 2026"
         },
         {
           "url": "https://www.channelnewsasia.com/commentary/ai-cybersecurity-attack-php-6506261",
-          "label": "Channel News Asia (Singapore) \u00b7 republication"
+          "label": "Channel News Asia (Singapore) · republication"
         },
         {
           "url": "https://bigissue-online.jp/archives/28136",
-          "label": "Big Issue Online (Japan) \u00b7 Japanese translation, 21 November 2026"
+          "label": "Big Issue Online (Japan) · Japanese translation, 21 November 2026"
         }
       ],
       "coverageNote": "Reach figures are from the media monitoring report, 23–30 October 2026.",
@@ -1184,7 +1209,7 @@
     "dateLabel": "November 2026",
     "title": "The Microsoft outage: from analysis to international coverage",
     "href": "case-studies/microsoft-outage-2026/",
-    "summary": "Three articles for <em>The Conversation</em>, a live ABC News Channel interview and reporting by news organisations in several countries.",
+    "summary": "Three articles for <em>The Conversation</em>, a live ABC News Channel interview, an Arabic-language feature in <em>Al Jazeera Net</em> built on his analysis, and reporting by news organisations in several countries.",
     "tiles": [
       {
         "image": "assets/coverage/abc-news-outage-2026.jpg",
