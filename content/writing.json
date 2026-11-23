@@ -1254,6 +1254,15 @@
         "anchor": "al-jazeera"
       },
       {
+        "image": "assets/coverage/independent-screenshot-2026-11-13.jpg",
+        "width": 800,
+        "height": 409,
+        "alt": "Screenshot of The Independent page for the republished article, showing the headline and the byline Mahmoud Elkhodr, The Conversation",
+        "outlet": "The Independent",
+        "place": "United Kingdom",
+        "anchor": "further"
+      },
+      {
         "image": "assets/coverage/cnn-indonesia-screenshot-2026-11-16.png",
         "width": 802,
         "height": 322,
