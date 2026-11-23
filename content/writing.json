@@ -188,7 +188,15 @@
       "topics": [
         "Cybersecurity",
         "Internet & society"
-      ]
+      ],
+      "screenshot": {
+        "src": "assets/coverage/al-jazeera-screenshot-2026-11-23.jpg",
+        "alt": "Screenshot of the Al Jazeera Net feature in Arabic, showing the masthead and paragraphs attributing the analysis of routine updates and shared technology layers to Mahmoud Elkhodr",
+        "credit": "Screenshot: Al Jazeera Net, captured 23 November 2026 (opens the article)",
+        "width": 1100,
+        "height": 714,
+        "href": "https://www.aljazeera.net/tech/2026/11/22/7-%D8%A7%D9%86%D9%82%D8%B7%D8%A7%D8%B9%D8%A7%D8%AA-%D9%81%D9%8A-6-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%85%D8%A7%D8%B0%D8%A7-%D8%AA%D8%AA%D9%87%D8%A7%D9%88%D9%89-%D8%AE%D8%AF%D9%85%D8%A7%D8%AA"
+      }
     },
     {
       "id": "conversation-tech-incidents-2026",
@@ -1237,13 +1245,13 @@
         "focus": "right"
       },
       {
-        "image": "assets/coverage/independent-screenshot-2026-11-13.jpg",
-        "width": 800,
-        "height": 409,
-        "alt": "Screenshot of The Independent page for the republished article, showing the headline and the byline Mahmoud Elkhodr, The Conversation",
-        "outlet": "The Independent",
-        "place": "United Kingdom",
-        "anchor": "further"
+        "image": "assets/coverage/al-jazeera-tile-2026-11-23.jpg",
+        "width": 720,
+        "height": 343,
+        "alt": "Screenshot of the Al Jazeera Net feature in Arabic, with paragraphs naming Mahmoud Elkhodr and attributing the analysis to him",
+        "outlet": "Al Jazeera Net",
+        "place": "Arab world",
+        "anchor": "al-jazeera"
       },
       {
         "image": "assets/coverage/cnn-indonesia-screenshot-2026-11-16.png",
