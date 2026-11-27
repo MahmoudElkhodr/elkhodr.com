@@ -156,7 +156,7 @@ const featuredMarkup = (() => {
 // Compact "Interviews" card shown beside the selected contributions when a featured story is present.
 const ivCardMarkup = (() => {
   const rows = broadcasts.slice(0, 3).map(b => `<li><a href="interviews.html#broadcast-${escape(b.id)}"><span class="hub-iv-type">${b.type === 'audio' ? 'Radio' : 'TV'}</span><span class="hub-iv-body"><span class="hub-iv-venue">${escape(b.publisher)}<span class="hub-iv-date"> \u00b7 ${escape(b.dateLabel.replace(/ 20\d\d$/, ''))}</span></span><span class="hub-iv-title">${escape(b.title)}</span></span></a></li>`).join('');
-  return `<aside class="hub-iv" aria-labelledby="hub-iv-title"><h2 id="hub-iv-title">Interviews</h2><ul>${rows}</ul><p class="hub-iv-more"><a href="interviews.html">All interviews <span aria-hidden="true">\u2192</span></a></p></aside>`;
+  return `<aside class="hub-iv" aria-labelledby="hub-iv-title"><h2 id="hub-iv-title">Interviews</h2><ul>${rows}</ul><p class="hub-iv-more"><a class="ft-btn" href="interviews.html">All interviews <span aria-hidden="true">\u2192</span></a></p></aside>`;
 })();
 // Optional featured story (content/writing.json "featuredStory"): a full-width card above the archive that
 // links to a standalone page. When present it replaces the "Latest" lead and the "Also in the news" block.

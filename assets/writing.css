@@ -316,3 +316,7 @@
 .hub-iv-venue,.hub-iv-more a{color:#0b1a39}
 .hub-iv li a:hover .hub-iv-title,.hub-iv li a:focus-visible .hub-iv-title{color:#0b1a39}
 .hub-picks .hub-featured h2,.hub-iv h2{line-height:1.25}
+
+.hub-iv-more{margin:6px 0 0;padding-top:14px;text-align:right}
+.hub-iv-more a.ft-btn,.hub-iv-more a.ft-btn:hover{display:inline-block;color:#fff;text-decoration:none;font-weight:600}
+@media(max-width:760px){.hub-iv-more a.ft-btn{display:block;text-align:center}}
