@@ -1201,6 +1201,16 @@
   ],
   "broadcasts": [
     {
+      "id": "abc-news-channel",
+      "type": "youtube",
+      "publisher": "ABC News Channel",
+      "title": "Live on the Microsoft outage",
+      "summary": "A live interview on the global Microsoft outage, why its cause was hard to identify, and what organisations can do when essential systems are unavailable.",
+      "videoId": "NjHK7ENsJgA",
+      "url": "https://www.youtube.com/watch?v=NjHK7ENsJgA",
+      "dateLabel": "13 November 2026"
+    },
+    {
       "id": "abc-hobart-evenings",
       "type": "audio",
       "publisher": "ABC Radio Hobart",
