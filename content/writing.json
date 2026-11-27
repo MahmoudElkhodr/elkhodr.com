@@ -196,7 +196,8 @@
         "width": 1100,
         "height": 714,
         "href": "https://www.aljazeera.net/tech/2026/11/22/7-%D8%A7%D9%86%D9%82%D8%B7%D8%A7%D8%B9%D8%A7%D8%AA-%D9%81%D9%8A-6-%D8%A3%D9%8A%D8%A7%D9%85-%D9%84%D9%85%D8%A7%D8%B0%D8%A7-%D8%AA%D8%AA%D9%87%D8%A7%D9%88%D9%89-%D8%AE%D8%AF%D9%85%D8%A7%D8%AA"
-      }
+      },
+      "interview": true
     },
     {
       "id": "conversation-tech-incidents-2026",
@@ -279,7 +280,8 @@
       "topics": [
         "Cybersecurity",
         "Internet & society"
-      ]
+      ],
+      "interview": true
     },
     {
       "id": "euronews-microsoft-outage-2026",
@@ -807,7 +809,7 @@
       "related": [
         {
           "label": "ABC Southern Queensland interview",
-          "url": "#broadcast-abc-southern-queensland"
+          "url": "interviews.html#broadcast-abc-southern-queensland"
         }
       ]
     },

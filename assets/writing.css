@@ -258,3 +258,5 @@
 .hub-orig{display:block;margin-top:6px;font-size:.92rem;font-weight:400;line-height:1.7;letter-spacing:0;color:var(--mut);text-align:left}
 
 @media(min-width:761px){.ft-shots-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.hub-band-more{margin:14px 0 0;font-size:.8rem}.iv-block{margin:0 0 34px}.iv-block>.hub-band-title{margin-bottom:14px}.iv-block .hub-entry{margin-top:0}@media(max-width:900px){.iv .hub-band-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.iv .hub-band-grid{grid-template-columns:1fr}}

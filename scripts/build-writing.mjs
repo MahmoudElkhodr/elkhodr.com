@@ -55,7 +55,7 @@ for (const item of [...catalogue.articles, ...catalogue.coverage]) {
   }
   for (const link of item.related || []) {
     if (!link.label || !link.url) throw new Error(`${item.id}: related links need label and url`);
-    if (!/^https:\/\//.test(link.url) && !/^(?:[a-z0-9-]+\.html|case-studies\/[a-z0-9-]+\/|#broadcast-[a-z0-9-]+)$/.test(link.url)) throw new Error(`${item.id}: related link must be HTTPS, a site page, a case-study path or a broadcast anchor`);
+    if (!/^https:\/\//.test(link.url) && !/^(?:[a-z0-9-]+\.html|case-studies\/[a-z0-9-]+\/|#broadcast-[a-z0-9-]+|interviews\.html#broadcast-[a-z0-9-]+)$/.test(link.url)) throw new Error(`${item.id}: related link must be HTTPS, a site page, a case-study path or a broadcast anchor`);
   }
   for (const href of [item.url,item.originalUrl,item.mediumUrl,item.doi,...(item.coverage || []).map(x=>x.url)].filter(Boolean)) {
     if (new URL(href).protocol !== 'https:') throw new Error(`${item.id}: HTTPS URL required`);
@@ -125,9 +125,10 @@ function entryMarkup(item) {
   return `<article class="hub-compact" id="${escape(anchor)}"><time>${dateText(item)}</time><div><span class="hub-kicker"><b>${escape(kicker(item))}</b></span><h3>${itemTitle(item)}</h3><p>${escape(item.summary)}</p>${item.doi ? `<div class="hub-links">${external(item.doi,'DOI','text-link')}</div>` : ''}${extraCoverage(item)}</div></article>`;
 }
 const videoEmbed = (videoId, title) => `<div class="broadcast-video"><iframe src="https://www.youtube.com/embed/${videoId}?rel=0" title="${escape(title)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
-const broadcastMarkup = broadcasts.map(item=>`<article class="broadcast-card broadcast-${item.type}" id="broadcast-${item.id}"><div class="broadcast-label">${escape(item.publisher)} · ${item.type==='audio'?'Radio interview':'TV interview'}</div>${item.type==='youtube'?`<div class="broadcast-video"><iframe src="https://www.youtube.com/embed/${item.videoId}?rel=0" title="${escape(item.publisher+': '+item.title)}" loading="eager" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>`:''}<h3>${escape(item.title)}</h3><p>${escape(item.summary)}</p><div class="broadcast-meta">${escape(item.dateLabel)} · ${escape(item.duration)}</div>${item.type==='audio'?`<audio controls preload="none" aria-label="${escape(item.publisher+': '+item.title)}"><source src="${escape(item.audioUrl)}" type="audio/mpeg">Your browser does not support audio playback.</audio><p class="audio-error" data-audio-error hidden>Audio unavailable here.${item.url?' Please use the original ABC player below.':''}</p>`:''}${item.url?external(item.url,item.type==='audio'?'Original interview on ABC':'Watch on YouTube','text-link'):''}</article>`).join('\n');
+const broadcastCard = item=>`<article class="broadcast-card broadcast-${item.type}" id="broadcast-${item.id}"><div class="broadcast-label">${escape(item.publisher)} · ${item.type==='audio'?'Radio interview':'TV interview'}</div>${item.type==='youtube'?`<div class="broadcast-video"><iframe src="https://www.youtube.com/embed/${item.videoId}?rel=0" title="${escape(item.publisher+': '+item.title)}" loading="eager" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>`:''}<h3>${escape(item.title)}</h3><p>${escape(item.summary)}</p><div class="broadcast-meta">${escape(item.dateLabel)} · ${escape(item.duration)}</div>${item.type==='audio'?`<audio controls preload="none" aria-label="${escape(item.publisher+': '+item.title)}"><source src="${escape(item.audioUrl)}" type="audio/mpeg">Your browser does not support audio playback.</audio><p class="audio-error" data-audio-error hidden>Audio unavailable here.${item.url?' Please use the original ABC player below.':''}</p>`:''}${item.url?external(item.url,item.type==='audio'?'Original interview on ABC':'Watch on YouTube','text-link'):''}</article>`;
+const broadcastMarkup = broadcasts.slice(0,3).map(broadcastCard).join('\n');
 const BAND_AFTER = 2; // number of entries after the lead before the Watch & Listen band
-const bandMarkup = `<section class="hub-band" aria-labelledby="broadcasts-title"><h2 class="hub-band-title" id="broadcasts-title">Watch &amp; listen</h2><div class="hub-band-grid">${broadcastMarkup}</div></section>`;
+const bandMarkup = `<section class="hub-band" aria-labelledby="broadcasts-title"><h2 class="hub-band-title" id="broadcasts-title">Watch &amp; listen</h2><div class="hub-band-grid">${broadcastMarkup}</div><p class="hub-band-more"><a class="text-link" href="interviews.html">All interviews: radio, television and print <span aria-hidden="true">→</span></a></p></section>`;
 // Within each year, articles hosted on elkhodr.com follow the externally published items and show no date,
 // so independent coverage leads the page and the lead story is never an own-site article.
 const listed = [...articles, ...coverage].filter(item => !item.broadcastId).toSorted((a,b)=>
@@ -195,6 +196,20 @@ const hub = `<main id="main">
 </main>`;
 outputs.set('media.html', renderPage({TITLE:'Writing &amp; Media | Dr Mahmoud Elkhodr',DESCRIPTION:'Articles, explainers and commentary by Dr Mahmoud Elkhodr on cybersecurity, privacy, blockchain and AI in education, plus interviews and media coverage.',CANONICAL:`${site}/media.html`,OG_TYPE:'website',ROOT:'',HEAD:jsonLd({'@context':'https://schema.org','@type':'CollectionPage',name:'Writing & Media',url:`${site}/media.html`,mainEntity:{'@type':'ItemList',itemListElement:articles.map((item,i)=>({'@type':'ListItem',position:i+1,name:item.title,url:absoluteUrl(item)}))}}),BODY_CLASS:'writing-hub',CONTENT:hub}));
 
+const radioCards = broadcasts.filter(b=>b.type==='audio').map(broadcastCard).join('\n');
+const tvCards = broadcasts.filter(b=>b.type==='youtube').map(broadcastCard).join('\n');
+const printEntries = coverage.filter(item=>item.interview).map(entryMarkup).join('');
+const interviewsBody = `<main id="main">
+<header class="writing-intro w"><a class="back-link" href="media.html"><span aria-hidden="true">←</span> Writing &amp; Media</a><h1>Interviews</h1><p>Radio, television and print interviews on cybersecurity, major technology outages and AI in education.</p><p class="hub-enquiries">Journalists and producers: <a href="contact.html">Media enquiries</a></p></header>
+<div class="hub w iv">
+<section class="iv-block" aria-labelledby="iv-radio"><h2 class="hub-band-title" id="iv-radio">Radio</h2><div class="hub-band-grid">${radioCards}</div></section>
+${tvCards ? `<section class="iv-block" aria-labelledby="iv-tv"><h2 class="hub-band-title" id="iv-tv">Television</h2><div class="hub-band-grid">${tvCards}</div></section>` : ''}
+${printEntries ? `<section class="iv-block" aria-labelledby="iv-print"><h2 class="hub-band-title" id="iv-print">In print and online</h2>${printEntries}</section>` : ''}
+</div>
+<aside class="writing-contact w"><p>Available for comment on cybersecurity, privacy, technology outages and AI in education.</p><div class="writing-contact-links"><a class="text-link" href="contact.html">Get in touch <span aria-hidden="true">→</span></a><a class="text-link" href="media.html">All writing and coverage <span aria-hidden="true">→</span></a></div></aside>
+</main>`;
+outputs.set('interviews.html', renderPage({TITLE:'Interviews | Dr Mahmoud Elkhodr',DESCRIPTION:'Radio, television and print interviews with Dr Mahmoud Elkhodr on cybersecurity, major technology outages and AI in education.',CANONICAL:`${site}/interviews.html`,OG_TYPE:'website',ROOT:'',HEAD:jsonLd({'@context':'https://schema.org','@type':'CollectionPage',name:'Interviews',url:`${site}/interviews.html`}),BODY_CLASS:'writing-hub',CONTENT:interviewsBody}));
+
 // Deliberately small Markdown surface: paragraphs, ## headings, links and emphasis.
 // Raw HTML is escaped; protocols and heading identifiers are validated.
 function inline(markdown) {
@@ -244,6 +259,7 @@ outputs.set('feed.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.
 const sitemapPath = path.join(root,'sitemap.xml');
 let sitemap = fs.readFileSync(sitemapPath,'utf8').replace(/\s*<url><loc>https:\/\/elkhodr\.com\/articles\/[^<]+<\/loc>(?:<lastmod>[^<]+<\/lastmod>)?<\/url>/g,'');
 sitemap = sitemap.replace('</urlset>',articles.filter(x=>x.body && x.origin==='site').map(item=>`  <url><loc>${absoluteUrl(item)}</loc><lastmod>${item.updated || item.date}</lastmod></url>\n`).join('')+'</urlset>');
+if (!sitemap.includes('/interviews.html')) sitemap = sitemap.replace('<url><loc>https://elkhodr.com/media.html</loc></url>', '<url><loc>https://elkhodr.com/media.html</loc></url>\n  <url><loc>https://elkhodr.com/interviews.html</loc></url>');
 outputs.set('sitemap.xml',sitemap);
 // Home page: keep a one-line pointer to the newest entry between the markers in index.html.
 {
