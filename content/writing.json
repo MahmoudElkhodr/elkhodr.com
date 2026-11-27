@@ -1199,6 +1199,16 @@
   ],
   "broadcasts": [
     {
+      "id": "abc-queensland-sunday-morning",
+      "type": "audio",
+      "publisher": "ABC Radio Queensland",
+      "title": "Why so many tech outages at once?",
+      "summary": "A Sunday Morning interview with Sally Rope, broadcast across ABC regional Queensland stations, on the recent run of major outages and whether they are connected.",
+      "audioUrl": "https://elkhodr.com/assets/audio/abc-queensland-sunday-morning-tech-outages.mp3",
+      "dateLabel": "22 November 2026",
+      "duration": "10 min 50 sec"
+    },
+    {
       "id": "abc-southern-queensland",
       "type": "audio",
       "publisher": "ABC Southern Queensland",
