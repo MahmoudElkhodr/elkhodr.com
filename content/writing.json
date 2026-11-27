@@ -1199,6 +1199,17 @@
   ],
   "broadcasts": [
     {
+      "id": "abc-hobart-evenings",
+      "type": "audio",
+      "publisher": "ABC Radio Hobart",
+      "title": "What is behind the run of major tech outages?",
+      "summary": "An Evenings interview with Helena Shield on the recent run of major tech outages, how much is human error and how much is attack, and what governments and individuals can do to prepare.",
+      "audioUrl": "https://elkhodr.com/assets/audio/abc-hobart-evenings-tech-outages.mp3",
+      "url": "https://www.abc.net.au/listen/programs/hobart-evenings/evenings/107413378",
+      "dateLabel": "25 November 2026",
+      "duration": "13 min 25 sec"
+    },
+    {
       "id": "abc-queensland-sunday-morning",
       "type": "audio",
       "publisher": "ABC Radio Queensland",
